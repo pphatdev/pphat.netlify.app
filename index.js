@@ -5,7 +5,7 @@ import { configDotenv as env } from 'dotenv';
 const packages = packageJson.default
 const getENV = env().parsed
 const app = express();
-const { PORT, NODE_ENV } = getENV;
+const { PORT = 3000, NODE_ENV } = getENV;
 
 
 /** Get Index */
