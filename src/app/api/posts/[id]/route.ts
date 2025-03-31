@@ -2,12 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { db, Post } from '@lib/db';
 
 interface Params {
-    params: {
-        id: string;
-    };
+    params: Promise<{ id: string; }>;
 }
 
-export async function GET(request: NextRequest, { params }: Params) {
+export async function GET(request: NextRequest, props: Params) {
+    const params = await props.params;
     try {
         const post = db.getById<Post>('posts', params.id);
 
@@ -21,7 +20,8 @@ export async function GET(request: NextRequest, { params }: Params) {
     }
 }
 
-export async function PUT(request: NextRequest, { params }: Params) {
+export async function PUT(request: NextRequest, props: Params) {
+    const params = await props.params;
     try {
         const body = await request.json();
         const updatedPost = db.update<Post>('posts', params.id, body);
@@ -36,7 +36,8 @@ export async function PUT(request: NextRequest, { params }: Params) {
     }
 }
 
-export async function DELETE(request: NextRequest, { params }: Params) {
+export async function DELETE(request: NextRequest, props: Params) {
+    const params = await props.params;
     try {
         const deleted = db.delete('posts', params.id);
 
