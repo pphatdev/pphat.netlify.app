@@ -5,6 +5,17 @@ const nextConfig: NextConfig = {
     // images: {
     //     formats: ['image/webp', 'image/avif'],
     // }
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'www.shadcnblocks.com',
+                port: '',
+                pathname: '/**',
+                search: '',
+            },
+        ],
+    },
 };
 
 export default nextConfig;
