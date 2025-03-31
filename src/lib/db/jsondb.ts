@@ -56,6 +56,21 @@ export class JsonDB {
     }
 
     /**
+     * Read the latest data from the file to ensure we have the most recent version
+     */
+    private refreshData(): void {
+        try {
+            if (fs.existsSync(this.dbPath)) {
+                const rawData = fs.readFileSync(this.dbPath, 'utf8');
+                this.data = JSON.parse(rawData);
+            }
+        } catch (error) {
+            console.error('Error reading database file:', error);
+            // Continue with existing data if read fails
+        }
+    }
+
+    /**
      * Generate a unique ID for new items
      * @returns string - Unique ID
      */
@@ -69,16 +84,7 @@ export class JsonDB {
      * @returns Array of items in the collection
      */
     getAll<T>(collection: string): T[] {
-        // Read the latest data from file to ensure we have the most recent version
-        try {
-            if (fs.existsSync(this.dbPath)) {
-                const rawData = fs.readFileSync(this.dbPath, 'utf8');
-                this.data = JSON.parse(rawData);
-            }
-        } catch (error) {
-            console.error('Error reading database file in getAll:', error);
-            // Continue with existing data if read fails
-        }
+        this.refreshData();
 
         if (!this.data[collection]) {
             this.data[collection] = [];
@@ -93,9 +99,12 @@ export class JsonDB {
      * @returns Found item or null if not found
      */
     getById<T>(collection: string, id: string): T | null {
+        this.refreshData();
+
         if (!this.data[collection]) {
             return null;
         }
+
         return this.data[collection].find(item => item.id === id) as T || null;
     }
 
@@ -106,6 +115,8 @@ export class JsonDB {
      * @returns The created item with generated ID
      */
     create<T>(collection: string, item: Omit<T, 'id'>): T {
+        this.refreshData();
+
         if (!this.data[collection]) {
             this.data[collection] = [];
         }
@@ -128,6 +139,8 @@ export class JsonDB {
      * @returns Updated item or null if not found
      */
     update<T>(collection: string, id: string, updates: Partial<T>): T | null {
+        this.refreshData();
+
         if (!this.data[collection]) {
             return null;
         }
@@ -154,6 +167,8 @@ export class JsonDB {
      * @returns true if deleted, false if not found
      */
     delete(collection: string, id: string): boolean {
+        this.refreshData();
+
         if (!this.data[collection]) {
             return false;
         }
@@ -176,6 +191,8 @@ export class JsonDB {
      * @returns Filtered array of items
      */
     query<T>(collection: string, query: (item: T) => boolean): T[] {
+        this.refreshData();
+
         if (!this.data[collection]) {
             return [];
         }
