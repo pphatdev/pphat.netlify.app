@@ -17,7 +17,7 @@ export default function PostsPage() {
                             {post.content.substring(0, 150)}...
                         </p>
                         <Link
-                            href={`/posts/${post.slug}`}
+                            href={`/posts/${post.id}`}
                             className="text-blue-600 hover:underline mt-2 inline-block"
                         >
                             Read more
