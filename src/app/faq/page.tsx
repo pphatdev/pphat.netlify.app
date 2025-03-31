@@ -1,4 +1,5 @@
 import { FaqSection } from "@components/ui/faq";
+import { TestDb } from "./test";
 
 const DEMO_FAQS = [
     {
@@ -17,15 +18,18 @@ const DEMO_FAQS = [
 
 export default function FaqSectionDemo() {
     return (
-        <FaqSection
-            title="Frequently Asked Questions"
-            description="Everything you need to know about our platform"
-            items={DEMO_FAQS}
-            contactInfo={{
-                title: "Still have questions?",
-                description: "We're here to help you",
-                buttonText: "Contact Support"
-            }}
-        />
+        <>
+            <TestDb />
+            <FaqSection
+                title="Frequently Asked Questions"
+                description="Everything you need to know about our platform"
+                items={DEMO_FAQS}
+                contactInfo={{
+                    title: "Still have questions?",
+                    description: "We're here to help you",
+                    buttonText: "Contact Support"
+                }}
+            />
+        </>
     );
 }
