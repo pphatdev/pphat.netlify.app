@@ -19,7 +19,9 @@ export default function NewPostPage() {
             setError(result.error);
             setSubmitting(false);
         } else {
-            // router.push('/admin/posts');
+            router.push('/admin/posts/new');
+            router.refresh();
+            setSubmitting(false);
         }
     }
 
