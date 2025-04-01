@@ -18,7 +18,6 @@ interface PaginatedResult<T> {
         limit: number;
     };
     pagination: {
-        currentPage: number;
         items: Array<{
             label: string;
             url: string;
@@ -161,12 +160,11 @@ export class JsonDB {
             success: true,
             metadata: {
                 currentPage: page,
-                pages: totalPages,
+                pages: limit == -1 ? page :totalPages,
                 total: total,
                 limit: limit
             },
             pagination: {
-                currentPage: page,
                 items: renderPagination(
                     {
                         totalPages: totalPages,
