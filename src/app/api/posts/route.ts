@@ -1,10 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db, Post } from '@lib/db'
 
-export async function GET() {
+export async function GET(request: NextRequest) {
     try {
-        const posts = db.getAll<Post>('posts');
-        return NextResponse.json(posts);
+        const { searchParams } = new URL(request.url);
+        const page = parseInt(searchParams.get('page') || '1');
+        const limit = parseInt(searchParams.get('limit') || '10');
+        const sort = searchParams.get('sort') || 'asc';
+        const search = searchParams.get('search') || '';
+        const posts = db.getAll<Post>('posts', search, page, limit, sort);
+
+        return NextResponse.json(posts, { status: 200 });
+
     } catch (error) {
         return NextResponse.json({ error: 'Failed to fetch posts' }, { status: 500 });
     }
