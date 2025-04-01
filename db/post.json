@@ -271,6 +271,166 @@
       "slug": "hunches-in-bunches",
       "published": true,
       "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "35366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "On Beyond Zebra!",
+      "content": "An exploration of letters beyond the traditional alphabet.",
+      "slug": "beyond-zebra",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "36366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "The Seven Lady Godivas",
+      "content": "A humorous tale about seven sisters and their quest for knowledge.",
+      "slug": "seven-lady-godivas",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "37366a3d-40b8-4b2d-8066-c1834f65f879", 
+      "title": "McElligot's Pool",
+      "content": "A boy imagines fantastic fish that might live in a small fishing pond.",
+      "slug": "mcelligots-pool",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "38366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "The Eye Book",
+      "content": "A simple exploration of what eyes can see and do.",
+      "slug": "eye-book",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "39366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "I Had Trouble in Getting to Solla Sollew",
+      "content": "A journey to find a place without troubles leads to self-discovery.",
+      "slug": "solla-sollew",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "40366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "And to Think That I Saw It on Mulberry Street",
+      "content": "A boy's imagination transforms a simple street scene into something extraordinary.",
+      "slug": "mulberry-street",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "41366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Thidwick the Big-Hearted Moose",
+      "content": "A moose learns about setting boundaries with demanding guests.",
+      "slug": "thidwick-moose",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "42366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "The Butter Battle Book",
+      "content": "A satire about the arms race and the futility of war.",
+      "slug": "butter-battle",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "43366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Bartholomew and the Oobleck",
+      "content": "A king's desire for new weather creates a sticky situation.",
+      "slug": "bartholomew-oobleck",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "44366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Marvin K. Mooney Will You Please Go Now!",
+      "content": "A humorous way of saying it's time to leave.",
+      "slug": "marvin-mooney",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "45366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "The Foot Book",
+      "content": "A celebration of all types of feet and walking.",
+      "slug": "foot-book",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "46366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "You're Only Old Once!",
+      "content": "A humorous look at aging and medical check-ups.",
+      "slug": "only-old-once",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "47366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Oh Say Can You Say?",
+      "content": "A collection of tongue twisters and verbal challenges.",
+      "slug": "oh-say-can-you-say",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "48366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "I Can Lick 30 Tigers Today!",
+      "content": "A tale about boasting and backing down gracefully.",
+      "slug": "thirty-tigers",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "49366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Would You Rather Be a Bullfrog?",
+      "content": "A series of silly questions about what you'd rather be.",
+      "slug": "rather-be-bullfrog",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "50366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "The Cat's Quizzer",
+      "content": "A book of riddles and trick questions.",
+      "slug": "cats-quizzer",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "51366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Please Try to Remember the First of Octember!",
+      "content": "A fantastical story about an impossible date.",
+      "slug": "first-of-octember",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "52366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Maybe You Should Fly a Jet!",
+      "content": "A book about different career possibilities.",
+      "slug": "maybe-fly-jet",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "53366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Come over to My House",
+      "content": "A look at different types of houses around the world.",
+      "slug": "come-to-my-house",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "54366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Hooper Humperdink...? Not Him!",
+      "content": "A story about inclusion and exclusion from party invitations.",
+      "slug": "hooper-humperdink",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
     }
   ],
   "postDetail": []
