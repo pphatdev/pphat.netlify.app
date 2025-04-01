@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto'
 
 interface DbOptions {
     dbPath: string;
@@ -75,7 +76,7 @@ export class JsonDB {
      * @returns string - Unique ID
      */
     private generateId(): string {
-        return Date.now().toString(36) + Math.random().toString(36).substring(2);
+        return crypto.randomUUID();
     }
 
     /**
