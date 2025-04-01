@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db, Post } from '@lib/db';
+import { db, Post } from '@lib/db/post';
 import { FileCache } from '@lib/caches/file-cache';
 
 // Initialize cache with 10 minute TTL

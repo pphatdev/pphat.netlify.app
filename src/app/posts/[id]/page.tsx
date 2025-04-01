@@ -1,4 +1,4 @@
-import { db, Post } from '@lib/db';
+import { db, Post } from '@lib/db/post';
 import Link from 'next/link';
 
 interface Params {

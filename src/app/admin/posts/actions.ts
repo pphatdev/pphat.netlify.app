@@ -1,6 +1,6 @@
 'use server';
 
-import { db, Post } from '@lib/db';
+import { db, Post } from '@lib/db/post';
 import { revalidatePath } from 'next/cache';
 
 export async function createPost(formData: FormData) {

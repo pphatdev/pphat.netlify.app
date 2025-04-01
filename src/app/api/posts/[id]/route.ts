@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db, Post } from '@lib/db';
+import { db, Post } from '@lib/db/post';
 
 interface Params {
     params: Promise<{ id: string; }>;

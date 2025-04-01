@@ -18,7 +18,7 @@ export interface User {
 }
 
 const db = new JsonDB({
-    dbPath: path.join(process.cwd(), 'db', 'post.json'),
+    dbPath: path.join(process.cwd(), 'data', 'post.json'),
     defaultData: {
         posts: [],
         postDetail: []
