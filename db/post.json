@@ -1,0 +1,277 @@
+{
+  "posts": [
+    {
+      "id": "09366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "The Cat in the Hat",
+      "content": "A whimsical tale of a cat who brings chaos and fun to a rainy day.",
+      "slug": "cat-in-the-hat",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "10366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Green Eggs and Ham",
+      "content": "Sam-I-Am persists in offering green eggs and ham to an unnamed character.",
+      "slug": "green-eggs-and-ham",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "21366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "One Fish Two Fish Red Fish Blue Fish",
+      "content": "A simple rhyming book that introduces basic concepts and colors.",
+      "slug": "one-fish-two-fish",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "32366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "The Lorax",
+      "content": "A cautionary tale about the dangers of environmental destruction.",
+      "slug": "the-lorax",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "43366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Oh, the Places You'll Go!",
+      "content": "An inspirational book about the journey of life and the choices one makes.",
+      "slug": "oh-the-places-youll-go",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "54366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Horton Hears a Who!",
+      "content": "Horton the Elephant discovers a tiny civilization on a speck of dust.",
+      "slug": "horton-hears-a-who",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "65366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "The Sneetches",
+      "content": "A story about the absurdity of discrimination based on superficial differences.",
+      "slug": "the-sneetches",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "76366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Fox in Socks",
+      "content": "A tongue-twisting book that challenges readers with complex rhymes.",
+      "slug": "fox-in-socks",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "87366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Dr. Seuss's ABC",
+      "content": "An alphabet book that uses rhymes and colorful illustrations to teach the ABCs.",
+      "slug": "dr-seuss-abc",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "98366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Yertle the Turtle",
+      "content": "A story about a turtle king who learns a lesson about fairness and equality.",
+      "slug": "yertle-the-turtle",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "11366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "The 500 Hats of Bartholomew Cubbins",
+      "content": "A young boy faces a royal decree when he can't remove his hat, only for more to appear.",
+      "slug": "500-hats-bartholomew",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "12366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "If I Ran the Zoo",
+      "content": "A young boy imagines the changes he'd make if he ran the zoo.",
+      "slug": "if-i-ran-the-zoo",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "13366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Scrambled Eggs Super!",
+      "content": "A boy goes to great lengths to find the most unusual eggs for breakfast.",
+      "slug": "scrambled-eggs-super",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "14366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Did I Ever Tell You How Lucky You Are?",
+      "content": "A reminder to appreciate the simple things in life and be grateful.",
+      "slug": "how-lucky-you-are",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "15366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Happy Birthday to You!",
+      "content": "A celebration of birthdays and the unique qualities of each individual.",
+      "slug": "happy-birthday-to-you",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "16366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "I Can Read With My Eyes Shut!",
+      "content": "A humorous take on the joys and benefits of reading.",
+      "slug": "i-can-read-with-my-eyes-shut",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "17366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Mr. Brown Can Moo! Can You?",
+      "content": "An interactive book that encourages children to imitate sounds.",
+      "slug": "mr-brown-can-moo",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "18366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "There's a Wocket in My Pocket!",
+      "content": "A playful exploration of rhyming words and imaginary creatures.",
+      "slug": "wocket-in-my-pocket",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "19366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Hop on Pop",
+      "content": "A simple book designed to help children learn to read.",
+      "slug": "hop-on-pop",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "20366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "The Shape of Me and Other Stuff",
+      "content": "An exploration of shapes and sizes through silhouettes.",
+      "slug": "the-shape-of-me",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "21366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Great Day for Up!",
+      "content": "A celebration of the joys of being awake and active.",
+      "slug": "great-day-for-up",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "22366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "My Many Colored Days",
+      "content": "A book that connects colors with different moods and emotions.",
+      "slug": "my-many-colored-days",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "23366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "What Was I Scared Of?",
+      "content": "A story about overcoming fears and realizing that things aren't always as scary as they seem.",
+      "slug": "what-was-i-scared-of",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "24366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "The Tooth Book",
+      "content": "An informative and fun book about teeth and dental hygiene.",
+      "slug": "the-tooth-book",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "25366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "I Am Not Going to Get Up Today!",
+      "content": "A humorous tale of a child who refuses to get out of bed.",
+      "slug": "not-going-to-get-up",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "26366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Wacky Wednesday",
+      "content": "A seek-and-find book where everything is topsy-turvy.",
+      "slug": "wacky-wednesday",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "27366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Ten Apples Up On Top!",
+      "content": "A counting book that features animals balancing apples on their heads.",
+      "slug": "ten-apples-up",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "28366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "In a People House",
+      "content": "A rhyming tour through a house filled with whimsical objects.",
+      "slug": "in-a-people-house",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "29366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Snow",
+      "content": "A celebration of the beauty and wonder of a snowy day.",
+      "slug": "snow-seuss",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "30366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "The King's Stilts",
+      "content": "A king neglects his duties until his stilts are stolen.",
+      "slug": "kings-stilts",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "31366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Because a Little Bug Went Ka-Choo!",
+      "content": "A chain reaction of events caused by a bug's sneeze.",
+      "slug": "bug-went-ka-choo",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "32366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Daisy-Head Mayzie",
+      "content": "A girl sprouts a daisy from her head and learns to embrace her uniqueness.",
+      "slug": "daisy-head-mayzie",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "33366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "The Bippolo Seed",
+      "content": "A rabbit learns a lesson about greed and honesty.",
+      "slug": "bippolo-seed",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "34366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "Hunches in Bunches",
+      "content": "A story about making decisions and trusting your instincts.",
+      "slug": "hunches-in-bunches",
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    }
+  ],
+  "postDetail": []
+}
