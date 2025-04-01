@@ -14,15 +14,9 @@ interface Post {
 
 const PostCard = ({ post }: { post: Post }) => {
     return (
-        <div className="flex w-full flex-col gap-2 rounded-lg border-2 border-gray-200 p-2">
-            <div className="flex gap-2">
-                <div className="flex flex-col justify-center gap-1">
-                    <div className="font-bold text-foreground">
-                        {post.title}
-                    </div>
-                    <div className="text-sm text-muted-foreground">{post.createdAt}</div>
-                </div>
-            </div>
+        <div className="flex w-full my-2.5 flex-col gap-2 rounded-lg border-2 border-gray-200 p-2">
+            <h1 className="font-bold text-foreground"> {post.title} </h1>
+            <div className="text-sm text-muted-foreground">{post.createdAt}</div>
         </div>
     );
 };
@@ -68,11 +62,9 @@ const InfiniteScrollDemo = () => {
     };
 
     return (
-        <div className="w-full overflow-y-auto px-10">
-            <div className="flex w-full flex-col items-center gap-3">
-                {posts.map((post, id) => (
-                    <PostCard key={id} post={post} />
-                ))}
+        <div className="w-full max-w-3xl mx-auto overflow-y-auto px-10">
+            <div className="grid grid-cols-3 col-span-1 gap-4">
+                {posts.map((post, id) => ( <PostCard key={id} post={post} /> ))}
                 <InfiniteScroll hasMore={hasMore} isLoading={loading} next={next} threshold={1}>
                     {hasMore && <Loader2 className="my-4 h-8 w-8 animate-spin" />}
                 </InfiniteScroll>
