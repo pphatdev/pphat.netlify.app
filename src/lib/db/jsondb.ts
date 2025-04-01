@@ -1,10 +1,32 @@
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto'
+import { renderPagination } from '@lib/functions/pagination-list';
 
 interface DbOptions {
     dbPath: string;
     defaultData?: Record<string, any[]>;
+}
+
+interface PaginatedResult<T> {
+    data: T[];
+    success: boolean;
+    metadata: {
+        currentPage: number;
+        pages: number;
+        total: number;
+        limit: number;
+    };
+    pagination: {
+        currentPage: number;
+        items: Array<{
+            label: string;
+            url: string;
+            active: boolean;
+        }>;
+        hasPreviousPage: boolean;
+        hasNextPage: boolean;
+    };
 }
 
 /**
@@ -80,17 +102,82 @@ export class JsonDB {
     }
 
     /**
-     * Get all items from a collection
+     * Get all items from a collection with pagination, search and sort
      * @param collection Name of the collection
-     * @returns Array of items in the collection
+     * @param search Search term
+     * @param page Page number (default: 1)
+     * @param limit Number of items per page (default: 10)
+     * @param sort Sort field (e.g., 'name', '-name' for descending)
+     * @returns Array of items in the collection for the given page
      */
-    getAll<T>(collection: string): T[] {
+    getAll<T extends Record<string, any>>(collection: string, search: string = '', page: number = 1, limit: number = 10, sort?: string): PaginatedResult<T> {
         this.refreshData();
 
         if (!this.data[collection]) {
             this.data[collection] = [];
         }
-        return [...this.data[collection]] as T[];
+
+        let items = [...this.data[collection]] as T[];
+
+        // Apply search
+        if (search) {
+            items = items.filter(item => {
+                return Object.values(item).some(value => {
+                    if (typeof value === 'string') {
+                        return value.toLowerCase().includes(search.toLowerCase());
+                    }
+                    return false;
+                });
+            });
+        }
+
+        // Apply sort
+        if (sort) {
+            const sortField = sort.startsWith('-') ? sort.slice(1) : sort;
+            const sortOrder = sort.startsWith('-') ? -1 : 1;
+
+            items.sort((a, b) => {
+                const valueA = (a as any)[sortField];
+                const valueB = (b as any)[sortField];
+
+                if (valueA < valueB) {
+                    return sortOrder * -1;
+                }
+                if (valueA > valueB) {
+                    return sortOrder * 1;
+                }
+                return 0;
+            });
+        }
+
+        const total = items.length;
+        const totalPages = Math.ceil(total / limit);
+        const startIndex = (page - 1) * limit;
+        const endIndex = startIndex + limit;
+        const paginatedItems = items.slice(startIndex, endIndex);
+
+        return {
+            data: paginatedItems,
+            success: true,
+            metadata: {
+                currentPage: page,
+                pages: totalPages,
+                total: total,
+                limit: limit
+            },
+            pagination: {
+                currentPage: page,
+                items: renderPagination(
+                    {
+                        totalPages: totalPages,
+                        currentPage: page
+                    },
+                    `?page=${page}&limit=${limit}&sort=${sort || 'asc'}&search=${search}`
+                ),
+                hasPreviousPage: page > 1,
+                hasNextPage: page < totalPages
+            }
+        };
     }
 
     /**
