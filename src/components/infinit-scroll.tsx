@@ -1,5 +1,4 @@
-import * as React from 'react';
-
+import React, { cloneElement, isValidElement, useCallback, useMemo, useRef } from 'react';
 interface InfiniteScrollProps {
     isLoading: boolean;
     hasMore: boolean;
@@ -21,16 +20,14 @@ export default function InfiniteScroll({
     reverse,
     children,
 }: InfiniteScrollProps) {
-    const observer = React.useRef<IntersectionObserver>(null);
+    const observer = useRef<IntersectionObserver>(null);
     // This callback ref will be called when it is dispatched to an element or detached from an element,
     // or when the callback function changes.
-    const observerRef = React.useCallback(
+    const observerRef = useCallback(
         (element: HTMLElement | null) => {
             let safeThreshold = threshold;
             if (threshold < 0 || threshold > 1) {
-                console.warn(
-                    'threshold should be between 0 and 1. You are exceed the range. will use default value: 1',
-                );
+                console.warn('threshold should be between 0 and 1. You are exceed the range. will use default value: 1',);
                 safeThreshold = 1;
             }
             // When isLoading is true, this callback will do nothing.
@@ -55,12 +52,12 @@ export default function InfiniteScroll({
         [hasMore, isLoading, next, threshold, root, rootMargin],
     );
 
-    const flattenChildren = React.useMemo(() => React.Children.toArray(children), [children]);
+    const flattenChildren = useMemo(() => React.Children.toArray(children), [children]);
 
     return (
         <>
             {flattenChildren.map((child, index) => {
-                if (!React.isValidElement(child)) {
+                if (!isValidElement(child)) {
                     process.env.NODE_ENV === 'development' &&
                         console.warn('You should use a valid element with InfiniteScroll');
                     return child;
@@ -69,7 +66,7 @@ export default function InfiniteScroll({
                 const isObserveTarget = reverse ? index === 0 : index === flattenChildren.length - 1;
                 const ref = isObserveTarget ? observerRef : null;
                 // @ts-ignore ignore ref type
-                return React.cloneElement(child, { ref });
+                return cloneElement(child, { ref });
             })}
         </>
     );
