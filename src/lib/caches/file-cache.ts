@@ -17,7 +17,7 @@ export class FileCache {
     private ttl: number;
 
     constructor(options: FileCacheOptions = {}) {
-        this.cacheDir = options.cacheDir || 'build/cache';
+        this.cacheDir = options.cacheDir || 'public/.cache';
         this.ttl = options.ttl || 3600; // 1 hour default
         this.init();
     }
