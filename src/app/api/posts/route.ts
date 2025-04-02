@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db, Post } from '@lib/db/post';
 
+export const revalidate = 60; // Revalidate every 60 seconds
+
 export async function GET(request: NextRequest) {
     try {
         const { searchParams } = new URL(request.url);
@@ -11,7 +13,12 @@ export async function GET(request: NextRequest) {
 
         const posts = db.getAll<Post>('posts', search, page, limit, sort);
 
-        return NextResponse.json(posts, { status: 200 });
+        return NextResponse.json(posts, {
+            status: 200,
+            headers: {
+                'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=3600',
+            },
+        });
     } catch (error) {
         return NextResponse.json({ error: 'Failed to fetch posts' }, { status: 500 });
     }
