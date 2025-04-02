@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db, Post } from '@lib/db/post';
 
-export const revalidate = 60; // Revalidate every 60 seconds
+export const revalidate = 240; // Revalidate every 240 seconds
 
 export async function GET(request: NextRequest) {
     try {
@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
         return NextResponse.json(posts, {
             status: 200,
             headers: {
-                'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=3600',
+                'Cache-Control': `public, s-maxage=${revalidate}, stale-while-revalidate=3600`,
             },
         });
     } catch (error) {
