@@ -2,6 +2,8 @@
 import InfiniteScroll from '@components/infinit-scroll';
 import { Loader2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import originData from 'public/data/post.json';
+import { staticJSONPagination } from '@lib/functions/pagination-list';
 
 interface Post {
     id: number;
@@ -22,7 +24,7 @@ const PostCard = ({ post }: { post: Post }) => {
 };
 
 const InfiniteScrollDemo = () => {
-    const [page, setPage] = useState(1); // Start from page 1 instead of 0
+    const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const [posts, setPosts] = useState<Post[]>([]);
@@ -38,15 +40,21 @@ const InfiniteScrollDemo = () => {
 
         setLoading(true);
         try {
-            const res = await fetch(`/api/posts?limit=${limit}&page=${page}`);
 
-            if (!res.ok) {
-                throw new Error('Failed to fetch posts');
-            }
+            const { posts: postData } = originData;
 
-            const { data } = await res.json();
+            const { data } = staticJSONPagination(
+                postData,
+                postData.length,
+                {
+                    page: page,
+                    limit: limit,
+                    search: null,
+                    sort: 'asc',
+                }
+            );
 
-            setPosts((prev) => [...prev, ...data]);
+            setPosts((prev) => [...prev, ...(data as Post[])]);
             setPage((prev) => prev + 1);
 
             // Check if we have fewer results than requested (limit)
@@ -64,7 +72,7 @@ const InfiniteScrollDemo = () => {
     return (
         <div className="w-full max-w-3xl mx-auto overflow-y-auto px-10">
             <div className="grid grid-cols-3 col-span-1 gap-4">
-                {posts.map((post, id) => ( <PostCard key={id} post={post} /> ))}
+                {posts.map((post, id) => (<PostCard key={id} post={post} />))}
                 <InfiniteScroll hasMore={hasMore} isLoading={loading} next={next} threshold={1}>
                     {hasMore && <Loader2 className="my-4 h-8 w-8 animate-spin" />}
                 </InfiniteScroll>
