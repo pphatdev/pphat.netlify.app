@@ -1,5 +1,6 @@
-import { appName } from '@lib/data';
+// import { appName } from '@lib/data';
 import Head from 'next/head';
+import JsonLd from './JsonLd';
 
 const OrganizationStructuredData = () => {
 
@@ -8,7 +9,7 @@ const OrganizationStructuredData = () => {
 
     return (
         <Head>
-            <script
+            {/* <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
@@ -31,7 +32,8 @@ const OrganizationStructuredData = () => {
                         ]
                     })
                 }}
-            />
+            /> */}
+            <JsonLd/>
         </Head>
     );
 };
