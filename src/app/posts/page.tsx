@@ -3,7 +3,7 @@ import InfiniteScroll from '@components/infinit-scroll';
 import { Loader2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import originData from 'public/data/post.json';
-import { staticJSONPagination } from '@lib/functions/pagination-list';
+import { staticPaginationJSON } from '@lib/functions/pagination-list';
 
 interface Post {
     id: number;
@@ -24,26 +24,24 @@ const PostCard = ({ post }: { post: Post }) => {
 };
 
 const InfiniteScrollDemo = () => {
+
+    const limit = 30;
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const [posts, setPosts] = useState<Post[]>([]);
-    const limit = 30;
 
     // Load initial data when component mounts
-    useEffect(() => {
-        next();
-    }, []);
+    useEffect(() => { next(); }, []);
 
     const next = async () => {
         if (loading) return;
 
         setLoading(true);
+
         try {
-
             const { posts: postData } = originData;
-
-            const { data } = staticJSONPagination(
+            const { data } = staticPaginationJSON(
                 postData,
                 postData.length,
                 {
@@ -57,10 +55,9 @@ const InfiniteScrollDemo = () => {
             setPosts((prev) => [...prev, ...(data as Post[])]);
             setPage((prev) => prev + 1);
 
-            // Check if we have fewer results than requested (limit)
-            if (data.length < limit) {
-                setHasMore(false);
-            }
+
+            if (data.length < limit) setHasMore(false);
+
         } catch (error) {
             console.error('Error fetching posts:', error);
             setHasMore(false);

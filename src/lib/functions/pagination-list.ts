@@ -96,7 +96,7 @@ export const renderPagination = (pagination: Pagination, params: string = '&limi
 }
 
 
-export const staticJSONPagination = <T extends Record<string, any>>(
+export const staticPaginationJSON = <T extends Record<string, any>>(
     data: any[],
     total?: number,
     request?: Query
