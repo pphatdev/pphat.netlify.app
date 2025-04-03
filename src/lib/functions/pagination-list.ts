@@ -9,6 +9,33 @@ interface Pagination {
     currentPage: number;
 }
 
+interface Query {
+    page: number;
+    limit: number;
+    search?: string | null;
+    sort?: string;
+}
+
+interface PaginatedResult<T> {
+    data: T[];
+    success: boolean;
+    metadata: {
+        currentPage: number;
+        pages: number;
+        total: number;
+        limit: number;
+    };
+    pagination: {
+        items: Array<{
+            label: string;
+            url: string;
+            active: boolean;
+        }>;
+        hasPreviousPage: boolean;
+        hasNextPage: boolean;
+    };
+}
+
 export const renderPagination = (pagination: Pagination, params: string = '&limit=10&sort=asc'): PaginationButton[] => {
     const buttons: PaginationButton[] = [];
     const range = 2; // number of buttons to show before and after the current page
@@ -66,4 +93,37 @@ export const renderPagination = (pagination: Pagination, params: string = '&limi
         }
     }
     return buttons;
+}
+
+
+export const staticJSONPagination = <T extends Record<string, any>>(
+    data: any[],
+    total?: number,
+    request?: Query
+
+): PaginatedResult<T> => {
+    const { page, limit, search, sort } = request || {}
+    const totalPages = Math.ceil(Number(total) / Number(limit || 10))
+    const offset = (Number(page) - 1) * Number(limit || 10)
+
+    return {
+        data: data.slice(offset, offset + Number(limit || 10)),
+        success: true,
+        metadata: {
+            currentPage: page || 1,
+            pages: limit == -1 ? (page ?? 1) : totalPages,
+            total: total ?? 0,
+            limit: limit ?? 10
+        },
+        pagination: {
+            items: renderPagination({
+                totalPages: totalPages,
+                currentPage: page ?? 1
+            },
+                `?page=${page}&limit=${limit}&sort=${sort || 'asc'}&search=${search}`
+            ),
+            hasPreviousPage: (page ?? 1) > 1,
+            hasNextPage: (page ?? 1) < totalPages
+        }
+    };
 }
