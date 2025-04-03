@@ -6,7 +6,6 @@ import { ThemeProvider } from 'next-themes'
 import { appDescriptions, appName } from "@lib/data";
 import { FloatingNav } from "@components/ui/floating-navbar";
 import { IconHome, IconMessage, IconUser } from "@tabler/icons-react";
-import OrganizationStructuredData from "@components/organization-structured-data";
 
 const poppins = Poppins({
     variable: "--font-poppins",
@@ -146,7 +145,6 @@ export default function RootLayout({
                         })
                     }}
                 />
-                <OrganizationStructuredData />
             </head>
             <body className={`${poppins.variable} ${kantumruyPro.variable} antialiased p-0 m-0`}>
                 <ThemeProvider attribute="class" enableSystem defaultTheme="system">
