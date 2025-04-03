@@ -1,9 +1,9 @@
 'use client';
 import InfiniteScroll from '@components/infinit-scroll';
-import { Loader2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import originData from 'public/data/post.json';
 import { staticPaginationJSON } from '@lib/functions/pagination-list';
+import { Spinner } from '@components/ui/loading';
 
 interface Post {
     id: number;
@@ -71,7 +71,7 @@ const InfiniteScrollDemo = () => {
             <div className="grid grid-cols-3 col-span-1 gap-4">
                 {posts.map((post, id) => (<PostCard key={id} post={post} />))}
                 <InfiniteScroll hasMore={hasMore} isLoading={loading} next={next} threshold={1}>
-                    {hasMore && <Loader2 className="my-4 h-8 w-8 animate-spin" />}
+                    {hasMore && <div className='col-span-3 flex items-center justify-center overflow-hidden'> <Spinner variant={'bars'} /> </div>}
                 </InfiniteScroll>
             </div>
         </div>
