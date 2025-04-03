@@ -25,9 +25,9 @@ const OrganizationStructuredData = () => {
                         "sameAs": [
                             "https://pphat.netlify.app",
                             "https://figma.com/PPhat",
-                            // "https://www.facebook.com/phathub.am",
                             "https://kh.linkedin.com/in/pphatdev",
                             "https://x.com/pphatdev",
+                            // "https://www.facebook.com/phathub.am",
                         ]
                     })
                 }}
