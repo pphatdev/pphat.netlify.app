@@ -44,8 +44,8 @@
     --card-foreground: 0 0% 98%;
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 10%;
-    --primary-foreground: 240 5.9% 10%;
+    --primary: 163 96% 25%;
+    --primary-foreground: 0 0% 98%;
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
     --muted: 240 3.7% 15.9%;
@@ -100,7 +100,6 @@
       opacity: 0;
       transform: translate(-72%, -62%) scale(0.5);
     }
-    ,
     100%: {
       opacity: 1;
       transform: translate(-50%, -40%) scale(1);
@@ -111,10 +110,39 @@
     0%: {
       opacity: 1;
     }
-    ,
     100%: {
       transform: scale(2);
       opacity: 0;
+    }
+  }
+
+  @keyframes rainbow {
+    0% {
+      background-position: 0%;
+    }
+    100% {
+      background-position: 200%;
+    }
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spinner-bars-animation {
+    0% {
+      y: 1px;
+      height: 22px;
+    }
+    93.75% {
+      y: 5px;
+      height: 14px;
+      opacity: 0.2;
     }
   }
 }
@@ -165,29 +193,12 @@
   .bg-color-5 {
     background-color: hsl(var(--color-5));
   }
-  @keyframes rainbow {
-    0% {
-      background-position: 0%;
-    }
-    100% {
-      background-position: 200%;
-    }
-  }
-
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
 
   .animate-rainbow {
     animation: rainbow var(--speed, 2s) infinite linear;
   }
 
-  .container {
+  /* .container {
     max-width: 100%;
     padding-left: 2rem;
     padding-right: 2rem;
@@ -199,7 +210,7 @@
     .container {
       max-width: 1400px;
     }
-  }
+  } */
 
   .spinner-bar {
     animation: spinner-bars-animation 0.8s linear infinite;
@@ -210,16 +221,5 @@
   }
   .spinner-bars-3 {
     animation-delay: -0.5s;
-  }
-  @keyframes spinner-bars-animation {
-    0% {
-      y: 1px;
-      height: 22px;
-    }
-    93.75% {
-      y: 5px;
-      height: 14px;
-      opacity: 0.2;
-    }
   }
 }
