@@ -22,17 +22,17 @@ interface Post {
 const PostCard = ({ post }: { post: Post }) => {
     return (
         <article
-            className="col-span-1 relative bg-background font-default rounded-lg shadow-md p-4 mb-4 ring-1 ring-foreground/10 hover:ring-2 transition-all duration-200 ease-in-out"
+            className="col-span-1 relative bg-background font-default rounded-lg p-4 mb-4 ring-1 ring-foreground/10 hover:ring-2 transition-all duration-200 ease-in-out"
             role="article"
             tabIndex={-1}
         >
-            <Link href={`/posts/${post.slug}`} className="absolute inset-0"/>
-            <header className='mb-2 relative'>
+            <Link href={`/posts/${post.slug}`} className="absolute inset-0" />
+            <header className='mb-2 relative flex justify-between items-center'>
                 <Badge>Badge</Badge>
                 <Button
                     variant="outline"
                     size="icon"
-                    className="absolute top-2 right-2 z-10 cursor-pointer rounded-full size-7 p-1.5"
+                    className="z-10 cursor-pointer rounded-full size-7 p-1.5"
                     aria-label="Post options"
                     aria-haspopup="menu"
                 >
@@ -105,12 +105,10 @@ const InfiniteScrollDemo = () => {
     };
 
     return (
-        <main className="w-full flex flex-col max-w-5xl mx-auto overflow-y-auto p-4 @sm:px-10">
-            <article className="grid grid-cols-1 @xs:grid-cols-2 @lg:grid-cols-3 gap-4">
+        <main className="w-full flex flex-col max-w-5xl mx-auto overflow-y-auto p-4 sm:px-10">
+            <article className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4">
                 <h1 className='col-span-full'>Posts</h1>
-                {posts.map((post, index) => (
-                    <PostCard key={index} post={post} />
-                ))}
+                {posts.map((post, index) => (<PostCard key={index} post={post} />))}
                 <InfiniteScroll hasMore={hasMore} isLoading={loading} next={next} threshold={1}>
                     {hasMore && (
                         <div className='col-span-full flex items-center justify-center overflow-hidden'>
