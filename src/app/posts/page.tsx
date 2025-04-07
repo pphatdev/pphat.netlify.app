@@ -9,6 +9,7 @@ import { Button } from '@components/ui/button';
 import { EllipsisVertical } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface Post {
     id: number;
@@ -19,9 +20,9 @@ interface Post {
     createdAt: string;
 }
 
-const PostCard = ({ post }: { post: Post }) => {
+const PostCard = ({ post, index }: { post: Post, index: number }) => {
     return (
-        <article
+        <div
             className="col-span-1 relative bg-foreground/5 font-default rounded-lg p-4 mb-4 ring-1 ring-foreground/10 hover:ring-primary hover:ring-2 transition-all duration-200 ease-in-out flex flex-col h-full"
             role="article"
             tabIndex={-1}
@@ -46,13 +47,18 @@ const PostCard = ({ post }: { post: Post }) => {
             </header>
 
             <h2 className="text-lg font-medium line-clamp-1 pb-1">{post.title}</h2>
-            <p className='font-thin line-clamp-3 text-foreground/80'>{post.content}</p>
+            <p className='font-normal line-clamp-3 text-foreground/80'>{post.content}</p>
 
             <div className='bg-foreground/5 ring-1 ring-foreground/10 flex gap-3 rounded-lg p-2 mt-4'>
-                <Avatar className='rounded-lg'>
-                    <AvatarImage src="assets/icons/favicon-32x32.png" alt="@pphatdev" />
-                    <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
+                <Image
+                    className='rounded-lg'
+                    src={`https://github.com/pphatdev.png`}
+                    alt={post.title}
+                    width={36}
+                    height={36}
+                    priority={index < 3} // Prioritize first visible images
+                    loading={index < 3 ? "eager" : "lazy"}
+                />
             </div>
 
             <footer className="mt-auto pt-2">
@@ -63,19 +69,18 @@ const PostCard = ({ post }: { post: Post }) => {
                     Created At: {new Date(post.createdAt).toLocaleDateString()}
                 </div>
             </footer>
-        </article>
+        </div>
     );
 };
 
 const InfiniteScrollDemo = () => {
 
-    const limit = 30;
+    const limit = 9;
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const [posts, setPosts] = useState<Post[]>([]);
 
-    // Load initial data when component mounts
     useEffect(() => { next(); }, []);
 
     const next = async () => {
@@ -113,10 +118,10 @@ const InfiniteScrollDemo = () => {
         <main className="w-full flex flex-col max-w-5xl mx-auto overflow-y-auto p-4 sm:px-10">
             <h1 className='mb-4'>Posts</h1>
             <article className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4 min-h-[500px] relative">
-                {posts.map((post, index) => (<PostCard key={index} post={post} />))}
+                {posts.map((post, index) => (<PostCard key={index} post={post} index={index} />))}
                 <InfiniteScroll hasMore={hasMore} isLoading={loading} next={next} threshold={1}>
                     {hasMore && (
-                        <div className='fixed bottom-8 left-1/2 transform -translate-x-1/2 z-10'>
+                        <div className='col-span-full flex justify-center items-center'>
                             <Spinner variant={'bars'} />
                         </div>
                     )}
