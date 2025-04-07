@@ -14,7 +14,21 @@ const nextConfig: NextConfig = {
                 pathname: '/**',
                 search: '',
             },
+            {
+                protocol: 'https',
+                hostname: 'github.com',
+                port: '',
+                pathname: '/**',
+                search: '',
+            },
         ],
+        formats: ['image/webp', 'image/avif'],
+    },
+    allowedDevOrigins: ['*.vercel.app', '*.netlify.app',],
+    compress: true,
+    experimental: {
+        optimizeCss: true,
+        optimizePackageImports: ['next-themes']
     }
 };
 
