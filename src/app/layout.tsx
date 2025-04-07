@@ -9,12 +9,16 @@ const poppins = Poppins({
     variable: "--font-poppins",
     weight: ["400", "500", "600", "700"],
     subsets: ["latin"],
+    display: "swap", // Add this to improve FCP
+    preload: true,   // Ensure fonts are preloaded
 });
 
 const kantumruyPro = Kantumruy_Pro({
     variable: "--font-kantumruy",
     weight: ["400", "500", "600", "700"],
     subsets: ["latin"],
+    display: "swap", // Add this to improve FCP 
+    preload: true,   // Ensure fonts are preloaded
 });
 
 export const metadata: Metadata = {
@@ -69,17 +73,19 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
+            <head>
+                {/* Add preconnect for performance */}
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+            </head>
             <body className={`${poppins.variable} ${kantumruyPro.variable} antialiased p-0 m-0`}>
                 <ThemeProvider
                     attribute="class"
                     enableSystem
                     defaultTheme="system"
-                    disableTransitionOnChange
                 >
                     <Providers>
-                        <div id="root">
-                            {children}
-                        </div>
+                        {children}
                     </Providers>
                 </ThemeProvider>
             </body>
