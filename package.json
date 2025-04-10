@@ -23,6 +23,7 @@
     "@tsparticles/slim": "^3.7.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "critters": "^0.0.25",
     "embla-carousel-auto-scroll": "^8.5.2",
     "embla-carousel-react": "^8.5.2",
     "framer-motion": "^11.18.2",

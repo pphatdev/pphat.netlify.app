@@ -1,22 +1,13 @@
 import { appDescriptions, appName } from "@lib/data";
+import { icons } from "./icons";
+import { keywords } from "./keywords";
 
 export const homeHome = {
     metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://pphat.netlify.app'),
     title: appName,
     description: appDescriptions,
-    keywords: ["leatsophat.me", "leat sophat", "sophat", "pphatdev", "pphat", "phat", "sophat", "leat", "sophat leat", "sophat dev"],
-    icons: [
-        {
-            url: "/favicon.ico",
-            sizes: "64x64",
-            type: "image/x-icon",
-        },
-        {
-            url: "/favicon.ico",
-            sizes: "64x64",
-            type: "image/x-icon"
-        },
-    ],
+    keywords: keywords,
+    icons: icons,
     manifest: "/site.webmanifest",
     robots: {
         index: true,
