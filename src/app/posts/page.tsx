@@ -73,7 +73,7 @@ const PostCard = ({ post, index }: { post: Post, index: number }) => {
     );
 };
 
-const InfiniteScrollDemo = () => {
+const Blogs = () => {
 
     const limit = 9;
     const [page, setPage] = useState(1);
@@ -131,4 +131,4 @@ const InfiniteScrollDemo = () => {
     );
 };
 
-export default InfiniteScrollDemo;
+export default Blogs;
