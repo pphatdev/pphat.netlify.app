@@ -12,6 +12,7 @@ import { Spinner } from "@components/ui/loading";
 import { staticPaginationJSON } from "@lib/functions/pagination-list";
 import { ExternalLinkIcon, GlobeIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
+import { ProjectHero } from "./hero";
 
 interface Project {
     id: string;
@@ -35,14 +36,17 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
             <header className='mb-2 relative flex justify-between items-center'>
                 <Badge className="font-aladin">JavaScript</Badge>
-                <Button
-                    variant="outline"
-                    size="icon"
-                    className="z-10 cursor-pointer bg-foreground/5 rounded-full size-7 p-1.5"
-                    aria-label="project options"
-                    aria-haspopup="menu">
-                    <EllipsisVertical aria-hidden="true" />
-                </Button>
+                <div className='bg-foreground/5 ring-1 w-fit ml-auto ring-foreground/10 justify-end flex rounded-full p-1'>
+                    {project.source.map((source, index) => (
+                        <Link
+                            key={index}
+                            href={source.url}
+                            className="flex rounded-full p-2 hover:ring ring-foreground/20 hover:bg-foreground/10 transition-all items-center justify-center">
+                            {source.type === 'demo' && <ExternalLinkIcon className="size-4" />}
+                            {source.type === 'source' && <GlobeIcon className="size-4" />}
+                        </Link>
+                    ))}
+                </div>
             </header>
 
             <h2 className="text-lg z-10 font-semibold font-default tracking-wide line-clamp-1 pb-1">{project.title}</h2>
@@ -71,17 +75,17 @@ const ProjectCard = ({ project }: { project: Project }) => {
                         />
                     </Link>
                 </div>
-                <div className='bg-foreground/5 ring-1 w-fit ml-auto ring-foreground/10 justify-end flex rounded-full p-1'>
+                {/* <div className='bg-foreground/5 ring-1 w-fit ml-auto ring-foreground/10 justify-end flex rounded-full p-1'>
                     {project.source.map((source, index) => (
                         <Link
                             key={index}
                             href={source.url}
                             className="flex rounded-full p-2 hover:ring ring-foreground/20 hover:bg-foreground/10 transition-all items-center justify-center">
-                            {source.type === 'demo' && <ExternalLinkIcon className="size-4"/>}
-                            {source.type === 'source' && <GlobeIcon className="size-4"/>}
+                            {source.type === 'demo' && <ExternalLinkIcon className="size-4" />}
+                            {source.type === 'source' && <GlobeIcon className="size-4" />}
                         </Link>
                     ))}
-                </div>
+                </div> */}
             </footer>
         </div>
     );
@@ -133,9 +137,9 @@ const Projects = () => {
     };
 
     return (
-        <main className="w-full flex flex-col max-w-5xl mx-auto overflow-y-auto p-4 sm:px-10">
-            <h1 className='mb-4 text-5xl font-bold'>Projects</h1>
-            <article className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4 min-h-[300px] relative">
+        <main className="w-full flex flex-col gap-7">
+            <ProjectHero />
+            <article className="grid max-w-5xl mx-auto  p-4 sm:px-10 grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4 min-h-[300px] relative">
                 {projects.map((project, index) => (<ProjectCard key={index} project={project} />))}
                 <InfiniteScroll hasMore={hasMore} isLoading={loading} next={next} threshold={1}>
                     {hasMore && (
