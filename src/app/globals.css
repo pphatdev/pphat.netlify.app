@@ -10,6 +10,8 @@
 
 @theme {
   --font-defualt: "Poppins", "Kantumruy Pro", sans-serif;
+  --font-aladin: "Aladin", "Aladin Fallback";
+  --font-srisakdi: "Srisakdi", system-ui;
 
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
