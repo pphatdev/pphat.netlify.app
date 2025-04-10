@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "id": "09366a3d-40b8-4b2d-8066-c1834f65f879",
+      "title": "leatsophat.me",
+      "description": "A whimsical tale of a cat who brings chaos and fun to a rainy day. A whimsical tale of a cat who brings chaos and fun to a rainy day.",
+      "authors": [
+        { "name": "Dr. Seuss", "profile": "https://github.com/pphatdev.png", "url": "https://github.com/pphatdev" },
+        { "name": "Dr. Seuss", "profile": "https://github.com/pphatdev.png", "url": "https://github.com/pphatdev" }
+      ],
+      "image": "https://github.com/pphatdev.png",
+      "source": [
+        { "name": "source", "url": "https://github.com/pphatdev" },
+        { "name": "demo", "url": "https://github.com/pphatdev" }
+      ],
+      "tags": ["children", "fiction", "fun"],
+      "published": true,
+      "createdAt": "2025-03-31T10:12:15.648Z"
+    }
+  ],
+  "postDetail": []
+}
