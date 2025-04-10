@@ -5,12 +5,11 @@ import InfiniteScroll from "@components/infinit-scroll";
 import { useEffect, useState } from "react";
 import { Spinner } from "@components/ui/loading";
 import { staticPaginationJSON } from "@lib/functions/pagination-list";
-import { ProjectHero } from "./hero";
-import { ProjectCard } from "./project-card";
-import { Project } from "./interfaces";
+import { ProjectHero } from "./components/hero";
+import { ProjectCard } from "./components/project-card";
+import { Project } from "./components/interfaces";
 
 const Projects = () => {
-
     const limit = 9;
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
