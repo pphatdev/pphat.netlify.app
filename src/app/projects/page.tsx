@@ -10,7 +10,7 @@ import InfiniteScroll from "@components/infinit-scroll";
 import { useEffect, useState } from "react";
 import { Spinner } from "@components/ui/loading";
 import { staticPaginationJSON } from "@lib/functions/pagination-list";
-import { ExternalLinkIcon } from "@radix-ui/react-icons";
+import { ExternalLinkIcon, GlobeIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 
 interface Project {
@@ -20,7 +20,7 @@ interface Project {
     description: string;
     published: boolean;
     tags: string[];
-    source: { url: string; name: string }[];
+    source: { url: string; name: string, type: string }[];
     authors: { name: string; profile: string; url: string }[];
     [key: string]: any;
 }
@@ -72,13 +72,13 @@ const ProjectCard = ({ project }: { project: Project }) => {
                     </Link>
                 </div>
                 <div className='bg-foreground/5 ring-1 w-fit ml-auto ring-foreground/10 justify-end flex rounded-full p-1'>
-                    {project.authors.map((author, index) => (
+                    {project.source.map((source, index) => (
                         <Link
                             key={index}
-                            href={author.url}
+                            href={source.url}
                             className="flex rounded-full p-2 hover:ring ring-foreground/20 hover:bg-foreground/10 transition-all items-center justify-center">
-                            <ExternalLinkIcon  className="size-4"/>
-
+                            {source.type === 'demo' && <ExternalLinkIcon className="size-4"/>}
+                            {source.type === 'source' && <GlobeIcon className="size-4"/>}
                         </Link>
                     ))}
                 </div>
@@ -106,7 +106,7 @@ const Projects = () => {
         try {
 
             const { posts } = originData;
-            const postData = posts.filter((project: Project) => project.published === true);
+            const postData = (posts as Project[]).filter(project => project.published === true);
 
             const { data } = staticPaginationJSON(
                 postData,
