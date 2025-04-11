@@ -12,6 +12,7 @@
   --font-defualt: "Poppins", "Kantumruy Pro", sans-serif;
   --font-aladin: "Aladin", "Aladin Fallback";
   --font-srisakdi: "Srisakdi", system-ui;
+  --animate-orbit: orbit calc(var(--duration) * 1s) linear infinite;
 
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
@@ -44,12 +45,10 @@
   --breakpoint-xxs: 20rem;
 }
 
-
-
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 240 10% 11%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
@@ -181,6 +180,18 @@
   }
   .spinner-bars-3 {
     animation-delay: -0.5s;
+  }
+
+  @keyframes orbit {
+    0% {
+      transform: rotate(calc(var(--angle) * 1deg))
+        translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
+    }
+    100% {
+      transform: rotate(calc(var(--angle) * 1deg + 360deg))
+        translateY(calc(var(--radius) * 1px))
+        rotate(calc((var(--angle) * -1deg) - 360deg));
+    }
   }
 
   @keyframes spotlight {
