@@ -1,7 +1,7 @@
-import { BackgroundBeamsWithCollision } from "@components/ui/background-beams-with-collision"
 import { GridPattern } from "@components/ui/grid-pattern"
 import { ArrowLeftIcon } from "@radix-ui/react-icons"
 import Link from "next/link"
+import { OrbitingCirclesHero } from "./orbiting-circles-hero"
 
 export const ProjectHero = () => {
     return (
@@ -15,14 +15,16 @@ export const ProjectHero = () => {
                     strokeDasharray={"4 2"}
                     className={"[mask-image:radial-gradient(300px_circle_at_center,white,transparent)] absolute w-full "}
                 />
+                <OrbitingCirclesHero/>
             </div>
             <div className="w-full p-4 sm:px-10 max-w-5xl mx-auto ">
-                <h1 className='mb-4 text-5xl font-bold'>Projects</h1>
+                <h1 className='mb-4 text-5xl font-bold font-aladin'>Projects</h1>
 
-                <Link href="/" className="hover:bg-foreground/5 transition-all flex mt-7 items-center hover:ring w-fit ring-foreground/10 justify-start flex rounded-full hover:px-4 p-1">
+                <Link href="/" className="hover:bg-foreground/5 transition-all duration-300 mt-7 items-center hover:ring w-fit ring-foreground/10 justify-start flex rounded-full hover:px-4 p-1.5">
                     <ArrowLeftIcon className="w-4 h-4 mr-2" /> Back to Projects
                 </Link>
             </div>
+
         </section>
     )
 }
