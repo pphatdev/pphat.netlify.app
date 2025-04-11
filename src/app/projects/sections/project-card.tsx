@@ -7,7 +7,7 @@ import Image from "next/image";
 export const ProjectCard = ({ project }: { project: Project }) => {
     return (
         <div
-            className="col-span-1 relative overflow-hidden bg-foreground/5 group font-default rounded-2xl p-4 mb-4 ring-1 ring-foreground/10 hover:ring-primary hover:ring-2 transition-all duration-200 ease-in-out flex flex-col h-full"
+            className="col-span-1 relative duration-300 hover:translate-y-1 overflow-hidden bg-foreground/5 group font-default rounded-2xl p-4 mb-4 ring-1 ring-foreground/10 hover:ring-primary hover:ring-2 transition-all ease-in-out flex flex-col h-full"
             role="article"
             tabIndex={-1}>
 
