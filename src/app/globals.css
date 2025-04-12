@@ -8,7 +8,7 @@
   initial-value: #0000;
 }
 
-@theme {
+@theme inline {
   --font-defualt: "Poppins", "Kantumruy Pro", sans-serif;
   --font-aladin: "Aladin", "Aladin Fallback";
   --font-srisakdi: "Srisakdi", system-ui;
@@ -43,6 +43,34 @@
 
   --breakpoint-xs: 30rem;
   --breakpoint-xxs: 20rem;
+
+  --animate-meteor: meteor 5s linear infinite;
+
+  @keyframes orbit {
+    0% {
+      transform: rotate(calc(var(--angle) * 1deg))
+        translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
+    }
+    100% {
+      transform: rotate(calc(var(--angle) * 1deg + 360deg))
+        translateY(calc(var(--radius) * 1px))
+        rotate(calc((var(--angle) * -1deg) - 360deg));
+    }
+  }
+
+  @keyframes meteor {
+    0% {
+      transform: rotate(var(--angle)) translateX(0);
+      opacity: 1;
+    }
+    70% {
+      opacity: 1;
+    }
+    100% {
+      transform: rotate(var(--angle)) translateX(-500px);
+      opacity: 0;
+    }
+  }
 }
 
 @layer base {
@@ -180,18 +208,6 @@
   }
   .spinner-bars-3 {
     animation-delay: -0.5s;
-  }
-
-  @keyframes orbit {
-    0% {
-      transform: rotate(calc(var(--angle) * 1deg))
-        translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
-    }
-    100% {
-      transform: rotate(calc(var(--angle) * 1deg + 360deg))
-        translateY(calc(var(--radius) * 1px))
-        rotate(calc((var(--angle) * -1deg) - 360deg));
-    }
   }
 
   @keyframes spotlight {
