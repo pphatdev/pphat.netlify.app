@@ -8,6 +8,7 @@ import { staticPaginationJSON } from "@lib/functions/pagination-list";
 import { ProjectHero } from "./sections/hero";
 import { ProjectCard } from "./sections/project-card";
 import { Project } from "./sections/interfaces";
+import { BlurFade } from '@components/ui/blur-fade';
 
 const Projects = () => {
     const limit = 9;
@@ -54,16 +55,18 @@ const Projects = () => {
     return (
         <main className="w-full flex flex-col gap-7">
             <ProjectHero />
-            <article className="grid max-w-5xl mx-auto  p-4 sm:px-10 grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4 min-h-[300px] relative">
-                {projects.map((project, index) => (<ProjectCard key={index} project={project} />))}
-                <InfiniteScroll hasMore={hasMore} isLoading={loading} next={next} threshold={1}>
-                    {hasMore && (
-                        <div className='col-span-full flex justify-center items-center'>
-                            <Spinner variant={'bars'} />
-                        </div>
-                    )}
-                </InfiniteScroll>
-            </article>
+            <BlurFade delay={0.9} inView>
+                <article className="grid max-w-5xl mx-auto  p-4 sm:px-10 grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4 min-h-[300px] relative">
+                    {projects.map((project, index) => (<ProjectCard key={index} project={project} />))}
+                    <InfiniteScroll hasMore={hasMore} isLoading={loading} next={next} threshold={1}>
+                        {hasMore && (
+                            <div className='col-span-full flex justify-center items-center'>
+                                <Spinner variant={'bars'} />
+                            </div>
+                        )}
+                    </InfiniteScroll>
+                </article>
+            </BlurFade>
         </main>
     );
 };
