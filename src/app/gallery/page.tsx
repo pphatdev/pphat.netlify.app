@@ -1,3 +1,4 @@
+import React from 'react'
 import { BlurFade } from "@components/ui/blur-fade"
 import { images } from "./image"
 import Image from 'next/image';
