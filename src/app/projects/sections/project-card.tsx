@@ -49,7 +49,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
 
             <footer className="mt-auto flex justify-between pt-2 z-10">
                 <div className='bg-foreground/5 ring-1 w-fit ring-foreground/10 justify-end flex ga rounded-full p-1'>
-                    <AvatarCircles numPeople={avatars.length - 3} avatarUrls={avatars}/>
+                    <AvatarCircles numPeople={avatars.length - 4} avatarUrls={avatars}/>
                 </div>
             </footer>
         </div>
