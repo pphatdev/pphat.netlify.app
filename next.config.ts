@@ -2,11 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
     // output: "export",
-    domains: [
-        'github.com',
-        'avatars.githubusercontent.com',
-        'www.shadcnblocks.com',
-    ],
+    // domains: [
+    //     'github.com',
+    //     'avatars.githubusercontent.com',
+    //     'www.shadcnblocks.com',
+    // ],
+    reactStrictMode: true,
     images: {
         remotePatterns: [
             {
