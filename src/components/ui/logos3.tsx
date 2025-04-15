@@ -1,5 +1,6 @@
 "use client";
 
+import React from 'react'
 import AutoScroll from "embla-carousel-auto-scroll";
 
 import {
