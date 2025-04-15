@@ -47,7 +47,7 @@
             ],
             "image": "https://avatars.githubusercontent.com/u/92351607?s=200&v=4",
             "source": [
-                { "name": "source", "type": "source", "url": "https://github.com/nintrealab/elibrary" },
+                { "name": "source", "type": "source", "url": "https://github.com/nintrealab/nintrea.website" },
                 { "name": "demo", "type": "demo", "url": "https://nintrea.website/" }
             ],
             "languages": ["TypeScript", "CSS"],
@@ -61,7 +61,7 @@
             "description": "A template project for NodeJS API. It is a simple and easy to use template for creating RESTful APIs using Node.js and Express.js.",
             "authors": [
                 { "name": "pphatdev", "profile": "https://github.com/pphatdev.png", "url": "https://github.com/pphatdev" },
-                { "name": "chhnai", "profile": "https://github.com/chhnai.png", "url": "https://github.com/chhnai" }
+                { "name": "chhnai", "profile": "https://avatars.githubusercontent.com/u/65585003?v=4", "url": "https://github.com/chhnai" }
             ],
             "image": "https://avatars.githubusercontent.com/u/92351607?s=200&v=4",
             "source": [
