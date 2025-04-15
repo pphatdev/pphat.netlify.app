@@ -21,6 +21,12 @@ const nextConfig: NextConfig = {
                 pathname: '/**',
                 search: '',
             },
+            {
+                protocol: 'https',
+                hostname: 'avatars.githubusercontent.com',
+                port: '',
+                pathname: '/**',
+            },
         ],
         formats: ['image/webp', 'image/avif'],
     },
