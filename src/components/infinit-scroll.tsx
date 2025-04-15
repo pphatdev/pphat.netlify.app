@@ -61,14 +61,15 @@ export default function InfiniteScroll({
         <>
             {flattenChildren.map((child, index) => {
                 if (!React.isValidElement(child)) {
-                    process.env.NODE_ENV === 'development' &&
+                    if (process.env.NODE_ENV === 'development') {
                         console.warn('You should use a valid element with InfiniteScroll');
+                    }
                     return child;
                 }
 
                 const isObserveTarget = reverse ? index === 0 : index === flattenChildren.length - 1;
                 const ref = isObserveTarget ? observerRef : null;
-                // @ts-ignore ignore ref type
+                // @ts-expect-error ignore ref type
                 return React.cloneElement(child, { ref });
             })}
         </>
