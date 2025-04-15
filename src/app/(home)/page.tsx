@@ -1,5 +1,5 @@
 import React from "react";
-import HeroSection from "./sections/hero";
+import HeroSection from "@components/heros/home-hero";
 import { Metadata } from "next";
 import { appDescriptions, appName } from "@lib/data";
 import OrganizationStructuredData from "@components/organization-structured-data";

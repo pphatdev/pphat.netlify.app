@@ -2,7 +2,7 @@ import React from "react"
 import { GridPattern } from "@components/ui/grid-pattern"
 import { ArrowLeftIcon } from "@radix-ui/react-icons"
 import Link from "next/link"
-import { Meteors } from "@components/ui/meteors"
+import { Meteors } from "@components/background/meteors"
 import { BlurFade } from "@components/ui/blur-fade"
 
 export const ProjectHero = () => {
