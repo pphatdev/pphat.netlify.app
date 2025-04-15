@@ -1,7 +1,7 @@
 'use client';
 
+import React, { useState } from 'react';
 import { deletePost } from '../../actions';
-import { useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 
 export default function DeletePostPage() {
@@ -13,7 +13,7 @@ export default function DeletePostPage() {
     const searchParams = new URL(window.location.href).searchParams;
     const postTitle = searchParams.get('title') || 'this post';
 
-    async function handleSubmit(formData: FormData) {
+    async function handleSubmit() {
         setSubmitting(true);
         setError(null);
 
@@ -63,7 +63,7 @@ export default function DeletePostPage() {
 
             <div className="bg-yellow-50 border border-yellow-400 text-yellow-800 p-4 rounded mb-6">
                 <p className="font-bold">Warning</p>
-                <p>Are you sure you want to delete "{postTitle}"? This action cannot be undone.</p>
+                <p>Are you sure you want to delete &quot;{postTitle}&quot;? This action cannot be undone.</p>
             </div>
 
             <form action={handleSubmit}>
