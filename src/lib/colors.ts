@@ -1,4 +1,3 @@
-// @ts-ignore
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette';
 
 // Adding TypeScript interface for the plugin parameter
@@ -9,8 +8,8 @@ interface PluginParams {
 
 // This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).
 export default function addVariablesForColors({ addBase, theme }: PluginParams) {
-    let allColors = flattenColorPalette(theme("colors"));
-    let newVars = Object.fromEntries(
+    const allColors = flattenColorPalette(theme("colors"));
+    const newVars = Object.fromEntries(
         Object.entries(allColors).map(([key, val]) => [`--${key}`, val as string])
     );
 
