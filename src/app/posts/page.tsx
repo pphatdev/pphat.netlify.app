@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import originData from 'public/data/post.json';
 import { staticPaginationJSON } from '@lib/functions/pagination-list';
 import { Spinner } from '@components/ui/loading';
-import { PostCard } from './sections/post-card';
+import { PostCard } from '@components/cards/post-card';
 import { Post } from '@lib/db/post';
 
 

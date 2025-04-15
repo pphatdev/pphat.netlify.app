@@ -5,9 +5,9 @@ import originData from 'public/data/project.json';
 import InfiniteScroll from "@components/infinit-scroll";
 import { Spinner } from "@components/ui/loading";
 import { staticPaginationJSON } from "@lib/functions/pagination-list";
-import { ProjectHero } from "./sections/hero";
-import { ProjectCard } from "./sections/project-card";
-import { Project } from "./sections/interfaces";
+import { ProjectHero } from "@components/heros/project-hero";
+import { ProjectCard } from "@components/cards/project-card";
+import { Project } from "../../lib/types/interfaces";
 import { BlurFade } from '@components/ui/blur-fade';
 
 const Projects = () => {
