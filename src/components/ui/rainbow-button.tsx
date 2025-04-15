@@ -1,14 +1,13 @@
+/* eslint-disable react/prop-types */
 import React from "react";
-
 import { cn } from "@lib/utils";
-interface RainbowButtonProps
-    extends React.ButtonHTMLAttributes<HTMLButtonElement> { }
 
+// Option 1: Use the parent type directly since you're not adding custom props
 export function RainbowButton({
     children,
     className,
     ...props
-}: RainbowButtonProps) {
+}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
     return (
         <button
             className={cn(
