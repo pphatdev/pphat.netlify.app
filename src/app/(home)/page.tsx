@@ -24,12 +24,12 @@ export const metadata: Metadata = {
     }
 };
 
-const DEMO_FAQS = [
-    {
-        question: "2018-2019",
-        answer: "Gender",
-    },
-];
+// const DEMO_FAQS = [
+//     {
+//         question: "2018-2019",
+//         answer: "Gender",
+//     },
+// ];
 
 
 export default function Home() {
