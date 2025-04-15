@@ -1,5 +1,5 @@
+import React from "react";
 import { FaqSection } from "@components/ui/faq";
-import { TestDb } from "./test";
 
 const DEMO_FAQS = [
     {
@@ -19,7 +19,6 @@ const DEMO_FAQS = [
 export default function FaqSectionDemo() {
     return (
         <>
-            <TestDb />
             <FaqSection
                 title="Frequently Asked Questions"
                 description="Everything you need to know about our platform"
