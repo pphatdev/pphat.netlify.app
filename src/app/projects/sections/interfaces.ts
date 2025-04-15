@@ -8,5 +8,6 @@ export interface Project {
     tags: string[];
     source: { url: string; name: string, type: string }[];
     authors: { name: string; profile: string; url: string }[];
+    languages?: string[];
     [key: string]: any;
 }
