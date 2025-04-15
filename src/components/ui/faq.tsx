@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Mail } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { cn } from "@lib/utils";
 import { Button } from "./button";
 
@@ -22,7 +22,7 @@ interface FaqSectionProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 const FaqSection = React.forwardRef<HTMLElement, FaqSectionProps>(
-    ({ className, title, description, items, contactInfo, ...props }, ref) => {
+    ({ className, title, description, items, /*contactInfo*/ ...props }, ref) => {
         return (
             <section
                 ref={ref}
