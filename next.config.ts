@@ -2,9 +2,11 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
     // output: "export",
-    // images: {
-    //     formats: ['image/webp', 'image/avif'],
-    // }
+    domains: [
+        'github.com',
+        'avatars.githubusercontent.com',
+        'www.shadcnblocks.com',
+    ],
     images: {
         remotePatterns: [
             {
