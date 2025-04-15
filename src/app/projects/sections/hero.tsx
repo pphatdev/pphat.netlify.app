@@ -1,3 +1,4 @@
+import React from "react"
 import { GridPattern } from "@components/ui/grid-pattern"
 import { ArrowLeftIcon } from "@radix-ui/react-icons"
 import Link from "next/link"

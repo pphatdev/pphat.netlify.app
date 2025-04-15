@@ -29,6 +29,8 @@ export const ProjectCard = ({ project }: { project: Project }) => {
                         <Link
                             key={index}
                             href={source.url}
+                            aria-label={source.type === 'demo' ? 'View live demo' : 'View source code'}
+                            title={source.type === 'demo' ? 'View live demo' : 'View source code'}
                             className="flex rounded-full p-2 hover:ring ring-foreground/20 hover:bg-foreground/10 transition-all items-center justify-center">
                             {source.type === 'demo' && <ExternalLinkIcon className="size-4" />}
                             {source.type === 'source' && <GlobeIcon className="size-4" />}
