@@ -6,7 +6,7 @@ import { BlurFade } from "@components/ui/blur-fade"
 
 export const ProjectHero = () => {
     return (
-        <BlurFade delay={0.15} inView className="min-h-96 flex flex-col border-b overflow-clip relative items-start justify-center">
+        <BlurFade delay={0.15} inView className="min-h-80 flex flex-col border-b overflow-clip relative items-start justify-center">
             <Meteors />
             <div className="absolute inset-y-0 left-1/3 right-0 pointer-events-none" aria-hidden="true">
                 <GridPattern
