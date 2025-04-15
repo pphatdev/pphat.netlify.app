@@ -9,7 +9,7 @@ import {
     useSpring,
     useTransform,
 } from "framer-motion";
-import React, { PropsWithChildren, useRef } from "react";
+import React, { useRef } from "react";
 
 import { cn } from "@lib/utils";
 
@@ -90,7 +90,7 @@ export interface DockIconProps
     children?: React.ReactNode;
 }
 
-type DockIconElement = React.ReactElement<DockIconProps, typeof DockIcon>;
+// type DockIconElement = React.ReactElement<DockIconProps, typeof DockIcon>;
 
 const DockIcon = ({
     size = DEFAULT_SIZE,
