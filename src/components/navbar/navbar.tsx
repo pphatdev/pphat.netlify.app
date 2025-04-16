@@ -5,8 +5,8 @@ import Link from "next/link"
 export const NavigationBar = () => {
     return (
         <header className="sticky inset-x-0 top-0 z-10 border-b bg-background/5 backdrop-blur-sm border-foreground/5">
-            <div className="flex h-14 items-center max-w-5xl mx-auto justify-between gap-8 px-4 sm:px-6">
-                <div className="flex items-center gap-2">
+            <div className="flex h-14 items-center w-full max-w-5xl max-md:pr-0 mx-auto max-md:justify-center justify-between gap-8 px-4 sm:px-6">
+                <div className="max-md:hidden flex items-center gap-2">
                     <MagneticArea>
                         <Link href="/" className="shrink-0" aria-label="Home">
                             <Image width={50} height={50} src={'/assets/logo/logo-transparent-dark-mode.png'} alt={"Logo"} className="hidden dark:block" />
@@ -18,7 +18,7 @@ export const NavigationBar = () => {
                     </MagneticArea> */}
                 </div>
 
-                <div className="flex items-center gap-6 max-md:hidden font-default font-medium">
+                <div className="flex items-center gap-6 max-md:justify-center font-default font-medium">
                     <Link href="/projects" className="text-sm/6 text-gray-950 dark:text-white">Projects</Link>
                     <Link href="#" className="text-sm/6 text-gray-950 dark:text-white">Blogs</Link>
                     {/* <Link href="#" className="group relative px-1.5 text-sm/6 text-primary">
