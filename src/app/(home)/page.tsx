@@ -1,8 +1,16 @@
 import React from "react";
-import HeroSection from "@components/heros/home-hero";
 import { Metadata } from "next";
 import { appDescriptions, appName } from "@lib/data";
 import OrganizationStructuredData from "@components/organization-structured-data";
+import dynamic from 'next/dynamic';
+
+const NavigationBar = dynamic(() => import('@components/navbar/navbar').then(mod => mod.NavigationBar), {
+    ssr: true
+});
+
+const HeroSection = dynamic(() => import("@components/heros/home-hero"), {
+    loading: () => <div className="min-h-[50vh] flex items-center justify-center">Loading...</div>
+});
 
 export const metadata: Metadata = {
     title: appName,
@@ -24,21 +32,13 @@ export const metadata: Metadata = {
     }
 };
 
-// const DEMO_FAQS = [
-//     {
-//         question: "2018-2019",
-//         answer: "Gender",
-//     },
-// ];
-
-
 export default function Home() {
 
     return (
         <div className="w-full mx-auto min-h-screen overflow-y-auto">
             <OrganizationStructuredData />
+            <NavigationBar />
             <HeroSection />
-
         </div>
     );
 }
