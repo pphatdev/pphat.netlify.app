@@ -21,9 +21,7 @@ export const ProjectHero = () => {
             </div>
             <div className="w-full p-4 sm:px-10 max-w-5xl mx-auto ">
                 <BlurFade delay={0.6} inView className="flex flex-col items-start justify-start">
-                    <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                        Projects
-                    </h1>
+                    <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"> Projects </h1>
                 </BlurFade>
                 <BlurFade delay={0.5} inView className="flex flex-col items-start justify-start">
                     <Link href="/" className="hover:bg-foreground/5 font-default transition-all duration-300 mt-7 items-center hover:ring w-fit ring-foreground/10 justify-start flex rounded-full hover:px-4 p-1.5">
