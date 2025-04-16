@@ -1,6 +1,7 @@
 'use client';
+
 import InfiniteScroll from '@components/infinit-scroll';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import originData from 'public/data/post.json';
 import { staticPaginationJSON } from '@lib/functions/pagination-list';
 import { Spinner } from '@components/ui/loading';
