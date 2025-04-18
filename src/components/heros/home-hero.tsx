@@ -75,7 +75,7 @@ export default function HeroSection() {
 
     return (
         <>
-            {mounted && <main className="w-full mx-auto min-h-full h-full overflow-x-hidden relative" id="hero">
+            {mounted && <main className="w-full overflow-hidden mx-auto min-h-full h-full overflow-x-hidden relative" id="hero">
 
                 <h1 className="sr-only">{appName}</h1>
                 <p className="sr-only">{appDescriptions ?? ""}</p>
