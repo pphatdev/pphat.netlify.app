@@ -14,7 +14,7 @@ export const NavigationBar = () => {
             link: "/projects",
         },
         {
-            name: "Posts",
+            name: "Articles",
             link: "#",
         },
         {
