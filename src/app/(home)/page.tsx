@@ -29,6 +29,11 @@ export const metadata: Metadata = {
         images: [{
             url: "https://new-pphat.netlify.app/assets/avatars/hero.webp",
         }],
+    },
+    formatDetection: {
+        email: false,
+        address: false,
+        telephone: false,
     }
 };
 
