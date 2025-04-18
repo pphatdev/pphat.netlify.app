@@ -33,7 +33,7 @@ const nextConfig: NextConfig = {
         ],
         formats: ['image/webp', 'image/avif'],
     },
-    allowedDevOrigins: ['*.vercel.app', '*.netlify.app',],
+    allowedDevOrigins: ['*.vercel.app', '*.netlify.app', 'localhost', '172.20.10.6'],
     compress: true,
     experimental: {
         optimizeCss: true,
