@@ -1,5 +1,4 @@
 # About me
-
 Hello, I'm Sophat LEAT, and internet name is PPhat. Currently I work as a Senior Front-end Developer at TurboTech, and as a Freelancer UI/UX designer. In my free time, I enjoy designing side projects and developing them.
 
 # Installation
