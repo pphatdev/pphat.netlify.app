@@ -26,34 +26,70 @@ interface Logos3Props {
 const Logos3 = ({
     logos = [
         {
+            id: "logo-1",
+            description: "TypeScript",
+            image: "./assets/brands/language/typescript.svg",
+            className: "h-7",
+        },
+        {
             id: "logo-2",
-            description: "Logo 2",
-            image: "https://shadcnblocks.com/images/block/logos/figma.svg",
-            className: "h-7 w-auto",
+            description: "JavaScript",
+            image: "./assets/brands/language/javascript.svg",
+            className: "h-7",
         },
         {
             id: "logo-3",
-            description: "Logo 3",
-            image: "https://shadcnblocks.com/images/block/logos/nextjs.svg",
-            className: "h-7 w-auto",
+            description: "NodeJS",
+            image: "./assets/brands/language/nodejs.svg",
+            className: "h-7",
         },
         {
             id: "logo-4",
-            description: "Logo 4",
-            image: "https://shadcnblocks.com/images/block/logos/react.png",
-            className: "h-7 w-auto",
+            description: "ReactJS",
+            image: "./assets/brands/language/react.svg",
+            className: "h-7",
+        },
+        {
+            id: "logo-5",
+            description: "NextJs",
+            image: "./assets/brands/language/nextjs.svg",
+            className: "h-7",
         },
         {
             id: "logo-6",
-            description: "Logo 6",
-            image: "https://shadcnblocks.com/images/block/logos/supabase.svg",
-            className: "h-7 w-auto",
+            description: "VueJS",
+            image: "./assets/brands/language/vuejs.svg",
+            className: "h-7",
         },
         {
             id: "logo-7",
-            description: "Logo 7",
-            image: "https://shadcnblocks.com/images/block/logos/tailwind.svg",
-            className: "h-4 w-auto",
+            description: "NuxtJS",
+            image: "./assets/brands/language/nuxtjs.svg",
+            className: "h-7",
+        },
+        {
+            id: "logo-8",
+            description: "PHP",
+            image: "./assets/brands/language/php.svg",
+            className: "h-7",
+        },
+        {
+            id: "logo-9",
+            description: "Laravel",
+            image: "./assets/brands/language/laravel.svg",
+            className: "h-7",
+        },
+        {
+            id: "logo-10",
+            description: "CSS",
+            image: "./assets/brands/language/css.svg",
+            className: "h-7",
+        },
+        {
+            id: "logo-11",
+            description: "TailwindCSS",
+            image: "./assets/brands/language/tailwind.svg",
+            className: "h-7",
         },
     ],
 }: Logos3Props) => {
@@ -63,12 +99,13 @@ const Logos3 = ({
                 <Carousel
                     opts={{ loop: true }}
                     plugins={[AutoScroll({ playOnInit: true })]}
+                    className=' overflow-hidden'
                 >
                     <CarouselContent className="ml-0">
                         {logos.map((logo) => (
                             <CarouselItem
                                 key={logo.id}
-                                className="flex justify-center pl-0 basis-1/4"
+                                className="flex justify-center pl-0 basis-1/9"
                             >
                                 <div className="mx-10 flex shrink-0 items-center justify-center">
                                     <div>
