@@ -1,7 +1,7 @@
 import { Button } from "@components/ui/button";
 import { appName, appPositions } from "@lib/data";
 
-export const GetIntouchSections = () => {
+export const GetInTouchSections = () => {
     return (
         <section id="get-in-touch-section" className="relative z-20 mx-auto mt-20 grid w-full overflow-hidden max-w-5xl grid-cols-1 justify-start bg-gradient-to-br from-background via-foreground/10 md:my-40 md:grid-cols-3">
             {/* Horizontal lines */}
