@@ -73,7 +73,7 @@ export const GetIntouchSections = () => {
                 </p>
                 <div className="mt-4 flex flex-col items-start gap-1 text-sm">
                     <p className="font-black text-primary uppercase">{appName}</p>
-                    <p className="text-foreground/60 font-medium font-default">{String(appPositions).replace('.,', ', ')}</p>
+                    <p className="text-foreground/60 font-medium font-default">{String(appPositions).replace(/\.\,\s*/g, ', ')}</p>
                 </div>
             </div>
         </section>
