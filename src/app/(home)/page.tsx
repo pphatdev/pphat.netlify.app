@@ -1,7 +1,7 @@
 import React from "react";
 import OrganizationStructuredData from "@components/organization-structured-data";
 import dynamic from 'next/dynamic';
-import GetIntouchSections from "./sections/home-getintouch";
+import GetInTouchSections from "./sections/home-getintouch";
 import { Metadata } from "next";
 import { appDescriptions, appName } from "@lib/data";
 import { HomeProjects } from './sections/home-project';
@@ -59,7 +59,7 @@ export default function Home() {
                 <HomeArticles />
             </BlurFade>
             <BlurFade delay={0.25} inView>
-                <GetIntouchSections />
+                <GetInTouchSections />
             </BlurFade>
             <div className="h-20 fixed bottom-0 inset-x-0 bg-gradient-to-b from-transparent to-background z-50"/>
         </div>
