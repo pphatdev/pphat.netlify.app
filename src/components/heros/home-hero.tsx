@@ -108,7 +108,7 @@ export default function HeroSection() {
                                         style={{
                                             backgroundSize: "contain",
                                             backgroundImage: `url('/assets/avatars/hero.webp')`,
-                                            maskImage: `url('/assets/masks/mask.png')`
+                                            maskImage: `url('/assets/masks/mask.webp')`
                                         }}
                                     />
                                 </div>

@@ -26,7 +26,7 @@ export const HomeSkills = () => {
                                     style={{
                                         backgroundSize: "contain",
                                         backgroundImage: `url('${lang.src}')`,
-                                        maskImage: `url('/assets/masks/mask.png')`
+                                        maskImage: `url('/assets/masks/mask.webp')`
                                     }}
                                 />
                             </div>
@@ -48,7 +48,7 @@ export const HomeSkills = () => {
                                     style={{
                                         backgroundSize: "contain",
                                         backgroundImage: `url('${lang.src}')`,
-                                        maskImage: `url('/assets/masks/mask.png')`
+                                        maskImage: `url('/assets/masks/mask.webp')`
                                     }}
                                 />
                             </div>
