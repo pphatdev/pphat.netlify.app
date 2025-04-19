@@ -1,7 +1,10 @@
+import { GradientLines } from "@components/background/gradient-line";
+
 export const HomeArticles = () => {
     return (
-        <section id="section-projects" className="max-w-5xl flex flex-col items-center justify-start min-h-screen mx-auto">
-            <h2 className="mb-4 text-center max-md:text-3xl text-5xl tracking-tight font-bold font-default">I write about technology</h2>
+        <section id="section-projects" className="max-w-5xl relative flex flex-col items-center justify-start min-h-screen mx-auto">
+            {/* <GradientLines className="relative"/> */}
+            <h2 className="max-md:mb-3 mb-4 text-center max-md:text-3xl text-5xl tracking-tighter font-bold font-default">I write about technology</h2>
             <p className="mb-10 text-center text-zinc-500 tracking-normal">
                 {`Ever since I was a kid, I've been fascinated by technology.`}
             </p>
