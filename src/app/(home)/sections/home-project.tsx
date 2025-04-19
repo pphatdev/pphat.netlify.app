@@ -1,4 +1,5 @@
 "use client";
+import { GradientLines } from "@components/background/gradient-line";
 import { BentoGrid } from "@components/ui/bento-grid";
 import { BookAIcon, CheckCircle, Globe, TrendingUp, Video } from "lucide-react";
 
@@ -6,10 +7,11 @@ import { BookAIcon, CheckCircle, Globe, TrendingUp, Video } from "lucide-react";
 export const HomeProjects = () => {
     return (
         <section id="section-projects" className="max-w-5xl flex flex-col items-center justify-start min-h-screen mx-auto">
+            <GradientLines className="top-1/2 -z-[1] md:h-[100px]" />
             <div className="p-5 pb-1 mt-5">
-                <h2 className="mb-4 text-center max-md:text-3xl text-5xl tracking-tight font-bold font-default">{`What I've been working on`}</h2>
-                <p className="mb-5 text-center text-foreground/500 tracking-normal">
-                    {`Ever since I was a kid, I've been fascinated by technology.`}
+                <h2 className="max-md:mb-3 mb-4 text-center max-md:text-3xl text-5xl tracking-tighter font-bold font-default">{`What I've been working on`}</h2>
+                <p className="max-md:mb-0 mb-5 text-center text-foreground/500 tracking-normal">
+                    {`I've worked on a variety of projects, from simple websites to complex web applications. Here are a few of my favorites.`}
                 </p>
             </div>
             <BentoGrid items={
@@ -42,7 +44,8 @@ export const HomeProjects = () => {
                         colSpan: 3,
                     },
                 ]
-            }/>
+            } />
+            <GradientLines className="bottom-0 -z-[1]" />
         </section>
     );
 };
