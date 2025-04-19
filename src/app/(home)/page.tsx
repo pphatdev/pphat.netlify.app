@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 export default function Home() {
 
     return (
-        <div className="w-full mx-auto overflow-y-auto">
+        <div className="w-full mx-auto overflow-y-auto snap-y">
             <OrganizationStructuredData />
             <NavigationBar />
             <HeroSection />
