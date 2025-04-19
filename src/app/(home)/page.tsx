@@ -55,9 +55,9 @@ export default function Home() {
             <BlurFade delay={0.25} inView>
                 <HomeProjects />
             </BlurFade>
-            <BlurFade delay={0.25} inView>
+            {/* <BlurFade delay={0.25} inView>
                 <HomeArticles />
-            </BlurFade>
+            </BlurFade> */}
             <BlurFade delay={0.25} inView>
                 <GetInTouchSections />
             </BlurFade>
