@@ -92,9 +92,9 @@ export default function HeroSection() {
                 </div>
 
                 <section className="flex max-w-5xl max-h-80 min-h-[calc(100dvh_-48px)] mx-auto sm:justify-between z-20 flex-col md:flex-row sm:h-full items-center gap-4" aria-label="Introduction">
-                    <div className="px-5 sm:p-5 max-w-3xl">
+                    <div className="px-2 sm:p-5 max-w-3xl">
                         <BlurFade delay={0.15} inView>
-                            <div className="text-4xl text-center md:text-left md:text-6xl font-bold">
+                            <div className="text-3xl text-center md:text-left md:text-6xl font-bold">
                                 <div className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
                                     <div className="absolute left-0 top-[1px] bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r py-4 from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">
                                         <span className="mr-2">{`Hello I'm`}</span>
@@ -109,7 +109,7 @@ export default function HeroSection() {
                         <div className="text-2xl text-center h-fit md:text-left font-semibold">
                             <FlipWords words={appPositions} />
                         </div>
-                        <TextAnimate animation="slideLeft" by="word" className="whitespace-pre-wrap mt-5">
+                        <TextAnimate animation="slideLeft" by="word" className="whitespace-pre-wrap mt-5 text-center md:text-left">
                             {appDescriptions ?? ""}
                         </TextAnimate>
                         <BlurFade delay={0.65} inView>
@@ -138,9 +138,7 @@ export default function HeroSection() {
                                         width={512}
                                         height={512}
                                         alt="LEAT Sophat - Senior Front-end Developer and UI/UX Designer"
-                                        className={cn(
-                                            "w-36 rounded-full sm:rounded-md sm:w-80 h-36 sm:h-80 object-cover select-none"
-                                        )}
+                                        className={cn("w-36 rounded-full sm:rounded-md sm:w-80 h-36 sm:h-80 object-cover select-none")}
                                         priority
                                         loading="eager"
                                     />
