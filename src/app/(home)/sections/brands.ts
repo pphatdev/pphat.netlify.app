@@ -4,12 +4,21 @@ import path from 'path';
 
 
 const publicDir = path.join(process.cwd(), 'public');
-const imageDir = path.join(publicDir, 'assets/brands');
 
-export const brands: Image[] = fs.readdirSync(imageDir)
+export const languages: Image[] = fs.readdirSync(path.join(publicDir, 'assets/brands/language'))
     .filter(file => /\.(jpg|jpeg|svg)$/i.test(file))
     .map(file => ({
-        src: `/assets/brands/${file}`,
+        src: `/assets/brands/language/${file}`,
+        alt: file.split('.')[0],
+        width: 200,
+        height: 200,
+        caption: file.split('.')[0].replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase())
+    }));
+
+export const designed: Image[] = fs.readdirSync(path.join(publicDir, 'assets/brands/design'))
+    .filter(file => /\.(jpg|jpeg|svg)$/i.test(file))
+    .map(file => ({
+        src: `/assets/brands/design/${file}`,
         alt: file.split('.')[0],
         width: 200,
         height: 200,
