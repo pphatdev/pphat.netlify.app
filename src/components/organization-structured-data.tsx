@@ -4,8 +4,8 @@ import JsonLd from './JsonLd';
 
 const OrganizationStructuredData = () => {
 
-    const url = process.env.NEXT_PUBLIC_APP_URL || 'https://pphat.netlify.app';
-    const logoUrl = `${url}/assets/logo/logo-solid-dark-mode.png`;
+    // const url = process.env.NEXT_PUBLIC_APP_URL || 'https://pphat.netlify.app';
+    // const logoUrl = `${url}/assets/logo/logo-solid-dark-mode.png`;
 
     return (
         <Head>

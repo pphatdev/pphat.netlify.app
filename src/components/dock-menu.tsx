@@ -3,9 +3,10 @@
 import React from "react";
 
 import { Dock, DockIcon } from "@components/ui/dock";
-import { IconBrandBehance, IconBrandDribbble, IconBrandFigma, IconBrandGithub, IconBrandGoogle, IconBrandLinkedin } from "@tabler/icons-react";
+import { IconBrandFigma, IconBrandGithub, IconBrandGoogle, IconBrandLinkedin } from "@tabler/icons-react";
 import Link from "next/link";
 import { cn } from "@lib/utils";
+import { bgGradientLine45deg } from "./background/gradient-line";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -47,13 +48,16 @@ export function NavMenu({
 }: React.HTMLAttributes<HTMLDivElement> & { className?: string }) {
     return (
         <div className={cn("relative", className)}>
-            <Dock direction="bottom">
+            <Dock direction="bottom" className={cn(bgGradientLine45deg, 'text-foreground/10 rounded-none')}>
                 {
-                    items.map( (item, key) => (
-                        <DockIcon key={key} className="from-primary text-white to-primary/50 rounded-xl bg-gradient-to-t inline-flex w-fit px-2 py-2 gap-1 border-border">
-                            <Link href={item.href} target="_blank" aria-label={item.name}>
-                                <item.icons />
-                            </Link>
+                    items.map((item, key) => (
+                        <DockIcon
+                            role="link"
+                            onClick={() => window.open(item.href, '_blank')}
+                            key={key}
+                            className={cn(`from-foreground/10 text-primary transition-colors ease-in-out to-foreground/10 hover:to-background hover:from-background rounded-xl bg-gradient-to-t inline-flex w-fit px-2 py-2 gap-1 border-border`)}
+                        >
+                            <item.icons />
                         </DockIcon>
                     ))
                 }

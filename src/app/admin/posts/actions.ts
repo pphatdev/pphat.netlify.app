@@ -28,6 +28,7 @@ export async function createPost(formData: FormData) {
 
         return { success: true };
     } catch (error) {
+        console.error('Post creation failed:', error);
         return { error: 'Failed to create post' };
     }
 }
@@ -45,6 +46,7 @@ export async function deletePost(id: string) {
 
         return { success: true };
     } catch (error) {
+        console.error('Post deletion failed:', error);
         return { error: 'Failed to delete post' };
     }
 }

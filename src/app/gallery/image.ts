@@ -1,14 +1,6 @@
+import { Image } from '@lib/types/images';
 import fs from 'fs';
 import path from 'path';
-
-interface Image {
-    src: string
-    alt: string
-    width: number
-    height: number
-    link?: string
-    caption?: string
-}
 
 const publicDir = path.join(process.cwd(), 'public');
 const imageDir = path.join(publicDir, 'assets/gallery/WEBP');

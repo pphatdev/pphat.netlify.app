@@ -9,7 +9,7 @@ import {
     useSpring,
     useTransform,
 } from "framer-motion";
-import React, { PropsWithChildren, useRef } from "react";
+import React, { useRef } from "react";
 
 import { cn } from "@lib/utils";
 
@@ -27,7 +27,7 @@ const DEFAULT_MAGNIFICATION = 60;
 const DEFAULT_DISTANCE = 140;
 
 const dockVariants = cva(
-    "supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 mx-auto mt-8 flex h-[58px] w-max items-center justify-center gap-2 rounded-2xl border p-2 backdrop-blur-md",
+    "supports-backdrop-blur:bg-white/10 max-md:scale-80 supports-backdrop-blur:dark:bg-black/10 mx-auto max-md:mt-5 mt-8 flex h-[58px] items-center justify-center gap-2 rounded-2xl border p-2 backdrop-blur-md",
 );
 
 const Dock = React.forwardRef<HTMLDivElement, DockProps>(
@@ -90,7 +90,7 @@ export interface DockIconProps
     children?: React.ReactNode;
 }
 
-type DockIconElement = React.ReactElement<DockIconProps, typeof DockIcon>;
+// type DockIconElement = React.ReactElement<DockIconProps, typeof DockIcon>;
 
 const DockIcon = ({
     size = DEFAULT_SIZE,

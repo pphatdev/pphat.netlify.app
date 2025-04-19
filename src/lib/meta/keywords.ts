@@ -1,0 +1,1 @@
+export const keywords = ["leatsophat.me", "leat sophat", "sophat", "pphatdev", "pphat", "phat", "sophat", "leat", "sophat leat", "sophat dev"]

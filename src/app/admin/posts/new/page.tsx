@@ -1,7 +1,7 @@
 'use client';
 
+import React, { useState } from 'react';
 import { createPost } from '../actions';
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function NewPostPage() {

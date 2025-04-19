@@ -1,85 +1,28 @@
 import "./globals.css";
+import React from "react";
 import type { Metadata } from "next";
 import Providers from "../components/ProgressBarProvider";
-import { Poppins, Kantumruy_Pro } from "next/font/google";
 import { ThemeProvider } from 'next-themes'
-import { appDescriptions, appName } from "@lib/data";
+import { homeHome } from "@lib/meta/home";
+import { aladin, kantumruyPro, poppins, srisakdi, openSans } from "@lib/fonts";
+export { viewport } from "@lib/meta/viewport";
+export const metadata: Metadata = homeHome;
 
-const poppins = Poppins({
-    variable: "--font-poppins",
-    weight: ["400", "500", "600", "700"],
-    subsets: ["latin"],
-});
-
-const kantumruyPro = Kantumruy_Pro({
-    variable: "--font-kantumruy",
-    weight: ["400", "500", "600", "700"],
-    subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://pphat.netlify.app'),
-    title: appName,
-    description: appDescriptions,
-    keywords: ["leatsophat.me", "leat sophat", "sophat", "pphatdev", "pphat", "phat", "sophat", "leat", "sophat leat", "sophat dev"],
-    icons: [
-        {
-            url: "/favicon.ico",
-            sizes: "64x64",
-            type: "image/x-icon",
-        },
-        {
-            url: "/favicon.ico",
-            sizes: "64x64",
-            type: "image/x-icon"
-        },
-    ],
-    manifest: "/site.webmanifest",
-    robots: {
-        index: true,
-        follow: true
-    },
-    openGraph: {
-        images: [
-            {
-                url: '/assets/screenshots/origin-dark.png',
-                width: 1900,
-                height: 926,
-                alt: appName
-            }
-        ]
-    },
-    twitter: {
-        card: 'summary_large_image',
-        images: ['/assets/screenshots/origin-dark.png']
-    }
-};
-
-export const viewport = {
-    themeColor: "#ffffff",
-    backgroundColor: "#ffffff",
-    initialScale: "1.0",
-    display: "standalone",
-}
-
-export default function RootLayout({
-    children,
-}: Readonly<{
-    children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
     return (
-        <html lang="en" suppressHydrationWarning>
-            <body className={`${poppins.variable} ${kantumruyPro.variable} antialiased p-0 m-0`}>
+        <html lang="en" suppressHydrationWarning className="scroll-smooth">
+            <head>
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+            </head>
+            <body className={`${poppins.variable} ${kantumruyPro.variable} ${aladin.variable} ${srisakdi.variable} ${openSans.variable} antialiased p-0 m-0`}>
                 <ThemeProvider
                     attribute="class"
                     enableSystem
                     defaultTheme="system"
-                    disableTransitionOnChange
                 >
                     <Providers>
-                        <div id="root">
-                            {children}
-                        </div>
+                        {children}
                     </Providers>
                 </ThemeProvider>
             </body>

@@ -1,3 +1,4 @@
+import React from 'react';
 import { db, Post } from '@lib/db/post';
 import Link from 'next/link';
 

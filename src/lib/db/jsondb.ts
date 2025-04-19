@@ -5,7 +5,7 @@ import { renderPagination } from '@lib/functions/pagination-list';
 
 interface DbOptions {
     dbPath: string;
-    defaultData?: Record<string, any[]>;
+    defaultData?: Record<string, unknown[]>;
 }
 
 interface PaginatedResult<T> {
@@ -34,7 +34,7 @@ interface PaginatedResult<T> {
  */
 export class JsonDB {
     private dbPath: string;
-    private data: Record<string, any[]>;
+    private data: Record<string, unknown[]>;
 
     /**
      * Initialize the JSON database
@@ -109,7 +109,7 @@ export class JsonDB {
      * @param sort Sort field (e.g., 'name', '-name' for descending)
      * @returns Array of items in the collection for the given page
      */
-    getAll<T extends Record<string, any>>(collection: string, search: string = '', page: number = 1, limit: number = 10, sort?: string): PaginatedResult<T> {
+    getAll<T extends Record<string, unknown>>(collection: string, search: string = '', page: number = 1, limit: number = 10, sort?: string): PaginatedResult<T> {
         this.refreshData();
 
         if (!this.data[collection]) {
@@ -136,14 +136,14 @@ export class JsonDB {
             const sortOrder = sort.startsWith('-') ? -1 : 1;
 
             items.sort((a, b) => {
-                const valueA = (a as any)[sortField];
-                const valueB = (b as any)[sortField];
+                const valueA = (a as { [key: string]: unknown })[sortField];
+                const valueB = (b as { [key: string]: unknown })[sortField];
 
-                if (valueA < valueB) {
-                    return sortOrder * -1;
+                if (typeof valueA === 'string' && typeof valueB === 'string') {
+                    return sortOrder * valueA.localeCompare(valueB);
                 }
-                if (valueA > valueB) {
-                    return sortOrder * 1;
+                if (typeof valueA === 'number' && typeof valueB === 'number') {
+                    return sortOrder * (valueA - valueB);
                 }
                 return 0;
             });
@@ -191,7 +191,7 @@ export class JsonDB {
             return null;
         }
 
-        return this.data[collection].find(item => item.id === id) as T || null;
+        return this.data[collection].find(item => (item as { id: string }).id === id) as T || null;
     }
 
     /**
@@ -231,14 +231,14 @@ export class JsonDB {
             return null;
         }
 
-        const index = this.data[collection].findIndex(item => item.id === id);
+        const index = this.data[collection].findIndex(item => (item as { id: string }).id === id);
         if (index === -1) {
             return null;
         }
 
         // Update the item
         this.data[collection][index] = {
-            ...this.data[collection][index],
+            ...(this.data[collection][index] as object),
             ...updates
         };
 
@@ -260,7 +260,7 @@ export class JsonDB {
         }
 
         const initialLength = this.data[collection].length;
-        this.data[collection] = this.data[collection].filter(item => item.id !== id);
+        this.data[collection] = this.data[collection].filter(item => (item as { id: string }).id !== id);
 
         if (initialLength !== this.data[collection].length) {
             this.save();

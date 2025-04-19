@@ -17,6 +17,20 @@ interface ManifestScreenshot {
     label: string;
 }
 
+interface RelatedApplication {
+    platform: string;
+    url?: string;
+    id?: string;
+}
+
+interface ManifestShortcut {
+    name: string;
+    short_name?: string;
+    description?: string;
+    url: string;
+    icons?: ManifestIcon[];
+}
+
 interface WebManifest {
     name: string;
     short_name: string;
@@ -35,7 +49,7 @@ interface WebManifest {
     dir: string;
     lang: string;
     prefer_related_applications: boolean;
-    related_applications: any[];
+    related_applications: RelatedApplication[];
     scope: string;
     handle_links: string;
     launch_handler: {
@@ -49,7 +63,7 @@ interface WebManifest {
         scope: string;
         update_via_cache: string;
     };
-    shortcuts: any[];
+    shortcuts: ManifestShortcut[];
 }
 
 function createManifest(): WebManifest {

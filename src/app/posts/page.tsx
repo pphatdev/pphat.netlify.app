@@ -1,75 +1,22 @@
 'use client';
+
 import InfiniteScroll from '@components/infinit-scroll';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import originData from 'public/data/post.json';
 import { staticPaginationJSON } from '@lib/functions/pagination-list';
 import { Spinner } from '@components/ui/loading';
-import { Badge } from '@components/ui/badge';
-import { Button } from '@components/ui/button';
-import { EllipsisVertical } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
-import Link from 'next/link';
+import { PostCard } from '@components/cards/post-card';
+import { Post } from '@lib/db/post';
 
-interface Post {
-    id: number;
-    title: string;
-    content: string;
-    slug: string;
-    published: boolean;
-    createdAt: string;
-}
 
-const PostCard = ({ post }: { post: Post }) => {
-    return (
-        <article
-            className="col-span-1 relative bg-background font-default rounded-lg p-4 mb-4 ring-1 ring-foreground/10 hover:ring-2 transition-all duration-200 ease-in-out"
-            role="article"
-            tabIndex={-1}
-        >
-            <Link href={`/posts/${post.slug}`} className="absolute inset-0" />
-            <header className='mb-2 relative flex justify-between items-center'>
-                <Badge>Badge</Badge>
-                <Button
-                    variant="outline"
-                    size="icon"
-                    className="z-10 cursor-pointer rounded-full size-7 p-1.5"
-                    aria-label="Post options"
-                    aria-haspopup="menu"
-                >
-                    <EllipsisVertical aria-hidden="true" />
-                </Button>
-            </header>
-            <h2 className="text-lg font-medium line-clamp-1 pb-1">{post.title}</h2>
-            <p className='font-thin'>{post.content}</p>
+const Blogs = () => {
 
-            <div className='bg-foreground/5 ring-1 ring-foreground/10 flex gap-3 rounded-lg p-2 mt-4'>
-                <Avatar className='rounded-lg'>
-                    <AvatarImage src="assets/icons/favicon-32x32.png" alt="@pphatdev" />
-                    <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-            </div>
-
-            <footer>
-                <div className="text-sm text-muted-foreground mt-2">
-                    Published: {post.published ? 'Yes' : 'No'}
-                </div>
-                <div className="text-sm text-muted-foreground">
-                    Created At: {new Date(post.createdAt).toLocaleDateString()}
-                </div>
-            </footer>
-        </article>
-    );
-};
-
-const InfiniteScrollDemo = () => {
-
-    const limit = 30;
+    const limit = 9;
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const [posts, setPosts] = useState<Post[]>([]);
 
-    // Load initial data when component mounts
     useEffect(() => { next(); }, []);
 
     const next = async () => {
@@ -90,9 +37,8 @@ const InfiniteScrollDemo = () => {
                 }
             );
 
-            setPosts((prev) => [...prev, ...(data as Post[])]);
+            setPosts((prev) => [...prev, ...(data as unknown as Post[])]);
             setPage((prev) => prev + 1);
-
 
             if (data.length < limit) setHasMore(false);
 
@@ -106,12 +52,12 @@ const InfiniteScrollDemo = () => {
 
     return (
         <main className="w-full flex flex-col max-w-5xl mx-auto overflow-y-auto p-4 sm:px-10">
-            <article className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4">
-                <h1 className='col-span-full'>Posts</h1>
-                {posts.map((post, index) => (<PostCard key={index} post={post} />))}
+            <h1 className='mb-4'>Posts</h1>
+            <article className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4 min-h-[500px] relative">
+                {posts.map((post, index) => (<PostCard key={index} post={post} index={index} />))}
                 <InfiniteScroll hasMore={hasMore} isLoading={loading} next={next} threshold={1}>
                     {hasMore && (
-                        <div className='col-span-full flex items-center justify-center overflow-hidden'>
+                        <div className='col-span-full flex justify-center items-center'>
                             <Spinner variant={'bars'} />
                         </div>
                     )}
@@ -121,4 +67,4 @@ const InfiniteScrollDemo = () => {
     );
 };
 
-export default InfiniteScrollDemo;
+export default Blogs;

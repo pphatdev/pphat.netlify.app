@@ -16,6 +16,7 @@ export async function GET(request: NextRequest, props: Params) {
 
         return NextResponse.json(post);
     } catch (error) {
+        console.error('Error fetching post:', error);
         return NextResponse.json({ error: 'Failed to fetch post' }, { status: 500 });
     }
 }
@@ -32,6 +33,7 @@ export async function PUT(request: NextRequest, props: Params) {
 
         return NextResponse.json(updatedPost);
     } catch (error) {
+        console.error('Error updating post:', error);
         return NextResponse.json({ error: 'Failed to update post' }, { status: 500 });
     }
 }
@@ -47,6 +49,7 @@ export async function DELETE(request: NextRequest, props: Params) {
 
         return NextResponse.json({ success: true });
     } catch (error) {
+        console.error('Error deleting post:', error);
         return NextResponse.json({ error: 'Failed to delete post' }, { status: 500 });
     }
 }

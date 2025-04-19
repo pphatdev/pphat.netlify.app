@@ -1,15 +1,13 @@
 import path from 'path';
 import { JsonDB } from './jsondb';
 
-export interface Post {
-    id: string;
+export interface Post extends Record<string, unknown> {
     title: string;
     content: string;
     slug: string;
     published: boolean;
     createdAt: string;
 }
-
 export interface User {
     id: string;
     name: string;
