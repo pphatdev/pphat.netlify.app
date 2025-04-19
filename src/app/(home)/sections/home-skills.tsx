@@ -10,8 +10,8 @@ export const HomeSkills = () => {
             <BlurFade delay={0.25} inView>
                 <div className="p-5 flex flex-col items-center justify-center pb-1 mt-5">
                     <h2 className="max-md:mb-3 px-7 py-3 max-md:text-3xl text-5xl tracking-tighter font-bold font-default">
-                        {`Code`}
-                        <span className="text-center bg-background  bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]"> with</span>
+                        {`My`}
+                        <span className="text-center bg-background  bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]"> Tech stack</span>
                     </h2>
                     <p className="max-md:mb-0 mb-5 text-center text-foreground/500 tracking-normal">
                         {`My tech stack includes modern frameworks, languages, and development tools that enable me to build efficient and scalable applications.`}
@@ -35,10 +35,11 @@ export const HomeSkills = () => {
                 </div>
             </BlurFade>
             <BlurFade delay={0.25} inView>
-                <div className="p-5 flex items-center justify-center pb-1 mt-5">
-                    <h2 className="max-md:mb-3 px-7 py-3 translate-y-1.5 w-fit text-center bg-background max-md:text-3xl text-5xl tracking-tighter font-bold font-default bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">{`Design tools`}</h2>
-                </div>
-                <div className="w-full flex gap-5 border-y divide-y divide-x bg-background p-8 flex-wrap justify-center">
+                <h2 className="max-md:mb-3 px-7 py-3 max-md:text-3xl text-5xl tracking-tighter font-bold font-default">
+                    {`My`}
+                    <span className="text-center bg-background  bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]"> designed tools</span>
+                </h2>
+                <div className="w-full mb-20 flex gap-5 border-y divide-y divide-x bg-background p-8 flex-wrap justify-center">
                     {designed.map((lang, key) => (
                         <MagneticArea key={key}>
                             <div className="relative flex h-20 w-20 max-w-20 p-1 items-center justify-center overflow-hidden border text-foreground/10 bg-[size:8px_8px] bg-top-left bg-[image:repeating-linear-gradient(315deg,currentColor_0,currentColor_1px,transparent_0,transparent_50%)]">
