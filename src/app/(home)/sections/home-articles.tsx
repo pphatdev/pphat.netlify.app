@@ -1,11 +1,11 @@
 export const HomeArticles = () => {
     return (
-        <section id="section-projects" className="max-w-5xl mx-auto p-8 pt-24">
-            <h2 className="mb-4 text-left max-md:text-xl text-5xl font-bold">I write about technology</h2>
-            <p className="mb-10 text-left text-sm text-zinc-500">
+        <section id="section-projects" className="max-w-5xl flex flex-col items-center justify-start min-h-screen mx-auto">
+            <h2 className="mb-4 text-center max-md:text-3xl text-5xl tracking-tight font-bold font-default">I write about technology</h2>
+            <p className="mb-10 text-center text-zinc-500 tracking-normal">
                 {`Ever since I was a kid, I've been fascinated by technology.`}
             </p>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+            <div className="grid w-full px-8 grid-cols-1 gap-4 md:grid-cols-4">
                 {[
                     {
                         id: 1,
