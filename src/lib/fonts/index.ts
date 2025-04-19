@@ -1,4 +1,4 @@
-import { Aladin, Kantumruy_Pro, Poppins, Srisakdi } from "next/font/google";
+import { Aladin, Kantumruy_Pro, Open_Sans, Poppins, Srisakdi } from "next/font/google";
 
 export const aladin = Aladin({
     variable: "--font-aladin",
@@ -31,3 +31,11 @@ export const kantumruyPro = Kantumruy_Pro({
     display: "swap",
     preload: true,
 });
+
+export const openSans = Open_Sans({
+    variable: "--font-open-sans",
+    weight: ["400", "500", "600", "700"],
+    subsets: ["latin"],
+    display: "swap",
+    preload: true,
+})
