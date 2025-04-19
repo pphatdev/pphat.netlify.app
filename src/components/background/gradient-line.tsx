@@ -35,3 +35,5 @@ export const GradientLines = ({ className, }: { className?: string; }) => {
         </svg>
     );
 };
+
+export const bgGradientLine45deg = `bg-[size:8px_8px] bg-[image:repeating-linear-gradient(315deg,currentColor_0,currentColor_1px,transparent_0,transparent_50%)]`
