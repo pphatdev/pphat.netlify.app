@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 export default function Home() {
 
     return (
-        <div className="w-full mx-auto overflow-y-auto">
+        <div className="w-full relative mx-auto overflow-y-auto">
             <OrganizationStructuredData />
             <NavigationBar />
             <HeroSection />
@@ -61,6 +61,7 @@ export default function Home() {
             <BlurFade delay={0.25} inView>
                 <GetIntouchSections />
             </BlurFade>
+            <div className="h-20 fixed bottom-0 inset-x-0 bg-gradient-to-b from-transparent to-background z-50"/>
         </div>
     );
 }
