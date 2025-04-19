@@ -80,4 +80,4 @@ export const GetInTouchSections = () => {
     );
 };
 
-export default GetIntouchSections;
+export default GetInTouchSections;
