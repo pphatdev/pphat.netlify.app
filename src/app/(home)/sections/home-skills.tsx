@@ -2,16 +2,20 @@ import { GradientLines } from "@components/background/gradient-line"
 import { BlurFade } from "@components/ui/blur-fade"
 import { designed, languages } from "./brands";
 import { MagneticArea } from "@components/ui/magnetic-button";
+import { TextAnimate } from "@components/text-animation";
 
 export const HomeSkills = () => {
     return (
         <section id="section-projects" className="max-w-5xl flex flex-col items-center justify-start min-h-screen mx-auto">
             <BlurFade delay={0.25} inView>
-                <div className="p-5 flex items-center justify-center pb-1 mt-5">
-                    <h2 className="max-md:mb-3 px-7 py-3 uppercase translate-y-1.5 w-fit text-center  bg-background max-md:text-3xl text-5xl tracking-tighter font-bold font-default">{`Coding with`}</h2>
-                    {/* <p className="max-md:mb-0 mb-5 text-center text-foreground/500 tracking-normal">
-                        {`I've worked on a variety of projects, from simple websites to complex web applications. Here are a few of my favorites.`}
-                    </p> */}
+                <div className="p-5 flex flex-col items-center justify-center pb-1 mt-5">
+                    <h2 className="max-md:mb-3 px-7 py-3 max-md:text-3xl text-5xl tracking-tighter font-bold font-default">
+                        {`Code`}
+                        <span className="text-center bg-background  bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]"> with</span>
+                    </h2>
+                    <p className="max-md:mb-0 mb-5 text-center text-foreground/500 tracking-normal">
+                        {`My tech stack includes modern frameworks, languages, and development tools that enable me to build efficient and scalable applications.`}
+                    </p>
                 </div>
                 <div className="w-full flex gap-5 border-y divide-y divide-x bg-background p-8 flex-wrap justify-center">
                     {languages.map((lang, key) => (
@@ -32,7 +36,7 @@ export const HomeSkills = () => {
             </BlurFade>
             <BlurFade delay={0.25} inView>
                 <div className="p-5 flex items-center justify-center pb-1 mt-5">
-                    <h2 className="max-md:mb-3 px-7 py-3 translate-y-1.5 w-fit text-center  bg-background text-3xl tracking-tighter font-bold font-default">{`Design tools`}</h2>
+                    <h2 className="max-md:mb-3 px-7 py-3 translate-y-1.5 w-fit text-center bg-background max-md:text-3xl text-5xl tracking-tighter font-bold font-default bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">{`Design tools`}</h2>
                 </div>
                 <div className="w-full flex gap-5 border-y divide-y divide-x bg-background p-8 flex-wrap justify-center">
                     {designed.map((lang, key) => (
@@ -51,7 +55,7 @@ export const HomeSkills = () => {
                     ))}
                 </div>
             </BlurFade>
-            <GradientLines className="bottom-20 -z-[1]" />
+            <GradientLines className="bottom-0 -z-[1]" />
         </section>
     )
 }
