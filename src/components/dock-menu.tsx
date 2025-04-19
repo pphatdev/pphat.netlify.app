@@ -55,9 +55,11 @@ export function NavMenu({
                             role="link"
                             onClick={() => window.open(item.href, '_blank')}
                             key={key}
+                            aria-label={`Visit ${item.name}`}
+                            title={item.name}
                             className={cn(`from-foreground/10 text-primary transition-colors ease-in-out to-foreground/10 hover:to-background hover:from-background rounded-xl bg-gradient-to-t inline-flex w-fit px-2 py-2 gap-1 border-border`)}
                         >
-                            <item.icons />
+                            <item.icons aria-hidden="true" />
                         </DockIcon>
                     ))
                 }
