@@ -110,15 +110,15 @@ const Logos3 = ({
                 <Carousel
                     opts={{ loop: true }}
                     plugins={[AutoScroll({ playOnInit: true })]}
-                    className=' overflow-hidden'
+                    className='overflow-hidden'
                 >
                     <CarouselContent className="ml-0">
                         {logos.map((logo) => (
                             <CarouselItem
                                 key={logo.id}
-                                className="flex justify-center pl-0 basis-1/5"
+                                className="flex justify-center w-full pl-0 basis-1/4"
                             >
-                                <div className="px-10 flex shrink-0 gap-0.5 items-center justify-center">
+                                <div className="px-10 flex shrink-0 gap-1 items-center justify-center">
                                     {logo.icons && <logo.icons />}
                                     {!logo.icons && (
                                         <Image
