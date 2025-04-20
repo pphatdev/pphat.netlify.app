@@ -86,16 +86,22 @@ export default function HeroSection() {
                                 "bg-[length:200%]",
                             )}></div>
 
-                            <div className={cn(
-                                "relative flex max-sm:size-36 size-64 rounded-3xl p-1 items-center justify-center overflow-hidden border text-foreground/10 bg-[size:8px_8px] bg-top-left",
-                                bgGradientLine45deg
-                            )}>
+                            <div
+                                className={cn(
+                                    "relative flex max-sm:size-36 size-64 rounded-xl p-1 items-center justify-center overflow-hidden border text-foreground/10 bg-[size:8px_8px] bg-top-left",
+                                    bgGradientLine45deg
+                                )}
+                                style={{
+                                    width: "256px", // Explicit width
+                                    height: "256px", // Explicit height
+                                }}
+                            >
                                 <div
-                                    className={`h-full w-full bg-center m-1 bg-no-repeat mask-size-[105%_90%] mask-center mask-no-repeat`}
+                                    className="h-full w-full bg-center m-1 bg-no-repeat mask-size-[105%_90%] mask-center mask-no-repeat"
                                     style={{
                                         backgroundSize: "contain",
                                         backgroundImage: `url('/assets/avatars/hero.webp')`,
-                                        maskImage: `url('/assets/masks/mask.webp')`
+                                        maskImage: `url('/assets/masks/mask.webp')`,
                                     }}
                                 />
                             </div>
