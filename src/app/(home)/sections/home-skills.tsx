@@ -9,7 +9,7 @@ export const HomeSkills = () => {
         <section id="section-projects" className="max-w-5xl flex flex-col items-center justify-start min-h-screen mx-auto">
             <BlurFade delay={0.25} inView>
                 <div className="p-5 flex flex-col items-center justify-center pb-1 mt-5">
-                    <h2 className="max-md:mb-3 px-7 py-3 max-md:text-3xl text-5xl tracking-tighter font-bold font-default">
+                    <h2 className="max-md:mb-3 px-7 py-3 max-md:text-3xl text-5xl tracking-tighter font-bold font-sans">
                         {`My`}
                         <span className="text-center bg-background  bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]"> Tech stack</span>
                     </h2>
@@ -35,7 +35,7 @@ export const HomeSkills = () => {
                 </div>
             </BlurFade>
             <BlurFade delay={0.25} inView>
-                <h2 className="max-md:mb-3 px-7 py-3 max-md:text-3xl text-5xl tracking-tighter font-bold font-default">
+                <h2 className="max-md:mb-3 px-7 py-3 max-md:text-3xl text-5xl tracking-tighter font-bold font-sans">
                     {`My`}
                     <span className="text-center bg-background  bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]"> designed tools</span>
                 </h2>

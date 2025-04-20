@@ -6,7 +6,6 @@ import { Metadata } from "next";
 import { appDescriptions, appName } from "@lib/data";
 import { HomeProjects } from './sections/home-project';
 import { BlurFade } from "@components/ui/blur-fade";
-import { HomeArticles } from "./sections/home-articles";
 import { HomeSkills } from "./sections/home-skills";
 
 const NavigationBar = dynamic(() => import('@components/navbar/navbar').then(mod => mod.NavigationBar), {
@@ -45,7 +44,7 @@ export const metadata: Metadata = {
 export default function Home() {
 
     return (
-        <div className="w-full relative mx-auto overflow-y-auto">
+        <div className="w-full relative mx-auto">
             <OrganizationStructuredData />
             <NavigationBar />
             <HeroSection />
