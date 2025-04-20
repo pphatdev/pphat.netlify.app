@@ -9,11 +9,10 @@
 }
 
 @theme inline {
-  --font-defualt: "Poppins", "Kantumruy Pro", sans-serif;
+  --font-sans: "Poppins", "Roboto", "Kantumruy Pro", sans-serif;
   --font-aladin: "Aladin", "Aladin Fallback";
   --font-srisakdi: "Srisakdi", system-ui;
   --font-open-sans: "Open Sans", sans-serif;
-  --font-roboto: "Roboto", sans-serif;
   --animate-orbit: orbit calc(var(--duration) * 1s) linear infinite;
 
   --color-background: hsl(var(--background));
@@ -308,5 +307,8 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  p, div, a {
+    @apply font-sans;
   }
 }
