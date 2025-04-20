@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { BackgroundBeamsWithCollision } from "@components/ui/background-beams-with-collision";
 import { Cover } from "@components/ui/cover";
 import { FlipWords } from "@components/flip-words";
@@ -79,39 +78,27 @@ export default function HeroSection() {
                         </BlurFade>
                     </div>
                     <div className={cn("order-first relative mt-10 sm:mt-0 shrink-0 md:order-last")}>
-                        <BlurFade delay={1} inView>
+                        <BlurFade delay={1} inView className="flex flex-col items-center justify-center w-full h-full">
                             {/* <MagneticArea > */}
-                                <div className={cn(
-                                    "absolute -z-[1] w-full h-full blur-3xl left-1/2 translate-y-1/2 bottom-1/3 -translate-x-1/2 opacity-20 animate-rainbow",
-                                    "bg-[linear-gradient(90deg,hsl(var(--color-1)),hsl(var(--color-5)),hsl(var(--color-3)),hsl(var(--color-4)),hsl(var(--color-2)))]",
-                                    "bg-[length:200%]",
-                                )}></div>
+                            <div className={cn(
+                                "absolute -z-[1] w-full h-full blur-3xl left-1/2 translate-y-1/2 bottom-1/3 -translate-x-1/2 opacity-20 animate-rainbow",
+                                "bg-[linear-gradient(90deg,hsl(var(--color-1)),hsl(var(--color-5)),hsl(var(--color-3)),hsl(var(--color-4)),hsl(var(--color-2)))]",
+                                "bg-[length:200%]",
+                            )}></div>
 
-                                {/* <Link href={'/gallery'} className="flex mx-auto items-center justify-center overflow-hidden w-36 h-36 sm:w-80 sm:h-80 rounded-full bg-gradient-to-r from-sky-500/5 via-teal-500/5 to-green-500/5 hover:scale-125 transition-transform duration-300 ease-in-out">
-                                    <Image
-                                        src="/assets/avatars/hero.webp"
-                                        width={512}
-                                        height={512}
-                                        alt="LEAT Sophat - Senior Front-end Developer and UI/UX Designer"
-                                        className={cn("w-36 rounded-full sm:rounded-md sm:w-80 h-36 sm:h-80 object-cover select-none")}
-                                        priority
-                                        loading="eager"
-                                    />
-                                </Link> */}
-
-                                <div className={cn(
-                                    "relative flex h-64 w-64  p-1 items-center justify-center overflow-hidden border text-foreground/10 bg-[size:8px_8px] bg-top-left",
-                                    bgGradientLine45deg
-                                )}>
-                                    <div
-                                        className={`h-full w-full bg-center m-1 bg-no-repeat mask-size-[105%_90%] mask-center mask-no-repeat`}
-                                        style={{
-                                            backgroundSize: "contain",
-                                            backgroundImage: `url('/assets/avatars/hero.webp')`,
-                                            maskImage: `url('/assets/masks/mask.webp')`
-                                        }}
-                                    />
-                                </div>
+                            <div className={cn(
+                                "relative flex max-sm:size-36 size-64 rounded-3xl p-1 items-center justify-center overflow-hidden border text-foreground/10 bg-[size:8px_8px] bg-top-left",
+                                bgGradientLine45deg
+                            )}>
+                                <div
+                                    className={`h-full w-full bg-center m-1 bg-no-repeat mask-size-[105%_90%] mask-center mask-no-repeat`}
+                                    style={{
+                                        backgroundSize: "contain",
+                                        backgroundImage: `url('/assets/avatars/hero.webp')`,
+                                        maskImage: `url('/assets/masks/mask.webp')`
+                                    }}
+                                />
+                            </div>
 
                             {/* </MagneticArea> */}
                             <NavMenu />
