@@ -8,9 +8,11 @@ export const HomeProjects = () => {
     return (
         <section id="section-projects" className="max-w-5xl flex flex-col items-center justify-start min-h-screen mx-auto">
             <GradientLines className="top-1/2 -z-[1] md:h-[100px]" />
-            <div className="p-5 pb-1 mt-5">
-                <h2 className="max-md:mb-3 mb-4 text-center max-md:text-3xl text-5xl tracking-tighter font-bold font-sans">{`What I've been `} <span className="text-center bg-background max-md:text-3xl text-5xl tracking-tighter font-bold font-sans bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">working on</span></h2>
-                <p className="max-md:mb-0 mb-5 text-center text-foreground/500 tracking-normal">
+            <div className="mt-5 w-full">
+                <h2 className="max-md:mb-3 px-5 w-full py-3 max-md:text-3xl text-5xl tracking-tighter font-bold font-sans">
+                    {`What I've been `} <span className="text-left bg-background  bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]"> working on</span>
+                </h2>
+                <p className="max-md:mb-0 w-full px-5 my-5 text-left text-foreground/500 tracking-normal">
                     {`I've worked on a variety of projects, from simple websites to complex web applications. Here are a few of my favorites.`}
                 </p>
             </div>
