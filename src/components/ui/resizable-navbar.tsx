@@ -105,8 +105,8 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
                 minWidth: "700px",
             }}
             className={cn(
-                "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex dark:bg-transparent",
-                visible && "bg-foreground/10",
+                "relative z-[60] mx-auto hidden shadow shadow-card w-full max-w-5xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex dark:bg-transparent",
+                visible && "bg-background",
                 className,
             )}
         >
@@ -130,14 +130,14 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
                 <a
                     onMouseEnter={() => setHovered(idx)}
                     onClick={onItemClick}
-                    className="relative px-4 py-2 text-neutral-600 dark:text-neutral-300"
+                    className="relative px-4 py-2 text-foreground/80"
                     key={`link-${idx}`}
                     href={item.link}
                 >
                     {hovered === idx && (
                         <motion.div
                             layoutId="hovered"
-                            className="absolute inset-0 h-full w-full rounded-full bg-gray-100 dark:bg-neutral-800"
+                            className="absolute inset-0 h-full w-full rounded-full bg-foreground/10"
                         />
                     )}
                     <span className="relative z-20">{item.name}</span>
