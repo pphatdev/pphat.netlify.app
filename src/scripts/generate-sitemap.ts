@@ -1,3 +1,4 @@
+import { currentDomain } from '../lib/data';
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 
@@ -7,7 +8,6 @@ interface Route {
     priority: number;
 }
 
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL?.trim() || 'https://new-pphat.netlify.app';
 const today = new Date().toISOString().split('T')[0];
 
 // Known routes in the application
@@ -29,7 +29,7 @@ export function generateSitemap(): void {
                 ${routes.map(
                     route => (`
                         <url>
-                            <loc>${encodeURI(`${baseUrl}${route.path}`)}</loc>
+                            <loc>${encodeURI(`${currentDomain}${route.path}`)}</loc>
                             <lastmod>${today}</lastmod>
                             <changefreq>${route.changefreq}</changefreq>
                             <priority>${route.priority.toFixed(1)}</priority>
