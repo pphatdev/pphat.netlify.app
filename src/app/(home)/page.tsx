@@ -3,7 +3,7 @@ import OrganizationStructuredData from "@components/organization-structured-data
 import dynamic from 'next/dynamic';
 import GetInTouchSections from "./sections/home-getintouch";
 import { Metadata } from "next";
-import { appDescriptions, appName } from "@lib/data";
+import { appDescriptions, appName, currentDomain } from "@lib/data";
 import { HomeProjects } from './sections/home-project';
 import { BlurFade } from "@components/ui/blur-fade";
 import { HomeSkills } from "./sections/home-skills";
@@ -20,18 +20,18 @@ export const metadata: Metadata = {
     title: appName,
     description: appDescriptions,
     authors: [{
-        url: "https://new-pphat.netlify.app",
+        url: currentDomain,
         name: "Leat Sophat",
     }],
     generator: "PPhat Dev",
     openGraph: {
         type: "profile",
-        url: "https://new-pphat.netlify.app",
+        url: currentDomain,
         title: appName,
         description: appDescriptions,
         siteName: appName,
         images: [{
-            url: "https://new-pphat.netlify.app/assets/avatars/hero.webp",
+            url: currentDomain + "/assets/avatars/hero.webp",
         }],
     },
     formatDetection: {
