@@ -9,7 +9,7 @@ import React from "react";
 export const PostCard = ({ post, index }: { post: Post, index: number }) => {
     return (
         <div
-            className="col-span-1 relative bg-foreground/5 font-default rounded-lg p-4 mb-4 ring-1 ring-foreground/10 hover:ring-primary hover:ring-2 transition-all duration-200 ease-in-out flex flex-col h-full"
+            className="col-span-1 relative bg-foreground/5 font-sans rounded-lg p-4 mb-4 ring-1 ring-foreground/10 hover:ring-primary hover:ring-2 transition-all duration-200 ease-in-out flex flex-col h-full"
             role="article"
             tabIndex={-1}
         >

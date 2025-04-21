@@ -120,7 +120,7 @@ export const MatrixText = ({
                     {letters.map((letter, index) => (
                         <motion.div
                             key={`${index}-${letter.char}`}
-                            className="font-default font-bold text-4xl md:text-6xl w-auto text-center overflow-hidden"
+                            className="font-sans font-bold text-4xl md:text-6xl w-auto text-center overflow-hidden"
                             initial="initial"
                             animate={letter.isMatrix ? "matrix" : "normal"}
                             variants={motionVariants}

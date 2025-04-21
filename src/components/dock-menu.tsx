@@ -48,16 +48,18 @@ export function NavMenu({
 }: React.HTMLAttributes<HTMLDivElement> & { className?: string }) {
     return (
         <div className={cn("relative", className)}>
-            <Dock direction="bottom" className={cn(bgGradientLine45deg, 'text-foreground/10 rounded-none')}>
+            <Dock direction="bottom" className={cn(bgGradientLine45deg, 'text-foreground/10 px-5')}>
                 {
                     items.map((item, key) => (
                         <DockIcon
                             role="link"
                             onClick={() => window.open(item.href, '_blank')}
                             key={key}
-                            className={cn(`from-foreground/10 text-primary transition-colors ease-in-out to-foreground/10 hover:to-background hover:from-background rounded-xl bg-gradient-to-t inline-flex w-fit px-2 py-2 gap-1 border-border`)}
+                            aria-label={`Visit ${item.name}`}
+                            title={item.name}
+                            className={cn(`from-foreground/10 text-primary transition-colors ring ease-in-out rounded-xl bg-background/50 inline-flex w-fit px-2 py-2 gap-1 border-border`)}
                         >
-                            <item.icons />
+                            <item.icons aria-hidden="true" />
                         </DockIcon>
                     ))
                 }

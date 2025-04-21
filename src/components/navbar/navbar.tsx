@@ -1,8 +1,7 @@
 "use client";
 
 import { MagneticArea } from "@components/ui/magnetic-button"
-import { MobileNav, MobileNavHeader, MobileNavMenu, MobileNavToggle, Navbar, NavbarButton, NavbarLogo, NavBody, NavItems } from "@components/ui/resizable-navbar"
-import Image from "next/image"
+import { MobileNav, MobileNavHeader, MobileNavMenu, MobileNavToggle, Navbar, NavbarLogo, NavBody, NavItems } from "@components/ui/resizable-navbar"
 import Link from "next/link"
 import { useState } from "react"
 
@@ -10,7 +9,7 @@ export const NavigationBar = () => {
 
     const navItems = [
         {
-            name: "Projects",
+            name: "Contributes",
             link: "/projects",
         },
         {
@@ -18,11 +17,11 @@ export const NavigationBar = () => {
             link: "#",
         },
         {
-            name: "About",
+            name: "About me",
             link: "#",
         },
         {
-            name: "Hire Me",
+            name: "Contact",
             link: "#",
         },
     ];
@@ -39,7 +38,7 @@ export const NavigationBar = () => {
                     {/* <NavbarButton variant="secondary">Login</NavbarButton>
                     <NavbarButton variant="primary">Book a call</NavbarButton> */}
                     <MagneticArea>
-                        <Link aria-label="GitHub repository" href="https://github.com/pphatdev">
+                        <Link aria-label="GitHub repository" href="https://github.com/pphatdev/pphat.netlify.app">
                             <svg
                                 height="26"
                                 aria-hidden="true"
@@ -80,20 +79,6 @@ export const NavigationBar = () => {
                         </Link>
                     ))}
                     <div className="flex w-full flex-col gap-4">
-                        {/* <NavbarButton
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            variant="primary"
-                            className="w-full"
-                        >
-                            Gith
-                        </NavbarButton>
-                        <NavbarButton
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            variant="primary"
-                            className="w-full"
-                        >
-                            Book a call
-                        </NavbarButton> */}
                         <MagneticArea>
                             <Link aria-label="GitHub repository" href="https://github.com/pphatdev">
                                 <svg
