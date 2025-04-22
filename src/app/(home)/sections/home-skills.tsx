@@ -13,10 +13,10 @@ export const HomeSkills = () => {
                 <p className="max-md:mb-0 px-5 my-5 text-left text-foreground/500 tracking-normal">
                     {`My tech stack includes modern frameworks, languages, and development tools that enable me to build efficient and scalable applications.`}
                 </p>
-                <div className="w-full flex gap-5 mb-5 rounded-2xl bg-background p-8 px-5 flex-wrap justify-start">
+                <div className="w-full flex gap-5 mb-5 rounded-2xl shadow-card shadow-primary/5 bg-background p-8 px-5 flex-wrap justify-start">
                     {languages.map((lang, key) => (
                         <MagneticArea key={key}>
-                            <div className="relative flex max-sm:h-9 max-sm:w-9 h-14 shadow shadow-card w-14 p-1 bg-background rounded-full items-center justify-center overflow-hidden border text-foreground/10 bg-[size:8px_8px] bg-top-left bg-[image:repeating-linear-gradient(315deg,currentColor_0,currentColor_1px,transparent_0,transparent_50%)]">
+                            <div className="relative flex max-sm:h-9 max-sm:w-9 h-14 shadow-card shadow-primary/5 w-14 p-1 bg-background rounded-full items-center justify-center overflow-hidden border text-foreground/10 bg-[size:8px_8px] bg-top-left bg-[image:repeating-linear-gradient(315deg,currentColor_0,currentColor_1px,transparent_0,transparent_50%)]">
                                 <div
                                     className={`h-full w-full bg-center m-1 bg-no-repeat mask-size-[105%_90%] mask-center mask-no-repeat`}
                                     style={{
@@ -30,7 +30,7 @@ export const HomeSkills = () => {
                     ))}
                 </div>
             </BlurFade>
-            <GradientLines className="bottom-0 -z-[1]" />
+            <GradientLines className="bottom-1/5 -z-[1]" />
         </section>
     )
 }
