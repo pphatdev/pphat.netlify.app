@@ -63,6 +63,8 @@
 
   --color-sidebar: var(--sidebar);
 
+  --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+
   @keyframes orbit {
     0% {
       transform: rotate(calc(var(--angle) * 1deg))
@@ -133,8 +135,6 @@
     --sidebar-accent-foreground: hsl(240 5.9% 10%);
     --sidebar-border: hsl(220 13% 91%);
     --sidebar-ring: hsl(217.2 91.2% 59.8%);
-
-    --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, .05);
   }
   .dark {
     --background: 240 10% 11%;
