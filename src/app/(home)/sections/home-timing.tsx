@@ -29,7 +29,7 @@ export function HomeTiming(props: HomeTimingProps) {
         }, 1000);
 
         return () => clearInterval(intervalId);
-    }, []);
+    }, [currentTime]);
 
     const formatTime = (date: Date): string => {
         return date.toLocaleTimeString(undefined, {
