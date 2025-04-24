@@ -44,7 +44,7 @@ function MagneticArea({ children, distance = 0.6 }: MagneticAreaType) {
         return () => {
             document.removeEventListener('mousemove', calculateDistance);
         };
-    }, [ref, isHovered]);
+    }, [ref, isHovered, distance, x, y]);
 
     return (
         <motion.div
