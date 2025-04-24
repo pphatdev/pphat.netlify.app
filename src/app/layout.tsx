@@ -11,7 +11,7 @@ export const metadata: Metadata = homeHome;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang="en" suppressHydrationWarning className="scroll-smooth">
             <head>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
@@ -22,7 +22,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 aladin.variable,
                 srisakdi.variable,
                 openSans.variable,
-                `antialiased p-0 m-0 font-sans`
+                `antialiased p-0 m-0 font-sans bg-body`
             )}>
                 <ThemeProvider
                     attribute="class"
