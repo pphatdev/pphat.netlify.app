@@ -53,7 +53,7 @@ export function HomeTiming(props: HomeTimingProps) {
     };
 
     return (
-        <div className="min-w-80 z-50 text-primary p-4 rounded-xl bg-background flex flex-col items-center justify-center gap-2">
+        <div className="min-w-80 z-50 w-full text-primary p-4 rounded-xl bg-background flex flex-col items-center justify-center gap-2">
             <div className="flex flex-col gap-1 items-center">
                 <div className="text-sm">{formatDate(currentTime)}</div>
                 <div className="text-5xl font-black font-open-sans tabular-nums leading-tight text-foreground">{formatTime(currentTime)}</div>

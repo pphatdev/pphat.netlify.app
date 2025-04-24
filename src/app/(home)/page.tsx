@@ -57,7 +57,7 @@ export default function Home() {
             </BlurFade>
             <BlurFade delay={0.25} inView>
                 <div
-                    className="w-screen relative h-96 bg-foreground/5 bg-center flex items-center justify-center"
+                    className="w-full relative h-96 bg-foreground/5 bg-center flex items-center justify-center"
                     style={{
                         // backgroundImage: "url('https://images.unsplash.com/photo-1533158326339-7f3cf2404354?q=80&w=1068&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
                     }}
