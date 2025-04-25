@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import { appDescriptions, appName, currentDomain } from "@lib/data";
 import { BlurFade } from "@components/ui/blur-fade";
 import { HomeSkills } from "./sections/home-skills";
+import { HomeFeatureSection } from "./sections/home-feature";
 
 const NavigationBar = dynamic(() => import('@components/navbar/navbar').then(mod => mod.NavigationBar), {
     ssr: true
@@ -49,6 +50,9 @@ export default function Home() {
             <HeroSection />
             <BlurFade delay={0.25} inView>
                 <HomeSkills />
+            </BlurFade>
+            <BlurFade delay={0.25} inView>
+                <HomeFeatureSection />
             </BlurFade>
             <BlurFade delay={0.25} inView>
                 <GetInTouchSections />
