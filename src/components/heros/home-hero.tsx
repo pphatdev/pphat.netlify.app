@@ -28,8 +28,8 @@ export default function HeroSection() {
     }, []);
 
     return (
-        <>
-            {mounted && <main className="w-full overflow-hidden flex items-center justify-center mx-auto min-h-[40rem] h-full overflow-x-hidden relative" id="hero">
+        <div className="min-h-[40rem]">
+            {mounted && <main className="w-full overflow-hidden flex min-h-[40rem] items-center justify-center mx-auto h-full overflow-x-hidden relative" id="hero">
 
                 <h1 className="sr-only">{appName}</h1>
                 <p className="sr-only">{appDescriptions ?? ""}</p>
@@ -92,8 +92,8 @@ export default function HeroSection() {
                                     bgGradientLine45deg
                                 )}
                                 style={{
-                                    width: "256px", // Explicit width
-                                    height: "256px", // Explicit height
+                                    width: "200px", // Explicit width
+                                    height: "200px", // Explicit height
                                 }}
                             >
                                 <div
@@ -112,6 +112,6 @@ export default function HeroSection() {
                     </div>
                 </section>
             </main >}
-        </>
+        </div>
     );
 }
