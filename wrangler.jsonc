@@ -1,6 +1,6 @@
 {
     "main": ".open-next/worker.js",
-    "name": "outerbase-studio",
+    "name": "portolio",
     "compatibility_date": "2024-09-23",
     "compatibility_flags": ["nodejs_compat"],
     "assets": {
@@ -10,11 +10,11 @@
     "observability": {
         "enabled": true,
         "head_sampling_rate": 1
-    },
-    "kv_namespaces": [
-        {
-            "binding": "NEXT_INC_CACHE_KV",
-            "id": "06047e4ea7144eb5beb396bfedf72ee0"
-        }
-    ]
+    }
+    // "kv_namespaces": [
+    //     {
+    //         "binding": "NEXT_INC_CACHE_KV",
+    //         "id": "06047e4ea7144eb5beb396bfedf72ee0"
+    //     }
+    // ]
 }
