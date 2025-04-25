@@ -20,9 +20,9 @@ export const metadata: Metadata = {
     description: appDescriptions,
     authors: [{
         url: currentDomain,
-        name: "Leat Sophat",
+        name: appName,
     }],
-    generator: "PPhat Dev",
+    generator: appName,
     openGraph: {
         type: "profile",
         url: currentDomain,
