@@ -5,7 +5,7 @@ import { MagneticArea } from "@components/ui/magnetic-button";
 
 export const HomeSkills = () => {
     return (
-        <section id="section-projects" className="max-w-5xl flex flex-col items-center justify-start mx-auto">
+        <section id="section-projects" className="max-w-5xl min-h-[45rem] flex flex-col items-center my-20 justify-center mx-auto">
             <BlurFade delay={0.25} inView className="flex flex-col items-center justify-center pb-1 mt-5">
                 <h2 className="max-md:mb-3 px-5 w-full py-3 max-md:text-3xl text-5xl tracking-tighter font-bold font-sans">
                     {`My`} <span className="text-left bg-background  bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]"> Tech stack</span>
@@ -30,7 +30,7 @@ export const HomeSkills = () => {
                     ))}
                 </div>
             </BlurFade>
-            <GradientLines className="-bottom-1/5 -z-[1]" />
+            {/* <GradientLines className="-bottom-1/5 -z-[1]" /> */}
         </section>
     )
 }
