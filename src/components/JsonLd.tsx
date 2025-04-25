@@ -1,6 +1,6 @@
 'use client';
 
-import { appDescriptions, appName } from "@lib/data";
+import { appDescriptions, appName, appPositions, appTitle, currentDomain } from "@lib/data";
 
 export default function JsonLd() {
     return (
@@ -12,10 +12,10 @@ export default function JsonLd() {
                     "@type": "Authorship",
                     "author": {
                         "@type": "Person",
-                        "name": "Sophat LEAT",
-                        "url": process.env.NEXT_PUBLIC_APP_URL || 'https://pphat.netlify.app',
-                        "image": `${process.env.NEXT_PUBLIC_APP_URL || 'https://pphat.netlify.app'}/assets/avatars/hero.webp`,
-                        "jobTitle": "Senior Frontend Developer",
+                        "name": appName,
+                        "url": currentDomain,
+                        "image": `${currentDomain}/assets/avatars/hero.webp`,
+                        "jobTitle": appPositions[0],
                         "address": {
                             "@type": "PostalAddress",
                             "streetAddress": "Street 123",
@@ -26,34 +26,36 @@ export default function JsonLd() {
                         },
                         "telephone": "+855-96-918-3363",
                         "sameAs": [
+                            "https://github.com/pphatdev",
+                            "https://pphatdev.github.io",
                             "https://pphat.netlify.app",
-                            "https://figma.com/PPhat",
+                            "https://figma.com/@PPhat",
                             "https://kh.linkedin.com/in/pphatdev",
                             "https://x.com/pphatdev",
                         ]
                     },
                     "headline": appName,
                     "description": appDescriptions,
-                    "image": `${process.env.NEXT_PUBLIC_APP_URL || 'https://pphat.netlify.app'}/assets/screenshots/origin-dark.png`,
-                    "url": process.env.NEXT_PUBLIC_APP_URL || 'https://pphat.netlify.app',
+                    "image": `${currentDomain}/assets/screenshots/origin-dark.png`,
+                    "url": currentDomain,
                     "mainEntityOfPage": {
                         "@type": "WebPage",
-                        "@id": process.env.NEXT_PUBLIC_APP_URL || 'https://pphat.netlify.app'
+                        "@id": currentDomain
                     },
                     "publisher": {
                         "@type": "Organization",
-                        "name": "PPhat Dev",
-                        "url": process.env.NEXT_PUBLIC_APP_URL || 'https://pphat.netlify.app',
+                        "name": appTitle,
+                        "url": currentDomain,
                         "logo": {
                             "@type": "ImageObject",
-                            "url": `${process.env.NEXT_PUBLIC_APP_URL || 'https://pphat.netlify.app'}/assets/logo/logo-solid-dark-mode.png`
+                            "url": `${currentDomain}/assets/logo/logo-solid-dark-mode.png`
                         }
                     },
                     "datePublished": "2020-01-10T00:00:00+00:00",
-                    "dateModified": "2025-03-04T00:00:00+00:00",
+                    "dateModified": new Date().toISOString(),
                     "potentialAction": {
                         "@type": "SearchAction",
-                        "target": `${process.env.NEXT_PUBLIC_APP_URL || 'https://pphat.netlify.app'}/?search={search_term_string}`,
+                        "target": `${currentDomain}/?search={search_term_string}`,
                         "query-input": "required name=search_term_string"
                     }
                 })
