@@ -1,13 +1,11 @@
-import { GradientLines } from "@components/background/gradient-line";
+import { Title } from "@components/ui/title";
 
 export const HomeArticles = () => {
+    const title = ["I write", "about technology"]
+    const description = `Ever since I was a kid, I've been fascinated by technology. I love learning about new advancements and how they can be applied to solve real-world problems. I enjoy sharing my knowledge and insights with others through writing.`
     return (
-        <section id="section-projects" className="max-w-5xl relative flex flex-col items-center justify-start min-h-screen mx-auto">
-            {/* <GradientLines className="relative"/> */}
-            <h2 className="max-md:mb-3 mb-4 text-center max-md:text-3xl text-5xl tracking-tighter font-bold font-sans">I write about technology</h2>
-            <p className="mb-10 text-center text-zinc-500 tracking-normal">
-                {`Ever since I was a kid, I've been fascinated by technology.`}
-            </p>
+        <section id="section-projects" className="max-w-5xl relative flex flex-col items-center justify-start min-h-[85vh] mx-auto">
+            <Title as='h2' title={title} description={description}/>
             <div className="grid w-full px-8 grid-cols-1 gap-4 md:grid-cols-4">
                 {[
                     {
