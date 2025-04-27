@@ -70,7 +70,7 @@ export default function HeroSection() {
                             <Logos3 {...demoData} />
                         </BlurFade>
                         <BlurFade delay={0.75} inView>
-                            <nav className="flex flex-col z-50 justify-center sm:justify-start sm:flex-row items-center gap-4 mt-6">
+                            <nav className="flex flex-col z-50 justify-center sm:justify-start sm:flex-row items-center gap-4 mt-6 px-3">
                                 <MagneticArea>
                                     <ThemeToggle />
                                 </MagneticArea>
@@ -92,8 +92,8 @@ export default function HeroSection() {
                                     bgGradientLine45deg
                                 )}
                                 style={{
-                                    width: "200px", // Explicit width
-                                    height: "200px", // Explicit height
+                                    width: "200px",
+                                    height: "200px",
                                 }}
                             >
                                 <div
