@@ -23,7 +23,7 @@ export const HomeAboutMe = () => {
                         <Badge variant="outline" className='py-1.5'>{title}</Badge>
                     </div>
                     <div className="flex gap-4 flex-col">
-                        <Title as='h2' title={["Who the hell", "am I ?"]} description={description} />
+                        <Title as='h2' title={["Who", "the hell am I ?"]} description={description} />
                     </div>
                     <div className="flex flex-row gap-4 px-5">
                         <Button className="rounded-full cursor-pointer"> Contact us </Button>
@@ -66,9 +66,6 @@ export const HomeAboutMe = () => {
                             />
                         </div>
                     </div>
-
-                    {/* <div className="bg-muted rounded-md row-span-2"></div>
-                    <div className="bg-muted rounded-md aspect-square"></div> */}
                 </div>
             </div>
         </section>
