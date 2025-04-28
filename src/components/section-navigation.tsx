@@ -1,11 +1,13 @@
 "use client";
 
-import { IconArrowDownCircle, IconArrowUpCircle } from "@tabler/icons-react";
+import { cn } from "@lib/utils";
+import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import Link from "next/link";
 import React, { useEffect, useState, useCallback, useMemo } from "react";
 
 export const SectionNavigation = () => {
     const [activeSection, setActiveSection] = useState('hero');
+    const [isHomeSection, setIsHomeSection] = useState(true);
     const sections = useMemo(() => [
         "hero",
         "skills",
@@ -14,11 +16,9 @@ export const SectionNavigation = () => {
         "contact",
     ], []);
 
-    // Use useCallback to memoize the scroll handler
     const handleScroll = useCallback(() => {
         const scrollPosition = window.scrollY + window.innerHeight / 2;
 
-        // Find the section currently in view
         for (const section of sections) {
             const element = document.getElementById(section);
             if (element) {
@@ -28,6 +28,7 @@ export const SectionNavigation = () => {
                     scrollPosition < offsetTop + offsetHeight
                 ) {
                     setActiveSection(section);
+                    setIsHomeSection(section === "hero");
                     break;
                 }
             }
@@ -58,7 +59,12 @@ export const SectionNavigation = () => {
     const nextSection = currentIndex < sections.length - 1 ? sections[currentIndex + 1] : null;
 
     return (
-        <div className="h-full flex items-center fixed right-2 inset-y-0 z-[9999]">
+        <div className={cn(
+            "h-fit flex items-center fixed inset-y-0 z-50 transition-all duration-300 ease-in-out",
+            isHomeSection
+                ? "left-1/2 -translate-x-1/2 top-[90%] animate-bounce"
+                : "right-2 top-1/2 -translate-y-1/2"
+        )}>
             <div className='bg-foreground/5 ring-1 w-fit ml-auto ring-foreground/10 justify-end gap-4 flex flex-col rounded-full p-1'>
                 {prevSection && (
                     <Link
@@ -66,7 +72,7 @@ export const SectionNavigation = () => {
                         aria-label={`Go to ${prevSection} section`}
                         title={prevSection.charAt(0).toUpperCase() + prevSection.slice(1)}
                         className="flex rounded-full p-2 hover:ring ring-foreground/20 hover:bg-foreground/10 transition-all items-center justify-center">
-                        <IconArrowUpCircle className="size-4" />
+                        <IconChevronUp className="size-4" />
                     </Link>
                 )}
                 {nextSection && (
@@ -75,7 +81,7 @@ export const SectionNavigation = () => {
                         aria-label={`Go to ${nextSection} section`}
                         title={nextSection.charAt(0).toUpperCase() + nextSection.slice(1)}
                         className="flex rounded-full p-2 hover:ring ring-foreground/20 hover:bg-foreground/10 transition-all items-center justify-center">
-                        <IconArrowDownCircle className="size-4" />
+                        <IconChevronDown className="size-4" />
                     </Link>
                 )}
             </div>
