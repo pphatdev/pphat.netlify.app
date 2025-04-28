@@ -2,41 +2,56 @@
 
 import { IconArrowDownCircle, IconArrowUpCircle } from "@tabler/icons-react";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 
 export const SectionNavigation = () => {
     const [activeSection, setActiveSection] = useState('hero');
-    const sections = [
+    const sections = useMemo(() => [
         "hero",
         "skills",
         "about",
         "features",
         "contact",
-    ];
+    ], []);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrollPosition = window.scrollY + window.innerHeight / 2;
+    // Use useCallback to memoize the scroll handler
+    const handleScroll = useCallback(() => {
+        const scrollPosition = window.scrollY + window.innerHeight / 2;
 
-            // Find the section currently in view
-            for (const section of sections) {
-                const element = document.getElementById(section);
-                if (element) {
-                    const { offsetTop, offsetHeight } = element;
-                    if (
-                        scrollPosition >= offsetTop &&
-                        scrollPosition < offsetTop + offsetHeight
-                    ) {
-                        setActiveSection(section);
-                        break;
-                    }
+        // Find the section currently in view
+        for (const section of sections) {
+            const element = document.getElementById(section);
+            if (element) {
+                const { offsetTop, offsetHeight } = element;
+                if (
+                    scrollPosition >= offsetTop &&
+                    scrollPosition < offsetTop + offsetHeight
+                ) {
+                    setActiveSection(section);
+                    break;
                 }
             }
+        }
+    }, [sections]);
+
+    useEffect(() => {
+        let timeoutId: NodeJS.Timeout;
+
+        const debouncedHandleScroll = () => {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(handleScroll, 100);
         };
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+        window.addEventListener('scroll', debouncedHandleScroll);
+
+        // Call once on mount to set initial active section
+        handleScroll();
+
+        return () => {
+            window.removeEventListener('scroll', debouncedHandleScroll);
+            clearTimeout(timeoutId);
+        };
+    }, [handleScroll]);
 
     const currentIndex = sections.indexOf(activeSection);
     const prevSection = currentIndex > 0 ? sections[currentIndex - 1] : null;
