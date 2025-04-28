@@ -13,6 +13,7 @@ export const SectionNavigation = () => {
         "skills",
         "about",
         "features",
+        "faq",
         "contact",
     ], []);
 
