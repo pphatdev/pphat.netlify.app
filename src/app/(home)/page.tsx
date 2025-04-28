@@ -9,6 +9,7 @@ import { HomeSkills } from "./sections/home-skills";
 import { HomeFeatureSection } from "./sections/home-feature";
 import { HomeAboutMe } from "./sections/home-aboutme";
 import { SectionNavigation } from "@components/section-navigation";
+import { HomeFAQSection } from "./sections/home-faq";
 
 const NavigationBar = dynamic(() => import('@components/navbar/navbar').then(mod => mod.NavigationBar), {
     ssr: true
@@ -71,24 +72,13 @@ export default function Home() {
                 </BlurFade>
             </section>
 
+            <HomeFAQSection />
+
             <section id="contact">
                 <BlurFade delay={0.25} inView>
                     <GetInTouchSections />
                 </BlurFade>
             </section>
-
-            {/* <BlurFade delay={0.25} inView>
-                <HomeSkills />
-            </BlurFade>
-            <BlurFade delay={0.25} inView>
-                <HomeAboutMe />
-            </BlurFade>
-            <BlurFade delay={0.25} inView>
-                <HomeFeatureSection />
-            </BlurFade>
-            <BlurFade delay={0.25} inView>
-                <GetInTouchSections />
-            </BlurFade> */}
 
             <SectionNavigation />
             <div className="h-20 pointer-events-none fixed bottom-0 inset-x-0 bg-gradient-to-b from-transparent to-background z-50" />
