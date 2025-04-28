@@ -48,8 +48,8 @@ export default function Home() {
     return (
         <div className="w-full relative mx-auto">
             <OrganizationStructuredData />
+            <NavigationBar />
             <section id="hero">
-                <NavigationBar />
                 <HeroSection />
             </section>
 
