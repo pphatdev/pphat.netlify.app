@@ -3,7 +3,7 @@ import { appName, appPositions } from "@lib/data";
 
 export const GetInTouchSections = () => {
     return (
-        <section id="get-in-touch-section" className="relative z-20 mx-auto grid w-full mt-20 overflow-clip max-w-5xl grid-cols-1 justify-start bg-gradient-to-br from-background via-foreground/10 md:grid-cols-3">
+        <div className="relative z-20 mx-auto grid w-full mt-20 overflow-clip max-w-5xl grid-cols-1 justify-start bg-gradient-to-br from-background via-foreground/10 md:grid-cols-3">
             {/* Horizontal lines */}
             <div
                 style={{
@@ -76,7 +76,7 @@ export const GetInTouchSections = () => {
                     <p className="text-foreground/60 font-medium font-sans">{String(appPositions).replace(/\.\,\s*/g, ', ')}</p>
                 </div>
             </div>
-        </section>
+        </div>
     );
 };
 

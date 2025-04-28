@@ -8,6 +8,7 @@ import { BlurFade } from "@components/ui/blur-fade";
 import { HomeSkills } from "./sections/home-skills";
 import { HomeFeatureSection } from "./sections/home-feature";
 import { HomeAboutMe } from "./sections/home-aboutme";
+import { SectionNavigation } from "@components/section-navigation";
 
 const NavigationBar = dynamic(() => import('@components/navbar/navbar').then(mod => mod.NavigationBar), {
     ssr: true
@@ -48,8 +49,36 @@ export default function Home() {
         <div className="w-full relative mx-auto">
             <OrganizationStructuredData />
             <NavigationBar />
-            <HeroSection />
-            <BlurFade delay={0.25} inView>
+
+            <section id="hero">
+                <HeroSection />
+            </section>
+
+            <section id="skills">
+                <BlurFade delay={0.25} inView>
+                    <HomeSkills />
+                </BlurFade>
+            </section>
+
+            <section id="about">
+                <BlurFade delay={0.25} inView>
+                    <HomeAboutMe />
+                </BlurFade>
+            </section>
+
+            <section id="features">
+                <BlurFade delay={0.25} inView>
+                    <HomeFeatureSection />
+                </BlurFade>
+            </section>
+
+            <section id="contact">
+                <BlurFade delay={0.25} inView>
+                    <GetInTouchSections />
+                </BlurFade>
+            </section>
+
+            {/* <BlurFade delay={0.25} inView>
                 <HomeSkills />
             </BlurFade>
             <BlurFade delay={0.25} inView>
@@ -60,7 +89,9 @@ export default function Home() {
             </BlurFade>
             <BlurFade delay={0.25} inView>
                 <GetInTouchSections />
-            </BlurFade>
+            </BlurFade> */}
+
+            <SectionNavigation />
             <div className="h-20 pointer-events-none fixed bottom-0 inset-x-0 bg-gradient-to-b from-transparent to-background z-50" />
         </div>
     );

@@ -2,6 +2,7 @@ import { BlurFade } from "@components/ui/blur-fade"
 import { languages } from "./brands";
 import { MagneticArea } from "@components/ui/magnetic-button";
 import { Title } from "@components/ui/title";
+import { Badge } from "@components/ui/badge";
 
 export const HomeSkills = () => {
 
@@ -9,8 +10,11 @@ export const HomeSkills = () => {
     const description = `My tech stack includes modern frameworks, languages, and development tools that enable me to build efficient and scalable applications.`
 
     return (
-        <section id="section-projects" className="max-w-5xl flex flex-col items-center mb-20 justify-center mx-auto">
+        <div className="max-w-5xl min-h-screen flex flex-col items-center my-20 justify-center mx-auto">
             <BlurFade delay={0.25} inView className="flex flex-col items-center justify-center pb-1 mt-5">
+                <div className="block w-full px-5 py-3 ">
+                    <Badge variant="outline" className='py-1.5'>My Skills</Badge>
+                </div>
                 <Title as='h2' title={title} description={description} />
                 <div className="w-full flex gap-5 mb-5 rounded-2xl shadow-card shadow-primary/5 bg-background p-8 px-5 flex-wrap justify-start">
                     {languages.map((lang, key) => (
@@ -29,6 +33,6 @@ export const HomeSkills = () => {
                     ))}
                 </div>
             </BlurFade>
-        </section>
+        </div>
     )
 }

@@ -309,4 +309,14 @@
   p, div, a {
     @apply font-sans;
   }
+
+  *::-webkit-scrollbar {
+    @apply w-2 bg-transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    @apply bg-border rounded;
+  }
+  *::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
 }

@@ -35,11 +35,13 @@ export function HomeFeatureSection() {
     const description = `I can help you build your next project from scratch. I have experience in web development, design, and cloud hosting. I can help you with everything from the initial design to the final deployment.`;
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 relative z-10 pt-10 max-w-5xl mx-auto">
-            <Title as='h2' title={title} description={description} className="col-span-full"/>
-            {features.map((feature, index) => (
-                <Feature key={feature.title} {...feature} index={index} />
-            ))}
+        <div className="max-w-5xl min-h-screen flex flex-col items-center my-20 justify-center mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 relative z-10 pt-10 max-w-5xl mx-auto">
+                <Title as='h2' title={title} description={description} className="col-span-full" />
+                {features.map((feature, index) => (
+                    <Feature key={feature.title} {...feature} index={index} />
+                ))}
+            </div>
         </div>
     );
 }
