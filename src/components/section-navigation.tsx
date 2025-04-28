@@ -60,12 +60,12 @@ export const SectionNavigation = () => {
 
     return (
         <div className={cn(
-            "h-fit flex items-center fixed inset-y-0 z-50 transition-all duration-300 ease-in-out",
+            "h-fit flex items-center fixed inset-y-0 z-50 transition-all group duration-300 ease-in-out",
             isHomeSection
                 ? "left-1/2 -translate-x-1/2 top-[90%] animate-bounce"
-                : "right-2 top-1/2 -translate-y-1/2"
+                : "right-2 top-1/2 -translate-y-1/2 max-md:top-[90%] max-md:right-2 max-md:bottom-2",
         )}>
-            <div className='bg-foreground/5 ring-1 w-fit ml-auto ring-foreground/10 justify-end gap-4 flex flex-col rounded-full p-1'>
+            <div className='bg-foreground/5 ring-1 w-fit ml-auto max-md:group-hover:bg-background/50 ring-foreground/10 justify-end gap-4 flex flex-col rounded-full p-1'>
                 {prevSection && (
                     <Link
                         href={`#${prevSection}`}
