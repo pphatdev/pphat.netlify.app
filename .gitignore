@@ -41,3 +41,8 @@ yarn-error.log*
 next-env.d.ts
 
 /public/.cache
+.open-next
+
+public/image-sitemap.xml
+public/sitemap.xml
+public/site.webmanifest

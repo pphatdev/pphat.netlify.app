@@ -17,6 +17,7 @@ const Blogs = () => {
     const [hasMore, setHasMore] = useState(true);
     const [posts, setPosts] = useState<Post[]>([]);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => { next(); }, []);
 
     const next = async () => {

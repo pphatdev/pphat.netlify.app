@@ -4,9 +4,12 @@ import dynamic from 'next/dynamic';
 import GetInTouchSections from "./sections/home-getintouch";
 import { Metadata } from "next";
 import { appDescriptions, appName, currentDomain } from "@lib/data";
-import { HomeProjects } from './sections/home-project';
 import { BlurFade } from "@components/ui/blur-fade";
 import { HomeSkills } from "./sections/home-skills";
+import { HomeFeatureSection } from "./sections/home-feature";
+import { HomeAboutMe } from "./sections/home-aboutme";
+import { SectionNavigation } from "@components/section-navigation";
+import { HomeFAQSection } from "./sections/home-faq";
 
 const NavigationBar = dynamic(() => import('@components/navbar/navbar').then(mod => mod.NavigationBar), {
     ssr: true
@@ -21,9 +24,9 @@ export const metadata: Metadata = {
     description: appDescriptions,
     authors: [{
         url: currentDomain,
-        name: "Leat Sophat",
+        name: appName,
     }],
-    generator: "PPhat Dev",
+    generator: appName,
     openGraph: {
         type: "profile",
         url: currentDomain,
@@ -47,20 +50,38 @@ export default function Home() {
         <div className="w-full relative mx-auto">
             <OrganizationStructuredData />
             <NavigationBar />
-            <HeroSection />
-            <BlurFade delay={0.25} inView>
-                <HomeSkills />
-            </BlurFade>
-            <BlurFade delay={0.25} inView>
-                <HomeProjects />
-            </BlurFade>
-            {/* <BlurFade delay={0.25} inView>
-                <HomeArticles />
-            </BlurFade> */}
-            <BlurFade delay={0.25} inView>
-                <GetInTouchSections />
-            </BlurFade>
-            <div className="h-20 fixed bottom-0 inset-x-0 bg-gradient-to-b from-transparent to-background z-50"/>
+            <section id="hero">
+                <HeroSection />
+            </section>
+
+            <section id="skills">
+                <BlurFade delay={0.25} inView>
+                    <HomeSkills />
+                </BlurFade>
+            </section>
+
+            <section id="about">
+                <BlurFade delay={0.25} inView>
+                    <HomeAboutMe />
+                </BlurFade>
+            </section>
+
+            <section id="features">
+                <BlurFade delay={0.25} inView>
+                    <HomeFeatureSection />
+                </BlurFade>
+            </section>
+
+            <HomeFAQSection />
+
+            <section id="contact">
+                <BlurFade delay={0.25} inView>
+                    <GetInTouchSections />
+                </BlurFade>
+            </section>
+
+            <SectionNavigation />
+            <div className="h-20 pointer-events-none fixed bottom-0 inset-x-0 bg-gradient-to-b from-transparent to-background z-50" />
         </div>
     );
 }

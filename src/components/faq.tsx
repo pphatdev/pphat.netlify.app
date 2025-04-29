@@ -23,11 +23,11 @@ export default function FaqSectionDemo() {
                 title="Frequently Asked Questions"
                 description="Everything you need to know about our platform"
                 items={DEMO_FAQS}
-                contactInfo={{
-                    title: "Still have questions?",
-                    description: "We're here to help you",
-                    buttonText: "Contact Support"
-                }}
+                // contactInfo={{
+                //     title: "Still have questions?",
+                //     description: "We're here to help you",
+                //     buttonText: "Contact Support"
+                // }}
             />
         </>
     );

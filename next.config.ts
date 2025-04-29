@@ -27,7 +27,7 @@ const nextConfig: NextConfig = {
             },
         ],
         formats: ['image/webp', 'image/avif'],
-        minimumCacheTTL: 60 * 60 * 24 * 7, // 7 days
+        minimumCacheTTL: 60 * 60 * 24 * 7,
         deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     },
     allowedDevOrigins: ['*.vercel.app', '*.netlify.app', 'localhost', '172.20.10.6', '172.20.10.2'],

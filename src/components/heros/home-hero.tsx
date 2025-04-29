@@ -28,8 +28,8 @@ export default function HeroSection() {
     }, []);
 
     return (
-        <>
-            {mounted && <main className="w-full overflow-hidden mx-auto min-h-full h-full overflow-x-hidden relative" id="hero">
+        <div className="min-h-[40rem]">
+            {mounted && <main className="w-full overflow-hidden flex min-h-[40rem] items-center justify-center mx-auto h-full overflow-x-hidden relative">
 
                 <h1 className="sr-only">{appName}</h1>
                 <p className="sr-only">{appDescriptions ?? ""}</p>
@@ -45,7 +45,7 @@ export default function HeroSection() {
                     />
                 </div>
 
-                <section className="flex max-w-5xl min-h-[calc(100dvh_-48px)] mx-auto sm:justify-between z-20 flex-col md:flex-row sm:h-full items-center gap-4" aria-label="Introduction">
+                <section className="flex max-w-5xl mx-auto sm:justify-between z-20 flex-col lg:flex-row sm:h-full items-center gap-4" aria-label="Introduction">
                     <div className="px-2 sm:p-5 max-w-3xl">
                         <BlurFade delay={0.15} inView>
                             <div className="text-3xl text-center md:text-left md:text-6xl font-bold">
@@ -70,7 +70,7 @@ export default function HeroSection() {
                             <Logos3 {...demoData} />
                         </BlurFade>
                         <BlurFade delay={0.75} inView>
-                            <nav className="flex flex-col z-50 justify-center sm:justify-start sm:flex-row items-center gap-4 mt-6">
+                            <nav className="flex flex-col z-50 justify-center sm:justify-start sm:flex-row items-center gap-4 mt-6 max-md:px-3">
                                 <MagneticArea>
                                     <ThemeToggle />
                                 </MagneticArea>
@@ -92,8 +92,8 @@ export default function HeroSection() {
                                     bgGradientLine45deg
                                 )}
                                 style={{
-                                    width: "256px", // Explicit width
-                                    height: "256px", // Explicit height
+                                    width: "200px",
+                                    height: "200px",
                                 }}
                             >
                                 <div
@@ -112,6 +112,6 @@ export default function HeroSection() {
                     </div>
                 </section>
             </main >}
-        </>
+        </div>
     );
 }
