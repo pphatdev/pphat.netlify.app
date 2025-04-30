@@ -74,7 +74,6 @@ export default function HeroSection() {
                     </div>
                     <div className={cn("order-first relative mt-10 sm:mt-0 shrink-0 md:order-last")}>
                         <BlurFade delay={1} inView className="flex flex-col items-center justify-center w-full h-full">
-                            {/* <MagneticArea > */}
                             <div className={cn(
                                 "absolute -z-[1] w-full h-full blur-3xl left-1/2 translate-y-1/2 bottom-1/3 -translate-x-1/2 opacity-20 animate-rainbow",
                                 "bg-[linear-gradient(90deg,hsl(var(--color-1)),hsl(var(--color-5)),hsl(var(--color-3)),hsl(var(--color-4)),hsl(var(--color-2)))]",
@@ -86,10 +85,7 @@ export default function HeroSection() {
                                     "relative flex max-sm:size-36 size-64 rounded-xl p-1 items-center justify-center overflow-hidden border text-foreground/10 bg-[size:8px_8px] bg-top-left",
                                     bgGradientLine45deg
                                 )}
-                                style={{
-                                    width: "200px",
-                                    height: "200px",
-                                }}
+                                style={{ width: "200px", height: "200px", }}
                             >
                                 <canvas
                                     ref={(canvas) => {
@@ -118,8 +114,6 @@ export default function HeroSection() {
                                     className="h-full w-full bg-center m-1"
                                 />
                             </div>
-
-                            {/* </MagneticArea> */}
                             <NavMenu />
                         </BlurFade>
                     </div>

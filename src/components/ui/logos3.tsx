@@ -3,7 +3,7 @@
 import React from 'react'
 import Image from "next/image";
 import { cn } from '@lib/utils';
-import { InfiniteSlider } from '@components/infinit-scroll';
+import { InfiniteSlider } from '@components/ui/infinite-slider';
 
 interface Logo {
     id: string;
