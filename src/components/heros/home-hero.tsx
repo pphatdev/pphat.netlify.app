@@ -50,11 +50,11 @@ export default function HeroSection() {
                         <BlurFade delay={0.15} inView>
                             <div className="text-3xl text-center md:text-left md:text-6xl font-bold">
                                 <div className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
-                                    <div className="absolute left-0 top-[1px] bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r py-4 from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">
-                                        <span className="mr-2 font-sans">{`Hello I'm`}</span>
-                                    </div>
-                                    <div className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 py-4">
-                                        <span className="mr-2 font-sans">{`Hello I'm`}</span>
+                                    {/* <div className="absolute left-0 top-[1px] bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r py-4 from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)] [text-rendering:optimizeLegibility]">
+                                        <span className="mr-2 font-sans [font-display:swap]">{`Hello I'm`}</span>
+                                    </div> */}
+                                    <div className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 py-4 [text-rendering:optimizeLegibility]">
+                                        <span className="mr-2 font-sans [font-display:swap]">{`Hello I'm`}</span>
                                     </div>
                                 </div>
                                 <Cover>{appName}</Cover>
@@ -79,34 +79,52 @@ export default function HeroSection() {
                     </div>
                     <div className={cn("order-first relative mt-10 sm:mt-0 shrink-0 md:order-last")}>
                         <BlurFade delay={1} inView className="flex flex-col items-center justify-center w-full h-full">
-                            {/* <MagneticArea > */}
-                            <div className={cn(
-                                "absolute -z-[1] w-full h-full blur-3xl left-1/2 translate-y-1/2 bottom-1/3 -translate-x-1/2 opacity-20 animate-rainbow",
-                                "bg-[linear-gradient(90deg,hsl(var(--color-1)),hsl(var(--color-5)),hsl(var(--color-3)),hsl(var(--color-4)),hsl(var(--color-2)))]",
-                                "bg-[length:200%]",
-                            )}></div>
+                            <MagneticArea >
+                                <div className={cn(
+                                    "absolute -z-[1] w-full h-full blur-3xl left-1/2 translate-y-1/2 bottom-1/3 -translate-x-1/2 opacity-20 animate-rainbow",
+                                    "bg-[linear-gradient(90deg,hsl(var(--color-1)),hsl(var(--color-5)),hsl(var(--color-3)),hsl(var(--color-4)),hsl(var(--color-2)))]",
+                                    "bg-[length:200%]",
+                                )}></div>
 
-                            <div
-                                className={cn(
-                                    "relative flex max-sm:size-36 size-64 rounded-xl p-1 items-center justify-center overflow-hidden border text-foreground/10 bg-[size:8px_8px] bg-top-left",
-                                    bgGradientLine45deg
-                                )}
-                                style={{
-                                    width: "200px",
-                                    height: "200px",
-                                }}
-                            >
                                 <div
-                                    className="h-full w-full bg-center m-1 bg-no-repeat mask-size-[105%_90%] mask-center mask-no-repeat"
+                                    className={cn(
+                                        "relative flex max-sm:size-36 size-64 rounded-xl p-1 items-center justify-center overflow-hidden border text-foreground/10 bg-[size:8px_8px] bg-top-left",
+                                        bgGradientLine45deg
+                                    )}
                                     style={{
-                                        backgroundSize: "contain",
-                                        backgroundImage: `url('/assets/avatars/hero.webp')`,
-                                        maskImage: `url('/assets/masks/mask.webp')`,
+                                        width: "200px",
+                                        height: "200px",
                                     }}
-                                />
-                            </div>
+                                >
+                                    <canvas
+                                        ref={(canvas) => {
+                                            if (canvas) {
+                                                const ctx = canvas.getContext('2d');
+                                                const img = new Image();
+                                                const mask = new Image();
 
-                            {/* </MagneticArea> */}
+                                                img.onload = () => {
+                                                    if (ctx) {
+                                                        canvas.width = 200;
+                                                        canvas.height = 200;
+                                                        ctx.drawImage(img, 0, 0, 200, 200);
+
+                                                        // Apply mask when it's loaded
+                                                        mask.onload = () => {
+                                                            ctx.globalCompositeOperation = 'destination-in';
+                                                            ctx.drawImage(mask, 0, 0, 200, 200);
+                                                        };
+                                                        mask.src = '/assets/masks/mask.webp';
+                                                    }
+                                                };
+                                                img.src = '/assets/avatars/hero.webp';
+                                            }
+                                        }}
+                                        className="h-full w-full bg-center m-1"
+                                    />
+                                </div>
+
+                            </MagneticArea>
                             <NavMenu />
                         </BlurFade>
                     </div>
