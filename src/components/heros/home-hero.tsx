@@ -28,8 +28,8 @@ export default function HeroSection() {
     }, []);
 
     return (
-        <div className="min-h-[40rem]">
-            {mounted && <main className="w-full overflow-hidden flex min-h-[40rem] items-center justify-center mx-auto h-full overflow-x-hidden relative">
+        <div className="min-h-[45rem]">
+            {mounted && <main className="w-full overflow-hidden flex min-h-[45rem] items-center justify-center mx-auto h-full overflow-x-hidden relative">
 
                 <h1 className="sr-only">{appName}</h1>
                 <p className="sr-only">{appDescriptions ?? ""}</p>

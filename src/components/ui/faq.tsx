@@ -26,16 +26,16 @@ interface FaqSectionProps extends React.HTMLAttributes<HTMLElement> {
 const FaqSection = React.forwardRef<HTMLElement, FaqSectionProps>(
     ({ className, title, description, items, /*contactInfo*/ ...props }, ref) => {
         return (
-            <BlurFade delay={0.25} inView>
-                <section
-                    id="faq"
-                    ref={ref}
-                    className={cn(
-                        "w-full bg-gradient-to-b min-h-screen flex my-20 items-center justify-center from-transparent via-muted/50 to-transparent",
-                        className
-                    )}
-                    {...props}
-                >
+            <section
+                id="faq"
+                ref={ref}
+                className={cn(
+                    "w-full bg-gradient-to-b min-h-[45rem] flex my-20 items-center justify-center from-transparent via-muted/50 to-transparent",
+                    className
+                )}
+                {...props}
+            >
+                <BlurFade delay={0.5} inView>
                     <div className="container">
                         {/* Header */}
                         <motion.div
@@ -83,8 +83,8 @@ const FaqSection = React.forwardRef<HTMLElement, FaqSectionProps>(
                         </motion.div>
                     )} */}
                     </div>
-                </section>
-            </BlurFade>
+                </BlurFade>
+            </section>
         );
     }
 );

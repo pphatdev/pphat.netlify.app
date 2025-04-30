@@ -55,19 +55,19 @@ export default function Home() {
             </section>
 
             <section id="skills">
-                <BlurFade delay={0.25} inView>
+                <BlurFade delay={0.5} inView>
                     <HomeSkills />
                 </BlurFade>
             </section>
 
             <section id="about">
-                <BlurFade delay={0.25} inView>
+                <BlurFade delay={0.5} inView>
                     <HomeAboutMe />
                 </BlurFade>
             </section>
 
             <section id="features">
-                <BlurFade delay={0.25} inView>
+                <BlurFade delay={0.5} inView>
                     <HomeFeatureSection />
                 </BlurFade>
             </section>
@@ -75,7 +75,7 @@ export default function Home() {
             <HomeFAQSection />
 
             <section id="contact">
-                <BlurFade delay={0.25} inView>
+                <BlurFade delay={0.5} inView>
                     <GetInTouchSections />
                 </BlurFade>
             </section>

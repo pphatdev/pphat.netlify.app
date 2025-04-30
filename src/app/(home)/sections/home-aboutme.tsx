@@ -16,11 +16,11 @@ export const HomeAboutMe = () => {
     `;
 
     return (
-        <div className="max-w-5xl min-h-screen flex flex-col items-center my-20 justify-center mx-auto">
+        <div className="max-w-5xl min-h-[45rem] flex flex-col items-center my-20 justify-center mx-auto">
             <div className="grid grid-cols-1 gap-8 items-center md:grid-cols-2">
                 <div className="flex gap-4 flex-col">
                     <div className='px-5'>
-                        <Badge variant="outline" className='py-1.5'>{title}</Badge>
+                        <Badge variant="outline" className='py-1.5 px-3'>{title}</Badge>
                     </div>
                     <div className="flex gap-4 flex-col">
                         <Title as='h2' title={["Who", "the hell am I ?"]} description={description} />

@@ -1,3 +1,4 @@
+import { Badge } from "@components/ui/badge";
 import { Title } from "@components/ui/title";
 import { cn } from "@lib/utils";
 import {
@@ -35,9 +36,12 @@ export function HomeFeatureSection() {
     const description = `I can help you build your next project from scratch. I have experience in web development, design, and cloud hosting. I can help you with everything from the initial design to the final deployment.`;
 
     return (
-        <div className="max-w-5xl min-h-screen flex flex-col items-center my-20 justify-center mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 relative z-10 pt-10 max-w-5xl mx-auto">
-                <Title as='h2' title={title} description={description} className="col-span-full" />
+        <div className="max-w-5xl min-h-[45rem] flex flex-col py-10 items-center my-20 justify-start mx-auto">
+            <div className="block w-full px-5 py-3 ">
+                <Badge variant="outline" className='py-1.5 px-3'>Feature</Badge>
+            </div>
+            <Title as='h2' title={title} description={description} className="col-span-full" />
+            <div className="grid grid-cols-1 md:grid-cols-2 px-5 lg:grid-cols-4 relative z-10 pt-10 max-w-5xl mx-auto">
                 {features.map((feature, index) => (
                     <Feature key={feature.title} {...feature} index={index} />
                 ))}
