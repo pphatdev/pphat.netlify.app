@@ -1,77 +1,107 @@
-import * as React from 'react';
+'use client';
+import { cn } from '@lib/utils';
+import { useMotionValue, animate, motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import useMeasure from 'react-use-measure';
 
-interface InfiniteScrollProps {
-    isLoading: boolean;
-    hasMore: boolean;
-    next: () => unknown;
-    threshold?: number;
-    root?: Element | Document | null;
-    rootMargin?: string;
+type InfiniteSliderProps = {
+    children: React.ReactNode;
+    gap?: number;
+    duration?: number;
+    durationOnHover?: number;
+    direction?: 'horizontal' | 'vertical';
     reverse?: boolean;
-    children?: React.ReactNode;
-}
+    className?: string;
+};
 
-export default function InfiniteScroll({
-    isLoading,
-    hasMore,
-    next,
-    threshold = 1,
-    root = null,
-    rootMargin = '0px',
-    reverse,
+export function InfiniteSlider({
     children,
-}: InfiniteScrollProps) {
-    const observer = React.useRef<IntersectionObserver>(null);
-    // This callback ref will be called when it is dispatched to an element or detached from an element,
-    // or when the callback function changes.
-    const observerRef = React.useCallback(
-        (element: HTMLElement | null) => {
-            let safeThreshold = threshold;
-            if (threshold < 0 || threshold > 1) {
-                console.warn(
-                    'threshold should be between 0 and 1. You are exceed the range. will use default value: 1',
-                );
-                safeThreshold = 1;
-            }
-            // When isLoading is true, this callback will do nothing.
-            // It means that the next function will never be called.
-            // It is safe because the intersection observer has disconnected the previous element.
-            if (isLoading) return;
+    gap = 16,
+    duration = 25,
+    durationOnHover,
+    direction = 'horizontal',
+    reverse = false,
+    className,
+}: InfiniteSliderProps) {
+    const [currentDuration, setCurrentDuration] = useState(duration);
+    const [ref, { width, height }] = useMeasure();
+    const translation = useMotionValue(0);
+    const [isTransitioning, setIsTransitioning] = useState(false);
+    const [key, setKey] = useState(0);
 
-            if (observer.current) observer.current.disconnect();
-            if (!element) return;
+    useEffect(() => {
+        let controls;
+        const size = direction === 'horizontal' ? width : height;
+        const contentSize = size + gap;
+        const from = reverse ? -contentSize / 2 : 0;
+        const to = reverse ? 0 : -contentSize / 2;
 
-            // Create a new IntersectionObserver instance because hasMore or next may be changed.
-            observer.current = new IntersectionObserver(
-                (entries) => {
-                    if (entries[0].isIntersecting && hasMore) {
-                        next();
-                    }
+        if (isTransitioning) {
+            controls = animate(translation, [translation.get(), to], {
+                ease: 'linear',
+                duration:
+                    currentDuration * Math.abs((translation.get() - to) / contentSize),
+                onComplete: () => {
+                    setIsTransitioning(false);
+                    setKey((prevKey) => prevKey + 1);
                 },
-                { threshold: safeThreshold, root, rootMargin },
-            );
-            observer.current.observe(element);
-        },
-        [hasMore, isLoading, next, threshold, root, rootMargin],
-    );
+            });
+        } else {
+            controls = animate(translation, [from, to], {
+                ease: 'linear',
+                duration: currentDuration,
+                repeat: Infinity,
+                repeatType: 'loop',
+                repeatDelay: 0,
+                onRepeat: () => {
+                    translation.set(from);
+                },
+            });
+        }
 
-    const flattenChildren = React.useMemo(() => React.Children.toArray(children), [children]);
+        return controls?.stop;
+    }, [
+        key,
+        translation,
+        currentDuration,
+        width,
+        height,
+        gap,
+        isTransitioning,
+        direction,
+        reverse,
+    ]);
+
+    const hoverProps = durationOnHover
+        ? {
+            onHoverStart: () => {
+                setIsTransitioning(true);
+                setCurrentDuration(durationOnHover);
+            },
+            onHoverEnd: () => {
+                setIsTransitioning(true);
+                setCurrentDuration(duration);
+            },
+        }
+        : {};
 
     return (
-        <>
-            {flattenChildren.map((child, index) => {
-                if (!React.isValidElement(child)) {
-                    if (process.env.NODE_ENV === 'development') {
-                        console.warn('You should use a valid element with InfiniteScroll');
-                    }
-                    return child;
-                }
-
-                const isObserveTarget = reverse ? index === 0 : index === flattenChildren.length - 1;
-                const ref = isObserveTarget ? observerRef : null;
-                // @ts-expect-error ignore ref type
-                return React.cloneElement(child, { ref });
-            })}
-        </>
+        <div className={cn('overflow-hidden', className)}>
+            <motion.div
+                className='flex w-max'
+                style={{
+                    ...(direction === 'horizontal'
+                        ? { x: translation }
+                        : { y: translation }),
+                    gap: `${gap}px`,
+                    flexDirection: direction === 'horizontal' ? 'row' : 'column',
+                }}
+                ref={ref}
+                {...hoverProps}
+            >
+                {children}
+                {children}
+            </motion.div>
+        </div>
     );
 }
