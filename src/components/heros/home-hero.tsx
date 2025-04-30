@@ -15,11 +15,6 @@ import { Logos3 } from "@components/ui/logos3";
 import { BlurFade } from "@components/ui/blur-fade";
 import { bgGradientLine45deg } from "@components/background/gradient-line";
 
-const demoData = {
-    heading: "Trusted by these companies",
-};
-
-
 export default function HeroSection() {
 
     const [mounted, setMounted] = React.useState(false);
@@ -67,7 +62,7 @@ export default function HeroSection() {
                             {appDescriptions ?? ""}
                         </TextAnimate>
                         <BlurFade delay={0.65} inView>
-                            <Logos3 {...demoData} />
+                            <Logos3 />
                         </BlurFade>
                         <BlurFade delay={0.75} inView>
                             <nav className="flex flex-col z-50 justify-center sm:justify-start sm:flex-row items-center gap-4 mt-6 max-md:px-3">
@@ -79,52 +74,52 @@ export default function HeroSection() {
                     </div>
                     <div className={cn("order-first relative mt-10 sm:mt-0 shrink-0 md:order-last")}>
                         <BlurFade delay={1} inView className="flex flex-col items-center justify-center w-full h-full">
-                            <MagneticArea >
-                                <div className={cn(
-                                    "absolute -z-[1] w-full h-full blur-3xl left-1/2 translate-y-1/2 bottom-1/3 -translate-x-1/2 opacity-20 animate-rainbow",
-                                    "bg-[linear-gradient(90deg,hsl(var(--color-1)),hsl(var(--color-5)),hsl(var(--color-3)),hsl(var(--color-4)),hsl(var(--color-2)))]",
-                                    "bg-[length:200%]",
-                                )}></div>
+                            {/* <MagneticArea > */}
+                            <div className={cn(
+                                "absolute -z-[1] w-full h-full blur-3xl left-1/2 translate-y-1/2 bottom-1/3 -translate-x-1/2 opacity-20 animate-rainbow",
+                                "bg-[linear-gradient(90deg,hsl(var(--color-1)),hsl(var(--color-5)),hsl(var(--color-3)),hsl(var(--color-4)),hsl(var(--color-2)))]",
+                                "bg-[length:200%]",
+                            )}></div>
 
-                                <div
-                                    className={cn(
-                                        "relative flex max-sm:size-36 size-64 rounded-xl p-1 items-center justify-center overflow-hidden border text-foreground/10 bg-[size:8px_8px] bg-top-left",
-                                        bgGradientLine45deg
-                                    )}
-                                    style={{
-                                        width: "200px",
-                                        height: "200px",
+                            <div
+                                className={cn(
+                                    "relative flex max-sm:size-36 size-64 rounded-xl p-1 items-center justify-center overflow-hidden border text-foreground/10 bg-[size:8px_8px] bg-top-left",
+                                    bgGradientLine45deg
+                                )}
+                                style={{
+                                    width: "200px",
+                                    height: "200px",
+                                }}
+                            >
+                                <canvas
+                                    ref={(canvas) => {
+                                        if (canvas) {
+                                            const ctx = canvas.getContext('2d');
+                                            const img = new Image();
+                                            const mask = new Image();
+
+                                            img.onload = () => {
+                                                if (ctx) {
+                                                    canvas.width = 200;
+                                                    canvas.height = 200;
+                                                    ctx.drawImage(img, 0, 0, 200, 200);
+
+                                                    // Apply mask when it's loaded
+                                                    mask.onload = () => {
+                                                        ctx.globalCompositeOperation = 'destination-in';
+                                                        ctx.drawImage(mask, 0, 0, 200, 200);
+                                                    };
+                                                    mask.src = '/assets/masks/mask.webp';
+                                                }
+                                            };
+                                            img.src = '/assets/avatars/hero.webp';
+                                        }
                                     }}
-                                >
-                                    <canvas
-                                        ref={(canvas) => {
-                                            if (canvas) {
-                                                const ctx = canvas.getContext('2d');
-                                                const img = new Image();
-                                                const mask = new Image();
+                                    className="h-full w-full bg-center m-1"
+                                />
+                            </div>
 
-                                                img.onload = () => {
-                                                    if (ctx) {
-                                                        canvas.width = 200;
-                                                        canvas.height = 200;
-                                                        ctx.drawImage(img, 0, 0, 200, 200);
-
-                                                        // Apply mask when it's loaded
-                                                        mask.onload = () => {
-                                                            ctx.globalCompositeOperation = 'destination-in';
-                                                            ctx.drawImage(mask, 0, 0, 200, 200);
-                                                        };
-                                                        mask.src = '/assets/masks/mask.webp';
-                                                    }
-                                                };
-                                                img.src = '/assets/avatars/hero.webp';
-                                            }
-                                        }}
-                                        className="h-full w-full bg-center m-1"
-                                    />
-                                </div>
-
-                            </MagneticArea>
+                            {/* </MagneticArea> */}
                             <NavMenu />
                         </BlurFade>
                     </div>
