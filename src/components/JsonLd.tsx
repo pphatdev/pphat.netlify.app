@@ -1,11 +1,14 @@
 'use client';
 
 import { appDescriptions, appName, appPositions, appTitle, currentDomain } from "@lib/data";
+import Script from "next/script";
 
 export default function JsonLd() {
     return (
-        <script
+        <Script
             type="application/ld+json"
+            id="json-ld"
+            strategy="afterInteractive"
             dangerouslySetInnerHTML={{
                 __html: JSON.stringify({
                     "@context": "https://schema.org",

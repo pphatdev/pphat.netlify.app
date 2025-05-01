@@ -26,7 +26,7 @@ export const HomeAboutMe = () => {
                         <Title as='h2' title={["Who", "the hell am I ?"]} description={description} />
                     </div>
                     <div className="flex flex-row gap-4 px-5">
-                        <Link href={`/gallery`} className="rounded-full cursor-pointer bg-primary px-4 py-1.5 bg-gradient-to-tr from-primary/10 to-primary/90 text-background"> Gallery </Link>
+                        <Link href={`/gallery`} className="rounded-full cursor-pointer bg-primary px-4 py-1.5 bg-gradient-to-tr from-primary/10 to-primary/90 text-primary-foreground"> Gallery </Link>
                     </div>
                 </div>
                 <div className="grid grid-cols-2 max-md:gap-5 max-lg:gap-2 gap-8 max-md:p-5">
