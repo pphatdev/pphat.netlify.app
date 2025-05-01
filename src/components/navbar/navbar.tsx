@@ -39,7 +39,7 @@ export const NavigationBar = () => {
                     {/* <NavbarButton variant="secondary">Login</NavbarButton>
                     <NavbarButton variant="primary">Book a call</NavbarButton> */}
                     <MagneticArea>
-                        <ThemeToggle />
+                        <ThemeToggle className="scale-90"/>
                     </MagneticArea>
                     {/* <MagneticArea>
                         <Link aria-label="GitHub repository" href="https://github.com/pphatdev/pphat.netlify.app">

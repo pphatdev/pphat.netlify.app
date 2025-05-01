@@ -4,10 +4,15 @@ import { cn } from "@lib/utils";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import Link from "next/link";
 import React, { useEffect, useState, useCallback, useMemo } from "react";
+import { useRouter, usePathname } from "next/navigation";
 
 export const SectionNavigation = () => {
     const [activeSection, setActiveSection] = useState('hero');
     const [isHomeSection, setIsHomeSection] = useState(true);
+    const [isScrolling, setIsScrolling] = useState(false);
+    const router = useRouter();
+    const pathname = usePathname();
+
     const sections = useMemo(() => [
         "hero",
         "skills",
@@ -18,6 +23,8 @@ export const SectionNavigation = () => {
     ], []);
 
     const handleScroll = useCallback(() => {
+        if (isScrolling) return;
+
         const scrollPosition = window.scrollY + window.innerHeight / 2;
 
         for (const section of sections) {
@@ -28,13 +35,47 @@ export const SectionNavigation = () => {
                     scrollPosition >= offsetTop &&
                     scrollPosition < offsetTop + offsetHeight
                 ) {
-                    setActiveSection(section);
-                    setIsHomeSection(section === "hero");
+                    if (activeSection !== section) {
+                        setActiveSection(section);
+                        setIsHomeSection(section === "hero");
+
+                        // Update URL hash without triggering navigation
+                        window.history.replaceState(
+                            null,
+                            '',
+                            `${pathname}#${section}`
+                        );
+                    }
                     break;
                 }
             }
         }
-    }, [sections]);
+    }, [sections, activeSection, isScrolling, pathname]);
+
+    // Handle hash changes from external sources
+    useEffect(() => {
+        const handleHashChange = () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && sections.includes(hash) && hash !== activeSection) {
+                setIsScrolling(true);
+                const element = document.getElementById(hash);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                    setActiveSection(hash);
+                    setIsHomeSection(hash === "hero");
+
+                    // Reset scrolling flag after animation completes
+                    setTimeout(() => setIsScrolling(false), 1000);
+                }
+            }
+        };
+
+        // Check hash on initial load
+        handleHashChange();
+
+        window.addEventListener('hashchange', handleHashChange);
+        return () => window.removeEventListener('hashchange', handleHashChange);
+    }, [sections, activeSection]);
 
     useEffect(() => {
         let timeoutId: NodeJS.Timeout;
@@ -59,6 +100,24 @@ export const SectionNavigation = () => {
     const prevSection = currentIndex > 0 ? sections[currentIndex - 1] : null;
     const nextSection = currentIndex < sections.length - 1 ? sections[currentIndex + 1] : null;
 
+    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, section: string) => {
+        e.preventDefault();
+
+        setIsScrolling(true);
+        const element = document.getElementById(section);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+            setActiveSection(section);
+            setIsHomeSection(section === "hero");
+
+            // Update URL hash
+            window.history.replaceState(null, '', `${pathname}#${section}`);
+
+            // Reset scrolling flag after animation completes
+            setTimeout(() => setIsScrolling(false), 1000);
+        }
+    };
+
     return (
         <div className={cn(
             "h-fit flex items-center fixed inset-y-0 z-50 transition-all group duration-300 ease-in-out",
@@ -72,6 +131,7 @@ export const SectionNavigation = () => {
                         href={`#${prevSection}`}
                         aria-label={`Go to ${prevSection} section`}
                         title={prevSection.charAt(0).toUpperCase() + prevSection.slice(1)}
+                        onClick={(e) => handleNavClick(e, prevSection)}
                         className="flex rounded-full p-2 hover:ring ring-foreground/20 hover:bg-foreground/10 transition-all items-center justify-center">
                         <IconChevronUp className="size-4" />
                     </Link>
@@ -81,6 +141,7 @@ export const SectionNavigation = () => {
                         href={`#${nextSection}`}
                         aria-label={`Go to ${nextSection} section`}
                         title={nextSection.charAt(0).toUpperCase() + nextSection.slice(1)}
+                        onClick={(e) => handleNavClick(e, nextSection)}
                         className="flex rounded-full p-2 hover:ring ring-foreground/20 hover:bg-foreground/10 transition-all items-center justify-center">
                         <IconChevronDown className="size-4" />
                     </Link>

@@ -16,17 +16,17 @@ export const HomeAboutMe = () => {
     `;
 
     return (
-        <div className="max-w-5xl min-h-screen flex flex-col items-center my-20 justify-center mx-auto">
+        <div className="max-w-5xl min-h-[45rem] flex flex-col items-center my-20 justify-center mx-auto">
             <div className="grid grid-cols-1 gap-8 items-center md:grid-cols-2">
                 <div className="flex gap-4 flex-col">
                     <div className='px-5'>
-                        <Badge variant="outline" className='py-1.5'>{title}</Badge>
+                        <Badge variant="outline" className='py-1.5 px-3'>{title}</Badge>
                     </div>
                     <div className="flex gap-4 flex-col">
                         <Title as='h2' title={["Who", "the hell am I ?"]} description={description} />
                     </div>
                     <div className="flex flex-row gap-4 px-5">
-                        <Link href={`/gallery`} className="rounded-full cursor-pointer bg-primary px-4 py-1.5 bg-gradient-to-tr from-primary/10 to-primary/90 text-background"> Gallery </Link>
+                        <Link href={`/gallery`} className="rounded-full cursor-pointer bg-primary px-4 py-1.5 bg-gradient-to-tr from-primary/10 to-primary/90 text-primary-foreground"> Gallery </Link>
                     </div>
                 </div>
                 <div className="grid grid-cols-2 max-md:gap-5 max-lg:gap-2 gap-8 max-md:p-5">

@@ -47,7 +47,7 @@ export const metadata: Metadata = {
 export default function Home() {
 
     return (
-        <div className="w-full relative mx-auto">
+        <div className="w-full">
             <OrganizationStructuredData />
             <NavigationBar />
             <section id="hero">
@@ -55,29 +55,27 @@ export default function Home() {
             </section>
 
             <section id="skills">
-                <BlurFade delay={0.25} inView>
+                <BlurFade delay={0.2} inView>
                     <HomeSkills />
                 </BlurFade>
             </section>
 
             <section id="about">
-                <BlurFade delay={0.25} inView>
+                <BlurFade delay={0.2} inView>
                     <HomeAboutMe />
                 </BlurFade>
             </section>
 
             <section id="features">
-                <BlurFade delay={0.25} inView>
+                <BlurFade delay={0.2} inView>
                     <HomeFeatureSection />
                 </BlurFade>
             </section>
 
             <HomeFAQSection />
 
-            <section id="contact">
-                <BlurFade delay={0.25} inView>
-                    <GetInTouchSections />
-                </BlurFade>
+            <section id="contact" className="flex flex-col snap-end">
+                <GetInTouchSections />
             </section>
 
             <SectionNavigation />
