@@ -40,7 +40,7 @@ export default function HeroSection() {
                     />
                 </div>
 
-                <section className="flex max-w-5xl justify-center mx-auto md:min-h-screen max-md:justify-start z-20 flex-col lg:flex-row md:h-full items-center gap-4" aria-label="Introduction">
+                <section className="flex max-w-5xl justify-center mx-auto md:min-h-screen md:-translate-y-20 max-md:justify-start z-20 flex-col lg:flex-row md:h-full items-center gap-4" aria-label="Introduction">
                     <div className="px-2 sm:p-5 max-w-3xl">
                         <BlurFade delay={0.15} inView>
                             <div className="text-3xl text-center md:text-left md:text-6xl font-bold">
