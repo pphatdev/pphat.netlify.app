@@ -1,8 +1,6 @@
-/* eslint-disable react/prop-types */
 import React from "react";
 import { cn } from "@lib/utils";
 
-// Option 1: Use the parent type directly since you're not adding custom props
 export function RainbowButton({
     children,
     className,

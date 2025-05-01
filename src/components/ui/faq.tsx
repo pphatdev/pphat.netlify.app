@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@lib/utils";
 import { Button } from "./button";
+import { Title } from './title';
+import { BlurFade } from "./blur-fade";
 
 interface FaqSectionProps extends React.HTMLAttributes<HTMLElement> {
     title: string;
@@ -13,50 +15,53 @@ interface FaqSectionProps extends React.HTMLAttributes<HTMLElement> {
         question: string;
         answer: string;
     }[];
-    contactInfo?: {
-        title: string;
-        description: string;
-        buttonText: string;
-        onContact?: () => void;
-    };
+    // contactInfo?: {
+    //     title: string;
+    //     description: string;
+    //     buttonText: string;
+    //     onContact?: () => void;
+    // };
 }
 
 const FaqSection = React.forwardRef<HTMLElement, FaqSectionProps>(
     ({ className, title, description, items, /*contactInfo*/ ...props }, ref) => {
         return (
             <section
+                id="faq"
                 ref={ref}
                 className={cn(
-                    "py-16 w-full bg-gradient-to-b from-transparent via-muted/50 to-transparent",
+                    "w-full bg-gradient-to-b flex my-20 snap-center items-center justify-center from-transparent via-muted/50 to-transparent min-h-[45rem]",
                     className
                 )}
                 {...props}
             >
-                <div className="container">
-                    {/* Header */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="max-w-2xl mx-auto text-center mb-12">
-                        <h2 className="text-3xl font-semibold mb-3 bg-gradient-to-r from-foreground via-foreground/80 to-foreground bg-clip-text text-transparent"> {title} </h2>
-                        {description && (<p className="text-sm text-muted-foreground">{description}</p>)}
-                    </motion.div>
+                <BlurFade delay={0.25} inView>
+                    <div className="container">
+                        {/* Header */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="max-w-2xl mx-auto text-center mb-12">
 
-                    {/* FAQ Items */}
-                    <div className="max-w-2xl mx-auto space-y-2">
-                        {items.map((item, index) => (
-                            <FaqItem
-                                key={index}
-                                question={item.question}
-                                answer={item.answer}
-                                index={index}
-                            />
-                        ))}
-                    </div>
+                            <Title as="h2" title={[title]} description={description}></Title>
 
-                    {/* Contact Section */}
-                    {/* {contactInfo && (
+                        </motion.div>
+
+                        {/* FAQ Items */}
+                        <div className="max-w-2xl mx-auto space-y-2">
+                            {items.map((item, index) => (
+                                <FaqItem
+                                    key={index}
+                                    question={item.question}
+                                    answer={item.answer}
+                                    index={index}
+                                />
+                            ))}
+                        </div>
+
+                        {/* Contact Section */}
+                        {/* {contactInfo && (
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -77,7 +82,8 @@ const FaqSection = React.forwardRef<HTMLElement, FaqSectionProps>(
                             </Button>
                         </motion.div>
                     )} */}
-                </div>
+                    </div>
+                </BlurFade>
             </section>
         );
     }

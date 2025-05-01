@@ -1,13 +1,15 @@
 import React from "react";
 import OrganizationStructuredData from "@components/organization-structured-data";
 import dynamic from 'next/dynamic';
-import GetIntouchSections from "./sections/home-getintouch";
+import GetInTouchSections from "./sections/home-getintouch";
 import { Metadata } from "next";
-import { appDescriptions, appName } from "@lib/data";
-import { HomeProjects } from './sections/home-project';
+import { appDescriptions, appName, currentDomain } from "@lib/data";
 import { BlurFade } from "@components/ui/blur-fade";
-import { HomeArticles } from "./sections/home-articles";
 import { HomeSkills } from "./sections/home-skills";
+import { HomeFeatureSection } from "./sections/home-feature";
+import { HomeAboutMe } from "./sections/home-aboutme";
+import { SectionNavigation } from "@components/section-navigation";
+import { HomeFAQSection } from "./sections/home-faq";
 
 const NavigationBar = dynamic(() => import('@components/navbar/navbar').then(mod => mod.NavigationBar), {
     ssr: true
@@ -21,18 +23,18 @@ export const metadata: Metadata = {
     title: appName,
     description: appDescriptions,
     authors: [{
-        url: "https://new-pphat.netlify.app",
-        name: "Leat Sophat",
+        url: currentDomain,
+        name: appName,
     }],
-    generator: "PPhat Dev",
+    generator: appName,
     openGraph: {
         type: "profile",
-        url: "https://new-pphat.netlify.app",
+        url: currentDomain,
         title: appName,
         description: appDescriptions,
         siteName: appName,
         images: [{
-            url: "https://new-pphat.netlify.app/assets/avatars/hero.webp",
+            url: currentDomain + "/assets/avatars/hero.webp",
         }],
     },
     formatDetection: {
@@ -45,23 +47,39 @@ export const metadata: Metadata = {
 export default function Home() {
 
     return (
-        <div className="w-full relative mx-auto overflow-y-auto">
+        <div className="w-full">
             <OrganizationStructuredData />
             <NavigationBar />
-            <HeroSection />
-            <BlurFade delay={0.25} inView>
-                <HomeSkills />
-            </BlurFade>
-            <BlurFade delay={0.25} inView>
-                <HomeProjects />
-            </BlurFade>
-            <BlurFade delay={0.25} inView>
-                <HomeArticles />
-            </BlurFade>
-            <BlurFade delay={0.25} inView>
-                <GetIntouchSections />
-            </BlurFade>
-            <div className="h-20 fixed bottom-0 inset-x-0 bg-gradient-to-b from-transparent to-background z-50"/>
+            <section id="hero">
+                <HeroSection />
+            </section>
+
+            <section id="skills">
+                <BlurFade delay={0.2} inView>
+                    <HomeSkills />
+                </BlurFade>
+            </section>
+
+            <section id="about">
+                <BlurFade delay={0.2} inView>
+                    <HomeAboutMe />
+                </BlurFade>
+            </section>
+
+            <section id="features">
+                <BlurFade delay={0.2} inView>
+                    <HomeFeatureSection />
+                </BlurFade>
+            </section>
+
+            <HomeFAQSection />
+
+            <section id="contact" className="flex flex-col snap-end">
+                <GetInTouchSections />
+            </section>
+
+            <SectionNavigation />
+            <div className="h-20 pointer-events-none fixed bottom-0 inset-x-0 bg-gradient-to-b from-transparent to-background z-50" />
         </div>
     );
 }

@@ -8,9 +8,10 @@ const SPRING_CONFIG = { damping: 100, stiffness: 400 };
 type MagneticAreaType = {
     children: React.ReactNode;
     distance?: number;
+    className?: string;
 };
 
-function MagneticArea({ children, distance = 0.6 }: MagneticAreaType) {
+function MagneticArea({ children, distance = 0.6, className }: MagneticAreaType) {
     const [isHovered, setIsHovered] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
 
@@ -44,13 +45,14 @@ function MagneticArea({ children, distance = 0.6 }: MagneticAreaType) {
         return () => {
             document.removeEventListener('mousemove', calculateDistance);
         };
-    }, [ref, isHovered]);
+    }, [ref, isHovered, distance, x, y]);
 
     return (
         <motion.div
             ref={ref}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            className={className}
             style={{
                 x: springX,
                 y: springY

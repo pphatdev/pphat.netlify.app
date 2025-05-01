@@ -13,7 +13,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
 
     return (
         <div
-            className="col-span-1 relative duration-300 hover:translate-y-1 overflow-hidden bg-foreground/5 group font-default rounded-2xl p-4 mb-4 ring-1 ring-foreground/10 hover:ring-primary hover:ring-2 transition-all ease-in-out flex flex-col h-full"
+            className="col-span-1 relative duration-300 hover:translate-y-1 overflow-hidden bg-foreground/5 group font-sans rounded-2xl p-4 mb-4 ring-1 ring-foreground/10 hover:ring-primary hover:ring-2 transition-all ease-in-out flex flex-col h-full"
             role="article"
             tabIndex={-1}>
             <header className='mb-2 relative flex justify-between items-center'>
@@ -39,7 +39,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
                 </div>
             </header>
 
-            <h2 className="text-lg z-10 font-semibold font-default tracking-wide line-clamp-1 pb-1">{project.title}</h2>
+            <h2 className="text-lg z-10 font-semibold font-sans tracking-wide line-clamp-1 pb-1">{project.title}</h2>
 
             <div className="flex z-10 flex-wrap gap-2 my-2">
                 {project.tags.map((tag, index) => (

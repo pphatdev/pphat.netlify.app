@@ -1,9 +1,9 @@
 import { Button } from "@components/ui/button";
 import { appName, appPositions } from "@lib/data";
 
-export const GetIntouchSections = () => {
+export const GetInTouchSections = () => {
     return (
-        <section id="get-in-touch-section" className="relative z-20 mx-auto mt-20 grid w-full overflow-hidden max-w-5xl grid-cols-1 justify-start bg-gradient-to-br from-background via-foreground/10 md:my-40 md:grid-cols-3">
+        <div className="relative z-20 mx-auto grid w-full mt-20 overflow-clip max-w-5xl grid-cols-1 justify-start bg-gradient-to-br from-background via-foreground/10 md:grid-cols-3">
             {/* Horizontal lines */}
             <div
                 style={{
@@ -53,11 +53,11 @@ export const GetIntouchSections = () => {
             {/* Content */}
             <div className="p-8 md:col-span-2 md:p-14">
                 <h2 className="text-left text-2xl font-medium tracking-tight text-foreground/70 md:text-4xl">
-                    Let's build your website today! &nbsp; <br className="hidden md:block" />
+                    {`Let's build your website today!`} &nbsp; <br className="hidden md:block" />
                     <span className="font-bold text-primary font-open-sans">Get in touch.</span>
                 </h2>
                 <p className="mt-4 max-w-lg text-left text-base font-normal tracking-tight text-neutral-500 dark:text-neutral-200 md:text-base">
-                    Contact us and we will get back within 24 hours. We mean it. You saw the testimonials, right?
+                    {`Contact us and we will get back within 24 hours. We mean it. You saw the testimonials, right?`}
                 </p>
                 <div className="flex flex-col items-start sm:flex-row sm:items-center sm:gap-4">
                     <div className="mt-6 flex justify-center">
@@ -69,15 +69,15 @@ export const GetIntouchSections = () => {
             {/* Testimonial */}
             <div className="border-t border-dashed p-8 md:border-l md:border-t-0 md:p-14">
                 <p className="text-base text-neutral-700 dark:text-neutral-200">
-                    Contact us and we will get back within 24 hours. We mean it. You saw the testimonials, right?
+                    {`Contact us and we will get back within 24 hours. We mean it. You saw the testimonials, right?`}
                 </p>
                 <div className="mt-4 flex flex-col items-start gap-1 text-sm">
                     <p className="font-black text-primary uppercase">{appName}</p>
-                    <p className="text-foreground/60 font-medium font-default">{String(appPositions).replace(/\.\,\s*/g, ', ')}</p>
+                    <p className="text-foreground/60 font-medium font-sans">{String(appPositions).replace(/\.\,\s*/g, ', ')}</p>
                 </div>
             </div>
-        </section>
+        </div>
     );
 };
 
-export default GetIntouchSections;
+export default GetInTouchSections;
