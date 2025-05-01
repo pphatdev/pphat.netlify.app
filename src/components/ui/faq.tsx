@@ -30,12 +30,12 @@ const FaqSection = React.forwardRef<HTMLElement, FaqSectionProps>(
                 id="faq"
                 ref={ref}
                 className={cn(
-                    "w-full bg-gradient-to-b min-h-[45rem] flex my-20 items-center justify-center from-transparent via-muted/50 to-transparent",
+                    "w-full bg-gradient-to-b flex my-20 snap-center items-center justify-center from-transparent via-muted/50 to-transparent min-h-[45rem]",
                     className
                 )}
                 {...props}
             >
-                <BlurFade delay={0.5} inView>
+                <BlurFade delay={0.25} inView>
                     <div className="container">
                         {/* Header */}
                         <motion.div
