@@ -46,25 +46,25 @@ export default function HeroSection() {
                             <div className="text-3xl text-center md:text-left md:text-6xl font-bold">
                                 <div className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
                                     <div className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 py-4 [text-rendering:optimizeLegibility]">
-                                        <span className="mr-2 font-sans [font-display:swap]">{`Hello I'm`}</span>
+                                        <span className="mr-2 font-sans [font-display:swap]">{`Hi I'm`}</span>
                                     </div>
                                 </div>
                                 <Cover>{appName}</Cover>
                             </div>
                         </BlurFade>
-                        <div className="text-2xl text-center h-fit md:text-left font-semibold">
+                        <div className="max-md:text-xl text-2xl text-center h-fit md:text-left font-semibold">
                             <FlipWords words={appPositions} />
                         </div>
 
-                        <BlurFade delay={0.95} inView className="mt-5 text-center md:text-left">
+                        <BlurFade delay={0.50} inView className="mt-5 relative flex text-center max-w-full md:text-left">
                             {appDescriptions ?? ""}
                         </BlurFade>
 
-                        <BlurFade delay={0.65} inView>
+                        <BlurFade delay={0.60} inView>
                             <Logos3 heading="Trusted by these companies" />
                         </BlurFade>
 
-                        <BlurFade delay={0.75} inView>
+                        <BlurFade delay={0.70} inView>
                             <nav className="flex flex-col z-50 justify-center sm:justify-start sm:flex-row items-center gap-4 mt-6 max-md:px-3">
                                 <MagneticArea>
                                     <ThemeToggle />
@@ -72,8 +72,8 @@ export default function HeroSection() {
                             </nav>
                         </BlurFade>
                     </div>
-                    <div className={cn("order-first relative mt-10 min-h-72 min-w-72 sm:mt-0 shrink-0 lg:order-last")}>
-                        <BlurFade delay={1} inView className="flex max-md:w-32 mx-auto flex-col items-center justify-center">
+                    <div className={cn("order-first relative mt-10 min-lg:min-h-72 min-w-72 sm:mt-0 shrink-0 lg:order-last")}>
+                        <BlurFade delay={0.25} inView className="flex max-md:w-40 mx-auto flex-col items-center justify-center">
                             <MagneticArea className="w-full h-full relative">
                                 <div className={cn(
                                     "absolute -z-[1] w-full h-full blur-3xl left-1/2 translate-y-1/2 bottom-1/3 -translate-x-1/2 opacity-20 animate-rainbow",
