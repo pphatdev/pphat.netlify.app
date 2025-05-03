@@ -1,59 +1,62 @@
 import { Badge } from "@components/ui/badge";
-// import { Button } from "@components/ui/button";
-import { Post } from "@lib/db/post";
-import { Calendar } from "lucide-react";
-import Image from "next/image";
+import { Post } from "../../lib/types/interfaces";
 import Link from "next/link";
-import React from "react";
+import Image from 'next/image';
+import { Share2Icon } from "lucide-react";
 
-export const PostCard = ({ post, index }: { post: Post, index: number }) => {
+export const PostCard = ({ post }: { post: Post }) => {
+    const sharePost = (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (navigator.share) {
+            navigator.share({
+                url: post.slug,
+                title: post.title
+            }).catch(err => console.error('Error sharing:', err));
+        }
+    };
+
     return (
-        <div
-            className="col-span-1 relative bg-foreground/5 font-sans rounded-lg p-4 mb-4 ring-1 ring-foreground/10 hover:ring-primary hover:ring-2 transition-all duration-200 ease-in-out flex flex-col h-full"
-            role="article"
-            tabIndex={-1}
-        >
-            <Link
-                href={`/posts/${post.slug}`}
-                className="absolute z-0 inset-0"
-                aria-label={`Read full article: ${post.title}`}
-                title={post.title}
+        <div className="col-span-1 relative duration-300 hover:translate-y-1 overflow-hidden bg-foreground/5 group font-sans rounded-2xl mb-4 ring-1 ring-foreground/10 hover:ring-primary hover:ring-2 transition-all ease-in-out h-full" role="article" tabIndex={-1}>
+            <Image
+                src={post.thumbnail}
+                width={200}
+                height={200}
+                alt={post.title}
+                className="w-full aspect-video object-cover"
             />
-            <header className='mb-2 relative flex justify-between items-center'>
-                <Badge>Badge</Badge>
-                {/* <Button
-                    variant="outline"
-                    size="icon"
-                    className="z-10 cursor-pointer bg-foreground/5 rounded-full size-7 p-1.5"
-                    aria-label="Post options"
-                    aria-haspopup="menu"
-                >
-                    <EllipsisVertical aria-hidden="true" />
-                </Button> */}
-                <div className="text-sm inline-flex gap-1 items-center text-muted-foreground">
-                    <Calendar className="size-4" /> <span>{new Date(post.createdAt).toLocaleDateString()}</span>
+            <Link href={post.slug ?? '#'} className="inset-0 z-0 absolute" aria-label={post.title} />
+
+            <div className="p-4 relative pointer-events-none">
+                <div className="flex items-center gap-2 mb-2">
+                    <time dateTime={new Date(post.createdAt).toISOString()} className="text-xs text-foreground/50 font-sans">{new Date(post.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
                 </div>
-            </header>
 
-            <h2 className="text-lg font-medium line-clamp-1 pb-1">{post.title}</h2>
-            <p
-                className='font-normal line-clamp-3 text-foreground/80'
-                id="main-content"
-                data-lcp="true"
-                style={{ contentVisibility: 'auto' }}>
-                {post.content}
-            </p>
+                <div className="flex z-50 flex-wrap gap-2 pointer-events-auto my-2">
+                    {post.tags.slice(0, 3).map((tag, index) => (
+                        <Link key={index} href={`?tag=${tag}`} className="text-xs font-sans">
+                            <Badge variant="outline" className="bg-foreground/5 text-foreground/80 hover:bg-foreground/10 hover:text-primary transition-all duration-200 ease-in-out">{tag}</Badge>
+                        </Link>
+                    ))}
+                </div>
 
-            <div className='bg-foreground/5 ring-1 ring-foreground/10 flex gap-3 rounded-lg p-2 mt-4'>
-                <Image
-                    className='rounded-lg w-full aspect-video object-cover'
-                    src={`https://github.com/pphatdev.png`}
-                    alt={post.title}
-                    width={36}
-                    height={36}
-                    priority={index < 3}
-                    loading={index < 3 ? "eager" : "lazy"}
-                />
+                <h2 className="z-10 font-semibold font-sans tracking-wide line-clamp-1 pb-1">{post.title}</h2>
+                <p className='font-normal text-sm z-10 line-clamp-4 text-foreground/80'>{post.content}</p>
+
+                <div className="absolute pointer-events-auto rounded-full right-3 top-3 flex z-50">
+                    <div className='bg-foreground/5 z-50 ring-1 w-fit ml-auto ring-foreground/10 justify-end flex rounded-full p-1'>
+                        <button
+                            aria-label={`Share ${post.title}`}
+                            type="button"
+                            onClick={sharePost}
+                            className="flex cursor-pointer rounded-full p-2 hover:ring hover:text-primary ring-foreground/20 outline-none hover:bg-foreground/10 transition-all items-center justify-center"
+                        >
+                            <Share2Icon className="size-4" aria-hidden="true" />
+                            <span className="sr-only">Share this post</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     );
