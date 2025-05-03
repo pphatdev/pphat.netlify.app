@@ -1,5 +1,5 @@
 import { AdminSidebar } from "@components/sidebar/admin-sidebar";
-import { SiteHeader } from "@app/admin/dashboard/utils/site-header";
+import { SiteHeader } from "@app/(auth)/admin/dashboard/utils/site-header";
 import { SidebarInset, SidebarProvider } from "@components/ui/sidebar";
 import React from "react";
 
