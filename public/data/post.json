@@ -2,6 +2,13 @@
   "posts": [
     {
       "id": "09366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Cat in the Hat",
       "content": "A whimsical tale of a cat who brings chaos and fun to a rainy day.",
       "slug": "cat-in-the-hat",
@@ -10,6 +17,13 @@
     },
     {
       "id": "10366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Green Eggs and Ham",
       "content": "Sam-I-Am persists in offering green eggs and ham to an unnamed character.",
       "slug": "green-eggs-and-ham",
@@ -18,6 +32,13 @@
     },
     {
       "id": "21366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "One Fish Two Fish Red Fish Blue Fish",
       "content": "A simple rhyming book that introduces basic concepts and colors.",
       "slug": "one-fish-two-fish",
@@ -26,6 +47,13 @@
     },
     {
       "id": "32366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Lorax",
       "content": "A cautionary tale about the dangers of environmental destruction.",
       "slug": "the-lorax",
@@ -34,6 +62,13 @@
     },
     {
       "id": "43366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Oh, the Places You'll Go!",
       "content": "An inspirational book about the journey of life and the choices one makes.",
       "slug": "oh-the-places-youll-go",
@@ -42,6 +77,13 @@
     },
     {
       "id": "54366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Horton Hears a Who!",
       "content": "Horton the Elephant discovers a tiny civilization on a speck of dust.",
       "slug": "horton-hears-a-who",
@@ -50,6 +92,13 @@
     },
     {
       "id": "65366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Sneetches",
       "content": "A story about the absurdity of discrimination based on superficial differences.",
       "slug": "the-sneetches",
@@ -58,6 +107,13 @@
     },
     {
       "id": "76366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Fox in Socks",
       "content": "A tongue-twisting book that challenges readers with complex rhymes.",
       "slug": "fox-in-socks",
@@ -66,6 +122,13 @@
     },
     {
       "id": "87366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Dr. Seuss's ABC",
       "content": "An alphabet book that uses rhymes and colorful illustrations to teach the ABCs.",
       "slug": "dr-seuss-abc",
@@ -74,6 +137,13 @@
     },
     {
       "id": "98366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Yertle the Turtle",
       "content": "A story about a turtle king who learns a lesson about fairness and equality.",
       "slug": "yertle-the-turtle",
@@ -82,6 +152,13 @@
     },
     {
       "id": "11366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The 500 Hats of Bartholomew Cubbins",
       "content": "A young boy faces a royal decree when he can't remove his hat, only for more to appear.",
       "slug": "500-hats-bartholomew",
@@ -90,6 +167,13 @@
     },
     {
       "id": "12366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "If I Ran the Zoo",
       "content": "A young boy imagines the changes he'd make if he ran the zoo.",
       "slug": "if-i-ran-the-zoo",
@@ -98,6 +182,13 @@
     },
     {
       "id": "13366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Scrambled Eggs Super!",
       "content": "A boy goes to great lengths to find the most unusual eggs for breakfast.",
       "slug": "scrambled-eggs-super",
@@ -106,6 +197,13 @@
     },
     {
       "id": "14366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Did I Ever Tell You How Lucky You Are?",
       "content": "A reminder to appreciate the simple things in life and be grateful.",
       "slug": "how-lucky-you-are",
@@ -114,6 +212,13 @@
     },
     {
       "id": "15366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Happy Birthday to You!",
       "content": "A celebration of birthdays and the unique qualities of each individual.",
       "slug": "happy-birthday-to-you",
@@ -122,6 +227,13 @@
     },
     {
       "id": "16366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "I Can Read With My Eyes Shut!",
       "content": "A humorous take on the joys and benefits of reading.",
       "slug": "i-can-read-with-my-eyes-shut",
@@ -130,6 +242,13 @@
     },
     {
       "id": "17366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Mr. Brown Can Moo! Can You?",
       "content": "An interactive book that encourages children to imitate sounds.",
       "slug": "mr-brown-can-moo",
@@ -138,6 +257,13 @@
     },
     {
       "id": "18366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "There's a Wocket in My Pocket!",
       "content": "A playful exploration of rhyming words and imaginary creatures.",
       "slug": "wocket-in-my-pocket",
@@ -146,6 +272,13 @@
     },
     {
       "id": "19366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Hop on Pop",
       "content": "A simple book designed to help children learn to read.",
       "slug": "hop-on-pop",
@@ -154,6 +287,13 @@
     },
     {
       "id": "20366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Shape of Me and Other Stuff",
       "content": "An exploration of shapes and sizes through silhouettes.",
       "slug": "the-shape-of-me",
@@ -162,6 +302,13 @@
     },
     {
       "id": "21366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Great Day for Up!",
       "content": "A celebration of the joys of being awake and active.",
       "slug": "great-day-for-up",
@@ -170,6 +317,13 @@
     },
     {
       "id": "22366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "My Many Colored Days",
       "content": "A book that connects colors with different moods and emotions.",
       "slug": "my-many-colored-days",
@@ -178,6 +332,13 @@
     },
     {
       "id": "23366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "What Was I Scared Of?",
       "content": "A story about overcoming fears and realizing that things aren't always as scary as they seem.",
       "slug": "what-was-i-scared-of",
@@ -186,6 +347,13 @@
     },
     {
       "id": "24366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Tooth Book",
       "content": "An informative and fun book about teeth and dental hygiene.",
       "slug": "the-tooth-book",
@@ -194,6 +362,13 @@
     },
     {
       "id": "25366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "I Am Not Going to Get Up Today!",
       "content": "A humorous tale of a child who refuses to get out of bed.",
       "slug": "not-going-to-get-up",
@@ -202,6 +377,13 @@
     },
     {
       "id": "26366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Wacky Wednesday",
       "content": "A seek-and-find book where everything is topsy-turvy.",
       "slug": "wacky-wednesday",
@@ -210,6 +392,13 @@
     },
     {
       "id": "27366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Ten Apples Up On Top!",
       "content": "A counting book that features animals balancing apples on their heads.",
       "slug": "ten-apples-up",
@@ -218,6 +407,13 @@
     },
     {
       "id": "28366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "In a People House",
       "content": "A rhyming tour through a house filled with whimsical objects.",
       "slug": "in-a-people-house",
@@ -226,6 +422,13 @@
     },
     {
       "id": "29366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Snow",
       "content": "A celebration of the beauty and wonder of a snowy day.",
       "slug": "snow-seuss",
@@ -234,6 +437,13 @@
     },
     {
       "id": "30366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The King's Stilts",
       "content": "A king neglects his duties until his stilts are stolen.",
       "slug": "kings-stilts",
@@ -242,6 +452,13 @@
     },
     {
       "id": "31366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Because a Little Bug Went Ka-Choo!",
       "content": "A chain reaction of events caused by a bug's sneeze.",
       "slug": "bug-went-ka-choo",
@@ -250,6 +467,13 @@
     },
     {
       "id": "32366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Daisy-Head Mayzie",
       "content": "A girl sprouts a daisy from her head and learns to embrace her uniqueness.",
       "slug": "daisy-head-mayzie",
@@ -258,6 +482,13 @@
     },
     {
       "id": "33366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Bippolo Seed",
       "content": "A rabbit learns a lesson about greed and honesty.",
       "slug": "bippolo-seed",
@@ -266,6 +497,13 @@
     },
     {
       "id": "34366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Hunches in Bunches",
       "content": "A story about making decisions and trusting your instincts.",
       "slug": "hunches-in-bunches",
@@ -274,6 +512,13 @@
     },
     {
       "id": "35366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "On Beyond Zebra!",
       "content": "An exploration of letters beyond the traditional alphabet.",
       "slug": "beyond-zebra",
@@ -282,6 +527,13 @@
     },
     {
       "id": "36366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Seven Lady Godivas",
       "content": "A humorous tale about seven sisters and their quest for knowledge.",
       "slug": "seven-lady-godivas",
@@ -290,6 +542,13 @@
     },
     {
       "id": "37366a3d-40b8-4b2d-8066-c1834f65f879", 
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "McElligot's Pool",
       "content": "A boy imagines fantastic fish that might live in a small fishing pond.",
       "slug": "mcelligots-pool",
@@ -298,6 +557,13 @@
     },
     {
       "id": "38366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Eye Book",
       "content": "A simple exploration of what eyes can see and do.",
       "slug": "eye-book",
@@ -306,6 +572,13 @@
     },
     {
       "id": "39366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "I Had Trouble in Getting to Solla Sollew",
       "content": "A journey to find a place without troubles leads to self-discovery.",
       "slug": "solla-sollew",
@@ -314,6 +587,13 @@
     },
     {
       "id": "40366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "And to Think That I Saw It on Mulberry Street",
       "content": "A boy's imagination transforms a simple street scene into something extraordinary.",
       "slug": "mulberry-street",
@@ -322,6 +602,13 @@
     },
     {
       "id": "41366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Thidwick the Big-Hearted Moose",
       "content": "A moose learns about setting boundaries with demanding guests.",
       "slug": "thidwick-moose",
@@ -330,6 +617,13 @@
     },
     {
       "id": "42366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Butter Battle Book",
       "content": "A satire about the arms race and the futility of war.",
       "slug": "butter-battle",
@@ -338,6 +632,13 @@
     },
     {
       "id": "43366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Bartholomew and the Oobleck",
       "content": "A king's desire for new weather creates a sticky situation.",
       "slug": "bartholomew-oobleck",
@@ -346,6 +647,13 @@
     },
     {
       "id": "44366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Marvin K. Mooney Will You Please Go Now!",
       "content": "A humorous way of saying it's time to leave.",
       "slug": "marvin-mooney",
@@ -354,6 +662,13 @@
     },
     {
       "id": "45366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Foot Book",
       "content": "A celebration of all types of feet and walking.",
       "slug": "foot-book",
@@ -362,6 +677,13 @@
     },
     {
       "id": "46366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "You're Only Old Once!",
       "content": "A humorous look at aging and medical check-ups.",
       "slug": "only-old-once",
@@ -370,6 +692,13 @@
     },
     {
       "id": "47366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Oh Say Can You Say?",
       "content": "A collection of tongue twisters and verbal challenges.",
       "slug": "oh-say-can-you-say",
@@ -378,6 +707,13 @@
     },
     {
       "id": "48366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "I Can Lick 30 Tigers Today!",
       "content": "A tale about boasting and backing down gracefully.",
       "slug": "thirty-tigers",
@@ -386,6 +722,13 @@
     },
     {
       "id": "49366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Would You Rather Be a Bullfrog?",
       "content": "A series of silly questions about what you'd rather be.",
       "slug": "rather-be-bullfrog",
@@ -394,6 +737,13 @@
     },
     {
       "id": "50366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Cat's Quizzer",
       "content": "A book of riddles and trick questions.",
       "slug": "cats-quizzer",
@@ -402,6 +752,13 @@
     },
     {
       "id": "51366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Please Try to Remember the First of Octember!",
       "content": "A fantastical story about an impossible date.",
       "slug": "first-of-octember",
@@ -410,6 +767,13 @@
     },
     {
       "id": "52366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Maybe You Should Fly a Jet!",
       "content": "A book about different career possibilities.",
       "slug": "maybe-fly-jet",
@@ -418,6 +782,13 @@
     },
     {
       "id": "53366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Come over to My House",
       "content": "A look at different types of houses around the world.",
       "slug": "come-to-my-house",
@@ -426,6 +797,13 @@
     },
     {
       "id": "54366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Hooper Humperdink...? Not Him!",
       "content": "A story about inclusion and exclusion from party invitations.",
       "slug": "hooper-humperdink",
@@ -434,6 +812,13 @@
     },
     {
       "id": "55366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Little Blue Book",
       "content": "A charming tale about finding beauty in small things and unexpected places.",
       "slug": "little-blue-book",
@@ -442,6 +827,13 @@
     },
     {
       "id": "56366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Spectacular Spectacles",
       "content": "A story about a girl who discovers a new perspective when she gets glasses.",
       "slug": "spectacular-spectacles",
@@ -450,6 +842,13 @@
     },
     {
       "id": "57366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Whispering Woods",
       "content": "An adventure through an enchanted forest where the trees share ancient secrets.",
       "slug": "whispering-woods",
@@ -458,6 +857,13 @@
     },
     {
       "id": "58366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Penny's Pocket",
       "content": "A tale about a girl who keeps her most treasured possessions in a special pocket.",
       "slug": "pennys-pocket",
@@ -466,6 +872,13 @@
     },
     {
       "id": "59366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Moonlight Parade",
       "content": "A magical nighttime story where animals gather for a special celebration.",
       "slug": "moonlight-parade",
@@ -474,6 +887,13 @@
     },
     {
       "id": "60366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Alphabet Adventure",
       "content": "Letters come to life and embark on a journey to help a child learn to read.",
       "slug": "alphabet-adventure",
@@ -482,6 +902,13 @@
     },
     {
       "id": "61366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Cloud Catchers",
       "content": "A whimsical story about children who collect and reshape clouds into fantastical creatures.",
       "slug": "cloud-catchers",
@@ -490,6 +917,13 @@
     },
     {
       "id": "62366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Backwards Day",
       "content": "Everything happens in reverse order in this topsy-turvy tale of confusion and fun.",
       "slug": "backwards-day",
@@ -498,6 +932,13 @@
     },
     {
       "id": "63366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Little Lion's Loud Roar",
       "content": "A young lion learns that sometimes the quietest voices make the biggest impact.",
       "slug": "little-lion-roar",
@@ -506,6 +947,13 @@
     },
     {
       "id": "64366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Rainbow Recipe",
       "content": "A magical cookbook reveals the secret ingredients needed to make rainbows.",
       "slug": "rainbow-recipe",
@@ -514,6 +962,13 @@
     },
     {
       "id": "65366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Wishing Well",
       "content": "A child discovers that the most powerful wishes come from the heart.",
       "slug": "wishing-well",
@@ -522,6 +977,13 @@
     },
     {
       "id": "66366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Counting Stars",
       "content": "A bedtime story that combines counting practice with beautiful celestial imagery.",
       "slug": "counting-stars",
@@ -530,6 +992,13 @@
     },
     {
       "id": "67366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Brave Little Brush",
       "content": "An art supply becomes the hero in this colorful tale about creativity and courage.",
       "slug": "brave-little-brush",
@@ -538,6 +1007,13 @@
     },
     {
       "id": "68366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Whiskers and Wishes",
       "content": "A cat with magical whiskers grants wishes to kind-hearted children.",
       "slug": "whiskers-wishes",
@@ -546,6 +1022,13 @@
     },
     {
       "id": "69366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Puzzle Piece People",
       "content": "A story about diversity and how different people fit together to create something beautiful.",
       "slug": "puzzle-piece-people",
@@ -554,6 +1037,13 @@
     },
     {
       "id": "70366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Dancing Shoes",
       "content": "Magical footwear helps a shy child find confidence through movement and expression.",
       "slug": "dancing-shoes",
@@ -562,6 +1052,13 @@
     },
     {
       "id": "71366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Secret Garden Path",
       "content": "A hidden trail in the woods leads to unexpected friendships and adventures.",
       "slug": "secret-garden-path",
@@ -570,6 +1067,13 @@
     },
     {
       "id": "72366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Olivia's Orchestra",
       "content": "A girl assembles an unusual band of animal musicians with surprising results.",
       "slug": "olivias-orchestra",
@@ -578,6 +1082,13 @@
     },
     {
       "id": "73366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Forgetful Fairy",
       "content": "A magical being who keeps misplacing her wand leads to humorous mishaps.",
       "slug": "forgetful-fairy",
@@ -586,6 +1097,13 @@
     },
     {
       "id": "74366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Bubble Trouble",
       "content": "A bubble-blowing contest gets out of hand when the bubbles refuse to pop.",
       "slug": "bubble-trouble",
@@ -594,6 +1112,13 @@
     },
     {
       "id": "75366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Smallest Giant",
       "content": "A tale about perspective and how being small doesn't mean you can't be mighty.",
       "slug": "smallest-giant",
@@ -602,6 +1127,13 @@
     },
     {
       "id": "76366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Echo Mountain",
       "content": "A child discovers the science and magic of sound reflection on a mountain hike.",
       "slug": "echo-mountain",
@@ -610,6 +1142,13 @@
     },
     {
       "id": "77366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Upside-Down House",
       "content": "An architectural oddity becomes the setting for a gravity-defying adventure.",
       "slug": "upside-down-house",
@@ -618,6 +1157,13 @@
     },
     {
       "id": "78366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Never-ending Noodle",
       "content": "A humorous dinner tale about a pasta strand that keeps growing with every bite.",
       "slug": "never-ending-noodle",
@@ -626,6 +1172,13 @@
     },
     {
       "id": "79366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Shadow Puppets",
       "content": "Bedtime shadows come alive to perform a special show only visible at night.",
       "slug": "shadow-puppets",
@@ -634,6 +1187,13 @@
     },
     {
       "id": "80366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Hibernation Hotel",
       "content": "A cozy inn where sleepy animals gather to share stories before their winter nap.",
       "slug": "hibernation-hotel",
@@ -642,6 +1202,13 @@
     },
     {
       "id": "81366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Paper Plane Adventures",
       "content": "A child's carefully folded creation embarks on an unexpected journey around the world.",
       "slug": "paper-plane-adventures",
@@ -650,6 +1217,13 @@
     },
     {
       "id": "82366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Cookie Countdown",
       "content": "A lesson in patience and sharing as treats mysteriously disappear one by one.",
       "slug": "cookie-countdown",
@@ -658,6 +1232,13 @@
     },
     {
       "id": "83366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Shoelace Challenge",
       "content": "A determined child masters the art of tying shoes through creative visualization.",
       "slug": "shoelace-challenge",
@@ -666,6 +1247,13 @@
     },
     {
       "id": "84366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Raindrop Race",
       "content": "Personified raindrops compete in a playful race down a windowpane.",
       "slug": "raindrop-race",
@@ -674,6 +1262,13 @@
     },
     {
       "id": "85366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Museum of Magnificent Mistakes",
       "content": "A celebration of creative errors and happy accidents that led to wonderful discoveries.",
       "slug": "museum-magnificent-mistakes",
@@ -682,6 +1277,13 @@
     },
     {
       "id": "86366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Lost Lunchbox",
       "content": "A school mystery involving a missing meal and surprising acts of generosity.",
       "slug": "lost-lunchbox",
@@ -690,6 +1292,13 @@
     },
     {
       "id": "87366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Invisible Friend",
       "content": "A shy child and a magical companion navigate the challenges of making real friendships.",
       "slug": "invisible-friend",
@@ -698,6 +1307,13 @@
     },
     {
       "id": "88366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Telescope Tree",
       "content": "A tree that grows special branches allowing children to see distant planets and stars.",
       "slug": "telescope-tree",
@@ -706,6 +1322,13 @@
     },
     {
       "id": "89366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Patchwork Dragon",
       "content": "A handmade stuffed dragon comes to life at night, stitched from scraps of magical fabric.",
       "slug": "patchwork-dragon",
@@ -714,6 +1337,13 @@
     },
     {
       "id": "90366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Message in a Bottle",
       "content": "A beachcomber finds notes from around the world and begins a global correspondence.",
       "slug": "message-in-bottle",
@@ -722,6 +1352,13 @@
     },
     {
       "id": "91366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Time Capsule",
       "content": "Children discover a buried container with mysterious objects from the future.",
       "slug": "time-capsule",
@@ -730,6 +1367,13 @@
     },
     {
       "id": "92366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Rainbow Bridge",
       "content": "A colorful crossing appears after the rain, connecting two separated friends.",
       "slug": "rainbow-bridge",
@@ -738,6 +1382,13 @@
     },
     {
       "id": "93366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Gentle Giant",
       "content": "A large creature with a soft heart helps small animals in the forest.",
       "slug": "gentle-giant",
@@ -746,6 +1397,13 @@
     },
     {
       "id": "94366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Singing Stones",
       "content": "Beach pebbles that hum melodies when arranged in special patterns.",
       "slug": "singing-stones",
@@ -754,6 +1412,13 @@
     },
     {
       "id": "95366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Flying Library",
       "content": "Books with wings deliver themselves to children who need their stories most.",
       "slug": "flying-library",
@@ -762,6 +1427,13 @@
     },
     {
       "id": "96366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Endless Sandbox",
       "content": "A playground feature that contains infinite landscapes for imaginative play.",
       "slug": "endless-sandbox",
@@ -770,6 +1442,13 @@
     },
     {
       "id": "97366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Kindness Club",
       "content": "Children form a secret society dedicated to performing anonymous good deeds.",
       "slug": "kindness-club",
@@ -778,6 +1457,13 @@
     },
     {
       "id": "98366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Garden of Giggling Flowers",
       "content": "Blooms that share jokes and riddles with anyone who stops to smell them.",
       "slug": "giggling-flowers",
@@ -786,6 +1472,13 @@
     },
     {
       "id": "99366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Midnight Baker",
       "content": "A mysterious chef creates magical pastries while everyone else is sleeping.",
       "slug": "midnight-baker",
@@ -794,6 +1487,13 @@
     },
     {
       "id": "10466a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Underwater Classroom",
       "content": "Sea creatures teach valuable lessons to a child who discovers breathing underwater.",
       "slug": "underwater-classroom",
@@ -802,6 +1502,13 @@
     },
     {
       "id": "100366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Sleepwalking Dragon",
       "content": "A dragon with nocturnal wanderings leads to unexpected discoveries.",
       "slug": "sleepwalking-dragon",
@@ -810,6 +1517,13 @@
     },
     {
       "id": "101366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Lost Toy Symphony",
       "content": "Musical toys unite to perform a concert for a lonely child.",
       "slug": "lost-toy-symphony",
@@ -818,6 +1532,13 @@
     },
     {
       "id": "102366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The City of Talking Statues",
       "content": "Stone figures share stories and secrets with those who listen closely.",
       "slug": "talking-statues",
@@ -826,6 +1547,13 @@
     },
     {
       "id": "103366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Magical Map of Make-Believe",
       "content": "A map that leads to imaginary lands and fantastical adventures.",
       "slug": "magical-make-believe",
@@ -834,6 +1562,13 @@
     },
     {
       "id": "104366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Boy Who Befriended the Moon",
       "content": "A lunar friendship teaches valuable lessons about light and darkness.",
       "slug": "befriended-moon",
@@ -842,6 +1577,13 @@
     },
     {
       "id": "105366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Secret Life of Socks",
       "content": "Where do lost socks go? This book reveals their hidden world.",
       "slug": "secret-life-socks",
@@ -850,6 +1592,13 @@
     },
     {
       "id": "106366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Day the Animals Talked",
       "content": "A world where creatures share their thoughts and feelings with humans.",
       "slug": "animals-talked",
@@ -858,6 +1607,13 @@
     },
     {
       "id": "107366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Mystery of the Missing Star",
       "content": "A celestial detective solves the case of a vanished constellation.",
       "slug": "missing-star",
@@ -866,6 +1622,13 @@
     },
     {
       "id": "108366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Adventures of the Runaway Kite",
       "content": "A kite's journey across the world, encountering different cultures.",
       "slug": "runaway-kite",
@@ -874,6 +1637,13 @@
     },
     {
       "id": "109366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Land of Lost Buttons",
       "content": "A quest to find missing fasteners in a whimsical world.",
       "slug": "lost-buttons",
@@ -882,6 +1652,13 @@
     },
     {
       "id": "110366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Clockwork Heart",
       "content": "A mechanical marvel learns the meaning of love and compassion.",
       "slug": "clockwork-heart",
@@ -890,6 +1667,13 @@
     },
     {
       "id": "111366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Tale of the Timid Toothbrush",
       "content": "A dental hygiene tool overcomes its fears and embraces cleanliness.",
       "slug": "timid-toothbrush",
@@ -898,6 +1682,13 @@
     },
     {
       "id": "112366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Secret Language of Flowers",
       "content": "Decoding the hidden messages conveyed by different blossoms.",
       "slug": "secret-language-flowers",
@@ -906,6 +1697,13 @@
     },
     {
       "id": "113366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Day the Crayons Quit",
       "content": "A box of crayons expresses their feelings about being used (or not).",
       "slug": "crayons-quit",
@@ -914,6 +1712,13 @@
     },
     {
       "id": "114366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Harold and the Purple Crayon",
       "content": "A boy creates his world with a single purple crayon.",
       "slug": "harold-purple-crayon",
@@ -922,6 +1727,13 @@
     },
     {
       "id": "115366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Where the Wild Things Are",
       "content": "A boy's imagination takes him on a journey to a land of wild creatures.",
       "slug": "where-wild-things",
@@ -930,6 +1742,13 @@
     },
     {
       "id": "116366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Very Hungry Caterpillar",
       "content": "A caterpillar eats its way through a variety of foods before transforming.",
       "slug": "hungry-caterpillar",
@@ -938,6 +1757,13 @@
     },
     {
       "id": "117366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Corduroy",
       "content": "A teddy bear with a missing button goes on a department store adventure.",
       "slug": "corduroy-bear",
@@ -946,6 +1772,13 @@
     },
     {
       "id": "118366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Love You Forever",
       "content": "A mother's enduring love for her son through all stages of life.",
       "slug": "love-you-forever",
@@ -954,6 +1787,13 @@
     },
     {
       "id": "119366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Goodnight Moon",
       "content": "A calming bedtime story about saying goodnight to familiar objects.",
       "slug": "goodnight-moon",
@@ -962,6 +1802,13 @@
     },
     {
       "id": "120366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Giving Tree",
       "content": "A tree selflessly gives to a boy throughout his life.",
       "slug": "giving-tree",
@@ -970,6 +1817,13 @@
     },
     {
       "id": "121366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Rainbow Fish",
       "content": "A fish learns the value of sharing its beautiful scales.",
       "slug": "rainbow-fish",
@@ -978,6 +1832,13 @@
     },
     {
       "id": "122366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Chicka Chicka Boom Boom",
       "content": "Letters race to climb a coconut tree in this alphabet adventure.",
       "slug": "chicka-chicka-boom",
@@ -986,6 +1847,13 @@
     },
     {
       "id": "123366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Click, Clack, Moo: Cows That Type",
       "content": "Farm animals use a typewriter to make demands of the farmer.",
       "slug": "click-clack-moo",
@@ -994,6 +1862,13 @@
     },
     {
       "id": "124366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "If You Give a Mouse a Cookie",
       "content": "A chain of events unfolds when a mouse is given a cookie.",
       "slug": "mouse-cookie",
@@ -1002,6 +1877,13 @@
     },
     {
       "id": "125366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Don't Let the Pigeon Drive the Bus!",
       "content": "A pigeon tries to convince the reader to let him drive a bus.",
       "slug": "pigeon-drive-bus",
@@ -1010,6 +1892,13 @@
     },
     {
       "id": "126366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Giraffes Can't Dance",
       "content": "A giraffe learns to dance to his own tune.",
       "slug": "giraffes-cant-dance",
@@ -1018,6 +1907,13 @@
     },
     {
       "id": "127366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Room on the Broom",
       "content": "A witch and her cat pick up hitchhikers on a broomstick ride.",
       "slug": "room-on-broom",
@@ -1026,6 +1922,13 @@
     },
     {
       "id": "128366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Gruffalo",
       "content": "A mouse outsmarts predators by inventing a scary creature.",
       "slug": "the-gruffalo",
@@ -1034,6 +1937,13 @@
     },
     {
       "id": "129366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Each Peach Pear Plum",
       "content": "An 'I Spy' book with a rhyming text and hidden objects.",
       "slug": "each-peach-pear",
@@ -1042,6 +1952,13 @@
     },
     {
       "id": "130366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "We're Going on a Bear Hunt",
       "content": "A family embarks on an adventure to find a bear.",
       "slug": "bear-hunt",
@@ -1050,6 +1967,13 @@
     },
     {
       "id": "131366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Where's Spot?",
       "content": "A lift-the-flap book where children search for a hidden dog.",
       "slug": "wheres-spot",
@@ -1058,6 +1982,13 @@
     },
     {
       "id": "132366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Guess How Much I Love You",
       "content": "A hare and his father express their love for each other.",
       "slug": "guess-how-much",
@@ -1066,6 +1997,13 @@
     },
     {
       "id": "133366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Very Quiet Cricket",
       "content": "A cricket tries to make a sound but can't until the very end.",
       "slug": "quiet-cricket",
@@ -1074,6 +2012,13 @@
     },
     {
       "id": "134366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Brown Bear, Brown Bear, What Do You See?",
       "content": "A colorful book that introduces children to different animals and colors.",
       "slug": "brown-bear",
@@ -1082,6 +2027,13 @@
     },
     {
       "id": "135366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "From Head to Toe",
       "content": "An interactive book that encourages children to imitate animal movements.",
       "slug": "head-to-toe",
@@ -1090,6 +2042,13 @@
     },
     {
       "id": "136366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Pete the Cat: I Love My White Shoes",
       "content": "A cat remains optimistic even when his shoes change color.",
       "slug": "pete-cat-shoes",
@@ -1098,6 +2057,13 @@
     },
     {
       "id": "137366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Llama Llama Red Pajama",
       "content": "A llama experiences separation anxiety at bedtime.",
       "slug": "llama-red-pajama",
@@ -1106,6 +2072,13 @@
     },
     {
       "id": "138366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Click, Clack, Splish, Splash: A Counting Adventure",
       "content": "Farm animals enjoy a rainy day in this counting book.",
       "slug": "click-clack-splish",
@@ -1114,6 +2087,13 @@
     },
     {
       "id": "139366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Little Engine That Could",
       "content": "A small engine overcomes a challenge with perseverance.",
       "slug": "little-engine",
@@ -1122,6 +2102,13 @@
     },
     {
       "id": "140366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Caps for Sale",
       "content": "A peddler tries to recover his stolen caps from monkeys.",
       "slug": "caps-for-sale",
@@ -1130,6 +2117,13 @@
     },
     {
       "id": "141366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Strega Nona",
       "content": "A witch's helper causes chaos with a magical pasta pot.",
       "slug": "strega-nona",
@@ -1138,6 +2132,13 @@
     },
     {
       "id": "142366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Alexander and the Terrible, Horrible, No Good, Very Bad Day",
       "content": "A boy experiences a day filled with unfortunate events.",
       "slug": "alexander-terrible",
@@ -1146,6 +2147,13 @@
     },
     {
       "id": "143366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Jumanji",
       "content": "A board game brings jungle adventures to a quiet suburban home.",
       "slug": "jumanji-game",
@@ -1154,6 +2162,13 @@
     },
     {
       "id": "144366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Polar Express",
       "content": "A boy takes a magical train ride to the North Pole.",
       "slug": "polar-express",
@@ -1162,6 +2177,13 @@
     },
     {
       "id": "145366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Wretched Stone",
       "content": "A mysterious stone captivates sailors and changes their behavior.",
       "slug": "wretched-stone",
@@ -1170,6 +2192,13 @@
     },
     {
       "id": "146366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Tuesday",
       "content": "Flying frogs embark on a nighttime adventure.",
       "slug": "tuesday-frogs",
@@ -1178,6 +2207,13 @@
     },
     {
       "id": "147366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Flotsam",
       "content": "A boy discovers a camera with photos from an underwater world.",
       "slug": "flotsam-camera",
@@ -1186,6 +2222,13 @@
     },
     {
       "id": "148366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Black and White",
       "content": "A mind-bending book that challenges perceptions of reality.",
       "slug": "black-white-book",
@@ -1194,6 +2237,13 @@
     },
     {
       "id": "149366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Sector 7",
       "content": "A child visits a cloud factory and helps create new cloud shapes.",
       "slug": "sector-seven",
@@ -1202,6 +2252,13 @@
     },
     {
       "id": "150366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Chalk",
       "content": "Children's drawings come to life in a magical park.",
       "slug": "chalk-drawings",
@@ -1210,6 +2267,13 @@
     },
     {
       "id": "151366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Journey",
       "content": "A girl's red crayon transports her to fantastical worlds.",
       "slug": "journey-crayon",
@@ -1218,6 +2282,13 @@
     },
     {
       "id": "152366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Quest",
       "content": "Tiny mechanical knights embark on a heroic adventure.",
       "slug": "quest-knights",
@@ -1226,6 +2297,13 @@
     },
     {
       "id": "153366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Mirror",
       "content": "Two boys on opposite sides of the world experience parallel adventures.",
       "slug": "mirror-worlds",
@@ -1234,6 +2312,13 @@
     },
     {
       "id": "154366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Flora and the Flamingo",
       "content": "A girl imitates a flamingo in a wordless dance of friendship.",
       "slug": "flora-flamingo",
@@ -1242,6 +2327,13 @@
     },
     {
       "id": "155366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "A Ball for Daisy",
       "content": "A dog's favorite ball is accidentally destroyed, leading to a heartwarming resolution.",
       "slug": "ball-daisy",
@@ -1250,6 +2342,13 @@
     },
     {
       "id": "156366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Interrupting Chicken",
       "content": "A little chicken can't help but interrupt bedtime stories.",
       "slug": "interrupting-chicken",
@@ -1258,6 +2357,13 @@
     },
     {
       "id": "157366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "This Is Not My Hat",
       "content": "A little fish steals a hat from a big fish and thinks he can get away with it.",
       "slug": "not-my-hat",
@@ -1266,6 +2372,13 @@
     },
     {
       "id": "158366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Extra Yarn",
       "content": "A girl with a box of yarn transforms her gray town into a colorful paradise.",
       "slug": "extra-yarn",
@@ -1274,6 +2387,13 @@
     },
     {
       "id": "159366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Lion & the Mouse",
       "content": "An adaptation of Aesop's fable about kindness and reciprocity.",
       "slug": "lion-mouse",
@@ -1282,6 +2402,13 @@
     },
     {
       "id": "160366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Locomotive",
       "content": "A detailed look at trains, travel, and the American landscape in the 19th century.",
       "slug": "locomotive-train",
@@ -1290,6 +2417,13 @@
     },
     {
       "id": "161366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Mr. Wuffles!",
       "content": "A cat ignores his toys until he discovers a spaceship.",
       "slug": "mr-wuffles",
@@ -1298,6 +2432,13 @@
     },
     {
       "id": "162366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Adventures of Beekle: The Unimaginary Friend",
       "content": "An imaginary friend sets off on a journey to find his perfect child.",
       "slug": "adventures-beekle",
@@ -1306,6 +2447,13 @@
     },
     {
       "id": "163366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Finding Winnie: The True Story of the World’s Most Famous Bear",
       "content": "The story of the real bear who inspired Winnie-the-Pooh.",
       "slug": "finding-winnie",
@@ -1314,6 +2462,13 @@
     },
     {
       "id": "164366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Last Stop on Market Street",
       "content": "A boy learns to appreciate the beauty in his everyday life during a bus ride with his grandmother.",
       "slug": "last-stop",
@@ -1322,6 +2477,13 @@
     },
     {
       "id": "165366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Radiant Child: The Story of Young Artist Jean-Michel Basquiat",
       "content": "A biography of the groundbreaking artist Jean-Michel Basquiat.",
       "slug": "radiant-child",
@@ -1330,6 +2492,13 @@
     },
     {
       "id": "166366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "They All Saw a Cat",
       "content": "Different animals perceive a cat in their own unique ways.",
       "slug": "they-all-saw",
@@ -1338,6 +2507,13 @@
     },
     {
       "id": "167366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Triangle",
       "content": "Triangle plays a trick on Square, leading to a geometric chase.",
       "slug": "triangle-square",
@@ -1346,6 +2522,13 @@
     },
     {
       "id": "168366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Circle",
       "content": "Circle tries to escape from the narrator, leading to a circular chase.",
       "slug": "circle-escape",
@@ -1354,6 +2537,13 @@
     },
     {
       "id": "169366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Square",
       "content": "Square enters Circle's cave and emerges with new perspectives.",
       "slug": "square-perspectives",
@@ -1362,6 +2552,13 @@
     },
     {
       "id": "170366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Du Iz Tak?",
       "content": "Insects build a structure around a plant, speaking in their own language.",
       "slug": "du-iz-tak",
@@ -1370,6 +2567,13 @@
     },
     {
       "id": "171366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Hello Lighthouse",
       "content": "The story of a lighthouse and its keeper as seasons and technology change.",
       "slug": "hello-lighthouse",
@@ -1378,6 +2582,13 @@
     },
     {
       "id": "172366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Rough Patch",
       "content": "A farmer's life changes when he loses his best friend, a dog.",
       "slug": "rough-patch",
@@ -1386,6 +2597,13 @@
     },
     {
       "id": "173366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "A Big Mooncake for Little Star",
       "content": "Little Star nibbles on a mooncake, leaving crumbs across the sky.",
       "slug": "big-mooncake",
@@ -1394,6 +2612,13 @@
     },
     {
       "id": "174366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Blueberries for Sal",
       "content": "A girl and a bear both search for blueberries with their mothers.",
       "slug": "blueberries-sal",
@@ -1402,6 +2627,13 @@
     },
     {
       "id": "175366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Time of Wonder",
       "content": "A family experiences the beauty of the Maine coast during the summer.",
       "slug": "time-wonder",
@@ -1410,6 +2642,13 @@
     },
     {
       "id": "176366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Make Way for Ducklings",
       "content": "A family of ducks makes their way through the city of Boston.",
       "slug": "make-way",
@@ -1418,6 +2657,13 @@
     },
     {
       "id": "177366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Madeline",
       "content": "A little girl in Paris has an appendectomy.",
       "slug": "madeline-paris",
@@ -1426,6 +2672,13 @@
     },
     {
       "id": "178366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Snowy Day",
       "content": "A boy explores his city after the first snowfall.",
       "slug": "snowy-day",
@@ -1434,6 +2687,13 @@
     },
     {
       "id": "179366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Where the Wild Things Are",
       "content": "A boy sails away to a land inhabited by monsters.",
       "slug": "wild-things",
@@ -1442,6 +2702,13 @@
     },
     {
       "id": "180366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Very Hungry Caterpillar",
       "content": "A caterpillar eats his way through the week.",
       "slug": "hungry-caterpillar",
@@ -1450,6 +2717,13 @@
     },
     {
       "id": "181366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Goodnight Moon",
       "content": "A bunny says goodnight to everything in his room.",
       "slug": "goodnight-moon",
@@ -1458,6 +2732,13 @@
     },
     {
       "id": "182366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Corduroy",
       "content": "A bear searches for a missing button.",
       "slug": "corduroy-bear",
@@ -1466,6 +2747,13 @@
     },
     {
       "id": "183366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Tale of Peter Rabbit",
       "content": "A rabbit disobeys his mother and enters Mr. McGregor's garden.",
       "slug": "peter-rabbit",
@@ -1474,6 +2762,13 @@
     },
     {
       "id": "184366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Cat in the Hat",
       "content": "A cat makes a rainy day fun.",
       "slug": "cat-hat",
@@ -1482,6 +2777,13 @@
     },
     {
       "id": "185366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Green Eggs and Ham",
       "content": "Sam-I-Am tries to convince another character to eat green eggs and ham.",
       "slug": "green-eggs",
@@ -1490,6 +2792,13 @@
     },
     {
       "id": "186366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "One Fish Two Fish Red Fish Blue Fish",
       "content": "A book of rhyming nonsense.",
       "slug": "one-fish",
@@ -1498,6 +2807,13 @@
     },
     {
       "id": "187366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Lorax",
       "content": "The Lorax speaks for the trees.",
       "slug": "the-lorax",
@@ -1506,6 +2822,13 @@
     },
     {
       "id": "188366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Oh, the Places You'll Go!",
       "content": "A book about life's journey.",
       "slug": "places-youll-go",
@@ -1514,6 +2837,13 @@
     },
     {
       "id": "189366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Horton Hears a Who!",
       "content": "Horton protects the Whos.",
       "slug": "horton-hears",
@@ -1522,6 +2852,13 @@
     },
     {
       "id": "190366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Sneetches",
       "content": "Sneetches learn about equality.",
       "slug": "the-sneetches",
@@ -1530,6 +2867,13 @@
     },
     {
       "id": "191366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Fox in Socks",
       "content": "A book of tongue twisters.",
       "slug": "fox-socks",
@@ -1538,6 +2882,13 @@
     },
     {
       "id": "192366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Dr. Seuss's ABC",
       "content": "An alphabet book.",
       "slug": "seuss-abc",
@@ -1546,6 +2897,13 @@
     },
     {
       "id": "193366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Yertle the Turtle",
       "content": "A turtle learns about fairness.",
       "slug": "yertle-turtle",
@@ -1554,6 +2912,13 @@
     },
     {
       "id": "194366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The 500 Hats of Bartholomew Cubbins",
       "content": "A boy has trouble removing his hat.",
       "slug": "500-hats",
@@ -1562,6 +2927,13 @@
     },
     {
       "id": "195366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "If I Ran the Zoo",
       "content": "A boy imagines running the zoo.",
       "slug": "ran-zoo",
@@ -1570,6 +2942,13 @@
     },
     {
       "id": "196366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Scrambled Eggs Super!",
       "content": "A boy finds unusual eggs.",
       "slug": "scrambled-eggs",
@@ -1578,6 +2957,13 @@
     },
     {
       "id": "197366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Did I Ever Tell You How Lucky You Are?",
       "content": "A reminder to be grateful.",
       "slug": "how-lucky",
@@ -1586,6 +2972,13 @@
     },
     {
       "id": "198366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Happy Birthday to You!",
       "content": "A celebration of birthdays.",
       "slug": "happy-birthday",
@@ -1594,6 +2987,13 @@
     },
     {
       "id": "199366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "I Can Read With My Eyes Shut!",
       "content": "A humorous take on reading.",
       "slug": "read-eyes-shut",
@@ -1602,6 +3002,13 @@
     },
     {
       "id": "200366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Shape of Things",
       "content": "Exploring geometry through everyday objects.",
       "slug": "shape-of-things",
@@ -1610,6 +3017,13 @@
     },
     {
       "id": "201366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Colors All Around",
       "content": "A vibrant journey through the world of colors.",
       "slug": "colors-around",
@@ -1618,6 +3032,13 @@
     },
     {
       "id": "202366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Numbers in Nature",
       "content": "Discovering math in the natural world.",
       "slug": "numbers-nature",
@@ -1626,6 +3047,13 @@
     },
     {
       "id": "203366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Opposites Attract",
       "content": "Understanding contrasting concepts through fun examples.",
       "slug": "opposites-attract",
@@ -1634,6 +3062,13 @@
     },
     {
       "id": "204366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Animal Sounds",
       "content": "A playful exploration of the noises animals make.",
       "slug": "animal-sounds",
@@ -1642,6 +3077,13 @@
     },
     {
       "id": "205366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "My First Words",
       "content": "A simple introduction to essential vocabulary.",
       "slug": "first-words",
@@ -1650,6 +3092,13 @@
     },
     {
       "id": "206366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Bedtime Stories",
       "content": "A collection of soothing tales for a peaceful night.",
       "slug": "bedtime-stories",
@@ -1658,6 +3107,13 @@
     },
     {
       "id": "207366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Magic Treehouse",
       "content": "Adventures await in a mysterious treehouse.",
       "slug": "magic-treehouse",
@@ -1666,6 +3122,13 @@
     },
     {
       "id": "208366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Pirate Adventure",
       "content": "Set sail on a thrilling quest for treasure.",
       "slug": "pirate-adventure",
@@ -1674,6 +3137,13 @@
     },
     {
       "id": "209366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Dinosaur World",
       "content": "Explore the prehistoric era and meet fascinating creatures.",
       "slug": "dinosaur-world",
@@ -1682,6 +3152,13 @@
     },
     {
       "id": "210366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Space Explorers",
       "content": "Journey to the stars and discover distant planets.",
       "slug": "space-explorers",
@@ -1690,6 +3167,13 @@
     },
     {
       "id": "211366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Mystery Mansion",
       "content": "Solve puzzles and uncover secrets in a spooky house.",
       "slug": "mystery-mansion",
@@ -1698,6 +3182,13 @@
     },
     {
       "id": "212366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Fairy Tales",
       "content": "Enchanting stories of magic and wonder.",
       "slug": "fairy-tales",
@@ -1706,6 +3197,13 @@
     },
     {
       "id": "213366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Superhero Academy",
       "content": "Train to become a hero and save the day.",
       "slug": "superhero-academy",
@@ -1714,6 +3212,13 @@
     },
     {
       "id": "214366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Underwater Kingdom",
       "content": "Explore the depths of the ocean and meet marine creatures.",
       "slug": "underwater-kingdom",
@@ -1722,6 +3227,13 @@
     },
     {
       "id": "215366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Jungle Adventure",
       "content": "Discover exotic animals and hidden trails in the rainforest.",
       "slug": "jungle-adventure",
@@ -1730,6 +3242,13 @@
     },
     {
       "id": "216366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Time Traveler",
       "content": "Visit different eras and witness historical events.",
       "slug": "time-traveler",
@@ -1738,6 +3257,13 @@
     },
     {
       "id": "217366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Enchanted Forest",
       "content": "Magical creatures and talking trees await in this mystical woodland.",
       "slug": "enchanted-forest",
@@ -1746,6 +3272,13 @@
     },
     {
       "id": "218366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Robot Revolution",
       "content": "Explore the world of robotics and artificial intelligence.",
       "slug": "robot-revolution",
@@ -1754,6 +3287,13 @@
     },
     {
       "id": "219366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Lost City",
       "content": "Uncover the secrets of a civilization hidden for centuries.",
       "slug": "lost-city",
@@ -1762,6 +3302,13 @@
     },
     {
       "id": "220366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Arctic Adventure",
       "content": "Brave the icy wilderness and meet polar animals.",
       "slug": "arctic-adventure",
@@ -1770,6 +3317,13 @@
     },
     {
       "id": "221366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Great Inventors",
       "content": "Learn about the brilliant minds that shaped our world.",
       "slug": "great-inventors",
@@ -1778,6 +3332,13 @@
     },
     {
       "id": "222366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Musical Journey",
       "content": "Explore different genres and instruments from around the globe.",
       "slug": "musical-journey",
@@ -1786,6 +3347,13 @@
     },
     {
       "id": "223366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Culinary Creations",
       "content": "Discover delicious recipes and cooking techniques.",
       "slug": "culinary-creations",
@@ -1794,6 +3362,13 @@
     },
     {
       "id": "224366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Artistic Adventures",
       "content": "Experiment with painting, drawing, and sculpting.",
       "slug": "artistic-adventures",
@@ -1802,6 +3377,13 @@
     },
     {
       "id": "225366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Wild West",
       "content": "Experience the life of cowboys and pioneers.",
       "slug": "wild-west",
@@ -1810,6 +3392,13 @@
     },
     {
       "id": "226366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Ancient Egypt",
       "content": "Unravel the mysteries of pharaohs and pyramids.",
       "slug": "ancient-egypt",
@@ -1818,6 +3407,13 @@
     },
     {
       "id": "227366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Human Body",
       "content": "Explore the amazing systems that keep us alive.",
       "slug": "human-body",
@@ -1826,6 +3422,13 @@
     },
     {
       "id": "228366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "World Geography",
       "content": "Discover countries, cultures, and landmarks.",
       "slug": "world-geography",
@@ -1834,6 +3437,13 @@
     },
     {
       "id": "229366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Solar System",
       "content": "Learn about planets, stars, and galaxies.",
       "slug": "solar-system",
@@ -1842,6 +3452,13 @@
     },
     {
       "id": "230366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Weather Wonders",
       "content": "Explore clouds, rain, and other atmospheric phenomena.",
       "slug": "weather-wonders",
@@ -1850,6 +3467,13 @@
     },
     {
       "id": "231366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Power of Reading",
       "content": "Discover the joy and benefits of books.",
       "slug": "power-reading",
@@ -1858,6 +3482,13 @@
     },
     {
       "id": "232366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Friendship Adventures",
       "content": "Stories about kindness, loyalty, and teamwork.",
       "slug": "friendship-adventures",
@@ -1866,6 +3497,13 @@
     },
     {
       "id": "233366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Importance of Exercise",
       "content": "Fun ways to stay active and healthy.",
       "slug": "importance-exercise",
@@ -1874,6 +3512,13 @@
     },
     {
       "id": "234366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Healthy Eating Habits",
       "content": "Making nutritious choices for a balanced diet.",
       "slug": "healthy-eating-habits",
@@ -1882,6 +3527,13 @@
     },
     {
       "id": "235366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Value of Honesty",
       "content": "Learning about truthfulness and integrity.",
       "slug": "value-honesty",
@@ -1890,6 +3542,13 @@
     },
     {
       "id": "236366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Respect for Others",
       "content": "Understanding and appreciating diversity.",
       "slug": "respect-others",
@@ -1898,6 +3557,13 @@
     },
     {
       "id": "237366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Power of Kindness",
       "content": "Small acts of compassion can make a big difference.",
       "slug": "power-kindness",
@@ -1906,6 +3572,13 @@
     },
     {
       "id": "238366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Taking Care of Our Planet",
       "content": "Protecting the environment for future generations.",
       "slug": "care-planet",
@@ -1914,6 +3587,13 @@
     },
     {
       "id": "239366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Wonders of Science",
       "content": "Exploring experiments and discoveries.",
       "slug": "wonders-science",
@@ -1922,6 +3602,13 @@
     },
     {
       "id": "240366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Magic of Imagination",
       "content": "Unleashing creativity and storytelling.",
       "slug": "magic-imagination",
@@ -1930,6 +3617,13 @@
     },
     {
       "id": "241366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Importance of Sleep",
       "content": "Why rest is essential for growing minds.",
       "slug": "importance-sleep",
@@ -1938,6 +3632,13 @@
     },
     {
       "id": "242366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Joy of Learning",
       "content": "Discovering new things every day.",
       "slug": "joy-learning",
@@ -1946,6 +3647,13 @@
     },
     {
       "id": "243366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Celebrating Differences",
       "content": "Embracing individuality and uniqueness.",
       "slug": "celebrating-differences",
@@ -1954,6 +3662,13 @@
     },
     {
       "id": "244366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Power of Teamwork",
       "content": "Achieving goals together.",
       "slug": "power-teamwork",
@@ -1962,6 +3677,13 @@
     },
     {
       "id": "245366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Expressing Emotions",
       "content": "Understanding and managing feelings.",
       "slug": "expressing-emotions",
@@ -1970,6 +3692,13 @@
     },
     {
       "id": "246366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Art of Communication",
       "content": "Listening and speaking effectively.",
       "slug": "art-communication",
@@ -1978,6 +3707,13 @@
     },
     {
       "id": "247366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Building Confidence",
       "content": "Believing in yourself and your abilities.",
       "slug": "building-confidence",
@@ -1986,6 +3722,13 @@
     },
     {
       "id": "248366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Importance of Gratitude",
       "content": "Appreciating the good things in life.",
       "slug": "importance-gratitude",
@@ -1994,6 +3737,13 @@
     },
     {
       "id": "249366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "Adventures in Dreamland",
       "content": "A journey through fantastical landscapes while sleeping.",
       "slug": "dreamland-adventures",
@@ -2002,6 +3752,13 @@
     },
     {
       "id": "250366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Mystery of the Missing Socks",
       "content": "Unraveling the enigma of disappearing laundry.",
       "slug": "missing-socks-mystery",
@@ -2010,6 +3767,13 @@
     },
     {
       "id": "251366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Day the Animals Talked",
       "content": "A world where creatures share their thoughts and feelings with humans.",
       "slug": "talking-animals-day",
@@ -2018,6 +3782,13 @@
     },
     {
       "id": "252366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Sleepwalking Dragon",
       "content": "A dragon with nocturnal wanderings leads to unexpected discoveries.",
       "slug": "sleepwalking-dragon",
@@ -2026,6 +3797,13 @@
     },
     {
       "id": "253366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Boy Who Befriended the Moon",
       "content": "A lunar friendship teaches valuable lessons about light and darkness.",
       "slug": "moon-befriended-boy",
@@ -2034,6 +3812,13 @@
     },
     {
       "id": "254366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Flying Library",
       "content": "Books with wings deliver themselves to children who need their stories most.",
       "slug": "flying-library",
@@ -2042,6 +3827,13 @@
     },
     {
       "id": "255366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Clockwork Heart",
       "content": "A mechanical marvel learns the meaning of love and compassion.",
       "slug": "clockwork-heart",
@@ -2050,6 +3842,13 @@
     },
     {
       "id": "256366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Secret Language of Flowers",
       "content": "Decoding the hidden messages conveyed by different blossoms.",
       "slug": "flower-language-secret",
@@ -2058,6 +3857,13 @@
     },
     {
       "id": "257366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Museum of Magnificent Mistakes",
       "content": "A celebration of creative errors and happy accidents that led to wonderful discoveries.",
       "slug": "magnificent-mistakes-museum",
@@ -2066,6 +3872,13 @@
     },
     {
       "id": "258366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Tale of the Timid Toothbrush",
       "content": "A dental hygiene tool overcomes its fears and embraces cleanliness.",
       "slug": "timid-toothbrush-tale",
@@ -2074,6 +3887,13 @@
     },
     {
       "id": "259366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Land of Lost Buttons",
       "content": "A quest to find missing fasteners in a whimsical world.",
       "slug": "lost-buttons-land",
@@ -2082,6 +3902,13 @@
     },
     {
       "id": "260366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Patchwork Dragon",
       "content": "A handmade stuffed dragon comes to life at night, stitched from scraps of magical fabric.",
       "slug": "patchwork-dragon",
@@ -2090,6 +3917,13 @@
     },
     {
       "id": "261366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Message in a Bottle",
       "content": "A beachcomber finds notes from around the world and begins a global correspondence.",
       "slug": "bottle-message",
@@ -2098,6 +3932,13 @@
     },
     {
       "id": "262366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Time Capsule Adventure",
       "content": "Children discover a buried container with mysterious objects from the future.",
       "slug": "time-capsule-adventure",
@@ -2106,6 +3947,13 @@
     },
     {
       "id": "263366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Rainbow Bridge of Friendship",
       "content": "A colorful crossing appears after the rain, connecting two separated friends.",
       "slug": "rainbow-bridge-friendship",
@@ -2114,6 +3962,13 @@
     },
     {
       "id": "264366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Gentle Giant's Garden",
       "content": "A large creature with a soft heart helps small animals in the forest.",
       "slug": "gentle-giant-garden",
@@ -2122,6 +3977,13 @@
     },
     {
       "id": "265366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Singing Stones of Serenity",
       "content": "Beach pebbles that hum melodies when arranged in special patterns.",
       "slug": "singing-stones-serenity",
@@ -2130,6 +3992,13 @@
     },
     {
       "id": "266366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Endless Sandbox of Imagination",
       "content": "A playground feature that contains infinite landscapes for imaginative play.",
       "slug": "endless-sandbox-imagination",
@@ -2138,6 +4007,13 @@
     },
     {
       "id": "267366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Kindness Club's Secret Mission",
       "content": "Children form a secret society dedicated to performing anonymous good deeds.",
       "slug": "kindness-club-mission",
@@ -2146,6 +4022,13 @@
     },
     {
       "id": "268366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Garden of Giggling Flowers",
       "content": "Blooms that share jokes and riddles with anyone who stops to smell them.",
       "slug": "giggling-flowers-garden",
@@ -2154,6 +4037,13 @@
     },
     {
       "id": "269366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Midnight Baker's Surprise",
       "content": "A mysterious chef creates magical pastries while everyone else is sleeping.",
       "slug": "midnight-baker-surprise",
@@ -2162,6 +4052,13 @@
     },
     {
       "id": "270366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Underwater Classroom Adventure",
       "content": "Sea creatures teach valuable lessons to a child who discovers breathing underwater.",
       "slug": "underwater-classroom-adventure",
@@ -2170,6 +4067,13 @@
     },
     {
       "id": "271366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Lost Toy Symphony's Encore",
       "content": "Musical toys unite to perform a concert for a lonely child.",
       "slug": "lost-toy-symphony-encore",
@@ -2178,6 +4082,13 @@
     },
     {
       "id": "272366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The City of Talking Statues' Secrets",
       "content": "Stone figures share stories and secrets with those who listen closely.",
       "slug": "talking-statues-secrets",
@@ -2186,6 +4097,13 @@
     },
     {
       "id": "273366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Magical Map of Make-Believe's Quest",
       "content": "A map that leads to imaginary lands and fantastical adventures.",
       "slug": "magical-make-believe-quest",
@@ -2194,6 +4112,13 @@
     },
     {
       "id": "274366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Secret Life of Socks Revealed",
       "content": "Where do lost socks go? This book reveals their hidden world.",
       "slug": "secret-life-socks-revealed",
@@ -2202,6 +4127,13 @@
     },
     {
       "id": "275366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Mystery of the Missing Star Solved",
       "content": "A celestial detective solves the case of a vanished constellation.",
       "slug": "missing-star-solved",
@@ -2210,6 +4142,13 @@
     },
     {
       "id": "276366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Adventures of the Runaway Kite's Return",
       "content": "A kite's journey across the world, encountering different cultures.",
       "slug": "runaway-kite-return",
@@ -2218,6 +4157,13 @@
     },
     {
       "id": "277366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Clockwork Heart's Gift",
       "content": "A mechanical marvel learns the meaning of love and compassion.",
       "slug": "clockwork-heart-gift",
@@ -2226,6 +4172,13 @@
     },
     {
       "id": "278366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Tale of the Timid Toothbrush's Triumph",
       "content": "A dental hygiene tool overcomes its fears and embraces cleanliness.",
       "slug": "timid-toothbrush-triumph",
@@ -2234,6 +4187,13 @@
     },
     {
       "id": "279366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Land of Lost Buttons Found",
       "content": "A quest to find missing fasteners in a whimsical world.",
       "slug": "lost-buttons-found",
@@ -2242,6 +4202,13 @@
     },
     {
       "id": "280366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Patchwork Dragon's Dream",
       "content": "A handmade stuffed dragon comes to life at night, stitched from scraps of magical fabric.",
       "slug": "patchwork-dragon-dream",
@@ -2250,6 +4217,13 @@
     },
     {
       "id": "281366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Message in a Bottle's Reply",
       "content": "A beachcomber finds notes from around the world and begins a global correspondence.",
       "slug": "bottle-message-reply",
@@ -2258,6 +4232,13 @@
     },
     {
       "id": "282366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Time Capsule's Future",
       "content": "Children discover a buried container with mysterious objects from the future.",
       "slug": "time-capsule-future",
@@ -2266,6 +4247,13 @@
     },
     {
       "id": "283366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Rainbow Bridge's Promise",
       "content": "A colorful crossing appears after the rain, connecting two separated friends.",
       "slug": "rainbow-bridge-promise",
@@ -2274,6 +4262,13 @@
     },
     {
       "id": "284366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Gentle Giant's Lullaby",
       "content": "A large creature with a soft heart helps small animals in the forest.",
       "slug": "gentle-giant-lullaby",
@@ -2282,6 +4277,13 @@
     },
     {
       "id": "285366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Singing Stones' Symphony",
       "content": "Beach pebbles that hum melodies when arranged in special patterns.",
       "slug": "singing-stones-symphony",
@@ -2290,6 +4292,13 @@
     },
     {
       "id": "286366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Endless Sandbox's Castle",
       "content": "A playground feature that contains infinite landscapes for imaginative play.",
       "slug": "endless-sandbox-castle",
@@ -2298,6 +4307,13 @@
     },
     {
       "id": "287366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Kindness Club's Reward",
       "content": "Children form a secret society dedicated to performing anonymous good deeds.",
       "slug": "kindness-club-reward",
@@ -2306,6 +4322,13 @@
     },
     {
       "id": "288366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Garden of Giggling Flowers' Secret",
       "content": "Blooms that share jokes and riddles with anyone who stops to smell them.",
       "slug": "giggling-flowers-secret",
@@ -2314,6 +4337,13 @@
     },
     {
       "id": "289366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Midnight Baker's Dream",
       "content": "A mysterious chef creates magical pastries while everyone else is sleeping.",
       "slug": "midnight-baker-dream",
@@ -2322,6 +4352,13 @@
     },
     {
       "id": "290366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Underwater Classroom's Discovery",
       "content": "Sea creatures teach valuable lessons to a child who discovers breathing underwater.",
       "slug": "underwater-classroom-discovery",
@@ -2330,6 +4367,13 @@
     },
     {
       "id": "291366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Lost Toy Symphony's Finale",
       "content": "Musical toys unite to perform a concert for a lonely child.",
       "slug": "lost-toy-symphony-finale",
@@ -2338,6 +4382,13 @@
     },
     {
       "id": "292366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The City of Talking Statues' Wisdom",
       "content": "Stone figures share stories and secrets with those who listen closely.",
       "slug": "talking-statues-wisdom",
@@ -2346,6 +4397,13 @@
     },
     {
       "id": "293366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Magical Map of Make-Believe's Treasure",
       "content": "A map that leads to imaginary lands and fantastical adventures.",
       "slug": "magical-make-believe-treasure",
@@ -2354,6 +4412,13 @@
     },
     {
       "id": "294366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Secret Life of Socks Unveiled",
       "content": "Where do lost socks go? This book reveals their hidden world.",
       "slug": "secret-life-socks-unveiled",
@@ -2362,6 +4427,13 @@
     },
     {
       "id": "295366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Mystery of the Missing Star's Return",
       "content": "A celestial detective solves the case of a vanished constellation.",
       "slug": "missing-star-return",
@@ -2370,6 +4442,13 @@
     },
     {
       "id": "296366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Adventures of the Runaway Kite's Homecoming",
       "content": "A kite's journey across the world, encountering different cultures.",
       "slug": "runaway-kite-homecoming",
@@ -2378,6 +4457,13 @@
     },
     {
       "id": "297366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Clockwork Heart's Legacy",
       "content": "A mechanical marvel learns the meaning of love and compassion.",
       "slug": "clockwork-heart-legacy",
@@ -2386,6 +4472,13 @@
     },
     {
       "id": "298366a3d-40b8-4b2d-8066-c1834f65f879",
+      "tags": ["children", "books", "dr-seuss"],
+      "authors": [{
+        "name": "Dr. Seuss",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://example.com/dr-seuss"
+      }],
+      "thumbnail":"https://picsum.photos/200/300",
       "title": "The Tale of the Timid Toothbrush's Victory",
       "content": "A dental hygiene tool overcomes its fears and embraces cleanliness.",
       "slug": "timid-toothbrush-victory",

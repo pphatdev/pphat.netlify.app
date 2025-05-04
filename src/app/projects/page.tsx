@@ -9,6 +9,7 @@ import { ProjectHero } from "@components/heros/project-hero";
 import { ProjectCard } from "@components/cards/project-card";
 import { Project } from "../../lib/types/interfaces";
 import { BlurFade } from '@components/ui/blur-fade';
+import { NavigationBar } from "@components/navbar/navbar";
 
 const Projects = () => {
     const limit = 9;
@@ -59,9 +60,10 @@ const Projects = () => {
 
     return (
         <main className="w-full flex flex-col gap-7 pb-5">
+            <NavigationBar />
             <ProjectHero />
             <BlurFade delay={0.9} inView={true}>
-                <article className="grid max-w-5xl mx-auto p-4 sm:px-10 grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4 min-h-[300px] relative">
+                <article className="grid max-w-5xl mx-auto p-5 grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4 min-h-[300px] relative">
                     {projects.map((project, index) => (<ProjectCard key={index} project={project} />))}
                     <InfiniteScroll hasMore={hasMore} isLoading={loading} next={next} threshold={1}>
                         {hasMore && (

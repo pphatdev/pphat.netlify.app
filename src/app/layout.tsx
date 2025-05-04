@@ -6,6 +6,7 @@ import { ThemeProvider } from 'next-themes'
 import { homeHome } from "@lib/meta/home";
 import { aladin, kantumruyPro, poppins, srisakdi, openSans } from "@lib/fonts";
 import { cn } from "@lib/utils";
+import Script from "next/script";
 export { viewport } from "@lib/meta/viewport";
 export const metadata: Metadata = homeHome;
 
@@ -34,6 +35,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                     </Providers>
                 </ThemeProvider>
             </body>
+            <Script
+                defer
+                data-domain="dev.pphat.pro"
+                src="https://webtracker.avikmukherjee.tech/tracking-script.js"
+            />
         </html>
     );
 }
