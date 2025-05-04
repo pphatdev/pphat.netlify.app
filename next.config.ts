@@ -28,7 +28,7 @@ const nextConfig: NextConfig = {
         minimumCacheTTL: 60 * 60 * 24 * 7,
         deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     },
-    allowedDevOrigins: ['*.vercel.app', '*.netlify.app', 'localhost', '172.20.10.6', '172.20.10.2'],
+    allowedDevOrigins: ['*.vercel.app', '*.netlify.app', 'localhost', '172.20.10.6', '172.20.10.2', '*.app.github.dev'],
     experimental: {
         optimizeCss: true,
         optimizePackageImports: ['next-themes'],
