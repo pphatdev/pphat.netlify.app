@@ -25,3 +25,6 @@ Light Mode:
 Dark Mode:
 
 ![Dark Mode](./public/assets/screenshots/origin-dark.png)
+
+
+![Alt](https://repobeats.axiom.co/api/embed/783418e8759bcaf96b6392aaaaf6bc42783ede45.svg "Repobeats analytics image")
