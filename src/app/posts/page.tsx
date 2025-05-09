@@ -73,7 +73,7 @@ const Posts = () => {
                         )}
                     </InfiniteScroll>
                 </article>
-                <div className="w-md max-md:hidden order-last duration-300 mt-5 sticky h-[calc(100vh_-10rem)] overflow-y-auto p-5 top-28 bg-foreground/5 group font-sans rounded-3xl mb-4 ring-1 ring-foreground/10">
+                <div className="w-md shrink-0 max-md:hidden order-last duration-300 mt-5 sticky h-[calc(100vh_-10rem)] overflow-y-auto p-5 top-28 bg-foreground/5 group font-sans rounded-3xl mb-4 ring-1 ring-foreground/10">
 
                 </div>
             </BlurFade>
