@@ -62,8 +62,8 @@ const Posts = () => {
         <main className="w-full flex flex-col gap-7 pb-5">
             <NavigationBar />
             <PostsHero />
-            <BlurFade delay={0.9} inView={true}>
-                <article className="grid max-w-5xl mx-auto p-5 grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-5 min-h-[300px] relative">
+            <BlurFade delay={0.9} inView={true} className="max-w-5xl mx-auto flex gap-5 p-4">
+                <article className="flex flex-col md:p-5 gap-5 min-h-[300px] relative">
                     {posts.map((posts, index) => <PostCard key={index} post={posts} />)}
                     <InfiniteScroll hasMore={hasMore} isLoading={loading} next={next} threshold={1}>
                         {hasMore && (
@@ -73,6 +73,9 @@ const Posts = () => {
                         )}
                     </InfiniteScroll>
                 </article>
+                <div className="w-md max-md:hidden order-first duration-300 mt-5 sticky h-screen overflow-y-auto p-5 top-28 bg-foreground/5 group font-sans rounded-3xl mb-4 ring-1 ring-foreground/10">
+
+                </div>
             </BlurFade>
         </main>
     );

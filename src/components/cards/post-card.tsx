@@ -18,17 +18,21 @@ export const PostCard = ({ post }: { post: Post }) => {
     };
 
     return (
-        <div className="col-span-1 relative duration-300 hover:translate-y-1 overflow-hidden bg-foreground/5 group font-sans rounded-2xl mb-4 ring-1 ring-foreground/10 hover:ring-primary hover:ring-2 transition-all ease-in-out h-full" role="article" tabIndex={-1}>
-            <Image
-                src={post.thumbnail}
-                width={200}
-                height={200}
-                alt={post.title}
-                className="w-full aspect-video object-cover"
-            />
+        <div className="relative duration-300 max-sm:flex-col flex gap-0 hover:translate-y-1 overflow-hidden hover:bg-foreground/5 group font-sans rounded-3xl mb-4 ring-foreground/10 hover:ring-primary hover:ring-2 transition-all ease-in-out h-full" role="article" tabIndex={-1}>
+
+            <div className="h-full py-4 max-sm:p-4 pl-4 sm:shrink-0">
+                <Image
+                    src={post.thumbnail}
+                    width={200}
+                    height={200}
+                    alt={post.title}
+                    className="w-full max-sm:h-40 h-32 aspect-video object-cover rounded-xl"
+                />
+            </div>
+
             <Link href={post.slug ?? '#'} className="inset-0 z-0 absolute" aria-label={post.title} />
 
-            <div className="p-4 relative pointer-events-none">
+            <div className="p-4 w-full relative pointer-events-none">
                 <div className="flex items-center gap-2 mb-2">
                     <time dateTime={new Date(post.createdAt).toISOString()} className="text-xs text-foreground/50 font-sans">{new Date(post.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
                 </div>
