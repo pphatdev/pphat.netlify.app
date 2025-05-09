@@ -18,7 +18,7 @@ export const PostCard = ({ post }: { post: Post }) => {
     };
 
     return (
-        <div className="relative duration-300 max-sm:flex-col flex gap-0 hover:translate-y-1 overflow-hidden hover:bg-foreground/5 group font-sans rounded-3xl mb-4 ring-foreground/10 hover:ring-primary hover:ring-2 transition-all ease-in-out h-full" role="article" tabIndex={-1}>
+        <div className="relative duration-300 max-sm:flex-col max-h-40 flex gap-0 hover:translate-y-1 overflow-hidden bg-foreground/5 group font-sans rounded-3xl mb-4 ring-foreground/10 hover:ring-primary hover:ring-2 transition-all ease-in-out h-full" role="article" tabIndex={-1}>
 
             <div className="h-full py-4 max-sm:p-4 pl-4 sm:shrink-0">
                 <Image
