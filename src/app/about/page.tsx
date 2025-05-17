@@ -1,10 +1,9 @@
-import React from "react";
 import { NavigationBar } from "@components/navbar/navbar";
 import { AboutMeHero } from "@components/heros/about-hero";
 import { AboutTimeline } from "./sections/timeline";
 import { BlurFade } from '@components/ui/blur-fade';
 import { Metadata } from "next";
-import { appDescriptions, appName, currentDomain } from "@lib/data";
+import { appName, currentDomain } from "@lib/data";
 import AboutStructuredData from "@components/about-structured-data";
 
 const appPositions = ["I'm a Senior Front-end Developer", "and a Freelance UI/UX Designer."];
@@ -43,8 +42,7 @@ export const metadata: Metadata = {
 };
 
 
-const Posts = () => {
-
+const AboutPage = () => {
     return (
         <main className="w-full flex flex-col gap-7 pb-5">
             <AboutStructuredData />
@@ -60,4 +58,4 @@ const Posts = () => {
     )
 };
 
-export default Posts;
+export default AboutPage;
