@@ -1,7 +1,6 @@
 'use client'
 
 import { ExperienceCard } from "@components/cards/experience-card"
-import Image from "next/image";
 import React from "react";
 
 export const AboutTimeline = () => {
@@ -59,7 +58,7 @@ export const AboutTimeline = () => {
     ]
 
     return (
-        <div className="max-w-5xl mx-auto px-4 lg:px-6">
+        <div className="max-w-3xl mx-auto px-4 lg:px-6">
             <h1 className="font-medium text-2xl">Experience</h1>
             <div className="relative sm:pb-12 sm:ml-[calc(2rem+1px)] mt-10 md:ml-[calc(3.5rem+1px)] lg:ml-[max(calc(14.5rem+1px),calc(100%-48rem))]">
                 <div className="hidden absolute top-3 bottom-0 right-full mr-7 md:mr-[3.25rem] w-px bg-foreground/20 sm:block"> </div>
