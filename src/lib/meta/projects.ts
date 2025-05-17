@@ -20,7 +20,7 @@ export const projectsMeta: Metadata = {
         url: `${currentDomain}/projects`,
         images: [
             {
-                url: '/assets/screenshots/origin-dark.png',
+                url: '/assets/cover/contributes.png',
                 width: 1900,
                 height: 926,
                 alt: `${appName} Projects`
