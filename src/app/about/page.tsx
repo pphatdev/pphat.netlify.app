@@ -30,9 +30,14 @@ export const metadata: Metadata = {
         title: `${appName} | About Me`,
         description: aboutDescription,
         siteName: appName,
-        images: [{
-            url: currentDomain + "/assets/avatars/hero.webp",
-        }],
+        images: [
+            {
+                url: "/assets/cover/about.png",
+                width: 1900,
+                height: 926,
+                alt: `${appName} Projects`
+            }
+        ],
     },
     formatDetection: {
         email: false,
@@ -57,5 +62,6 @@ const AboutPage = () => {
         </main>
     )
 };
+
 
 export default AboutPage;
