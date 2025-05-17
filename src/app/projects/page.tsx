@@ -10,6 +10,7 @@ import { ProjectCard } from "@components/cards/project-card";
 import { Project } from "../../lib/types/interfaces";
 import { BlurFade } from '@components/ui/blur-fade';
 import { NavigationBar } from "@components/navbar/navbar";
+import ProjectsStructuredData from "@components/projects-structured-data";
 
 const Projects = () => {
     const limit = 9;
@@ -56,10 +57,9 @@ const Projects = () => {
     useEffect(() => {
         next();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    return (
+    }, []); return (
         <main className="w-full flex flex-col gap-7 pb-5">
+            <ProjectsStructuredData />
             <NavigationBar />
             <ProjectHero />
             <BlurFade delay={0.9} inView={true}>
