@@ -7,15 +7,14 @@ import { ThemeToggle } from '@components/ui/theme-switch';
 import { cn } from '@lib/utils';
 
 
-export const AboutMeHero = () => {
-    const appPositions = ["I'm a Senior Front-end Developer", "and a Freelance UI/UX Designer."];
+export const AboutMeHero = ({
+    description,
+    appPositions
+}: {
+    description: string;
+    appPositions: string[];
+}) => {
 
-    const description = `My name is <span className="text-primary font-semibold">Leat Sophat</span>, also known as <span className="text-primary font-semibold">PPhat</span>.
-        I'm a Senior Front-end Developer at <a href="https://turbotech.com.kh/" target="_blank" rel="noopener noreferrer">TURBOTECH CO., LTD</a>, and as a Freelance UI/UX Designer.
-        I'm from <a href="https://en.wikipedia.org/wiki/Phnom_Penh" target="_blank" rel="noopener noreferrer">Phnom Penh, Cambodia</a>.
-
-        I started my career as a Front-end Developer in 2021, and I have a passion for creating beautiful and functional user interfaces. I love to learn new technologies and improve my skills every day. I am also a big fan of open-source projects and I enjoy contributing to the community. I believe that sharing knowledge is the key to success in this field.
-    `;
 
     return (
         <div className="max-w-5xl flex flex-col items-center my-20 pt-10 justify-center mx-auto">
