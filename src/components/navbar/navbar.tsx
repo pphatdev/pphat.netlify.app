@@ -24,8 +24,8 @@ export const NavigationBar = () => {
         },
         {
             name: "About me",
-            link: "#",
-            active: pathname === "#",
+            link: "/about",
+            active: pathname === "/about",
         },
         {
             name: "Contact",
