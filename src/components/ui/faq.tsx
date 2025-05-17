@@ -31,7 +31,7 @@ const FaqSection = React.forwardRef<HTMLElement, FaqSectionProps>(
                 id="faq"
                 ref={ref}
                 className={cn(
-                    "w-full bg-gradient-to-b flex my-20 snap-center items-center justify-center from-transparent via-muted/50 to-transparent min-h-[45rem]",
+                    "w-full bg-gradient-to-b flex mt-20 snap-center items-center justify-center from-transparent via-muted/50 to-transparent min-h-[45rem]",
                     className
                 )}
                 {...props}

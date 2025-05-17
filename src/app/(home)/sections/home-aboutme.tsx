@@ -16,7 +16,7 @@ export const HomeAboutMe = () => {
     `;
 
     return (
-        <div className="max-w-5xl min-h-[45rem] flex flex-col items-center my-20 justify-center mx-auto">
+        <div className="max-w-5xl flex flex-col items-center my-20 justify-center mx-auto">
             <div className="grid grid-cols-1 gap-8 items-center md:grid-cols-2">
                 <div className="flex gap-4 flex-col">
                     <div className='px-5'>
