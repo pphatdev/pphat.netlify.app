@@ -7,6 +7,7 @@ import { cn } from "@lib/utils";
 import { Button } from "./button";
 import { Title } from './title';
 import { BlurFade } from "./blur-fade";
+import { Badge } from "./badge";
 
 interface FaqSectionProps extends React.HTMLAttributes<HTMLElement> {
     title: string;
@@ -30,58 +31,34 @@ const FaqSection = React.forwardRef<HTMLElement, FaqSectionProps>(
                 id="faq"
                 ref={ref}
                 className={cn(
-                    "w-full bg-gradient-to-b flex my-20 snap-center items-center justify-center from-transparent via-muted/50 to-transparent min-h-[45rem]",
+                    "w-full bg-gradient-to-b flex mt-20 snap-center items-center justify-center from-transparent via-muted/50 to-transparent min-h-[45rem]",
                     className
                 )}
                 {...props}
             >
-                <BlurFade delay={0.25} inView>
-                    <div className="container">
-                        {/* Header */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
-                            className="max-w-2xl mx-auto text-center mb-12">
-
-                            <Title as="h2" title={[title]} description={description}></Title>
-
-                        </motion.div>
-
-                        {/* FAQ Items */}
-                        <div className="max-w-2xl mx-auto space-y-2">
-                            {items.map((item, index) => (
-                                <FaqItem
-                                    key={index}
-                                    question={item.question}
-                                    answer={item.answer}
-                                    index={index}
-                                />
-                            ))}
+                <BlurFade delay={0.25} inView className="max-w-5xl w-full mx-auto">
+                    {/* Header */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="text-left mb-12">
+                        <div className="block w-full px-5 py-3 ">
+                            <Badge variant="outline" className='py-1.5 px-3'>Feature</Badge>
                         </div>
+                        <Title as="h2" title={[title]} description={description}></Title>
+                    </motion.div>
 
-                        {/* Contact Section */}
-                        {/* {contactInfo && (
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.3 }}
-                            className="max-w-md mx-auto mt-12 p-6 rounded-lg text-center"
-                        >
-                            <div className="inline-flex items-center justify-center p-1.5 rounded-full mb-4">
-                                <Mail className="h-4 w-4" />
-                            </div>
-                            <p className="text-sm font-medium text-foreground mb-1">
-                                {contactInfo.title}
-                            </p>
-                            <p className="text-xs text-muted-foreground mb-4">
-                                {contactInfo.description}
-                            </p>
-                            <Button size="sm" onClick={contactInfo.onContact}>
-                                {contactInfo.buttonText}
-                            </Button>
-                        </motion.div>
-                    )} */}
+                    {/* FAQ Items */}
+                    <div className="mx-auto space-y-2">
+                        {items.map((item, index) => (
+                            <FaqItem
+                                key={index}
+                                question={item.question}
+                                answer={item.answer}
+                                index={index}
+                            />
+                        ))}
                     </div>
                 </BlurFade>
             </section>

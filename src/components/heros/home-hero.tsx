@@ -23,7 +23,7 @@ export default function HeroSection() {
     }, []);
 
     return (
-        <div className="min-h-[45rem]">
+        <div className="mt-20">
             {mounted && <main className="w-full p-5 flex min-h-[45rem] items-center justify-center mx-auto h-full overflow-x-hidden relative">
 
                 <h1 className="sr-only">{appName}</h1>
@@ -40,7 +40,7 @@ export default function HeroSection() {
                     />
                 </div>
 
-                <section className="flex max-w-5xl justify-center mx-auto md:min-h-screen md:-translate-y-20 max-md:justify-start z-20 flex-col lg:flex-row md:h-full items-center gap-4" aria-label="Introduction">
+                <section className="flex max-w-5xl justify-center mx-auto lg:-translate-y-20 max-md:justify-start z-20 flex-col lg:flex-row md:h-full items-center gap-4" aria-label="Introduction">
                     <div className="px-2 sm:p-5 max-w-3xl">
                         <BlurFade delay={0.15} inView>
                             <div className="text-3xl text-center md:text-left md:text-6xl font-bold">
@@ -106,8 +106,8 @@ export default function HeroSection() {
                                             };
 
                                             Promise.all([
-                                                loadImage('/assets/avatars/krate-1.webp'),
-                                                loadImage('/assets/masks/mask.webp')
+                                                loadImage('https://github.com/pphatdev.png'),
+                                                loadImage('/assets/masks/mask-2.png')
                                             ]).then(([img, mask]) => {
                                                 if (ctx) {
                                                     canvas.width = 200;

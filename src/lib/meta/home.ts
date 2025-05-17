@@ -1,9 +1,9 @@
-import { appDescriptions, appName } from "@lib/data";
+import { appDescriptions, appName, currentDomain } from "@lib/data";
 import { icons } from "./icons";
 import { keywords } from "./keywords";
 
 export const homeHome = {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://pphat.netlify.app'),
+    metadataBase: new URL(currentDomain),
     title: appName,
     description: appDescriptions,
     keywords: keywords,

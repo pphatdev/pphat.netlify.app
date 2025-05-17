@@ -1,9 +1,48 @@
 import React from 'react';
 import { db, Post } from '@lib/db/post';
 import Link from 'next/link';
+import { Metadata } from 'next';
+import { appName, currentDomain } from '@lib/data';
 
 interface Params {
     params: Promise<{ id: string; }>;
+}
+
+export async function generateMetadata(props: Params): Promise<Metadata> {
+    const params = await props.params;
+    const post = db.getById<Post>('posts', params.id);
+
+    if (!post) {
+        return {
+            title: `Post Not Found | ${appName}`,
+            description: 'The requested article could not be found'
+        };
+    }
+
+    // Truncate content for description
+    const description = post.content.substring(0, 160);
+
+    return {
+        title: `${post.title} | ${appName}`,
+        description,
+        authors: [{
+            name: appName,
+            url: currentDomain
+        }],
+        openGraph: {
+            title: `${post.title} | ${appName}`,
+            description,
+            type: 'article',
+            url: `${currentDomain}/posts/${post.id}`,
+            images: post.thumbnail ? [{ url: post.thumbnail.toString() }] : undefined,
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: `${post.title} | ${appName}`,
+            description,
+            images: post.thumbnail ? [{ url: post.thumbnail.toString() }] : undefined,
+        }
+    };
 }
 
 export default async function PostDetail(props: Params) {

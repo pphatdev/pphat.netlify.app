@@ -2,10 +2,12 @@ import "../styles/globals.css";
 import React from "react";
 import type { Metadata } from "next";
 import Providers from "../components/ProgressBarProvider";
+import Script from "next/script";
 import { ThemeProvider } from 'next-themes'
 import { homeHome } from "@lib/meta/home";
 import { aladin, kantumruyPro, poppins, srisakdi, openSans } from "@lib/fonts";
 import { cn } from "@lib/utils";
+import CanonicalURL from "@components/canonical-url";
 export { viewport } from "@lib/meta/viewport";
 export const metadata: Metadata = homeHome;
 
@@ -15,6 +17,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <head>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+                <CanonicalURL />
             </head>
             <body className={cn(
                 poppins.variable,
@@ -34,6 +37,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                     </Providers>
                 </ThemeProvider>
             </body>
+            <Script
+                defer
+                data-domain="dev.pphat.pro"
+                src="https://webtracker.avikmukherjee.tech/tracking-script.js"
+            />
         </html>
     );
 }

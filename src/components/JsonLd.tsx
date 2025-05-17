@@ -31,7 +31,7 @@ export default function JsonLd() {
                         "sameAs": [
                             "https://github.com/pphatdev",
                             "https://pphatdev.github.io",
-                            "https://pphat.netlify.app",
+                            currentDomain,
                             "https://figma.com/@PPhat",
                             "https://kh.linkedin.com/in/pphatdev",
                             "https://x.com/pphatdev",

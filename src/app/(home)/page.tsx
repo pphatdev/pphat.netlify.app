@@ -47,7 +47,7 @@ export const metadata: Metadata = {
 export default function Home() {
 
     return (
-        <div className="w-full">
+        <div className="w-full flex flex-col">
             <OrganizationStructuredData />
             <NavigationBar />
             <section id="hero">

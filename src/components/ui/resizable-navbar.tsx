@@ -11,7 +11,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import React, { useRef, useState } from "react";
-import { Badge } from "./badge";
 
 
 interface NavbarProps {
@@ -28,6 +27,7 @@ interface NavBodyProps {
 interface NavItemsProps {
     items: {
         name: string;
+        active: boolean;
         link: string;
     }[];
     className?: string;
@@ -72,7 +72,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
         <motion.div
             ref={ref}
             // IMPORTANT: Change this to class of `fixed` if you want the navbar to be fixed
-            className={cn("sticky inset-x-0 max-md:top-0 bg-transparent top-5 z-40 w-full", className)}
+            className={cn("fixed inset-x-0 max-md:top-0 bg-transparent top-5 z-40 w-full", className)}
         >
             {React.Children.map(children, (child) =>
                 React.isValidElement(child)
@@ -130,14 +130,20 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
                 <Link
                     onMouseEnter={() => setHovered(idx)}
                     onClick={onItemClick}
-                    className="relative px-4 py-2 text-foreground/80"
+                    className={cn(
+                        "relative px-4 py-2",
+                        item.active ? "text-foreground" : "text-foreground/80"
+                    )}
                     key={`link-${idx}`}
                     href={item.link}
                 >
-                    {hovered === idx && (
+                    {(hovered === idx || item.active) && (
                         <motion.div
-                            layoutId="hovered"
-                            className="absolute inset-0 h-full w-full rounded-full bg-foreground/10 ring-1 ring-foreground/20"
+                            layoutId={"hovered"}
+                            className={cn(
+                                "absolute inset-0 h-full w-full rounded-full bg-foreground/10 ring-1 ring-foreground/20",
+                                // item.active && "bg-foreground/10"
+                            )}
                         />
                     )}
                     <span className="relative z-20">{item.name}</span>
@@ -210,7 +216,7 @@ export const MobileNavMenu = ({
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     className={cn(
-                        "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-background px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
+                        "absolute inset-x-0 top-16 z-50 flex w-full max-w-sm mx-auto flex-col items-center justify-center rounded-lg bg-background/95 backdrop-blur-sm px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
                         className,
                     )}
                 >
@@ -237,7 +243,7 @@ export const MobileNavToggle = ({
 
 export const NavbarLogo = () => {
     return (
-        <Link href="?" className="shrink-0 items-center flex flex-col z-50" aria-label="Home">
+        <Link href="/" className="shrink-0 items-center flex flex-col z-50" aria-label="Home">
             <Image width={32} height={32} src={'/assets/logo/logo-transparent-dark-mode.png'} alt={"Logo"} className="hidden dark:block" />
             <Image width={32} height={32} src={'/assets/logo/logo-transparent-light-mode.png'} alt={"Logo"} className="dark:hidden" />
             {/* {process.env?.NODE_ENV === "development" && <Badge className="py-0.5 pt-1 h-fit -translate-y-3 bg-background text-[8px] uppercase" variant={"outline"}>Dev Mode</Badge>} */}

@@ -3,6 +3,33 @@ import { BlurFade } from "@components/ui/blur-fade"
 import { images } from "./image"
 import Image from 'next/image';
 import Link from 'next/link';
+import { Metadata } from "next";
+import { appName, currentDomain } from "@lib/data";
+
+export const metadata: Metadata = {
+    title: `Gallery | ${appName}`,
+    description: "Explore my photo gallery showcasing memorable moments and experiences.",
+    authors: [{
+        url: currentDomain,
+        name: `${appName} | Gallery`,
+    }],
+    generator: `${appName} | Gallery`,
+    openGraph: {
+        type: "website",
+        url: `${currentDomain}/gallery`,
+        title: `Gallery | ${appName}`,
+        description: "Explore my photo gallery showcasing memorable moments and experiences.",
+        siteName: `${appName} | Gallery`,
+        images: [{
+            url: currentDomain + "/assets/avatars/hero.webp",
+        }],
+    },
+    formatDetection: {
+        email: false,
+        address: false,
+        telephone: false,
+    }
+};
 
 export default function Gallery() {
     return (
