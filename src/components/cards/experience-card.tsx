@@ -31,11 +31,11 @@ export const ExperienceCard = (
 
                 <div className="relative w-full">
                     <div className="inline-flex space-x-3 items-center">
-                        <h3 className="pt-5 text-base font-semibold tracking-tight line-clamp-2 sm:line-clamp-1 text-foreground lg:pt-0"> {title} </h3>
+                        <h2 className="pt-5 text-base font-semibold tracking-tight line-clamp-2 sm:line-clamp-1 text-foreground lg:pt-0"> {title} </h2>
                     </div>
                     {/* <p className="mt-2 mb-3 sm:block line-clamp-2 text-foreground/80"> {description} </p> */}
 
-                    <h4 className="text-xs my-2 font-medium">+ Skills</h4>
+                    <p className="text-xs my-2 font-medium">+ Skills</p>
                     <div className="flex gap-2 flex-wrap">
                         {skills.map(({ icon, title }, key) => {
                             return (
