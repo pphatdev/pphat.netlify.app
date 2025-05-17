@@ -1,10 +1,10 @@
-import { appName } from "@lib/data";
+import { appName, currentDomain } from "@lib/data";
 import { icons } from "./icons";
 import { keywords } from "./keywords";
 import { Metadata } from "next";
 
 export const projectsMeta: Metadata = {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://pphat.netlify.app'),
+    metadataBase: new URL(currentDomain),
     title: `Projects | ${appName}`,
     description: 'Explore my portfolio of web development projects and applications.',
     keywords: [...keywords, 'web development', 'projects', 'portfolio', 'React', 'TypeScript', 'fullstack'],
@@ -17,7 +17,7 @@ export const projectsMeta: Metadata = {
     openGraph: {
         title: `Projects | ${appName}`,
         description: 'Explore my portfolio of web development projects and applications.',
-        url: 'https://pphat.netlify.app/projects',
+        url: `${currentDomain}/projects`,
         images: [
             {
                 url: '/assets/screenshots/origin-dark.png',
