@@ -5,7 +5,7 @@ import { Cover } from '@components/ui/cover';
 import { MagneticArea } from '@components/ui/magnetic-button';
 import { ThemeToggle } from '@components/ui/theme-switch';
 import { cn } from '@lib/utils';
-
+import Image from 'next/image';
 
 export const AboutMeHero = ({
     description,
@@ -14,8 +14,6 @@ export const AboutMeHero = ({
     description: string;
     appPositions: string[];
 }) => {
-
-
     return (
         <div className="max-w-5xl flex flex-col items-center my-20 pt-10 justify-center mx-auto">
             <h1 className='sr-only'>About Me</h1>
@@ -36,7 +34,8 @@ export const AboutMeHero = ({
                         <FlipWords words={appPositions} />
                     </div>
                     <BlurFade delay={0.50} inView className="mt-5 relative flex text-center max-w-full md:text-left">
-                        {description && <p className="max-md:mb-0 my-5 text-left text-foreground/90 tracking-normal [&>*]:hover:transition-all [&>a]:text-primary [&>a]:hover:font-semibold"
+                        {description && <div
+                            className="max-md:mb-0 my-5 text-left text-foreground/90 tracking-normal [&>*]:hover:transition-all [&>a]:text-primary [&>a]:hover:font-semibold"
                             dangerouslySetInnerHTML={
                                 { __html: description.replace(/\n/g, '<br />'), }
                             }
@@ -54,36 +53,55 @@ export const AboutMeHero = ({
                 <BlurFade delay={0.70} inView className="grid max-lg:-translate-y-1/4 max-lg:max-h-60 z-0 max-lg:order-first grid-cols-2 max-md:gap-5 max-lg:gap-2 gap-8 max-md:p-5">
                     <div className='rotate-12 hover:rotate-0 transition-all duration-500'>
                         <div className={cn("relative flex aspect-square w-full rounded-2xl px-1 items-center justify-center overflow-hidden border text-foreground/10 bg-[size:8px_8px] bg-top-left", bgGradientLine45deg)}>
-                            <div
-                                className="h-full w-full bg-center m-1 bg-no-repeat mask-size-[105%_100%] mask-center mask-no-repeat"
+                            <Image
+                                src="/assets/avatars/krate-1.webp"
+                                alt="Personal photo at Krate"
+                                fill
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                className="object-contain m-1"
                                 style={{
-                                    backgroundSize: "contain",
-                                    backgroundImage: `url('/assets/avatars/krate-1.webp')`,
                                     maskImage: `url('/assets/masks/mask.webp')`,
+                                    maskSize: '105% 100%',
+                                    maskPosition: 'center',
+                                    maskRepeat: 'no-repeat'
                                 }}
+                                loading="eager"
+                                priority
                             />
                         </div>
                     </div>
                     <div className='row-span-2 max-lg:rotate-12'>
                         <div className={cn("relative flex w-full h-full rounded-2xl px-2 items-center justify-center overflow-hidden border text-foreground/10 bg-[size:8px_8px] bg-top-left", bgGradientLine45deg)}>
-                            <div
-                                className="h-full w-full bg-center bg-no-repeat mask-size-[130%_100%] mask-center mask-no-repeat"
+                            <Image
+                                src="/assets/avatars/rom-lech.webp"
+                                alt="Personal photo at Rom Lech"
+                                fill
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                className="object-contain"
                                 style={{
-                                    backgroundSize: "contain",
-                                    backgroundImage: `url('/assets/avatars/rom-lech.webp')`,
                                     maskImage: `url('/assets/masks/mask.webp')`,
+                                    maskSize: '130% 100%',
+                                    maskPosition: 'center',
+                                    maskRepeat: 'no-repeat'
                                 }}
+                                loading="eager"
+                                priority
                             />
                         </div>
                     </div>
                     <div className='-rotate-6 hover:rotate-0 transition-all duration-500'>
                         <div className={cn("relative flex aspect-square w-full rounded-2xl items-center justify-center overflow-hidden border text-foreground/10 bg-[size:8px_8px] bg-top-left", bgGradientLine45deg)}>
-                            <div
-                                className="h-full w-full bg-center bg-no-repeat mask-size-[105%_100%] mask-center mask-no-repeat"
+                            <Image
+                                src="/assets/avatars/kampot-2.webp"
+                                alt="Personal photo at Kampot"
+                                fill
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                className="object-cover"
                                 style={{
-                                    backgroundSize: "cover",
-                                    backgroundImage: `url('/assets/avatars/kampot-2.webp')`,
                                     maskImage: `url('/assets/masks/mask.webp')`,
+                                    maskSize: '105% 100%',
+                                    maskPosition: 'center',
+                                    maskRepeat: 'no-repeat'
                                 }}
                             />
                         </div>
