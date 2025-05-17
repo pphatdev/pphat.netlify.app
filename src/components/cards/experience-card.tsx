@@ -35,12 +35,12 @@ export const ExperienceCard = (
                     </div>
                     {/* <p className="mt-2 mb-3 sm:block line-clamp-2 text-foreground/80"> {description} </p> */}
 
-                    <p className="text-xs my-2 font-medium">+ Skills</p>
+                    <p className="text-xs my-2 font-medium">+ Basic Skills</p>
                     <div className="flex gap-2 flex-wrap">
                         {skills.map(({ icon, title }, key) => {
                             return (
-                                <div key={key} className="flex shrink-0 w-fit shadow-card pr-3 shadow-primary/5 bg-background rounded-lg items-center justify-center border text-foreground/5 bg-[size:8px_8px] bg-top-left bg-[image:repeating-linear-gradient(315deg,currentColor_0,currentColor_1px,transparent_0,transparent_50%)]">
-                                    {icon && (<Image src={icon} width={32} height={32} alt={title} className="size-7 px-1.5" />)}
+                                <div key={key} className="flex space-x-1.5 shrink-0 w-fit shadow-card pr-2 shadow-primary/5 bg-background rounded-lg items-center justify-center border text-foreground/5 bg-[size:8px_8px] bg-top-left bg-[image:repeating-linear-gradient(315deg,currentColor_0,currentColor_1px,transparent_0,transparent_50%)]">
+                                    {icon && (<Image src={icon} width={32} height={32} alt={title} className="size-6 p-1 border-r bg-foreground/5 rounded-md" />)}
                                     <span className="text-xs text-foreground">{title}</span>
                                 </div>
                             )
@@ -51,7 +51,7 @@ export const ExperienceCard = (
 
             <dl className="absolute max-sm:left-0 pointer-events-none -top-1 lg:left-auto lg:right-full lg:mr-[calc(6.5rem+1px)]">
                 <dt className="sr-only">Date</dt>
-                <dd className="text-xs leading-6 font-medium sm:text-sm whitespace-nowrap text-foreground/50">
+                <dd className="max-sm:text-[8px] text-xs max-sm:leading-4 leading-6 max-sm:border px-1.5 rounded-t-lg font-medium sm:text-sm whitespace-nowrap text-foreground/50">
                     {date}
                 </dd>
             </dl>
