@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import originData from 'public/data/post.json';
-import InfiniteScroll from "@components/infinit-scroll";
 import { Spinner } from "@components/ui/loading";
 import { staticPaginationJSON } from "@lib/functions/pagination-list";
 import { Post } from "../../lib/types/interfaces";
@@ -15,67 +14,115 @@ const Posts = () => {
     const limit = 9;
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
-    const [hasMore, setHasMore] = useState(true);
-    const [posts, setPost] = useState<Post[]>([]);
+    const [posts, setPosts] = useState<Post[]>([]);
+    const [totalPages, setTotalPages] = useState(1);
 
-    // This function depends on page state
-    const next = useCallback(async () => {
-        if (loading) return;
-
+    // Load data for the current page
+    const loadPage = async (pageNumber: number) => {
         setLoading(true);
 
         try {
             const { posts } = originData;
-            const postData = (posts as unknown as Post[]).filter(posts => posts.published === true);
+            const postData = (posts as unknown as Post[]).filter(post => post.published === true);
 
-            const { data } = staticPaginationJSON(
+            const { data, metadata  } = staticPaginationJSON(
                 postData,
                 postData.length,
                 {
-                    page: page,
+                    page: pageNumber,
                     limit: limit,
                     search: null,
                     sort: 'asc',
                 }
             );
 
-            setPost((prev) => [...prev, ...(data as Post[])]);
-            setPage((prev) => prev + 1);
-
-            if (data.length < limit) setHasMore(false);
-
+            setPosts(data as Post[]);
+            setTotalPages(Math.ceil(metadata.total / limit));
         } catch (error) {
             console.error('Error fetching posts:', error);
-            setHasMore(false);
         } finally {
             setLoading(false);
         }
-    }, [loading, page, limit]);
+    };
 
-    // Only call next() on initial mount
+    // Handle page change
+    const handlePageChange = (newPage: number) => {
+        if (newPage > 0 && newPage <= totalPages) {
+            setPage(newPage);
+            loadPage(newPage);
+            // Scroll to top when changing page
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    };
+
+    // Load initial page
     useEffect(() => {
-        next();
+        loadPage(page);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    // Pagination controls component
+    const PaginationControls = () => {
+        return (
+            <div className="flex justify-center items-center mt-8 gap-2">
+                <button
+                    onClick={() => handlePageChange(page - 1)}
+                    disabled={page === 1}
+                    className="px-4 py-2 rounded-md bg-foreground/10 hover:bg-foreground/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    Previous
+                </button>
+
+                <div className="flex gap-2">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+                        <button
+                            key={pageNum}
+                            onClick={() => handlePageChange(pageNum)}
+                            className={`w-10 h-10 rounded-md flex items-center justify-center ${pageNum === page
+                                ? 'bg-foreground/20 font-bold'
+                                : 'bg-foreground/10 hover:bg-foreground/15'
+                                }`}
+                        >
+                            {pageNum}
+                        </button>
+                    ))}
+                </div>
+
+                <button
+                    onClick={() => handlePageChange(page + 1)}
+                    disabled={page === totalPages}
+                    className="px-4 py-2 rounded-md bg-foreground/10 hover:bg-foreground/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    Next
+                </button>
+            </div>
+        );
+    };
 
     return (
         <main className="w-full flex flex-col gap-7 pb-5">
             <NavigationBar />
             <PostsHero />
-            <BlurFade delay={0.9} inView={true} className="max-w-5xl mx-auto flex gap-5 p-4">
-                <article className="flex flex-col md:p-5 gap-5 min-h-[300px] relative">
-                    {posts.map((posts, index) => <PostCard key={index} post={posts} />)}
-                    <InfiniteScroll hasMore={hasMore} isLoading={loading} next={next} threshold={1}>
-                        {hasMore && (
-                            <div className='col-span-full flex justify-center items-center'>
-                                <Spinner variant={'bars'} />
+            <BlurFade delay={0.9} inView={true}>
+                <article className="grid max-w-5xl mx-auto p-5 grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[300px] relative">
+                    {loading ? (
+                        <div className='col-span-full flex justify-center items-center py-20'>
+                            <Spinner variant={'bars'} />
+                        </div>
+                    ) : (
+                        <>
+                            {posts.map((post, index) => (
+                                <PostCard key={index} post={post} />
+                            ))}
+                            <div className="col-span-full">
+                                <PaginationControls />
                             </div>
-                        )}
-                    </InfiniteScroll>
+                        </>
+                    )}
                 </article>
-                <div className="w-xs shrink-0 max-md:hidden order-last duration-300 mt-5 sticky h-[calc(100vh_-10rem)] overflow-y-auto p-5 top-28 bg-foreground/5 group font-sans rounded-3xl mb-4 ring-1 ring-foreground/10">
+                {/* <div className="w-xs shrink-0 max-md:hidden order-last duration-300 mt-5 sticky h-[calc(100vh_-10rem)] overflow-y-auto p-5 top-28 bg-foreground/5 group font-sans rounded-3xl mb-4 ring-1 ring-foreground/10">
 
-                </div>
+                </div> */}
             </BlurFade>
         </main>
     );
