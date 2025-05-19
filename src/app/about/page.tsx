@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import { appName, currentDomain } from "@lib/data";
 import AboutStructuredData from "@components/about-structured-data";
 import { getOgImageMetadata } from "@lib/utils/og-image";
+import { SectionNavigation } from '../../components/section-navigation';
 
 const appPositions = ["I'm a Senior Front-end Developer", "and a Freelance UI/UX Designer."];
 const description = `My name is <span className="text-primary font-semibold">Leat Sophat</span>, also known as <span className="text-primary font-semibold">PPhat</span>.
@@ -52,14 +53,16 @@ const AboutPage = () => {
     return (
         <main className="w-full flex flex-col gap-7 pb-5">
             <AboutStructuredData />
-            <NavigationBar />
             <AboutMeHero description={description} appPositions={appPositions} />
+            <NavigationBar />
 
-            <section>
+            <section id="experience">
                 <BlurFade delay={1}>
                     <AboutTimeline />
                 </BlurFade>
             </section>
+
+            <SectionNavigation sections={[ 'about-hero', 'experience', ]}/>
         </main>
     )
 };
