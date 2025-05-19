@@ -5,6 +5,7 @@ import { BlurFade } from '@components/ui/blur-fade';
 import { Metadata } from "next";
 import { appName, currentDomain } from "@lib/data";
 import AboutStructuredData from "@components/about-structured-data";
+import { getOgImageMetadata } from "@lib/utils/og-image";
 
 const appPositions = ["I'm a Senior Front-end Developer", "and a Freelance UI/UX Designer."];
 const description = `My name is <span className="text-primary font-semibold">Leat Sophat</span>, also known as <span className="text-primary font-semibold">PPhat</span>.
@@ -15,6 +16,13 @@ const description = `My name is <span className="text-primary font-semibold">Lea
 `;
 
 const aboutDescription = "I'm Leat Sophat (PPhat), a Senior Front-end Developer and Freelance UI/UX Designer from Phnom Penh, Cambodia. Learn more about my journey, skills, and experience.";
+
+// Generate OG image metadata for this page
+const ogImage = getOgImageMetadata({
+    title: `${appName} | About Me`,
+    subtitle: "Senior Front-end Developer & UI/UX Designer",
+    description: aboutDescription
+});
 
 export const metadata: Metadata = {
     title: `${appName} | About Me`,
@@ -30,14 +38,7 @@ export const metadata: Metadata = {
         title: `${appName} | About Me`,
         description: aboutDescription,
         siteName: appName,
-        images: [
-            {
-                url: "/assets/cover/about.png",
-                width: 1900,
-                height: 926,
-                alt: `${appName} Projects`
-            }
-        ],
+        images: [ogImage],
     },
     formatDetection: {
         email: false,
