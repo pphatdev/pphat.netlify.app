@@ -15,6 +15,19 @@ npm run dev
 npm run build
 ```
 
+# Features
+
+## Contact Form
+
+The website includes a fully functional contact form that sends emails to `info.sophat@gmail.com` using Gmail.
+
+To set up the email functionality:
+
+1. Generate an App Password in your Google Account settings
+2. Create a `.env.local` file based on `.env.example`
+3. Add your Gmail credentials to the `.env.local` file
+
+For detailed setup instructions, see [Email Setup Documentation](./doc/email-setup.md).
 
 # 🧪 Tested Result
 
