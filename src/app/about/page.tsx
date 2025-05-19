@@ -62,7 +62,7 @@ const AboutPage = () => {
                 </BlurFade>
             </section>
 
-            <SectionNavigation sections={[ 'about-hero', 'experience', ]}/>
+            {/* <SectionNavigation sections={[ 'about-hero', 'experience', ]}/> */}
         </main>
     )
 };

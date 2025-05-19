@@ -61,7 +61,9 @@ export const GetInTouchSections = () => {
                 </p>
                 <div className="flex flex-col items-start sm:flex-row sm:items-center sm:gap-4">
                     <div className="mt-6 flex justify-center">
-                        <Button className="rounded-full cursor-pointer"> Contact us </Button>
+                        <Button className="rounded-full cursor-pointer" asChild>
+                            <a href="/contact">Contact us</a>
+                        </Button>
                     </div>
                 </div>
             </div>

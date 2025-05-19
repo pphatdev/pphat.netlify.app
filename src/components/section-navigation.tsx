@@ -14,7 +14,7 @@ export const SectionNavigation = (
         "features",
         "faq",
         "contact",
-    ] }: { sections: string[]; }
+    ] }: { sections?: string[]; }
 ) => {
     const [activeSection, setActiveSection] = useState('hero');
     const [isHomeSection, setIsHomeSection] = useState(true);
