@@ -33,7 +33,7 @@ export async function GET(req: NextRequest) {
                     textAlign: 'center',
                 }}
             >
-                <div style={{ width: '512', display: 'flex', flexDirection: 'column' }}>
+                <div style={{ width: '512px', display: 'flex', flexDirection: 'column' }}>
                     <h1 style={{ margin: '0', fontSize: '82px', lineHeight: 1.2, fontFamily: 'sans-serif', fontWeight: 700, whiteSpace: 'nowrap' }}>🤩 {title}</h1>
                     <p style={{ fontSize: '36px', marginTop: "0", opacity: 0.9, fontWeight: 500 }}>{subtitle}</p>
                     <p style={{ fontSize: '36px', margin: '20px 0 0', opacity: 0.9, fontWeight: 400 }}>{description}</p>
