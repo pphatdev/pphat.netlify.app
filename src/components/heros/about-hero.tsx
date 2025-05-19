@@ -2,8 +2,6 @@ import { bgGradientLine45deg } from '@components/background/gradient-line';
 import { FlipWords } from '@components/flip-words';
 import { BlurFade } from '@components/ui/blur-fade';
 import { Cover } from '@components/ui/cover';
-import { MagneticArea } from '@components/ui/magnetic-button';
-import { ThemeToggle } from '@components/ui/theme-switch';
 import { cn } from '@lib/utils';
 import Image from 'next/image';
 
@@ -15,7 +13,7 @@ export const AboutMeHero = ({
     appPositions: string[];
 }) => {
     return (
-        <div className="max-w-5xl flex flex-col items-center my-20 pt-10 justify-center mx-auto">
+        <section id='about-hero' className="max-w-5xl flex flex-col items-center my-20 pt-10 justify-center mx-auto">
             <h1 className='sr-only'>About Me</h1>
             <p className='sr-only'>{description}</p>
             <div className="grid grid-cols-1 gap-8 items-center justify-center lg:grid-cols-2">
@@ -41,14 +39,6 @@ export const AboutMeHero = ({
                             }
                         />}
                     </BlurFade>
-
-                    <BlurFade delay={0.70} inView>
-                        <nav className="flex flex-col z-50 justify-center sm:justify-start sm:flex-row items-center gap-4 mt-6 max-md:px-3">
-                            <MagneticArea>
-                                <ThemeToggle />
-                            </MagneticArea>
-                        </nav>
-                    </BlurFade>
                 </div>
                 <BlurFade delay={0.70} inView className="grid max-lg:-translate-y-1/4 max-lg:max-h-60 z-0 max-lg:order-first grid-cols-2 max-md:gap-5 max-lg:gap-2 gap-8 max-md:p-5">
                     <div className='rotate-12 hover:rotate-0 transition-all duration-500'>
@@ -70,7 +60,7 @@ export const AboutMeHero = ({
                             />
                         </div>
                     </div>
-                    <div className='row-span-2 max-lg:rotate-12'>
+                    <div className='row-span-2'>
                         <div className={cn("relative flex w-full h-full rounded-2xl px-2 items-center justify-center overflow-hidden border text-foreground/10 bg-[size:8px_8px] bg-top-left", bgGradientLine45deg)}>
                             <Image
                                 src="/assets/avatars/rom-lech.webp"
@@ -108,6 +98,6 @@ export const AboutMeHero = ({
                     </div>
                 </BlurFade>
             </div>
-        </div>
+        </section>
     )
 }
