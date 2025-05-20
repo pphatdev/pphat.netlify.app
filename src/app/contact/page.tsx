@@ -84,7 +84,9 @@ export default function ContactPage() {
             ...prev,
             [name]: value
         }));
-    }; const handleSubmit = async (e: FormEvent) => {
+    };
+
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
         // Validate the form
