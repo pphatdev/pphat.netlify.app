@@ -3,3 +3,5 @@ disallow: /downloads/
 
 user-agent: magicsearchbot
 disallow: /uploads/
+
+Sitemap: https://pphat.top/sitemap.xml
