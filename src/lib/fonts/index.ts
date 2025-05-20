@@ -1,4 +1,4 @@
-import { Aladin, Kantumruy_Pro, Open_Sans, Poppins, Srisakdi } from "next/font/google";
+import { Aladin, Kantumruy_Pro, Noto_Color_Emoji, Open_Sans, Poppins, Srisakdi } from "next/font/google";
 
 export const aladin = Aladin({
     variable: "--font-aladin",
@@ -38,4 +38,12 @@ export const openSans = Open_Sans({
     subsets: ["latin"],
     display: "swap",
     preload: true,
-})
+});
+
+export const notoColorEmoji = Noto_Color_Emoji({
+    variable: "--font-noto-emoji",
+    weight: ["400"],
+    subsets: ["emoji"],
+    display: "swap",
+    preload: true,
+});
