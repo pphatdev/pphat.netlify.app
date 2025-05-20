@@ -3,7 +3,7 @@ import OrganizationStructuredData from "@components/organization-structured-data
 import dynamic from 'next/dynamic';
 import GetInTouchSections from "./sections/home-getintouch";
 import { Metadata } from "next";
-import { appDescriptions, appName, currentDomain } from "@lib/data";
+import { appDescriptions, appName, currentDomain } from "@lib/constants";
 import { BlurFade } from "@components/ui/blur-fade";
 import { HomeSkills } from "./sections/home-skills";
 import { HomeFeatureSection } from "./sections/home-feature";

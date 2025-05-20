@@ -1,5 +1,5 @@
 import { Button } from "@components/ui/button";
-import { appName, appPositions } from "@lib/data";
+import { appName, appPositions } from "@lib/constants";
 
 export const GetInTouchSections = () => {
     return (

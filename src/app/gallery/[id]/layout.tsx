@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { appName } from '@lib/data';
+import { appName } from '@lib/constants';
 
 // This provides a base metadata for gallery dynamic routes
 export const metadata: Metadata = {

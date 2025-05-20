@@ -5,7 +5,7 @@ import React from "react";
 import { Cover } from "@components/ui/cover";
 import { FlipWords } from "@components/flip-words";
 import { GridPattern } from "@components/ui/grid-pattern";
-import { appDescriptions, appName, appPositions } from "@lib/data";
+import { appDescriptions, appName, appPositions } from "@lib/constants";
 import { NavMenu } from "@components/dock-menu";
 import { ThemeToggle } from "@components/ui/theme-switch";
 import { MagneticArea } from "@components/ui/magnetic-button";

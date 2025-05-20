@@ -3,7 +3,7 @@ import { AboutMeHero } from "@components/heros/about-hero";
 import { AboutTimeline } from "./sections/timeline";
 import { BlurFade } from '@components/ui/blur-fade';
 import { Metadata } from "next";
-import { appName, currentDomain } from "@lib/data";
+import { appName, currentDomain } from "@lib/constants";
 import AboutStructuredData from "@components/about-structured-data";
 import { getOgImageMetadata } from "@lib/utils/og-image";
 import { SectionNavigation } from '../../components/section-navigation';

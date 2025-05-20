@@ -2,7 +2,7 @@ import React from 'react';
 import { db, Post } from '@lib/db/post';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { appName, currentDomain } from '@lib/data';
+import { appName, currentDomain } from '@lib/constants';
 
 interface Params {
     params: Promise<{ id: string; }>;

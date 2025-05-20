@@ -4,7 +4,7 @@ import { images } from "./image"
 import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from "next";
-import { appName, currentDomain } from "@lib/data";
+import { appName, currentDomain } from "@lib/constants";
 
 export const metadata: Metadata = {
     title: `Gallery | ${appName}`,
