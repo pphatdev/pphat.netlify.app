@@ -52,8 +52,9 @@ export async function POST(request: NextRequest) {
                 { error: 'Please provide a valid email address' },
                 { status: 400 }
             );
-        }        // Basic spam detection
-        const spamTriggers = /viagra|casino|lottery|crypto|bitcoin|earn money|make money fast|\\$\\d+,\\d+ a day/i;
+        }
+        // Basic spam detection
+        const spamTriggers = /viagra|casino|lottery|crypto|bitcoin|earn money|make money fast|\$\d+,\d+ a day/i;
         if (spamTriggers.test(message)) {
             // Silent fail for likely spam
             return NextResponse.json({
