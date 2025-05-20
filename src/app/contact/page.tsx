@@ -1,7 +1,6 @@
 "use client";
 
 import { NavigationBar } from "@components/navbar/navbar";
-import { Title } from "@components/ui/title";
 import { BlurFade } from '@components/ui/blur-fade';
 import { Label } from "@components/ui/label";
 import { Input } from "@components/ui/input";
@@ -9,13 +8,11 @@ import { Button } from "@components/ui/button";
 import { Card, CardContent } from "@components/ui/card";
 import { Textarea, LoadingSpinner } from "@components/ui";
 import { useState, FormEvent, useEffect } from "react";
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
-import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_LOCATION } from "@lib/constants";
-import { ShinyButton } from "@components/ui/shiny-button";
+import { Send,  AlertCircle } from "lucide-react";
 import { BorderBeam } from "@components/ui/border-beam";
 import { GridPattern } from "@components/ui/grid-pattern";
-import { NeonGradientCard } from "@components/ui/neon-gradient";
 import { Ripple } from "@components/ui/ripple";
+import { ContactHero } from "@components/heros/contact-hero";
 
 export default function ContactPage() {
     // Form state
@@ -134,7 +131,8 @@ export default function ContactPage() {
 
     return (
         <>
-            <NavigationBar />
+            <NavigationBar/>
+            <ContactHero/>
             <main className="min-h-screen relative pt-24 bg-gradient-to-b from-background via-muted/30 to-background">
                 <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
                     <GridPattern
@@ -146,25 +144,18 @@ export default function ContactPage() {
                         className={"[mask-image:radial-gradient(300px_circle_at_center,white,transparent)] absolute w-full "}
                     />
                 </div>
-                <div className="fixed inset-0 translate-y-1/4 pointer-events-none" aria-hidden="true">
-                    <Ripple mainCircleSize={400} numCircles={100} className="opacity-60"/>
+                <div className="absolute overflow-hidden inset-0 pointer-events-none" aria-hidden="true">
+                    <Ripple mainCircleSize={300} numCircles={10} className="opacity-30"/>
                 </div>
-                <BlurFade className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="pt-16">
-                        <Title
-                            as="h1"
-                            title={["Get in", "Touch"]}
-                            description="Get in touch with me. I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision."
-                            className="mb-16 text-center"
-                        />
-
+                <BlurFade delay={0.7} className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div>
                         {/* Contact Form */}
                         <div className="translate-y-2">
-                            <Card className="overflow-hidden bg-background relative rounded-3xl rounded-b-none border-border/50 shadow-lg shadow-primary/5">
+                            <Card className="overflow-hidden bg-background/90 backdrop-blur-sm relative rounded-3xl border-border/50 shadow-lg shadow-primary/5">
                                 <CardContent className="p-6 sm:px-8">
                                     {submitted ? (
                                         <div className="text-center py-12">
-                                            <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full text-green-500 mb-4">
+                                            <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full text-primary mb-4">
                                                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                                 </svg>
@@ -173,7 +164,7 @@ export default function ContactPage() {
                                             <p className="text-muted-foreground mb-2">Thank you for reaching out. Your message has been sent to:</p>
                                             <p className="font-medium text-primary mb-6">info.sophat@gmail.com</p>
                                             <p className="text-sm text-muted-foreground mb-6">I'll get back to you as soon as possible.</p>
-                                            <Button onClick={() => setSubmitted(false)}>Send Another Message</Button>
+                                            <Button className="rounded-full cursor-pointer" onClick={() => setSubmitted(false)}>Send Another Message</Button>
                                         </div>
                                     ) : (
                                         <form onSubmit={handleSubmit} className="space-y-6">
