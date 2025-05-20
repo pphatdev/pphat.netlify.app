@@ -2,6 +2,8 @@
  * Utility functions for generating OpenGraph image URLs
  */
 
+import { currentDomain } from "@lib/constants";
+
 type OgImageParams = {
     title?: string;
     subtitle?: string;
@@ -22,7 +24,7 @@ export function getOgImageUrl({
     if (subtitle) params.append('subtitle', subtitle);
     if (description) params.append('description', description);
 
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://pphat.netlify.app';
+    const baseUrl = currentDomain;
     return `${baseUrl}/api/og?${params.toString()}`;
 }
 
