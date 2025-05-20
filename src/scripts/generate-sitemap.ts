@@ -1,81 +1,94 @@
-import { writeFileSync } from 'fs';
+import { writeFileSync, readFileSync } from 'fs';
 import { join } from 'path';
-import { readdirSync } from 'fs';
 import { currentDomain } from '../lib/constants';
 
-interface Route {
+interface SitemapRoute {
     path: string;
     changefreq: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
     priority: number;
+    lastmod?: string;
 }
 
-const today = new Date().toISOString().split('T')[0];
-
-// Known routes in the application
-const pagesDirectory = join(process.cwd(), 'src/app');
-
-function getRoutes(dir: string, baseRoute: string = ''): Route[] {
-    const routes: Route[] = [];
-    const files = readdirSync(dir, { withFileTypes: true });
-
-    for (const file of files) {
-        if (file.isDirectory()) {
-            routes.push(...getRoutes(join(dir, file.name), `${baseRoute}/${file.name}`));
-        } else {
-            if (file.name === 'page.tsx') {
-                let path = `${baseRoute}`
-                    .replace(/\/\([^)]+\)/g, '') // remove all path contains `(name)/`
-                    .replace(/\/$/, ''); // remove trailing slash
-
-                if (path === '/404' || path === '/500' || path === '/_app' || path === '/_document') continue;
-
-                // skip prefix `admin`, `auth`, `api`
-                if (path.startsWith('/admin') || path.startsWith('/auth') || path.startsWith('/api')) continue;
-
-
-                routes.push({
-                    path: path || '/', // use '/' for empty path
-                    changefreq: path === '' ? 'weekly' : 'monthly',
-                    priority: path === '' ? 1.0 : 0.8
-                });
-            }
-        }
-    }
-
-    return routes;
+interface PostData {
+    id: string;
+    slug: string;
+    published: boolean;
+    createdAt: string;
 }
 
-const routes: Route[] = getRoutes(pagesDirectory);
+// Define static routes for the site
+const STATIC_ROUTES: SitemapRoute[] = [
+    { path: '/', changefreq: 'weekly', priority: 1.0 },
+    { path: '/about', changefreq: 'monthly', priority: 0.8 },
+    { path: '/contact', changefreq: 'monthly', priority: 0.8 },
+    { path: '/gallery', changefreq: 'monthly', priority: 0.8 },
+    { path: '/posts', changefreq: 'weekly', priority: 0.9 },
+    { path: '/projects', changefreq: 'monthly', priority: 0.8 },
+    { path: '/login', changefreq: 'monthly', priority: 0.5 },
+];
 
-export function generateSitemap(): void {
+// Get dynamic post detail routes from post data
+function fetchPostRoutes(): SitemapRoute[] {
     try {
+        // Read posts from JSON file
+        const postsFilePath = join(process.cwd(), 'public/data/post.json');
+
+        const postsData = JSON.parse(readFileSync(postsFilePath, 'utf-8'));
+        const posts = postsData.posts as PostData[];
+
+        // Filter published posts and create route objects
+        const publishedPosts = posts.filter(post => post.published);
+        console.log(`${publishedPosts.length} posts are published and will be included in sitemap`);
+
+        return publishedPosts.map(post => ({
+            path: `/posts/${post.slug}`,
+            changefreq: 'monthly' as const,
+            priority: 0.7,
+            lastmod: new Date(post.createdAt).toISOString().split('T')[0]
+        }));
+    } catch (error) {
+        console.error('Error reading post data:', error);
+        return [];
+    }
+}
+
+// Generate and save the sitemap
+export function createSitemap(): void {
+    try {
+        const today = new Date().toISOString().split('T')[0];
+        const postRoutes = fetchPostRoutes();
+        const allRoutes = [...STATIC_ROUTES, ...postRoutes];
+
+        console.log('\n📁 Site Routes:');
+
+        allRoutes.forEach((route, index) => {
+            const isLast = index === allRoutes.length - 1;
+            console.log(`${isLast ? ' └──' : ' ├──'} ${route.path}`);
+        });
+
+        console.log('\n');
+
         const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-            <urlset
-                xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-                http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-                <!-- created with pphat.netlify.app -->
-                ${routes.map(
-            route => (`
-                        <url>
-                            <loc>${encodeURI(`${currentDomain}${route.path}`)}</loc>
-                            <lastmod>${today}</lastmod>
-                            <changefreq>${route.changefreq}</changefreq>
-                            <priority>${route.priority.toFixed(1)}</priority>
-                        </url>`
-            )
-        ).join('\n')}
+            <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+                <!-- Generated by PPhat's sitemap generator -->
+                ${allRoutes.map(route => `
+                    <url>
+                        <loc>${encodeURI(`${currentDomain}${route.path}`)}</loc>
+                        <lastmod>${route.lastmod || today}</lastmod>
+                        <changefreq>${route.changefreq}</changefreq>
+                        <priority>${route.priority.toFixed(1)}</priority>
+                    </url>
+                `).join('')}
             </urlset>`;
 
-        const outputPath = join(__dirname, '../../public/sitemap.xml');
-        writeFileSync(outputPath, sitemap.replace(/\s+/g, " "), 'utf-8');
-        console.log('✅ Sitemap generated successfully.');
+        const outputPath = join(process.cwd(), 'public/sitemap.xml');
+        writeFileSync(outputPath, sitemap, 'utf-8');
+        console.log(`✅ Sitemap generated successfully at ${outputPath}`);
     } catch (error) {
         console.error('❌ Error generating sitemap:', error);
         process.exit(1);
     }
 }
 
-// Run the function
-generateSitemap();
+// Run the generator
+createSitemap();
