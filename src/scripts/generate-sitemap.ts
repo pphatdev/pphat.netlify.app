@@ -1,7 +1,7 @@
-import { currentDomain } from '../lib/data';
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 import { readdirSync } from 'fs';
+import { currentDomain } from '../lib/constants';
 
 interface Route {
     path: string;
