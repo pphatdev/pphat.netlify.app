@@ -32,7 +32,7 @@ export const metadata: Metadata = {
         siteName: appName,
         images: [
             {
-                url: '/assets/cover/about.png',
+                url: `${currentDomain}/assets/cover/about.png`,
                 width: 1200,
                 height: 630,
                 alt: "Leat Sophat - Portfolio & Personal Website",
