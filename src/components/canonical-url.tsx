@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { currentDomain } from '@lib/data';
+import { currentDomain } from '@lib/constants';
 import { useEffect, useState } from 'react';
 
 export default function CanonicalURL() {

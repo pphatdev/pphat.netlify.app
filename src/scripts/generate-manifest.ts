@@ -1,6 +1,6 @@
 import { writeFileSync } from 'fs';
 import { join } from 'path';
-import { appDescriptions, appName } from '../lib/data';
+import { appDescriptions, appName } from '../lib/constants';
 
 interface ManifestIcon {
     src: string;
@@ -167,7 +167,7 @@ export function generateManifest(): void {
     const manifest = createManifest();
     const outputPath = join(__dirname, '../../public/site.webmanifest');
 
-    writeFileSync(outputPath.replace(/\s+/g, " "), JSON.stringify(manifest, null, 2));
+    writeFileSync(outputPath, JSON.stringify(manifest, null, 2));
     console.log('✅ Web manifest generated successfully.');
 }
 

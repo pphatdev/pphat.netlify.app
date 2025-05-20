@@ -1,4 +1,4 @@
-import { appName, currentDomain } from "@lib/data";
+import { appName, currentDomain } from "../constants";
 import { icons } from "./icons";
 import { keywords } from "./keywords";
 import { Metadata } from "next";

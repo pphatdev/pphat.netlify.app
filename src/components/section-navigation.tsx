@@ -6,20 +6,29 @@ import Link from "next/link";
 import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { usePathname } from "next/navigation";
 
-export const SectionNavigation = () => {
-    const [activeSection, setActiveSection] = useState('hero');
-    const [isHomeSection, setIsHomeSection] = useState(true);
-    const [isScrolling, setIsScrolling] = useState(false);
-    const pathname = usePathname();
-
-    const sections = useMemo(() => [
+export const SectionNavigation = (
+    { sections = [
         "hero",
         "skills",
         "about",
         "features",
         "faq",
         "contact",
-    ], []);
+    ] }: { sections?: string[]; }
+) => {
+    const [activeSection, setActiveSection] = useState('hero');
+    const [isHomeSection, setIsHomeSection] = useState(true);
+    const [isScrolling, setIsScrolling] = useState(false);
+    const pathname = usePathname();
+
+    // const sections = useMemo(() => [
+    //     "hero",
+    //     "skills",
+    //     "about",
+    //     "features",
+    //     "faq",
+    //     "contact",
+    // ], []);
 
     const handleScroll = useCallback(() => {
         if (isScrolling) return;

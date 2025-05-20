@@ -1,4 +1,4 @@
-// import { appName } from '@lib/data';
+// import { appName } from '@lib/constants';
 import Head from 'next/head';
 import JsonLd from './JsonLd';
 

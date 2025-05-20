@@ -1,6 +1,6 @@
 'use client';
 
-import { appDescriptions, appName, appPositions, appTitle, currentDomain } from "@lib/data";
+import { appDescriptions, appName, appPositions, appTitle, currentDomain } from "@lib/constants";
 import Script from "next/script";
 
 export default function JsonLd() {

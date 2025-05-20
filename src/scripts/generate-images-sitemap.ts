@@ -1,4 +1,4 @@
-import { currentDomain } from "../lib/data";
+import { currentDomain } from "../lib/constants";
 import { readdirSync, writeFileSync } from "fs";
 import { join } from "path";
 
@@ -41,11 +41,9 @@ export async function generateImageSitemap() {
             '    </image:image>',
             '  </url>',
             '</urlset>'
-        ].join('\n');
-
-        // Write to file with error handling
+        ].join('\n');        // Write to file with error handling
         const outputPath = join(process.cwd(), 'public', 'image-sitemap.xml');
-        writeFileSync(outputPath.replace(/\s+/g, ""), sitemap, 'utf-8');
+        writeFileSync(outputPath, sitemap.replace(/\s+/g, " "), 'utf-8');
         console.log('✅ Image sitemap generated successfully.');
     } catch (error) {
         console.error('❌ Error generating sitemap:', error instanceof Error ? error.message : error);

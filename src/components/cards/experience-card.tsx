@@ -49,7 +49,7 @@ export const ExperienceCard = (
                 </div>
             </div>
 
-            <dl className="absolute max-sm:left-0 pointer-events-none -top-1 lg:left-auto lg:right-full lg:mr-[calc(6.5rem+1px)]">
+            <dl className="absolute max-sm:left-0 pointer-events-none -top-1 lg:-left-[calc(14.5rem)] lg:mr-[calc(6.5rem+1px)]">
                 <dt className="sr-only">Date</dt>
                 <dd className="max-sm:text-[8px] text-xs max-sm:leading-4 leading-6 max-sm:border px-1.5 rounded-t-lg font-medium sm:text-sm whitespace-nowrap text-foreground/50">
                     {date}

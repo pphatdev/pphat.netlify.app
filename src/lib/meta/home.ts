@@ -1,4 +1,4 @@
-import { appDescriptions, appName, currentDomain } from "@lib/data";
+import { appDescriptions, appName, currentDomain } from "@lib/constants";
 import { icons } from "./icons";
 import { keywords } from "./keywords";
 

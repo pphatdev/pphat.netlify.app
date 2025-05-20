@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { appName, currentDomain } from '@lib/data';
+import { appName, currentDomain } from '@lib/constants';
 
 export default function AboutStructuredData() {
     const structuredData = {

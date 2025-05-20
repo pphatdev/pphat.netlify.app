@@ -3,6 +3,3 @@ disallow: /downloads/
 
 user-agent: magicsearchbot
 disallow: /uploads/
-
-sitemap: https://new-pphat.netlify.app/sitemap.xml
-sitemap: https://new-pphat.netlify.app/image-sitemap.xml
