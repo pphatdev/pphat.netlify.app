@@ -11,9 +11,9 @@ export const metadata: Metadata = {
     description: "Explore my photo gallery showcasing memorable moments and experiences.",
     authors: [{
         url: currentDomain,
-        name: `${appName} | Gallery`,
+        name: `${appName}`,
     }],
-    generator: `${appName} | Gallery`,
+    generator: `Gallery | ${appName}`,
     openGraph: {
         type: "website",
         url: `${currentDomain}/gallery`,

@@ -17,7 +17,7 @@ const description = `My name is <span className="text-primary font-semibold">Lea
 const aboutDescription = "I am Leat Sophat (PPhat), a Senior Front-end Developer and Freelance UI/UX Designer from Phnom Penh, Cambodia. Learn more about my journey, skills, and experience.";
 
 export const metadata: Metadata = {
-    title: `${appName} | About Me`,
+    title: `About ${appName}`,
     description: aboutDescription,
     authors: [{
         url: currentDomain,
@@ -27,16 +27,12 @@ export const metadata: Metadata = {
     openGraph: {
         type: "profile",
         url: currentDomain + "/about",
-        title: `${appName} | About Me`,
+        title: `${appName}`,
         description: aboutDescription,
         siteName: appName,
         images: [
-            {
-                url: `${currentDomain}/assets/cover/about.png`,
-                width: 1200,
-                height: 630,
-                alt: "Leat Sophat - Portfolio & Personal Website",
-            },
+            { url: `${currentDomain}/assets/screenshots/about-light.png`, },
+            { url: `${currentDomain}/assets/screenshots/about-dark.png`, },
         ],
     },
     formatDetection: {

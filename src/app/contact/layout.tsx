@@ -1,19 +1,11 @@
 import React from "react";
 import { Metadata } from "next";
 import { appName, currentDomain } from "@lib/constants";
-import { getOgImageMetadata } from "@lib/utils/og-image";
 
 const contactDescription = "Get in touch with me. I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.";
 
-// Generate OG image metadata for this page
-const ogImage = getOgImageMetadata({
-    title: `${appName} | Contact`,
-    subtitle: "Get in touch",
-    description: contactDescription
-});
-
 export const metadata: Metadata = {
-    title: `${appName} | Contact`,
+    title: `Contact | ${appName}`,
     description: contactDescription,
     authors: [{
         url: currentDomain,
@@ -23,10 +15,13 @@ export const metadata: Metadata = {
     openGraph: {
         type: "website",
         url: currentDomain + "/contact",
-        title: `${appName} | Contact`,
+        title: `Contact | ${appName}`,
         description: contactDescription,
         siteName: appName,
-        images: [ogImage],
+        images: [
+            { url: `${currentDomain}/assets/screenshots/contact-light.png`, },
+            { url: `${currentDomain}/assets/screenshots/contact-dark.png`, },
+        ],
     },
     formatDetection: {
         email: true,

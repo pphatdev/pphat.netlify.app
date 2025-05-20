@@ -14,6 +14,81 @@
       "slug": "hello-world",
       "published": true,
       "createdAt": "2025-03-31T10:12:15.648Z"
+    },
+    {
+      "id": "b7d8e5f2-c9a1-4d6e-8f3b-2m5n7p8q9r0s",
+      "tags": ["javascript", "programming"],
+      "authors": [{
+        "name": "PPhat DEv",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://pphat.top"
+      }],
+      "thumbnail":"https://picsum.photos/200/301",
+      "title": "JavaScript Best Practices",
+      "content": "Essential tips for writing clean and maintainable JavaScript code.",
+      "slug": "javascript-best-practices",
+      "published": true,
+      "createdAt": "2025-04-01T14:30:00.000Z"
+    },
+    {
+      "id": "c1d2e3f4-g5h6-i7j8-k9l0-m1n2o3p4q5r6",
+      "tags": ["react", "frontend"],
+      "authors": [{
+        "name": "PPhat DEv",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://pphat.top"
+      }],
+      "thumbnail":"https://picsum.photos/200/302",
+      "title": "React Hooks Guide",
+      "content": "A comprehensive guide to using React Hooks in your applications.",
+      "slug": "react-hooks-guide",
+      "published": true,
+      "createdAt": "2025-04-02T09:15:00.000Z"
+    },
+    {
+      "id": "s7t8u9v0-w1x2-y3z4-a5b6-c7d8e9f0g1h2",
+      "tags": ["css", "design"],
+      "authors": [{
+        "name": "PPhat DEv",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://pphat.top"
+      }],
+      "thumbnail":"https://picsum.photos/200/303",
+      "title": "CSS Grid Layout",
+      "content": "Master CSS Grid Layout with practical examples and tips.",
+      "slug": "css-grid-layout",
+      "published": true,
+      "createdAt": "2025-04-03T16:45:00.000Z"
+    },
+    {
+      "id": "h3i4j5k6-l7m8-n9o0-p1q2-r3s4t5u6v7w8",
+      "tags": ["nodejs", "backend"],
+      "authors": [{
+        "name": "PPhat DEv",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://pphat.top"
+      }],
+      "thumbnail":"https://picsum.photos/200/304",
+      "title": "Node.js Performance Tips",
+      "content": "Optimize your Node.js applications with these performance tips.",
+      "slug": "nodejs-performance-tips",
+      "published": true,
+      "createdAt": "2025-04-04T11:20:00.000Z"
+    },
+    {
+      "id": "x9y0z1a2-b3c4-d5e6-f7g8-h9i0j1k2l3m4",
+      "tags": ["typescript", "programming"],
+      "authors": [{
+        "name": "PPhat DEv",
+        "profile": "https://github.com/pphatdev.png",
+        "url": "https://pphat.top"
+      }],
+      "thumbnail":"https://picsum.photos/200/305",
+      "title": "TypeScript Fundamentals",
+      "content": "Learn the basics of TypeScript and its benefits in modern web development.",
+      "slug": "typescript-fundamentals",
+      "published": true,
+      "createdAt": "2025-04-05T13:25:00.000Z"
     }
   ],
   "postDetail": []
