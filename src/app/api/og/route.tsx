@@ -12,10 +12,11 @@ export async function GET(req: NextRequest) {
         const description = searchParams.get('description') || 'Portfolio & Personal Website';
 
         // For edge runtime, we need to fetch the image and convert it
-        const imageUrl = new URL('/assets/logo/logo-transparent-dark-mode.png', 'https://pphat.netlify.app').href;
+        const imageUrl = new URL('/assets/logo/logo-transparent-dark-mode.png', 'https://pphat.top').href;
         const imageData = await fetch(imageUrl).then(res => res.arrayBuffer());
         const imageBase64 = `data:image/png;base64,${Buffer.from(imageData).toString('base64')}`;
 
+        /* eslint-disable */
         return new ImageResponse(
             (<div
                 style={{
