@@ -8,7 +8,9 @@ import Link from "next/link"
 import { useState } from "react"
 import { usePathname } from "next/navigation"
 
-export const NavigationBar = () => {
+export const NavigationBar = (
+    { className }: { className?: string },
+) => {
     const pathname = usePathname();
 
     const navItems = [
@@ -26,7 +28,7 @@ export const NavigationBar = () => {
             name: "About me",
             link: "/about",
             active: pathname === "/about",
-        },        {
+        }, {
             name: "Contact",
             link: "/contact",
             active: pathname === "/contact",
@@ -36,7 +38,7 @@ export const NavigationBar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     return (
-        <Navbar className="max-w-5xl mx-auto justify-end">
+        <Navbar className={cn("max-w-5xl mx-auto justify-end", className)}>
             {/* Desktop Navigation */}
             <NavBody>
                 <NavbarLogo />

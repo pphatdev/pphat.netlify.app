@@ -74,7 +74,7 @@ export default function HeroSection() {
                     </div>
                     <div className={cn("order-first relative mt-10 min-lg:min-h-72 min-w-72 sm:mt-0 shrink-0 lg:order-last")}>
                         <BlurFade delay={0.25} inView className="flex max-md:w-40 mx-auto flex-col items-center justify-center">
-                            <MagneticArea className="w-full h-full relative">
+                            <MagneticArea className="w-72 aspect-square relative">
                                 <div className={cn(
                                     "absolute -z-[1] w-full h-full blur-3xl left-1/2 translate-y-1/2 bottom-1/3 -translate-x-1/2 opacity-20 animate-rainbow",
                                     "bg-[linear-gradient(90deg,hsl(var(--color-1)),hsl(var(--color-5)),hsl(var(--color-3)),hsl(var(--color-4)),hsl(var(--color-2)))]",
@@ -106,12 +106,12 @@ export default function HeroSection() {
                                             };
 
                                             Promise.all([
-                                                loadImage('https://github.com/pphatdev.png'),
-                                                loadImage('/assets/masks/mask-2.png')
+                                                loadImage('/assets/gallery/WEBP/IMG_1915.webp'),
+                                                loadImage('/assets/masks/mask.png')
                                             ]).then(([img, mask]) => {
                                                 if (ctx) {
-                                                    canvas.width = 200;
-                                                    canvas.height = 200;
+                                                    canvas.width = 500;
+                                                    canvas.height = 500;
 
                                                     // Calculate dimensions to cover the canvas
                                                     const scale = Math.max(
@@ -131,7 +131,7 @@ export default function HeroSection() {
 
                                                     // Apply mask
                                                     ctx.globalCompositeOperation = 'destination-in';
-                                                    ctx.drawImage(mask, 0, 0, 200, 200);
+                                                    ctx.drawImage(mask, 0, 0, 500, 500);
                                                 }
                                             });
                                         }
