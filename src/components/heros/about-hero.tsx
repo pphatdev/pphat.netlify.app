@@ -2,6 +2,7 @@ import { bgGradientLine45deg } from '@components/background/gradient-line';
 import { FlipWords } from '@components/flip-words';
 import { BlurFade } from '@components/ui/blur-fade';
 import { Cover } from '@components/ui/cover';
+import { RainbowGlow } from '@components/ui/rainbow-glow';
 import { cn } from '@lib/utils';
 import Image from 'next/image';
 
@@ -16,8 +17,9 @@ export const AboutMeHero = ({
         <section id='about-hero' className="max-w-5xl flex flex-col items-center my-20 pt-10 justify-center mx-auto">
             <h1 className='sr-only'>About Me</h1>
             <p className='sr-only'>{description}</p>
-            <div className="grid grid-cols-1 gap-8 items-center justify-center lg:grid-cols-2">
+            <div className="grid grid-cols-1 gap-8 items-center justify-center lg:grid-cols-2 relative">
                 <div className="px-2 sm:p-5 z-10 max-w-3xl bg-gradient-to-b from-background/5 via-background to-background">
+                    <RainbowGlow className="opacity-5" />
                     <BlurFade delay={0.15} inView>
                         <div className="text-3xl text-center md:text-left md:text-6xl font-bold">
                             <div className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
@@ -25,7 +27,7 @@ export const AboutMeHero = ({
                                     <span className="mr-2 font-sans [font-display:swap]">{`About`}</span>
                                 </div>
                             </div>
-                            <Cover>{'Me 🫡'}</Cover>
+                            <Cover>{`Me ✨`}</Cover>
                         </div>
                     </BlurFade>
                     <div className="max-md:text-xl text-2xl text-center h-fit md:text-left font-semibold">
