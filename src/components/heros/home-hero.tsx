@@ -22,6 +22,52 @@ export default function HeroSection() {
         setMounted(true);
     }, []);
 
+    const loadImage = (src: string): Promise<HTMLImageElement> => {
+        return new Promise<HTMLImageElement>((resolve) => {
+            const img = new Image();
+            img.onload = () => resolve(img);
+            img.src = src;
+        });
+    };
+
+    const renderCanvas = React.useCallback((canvas: HTMLCanvasElement | null): void => {
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+            const mask = new Image();
+
+            Promise.all([
+                loadImage('/assets/gallery/WEBP/IMG_1915.webp'),
+                loadImage('/assets/masks/mask.png')
+            ]).then(([img, mask]) => {
+                if (ctx) {
+                    canvas.width = 500;
+                    canvas.height = 500;
+
+                    // Calculate dimensions to cover the canvas
+                    const scale: number = Math.max(
+                        canvas.width / img.width,
+                        canvas.height / img.height
+                    );
+                    const x: number = (canvas.width - img.width * scale) / 2;
+                    const y: number = (canvas.height - img.height * scale) / 2;
+
+                    // Draw image with object-cover behavior
+                    ctx.drawImage(
+                        img,
+                        x, y,
+                        img.width * scale,
+                        img.height * scale
+                    );
+
+                    // Apply mask
+                    ctx.globalCompositeOperation = 'destination-in';
+                    ctx.drawImage(mask, 0, 0, 500, 500);
+                }
+            });
+        }
+    }, []);
+
     return (
         <div className="mt-20">
             {mounted && <main className="w-full p-5 flex min-h-[45rem] items-center justify-center mx-auto h-full overflow-x-hidden relative">
@@ -92,50 +138,7 @@ export default function HeroSection() {
                                     }}
                                 > */}
                                 <canvas
-                                    ref={(canvas) => {
-                                        if (canvas) {
-                                            const ctx = canvas.getContext('2d');
-                                            const img = new Image();
-                                            const mask = new Image();
-                                            const loadImage = (src: string) => {
-                                                return new Promise<HTMLImageElement>((resolve) => {
-                                                    const img = new Image();
-                                                    img.onload = () => resolve(img);
-                                                    img.src = src;
-                                                });
-                                            };
-
-                                            Promise.all([
-                                                loadImage('/assets/gallery/WEBP/IMG_1915.webp'),
-                                                loadImage('/assets/masks/mask.png')
-                                            ]).then(([img, mask]) => {
-                                                if (ctx) {
-                                                    canvas.width = 500;
-                                                    canvas.height = 500;
-
-                                                    // Calculate dimensions to cover the canvas
-                                                    const scale = Math.max(
-                                                        canvas.width / img.width,
-                                                        canvas.height / img.height
-                                                    );
-                                                    const x = (canvas.width - img.width * scale) / 2;
-                                                    const y = (canvas.height - img.height * scale) / 2;
-
-                                                    // Draw image with object-cover behavior
-                                                    ctx.drawImage(
-                                                        img,
-                                                        x, y,
-                                                        img.width * scale,
-                                                        img.height * scale
-                                                    );
-
-                                                    // Apply mask
-                                                    ctx.globalCompositeOperation = 'destination-in';
-                                                    ctx.drawImage(mask, 0, 0, 500, 500);
-                                                }
-                                            });
-                                        }
-                                    }}
+                                    ref={renderCanvas}
                                     className="h-full w-full bg-center m-1"
                                 />
                                 {/* </div> */}
