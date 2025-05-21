@@ -1,23 +1,15 @@
 import React from "react";
-import OrganizationStructuredData from "@components/organization-structured-data";
-import dynamic from 'next/dynamic';
 import GetInTouchSections from "./sections/home-getintouch";
+import HeroSection from "@components/heros/home-hero";
+import OrganizationStructuredData from "@components/organization-structured-data";
 import { Metadata } from "next";
 import { appDescriptions, appName, currentDomain } from "@lib/constants";
 import { BlurFade } from "@components/ui/blur-fade";
 import { HomeSkills } from "./sections/home-skills";
 import { HomeFeatureSection } from "./sections/home-feature";
 import { HomeAboutMe } from "./sections/home-aboutme";
-import { SectionNavigation } from "@components/section-navigation";
 import { HomeFAQSection } from "./sections/home-faq";
-
-const NavigationBar = dynamic(() => import('@components/navbar/navbar').then(mod => mod.NavigationBar), {
-    ssr: true
-});
-
-const HeroSection = dynamic(() => import("@components/heros/home-hero"), {
-    loading: () => <div className="min-h-[50vh] flex items-center justify-center">Loading...</div>
-});
+import { NavigationBar } from "@components/navbar/navbar";
 
 export const metadata: Metadata = {
     title: appName,
@@ -50,11 +42,11 @@ export default function Home() {
         <div className="w-full flex flex-col">
             <OrganizationStructuredData />
             <NavigationBar />
-            <section id="hero">
+            <section id="hero" className="xl:pt-20">
                 <HeroSection />
             </section>
 
-            <section id="skills">
+            <section id="skills" className="relative">
                 <BlurFade delay={0.2} inView>
                     <HomeSkills />
                 </BlurFade>
@@ -78,7 +70,7 @@ export default function Home() {
                 <GetInTouchSections />
             </section>
 
-            <SectionNavigation />
+            {/* <SectionNavigation /> */}
             <div className="h-20 pointer-events-none fixed bottom-0 inset-x-0 bg-gradient-to-b from-transparent to-background z-50" />
         </div>
     );

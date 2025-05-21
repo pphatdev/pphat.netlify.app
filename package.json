@@ -40,6 +40,7 @@
     "@tsparticles/slim": "^3.7.1",
     "@types/nodemailer": "^6.4.17",
     "@vercel/og": "^0.6.8",
+    "beasties": "^0.3.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "critters": "^0.0.25",
