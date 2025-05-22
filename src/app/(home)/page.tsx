@@ -10,6 +10,8 @@ import { HomeFeatureSection } from "./sections/home-feature";
 import { HomeAboutMe } from "./sections/home-aboutme";
 import { HomeFAQSection } from "./sections/home-faq";
 import { NavigationBar } from "@components/navbar/navbar";
+import { RainbowGlow } from "@components/ui/rainbow-glow";
+import { SectionNavigation } from "@components/section-navigation";
 
 export const metadata: Metadata = {
     title: appName,
@@ -70,7 +72,9 @@ export default function Home() {
                 <GetInTouchSections />
             </section>
 
-            {/* <SectionNavigation /> */}
+            <RainbowGlow className="opacity-5 top-0 h-96"/>
+
+            <SectionNavigation />
             <div className="h-20 pointer-events-none fixed bottom-0 inset-x-0 bg-gradient-to-b from-transparent to-background z-50" />
         </div>
     );

@@ -36,7 +36,7 @@ export function HomeFeatureSection() {
     const description = `I can help you build your next project from scratch. I have experience in web development, design, and cloud hosting. I can help you with everything from the initial design to the final deployment.`;
 
     return (
-        <div className="max-w-5xl flex flex-col py-10 items-center my-20 justify-start mx-auto">
+        <div className="max-w-5xl flex flex-col relative py-10 items-center my-20 justify-start mx-auto">
             <div className="block w-full px-5 py-3 ">
                 <Badge variant="outline" className='py-1.5 px-3'>Feature</Badge>
             </div>

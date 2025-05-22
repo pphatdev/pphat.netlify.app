@@ -79,7 +79,7 @@ export default function HeroSection() {
                     </div>
 
                     <section className="flex max-w-5xl justify-center mx-auto lg:-translate-y-20 max-md:justify-start z-20 flex-col lg:flex-row md:h-full items-center gap-4" aria-label="Introduction">
-                        <div className="px-2 sm:p-5 max-w-3xl">
+                        <div className="px-2 sm:p-10 w-full max-w-3xl">
                             <BlurFade delay={0.15} inView>
                                 <div className="text-3xl text-center md:text-left md:text-6xl font-bold">
                                     <div className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
@@ -94,7 +94,7 @@ export default function HeroSection() {
                                 <FlipWords words={appPositions} />
                             </div>
 
-                            <BlurFade delay={0.50} inView className="mt-5 max-md:px-5 relative flex text-center max-w-full md:text-left">
+                            <BlurFade delay={0.50} inView className="mt-5 relative flex text-center max-w-full md:text-left">
                                 {appDescriptions ?? ""}
                             </BlurFade>
 
@@ -111,9 +111,9 @@ export default function HeroSection() {
                             </BlurFade>
                         </div>
                         <BlurFade delay={0.25} inView className={cn("order-first relative mt-10 min-lg:min-h-72 min-w-72 sm:mt-0 shrink-0 lg:order-last flex max-md:w-40 mx-auto flex-col items-center justify-center")}>
-                            <MagneticArea className="w-72 aspect-square relative">
+                            <MagneticArea className="max-sm:w-56 w-72 aspect-square relative">
                                 <canvas ref={renderCanvas} className="h-full w-full bg-center m-1" />
-                                <RainbowGlow/>
+                                <RainbowGlow className="opacity-30" />
                             </MagneticArea>
                             <NavMenu />
                         </BlurFade>
