@@ -11,7 +11,7 @@ export const PostCard = ({ post }: { post: Post }) => {
 
         if (navigator.share) {
             navigator.share({
-                url: post.slug,
+                url: `/posts/${post.slug}`,
                 title: post.title
             }).catch(err => console.error('Error sharing:', err));
         }
