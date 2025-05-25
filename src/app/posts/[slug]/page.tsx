@@ -92,7 +92,7 @@ export default async function PostDetail(props: Params) {
     if (!post) {
         return (
             <>
-                <NavigationBar />
+                <NavigationBar className='sticky'/>
                 <div className="container mx-auto py-16 text-center">
                     <h1 className="text-4xl font-bold mb-4">Post Not Found</h1>
                     <p className="text-muted-foreground mb-8">
@@ -110,7 +110,7 @@ export default async function PostDetail(props: Params) {
 
     return (
         <>
-            <NavigationBar />
+            <NavigationBar  className='sticky'/>
             <article className="container max-w-4xl mx-auto py-8">
                 {/* Header */}
                 <div className="mb-8">
