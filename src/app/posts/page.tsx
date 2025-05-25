@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import originData from 'public/data/post.json';
 import { Spinner } from "@components/ui/loading";
 import { staticPaginationJSON } from "@lib/functions/pagination-list";
-import { Post } from "../../lib/types/interfaces";
+import { Post } from "@lib/db/post";
 import { BlurFade } from '@components/ui/blur-fade';
 import { NavigationBar } from "@components/navbar/navbar";
 import { PostsHero } from "@components/heros/posts-hero";
