@@ -45,7 +45,7 @@ export const PostCard = ({ post }: { post: Post }) => {
                 </div>
             </div>
 
-            <Link href={`/admin/post/${post.slug ?? '#'}`} className="inset-0 z-0 absolute" aria-label={post.title} />
+            <Link href={`/posts/${post.slug ?? '#'}`} className="inset-0 z-0 absolute" aria-label={post.title} />
 
             <div className="px-4 pb-4 pt-2 w-full flex flex-col relative pointer-events-none">
 
