@@ -1,5 +1,5 @@
 import { Badge } from "@components/ui/badge";
-import { Post } from "../../lib/types/interfaces";
+import { Post } from "@lib/db/post";
 import Link from "next/link";
 import Image from 'next/image';
 import { Share2Icon, TagIcon } from "lucide-react";
@@ -45,7 +45,7 @@ export const PostCard = ({ post }: { post: Post }) => {
                 </div>
             </div>
 
-            <Link href={post.slug ?? '#'} className="inset-0 z-0 absolute" aria-label={post.title} />
+            <Link href={`/admin/post/${post.slug ?? '#'}`} className="inset-0 z-0 absolute" aria-label={post.title} />
 
             <div className="px-4 pb-4 pt-2 w-full flex flex-col relative pointer-events-none">
 
