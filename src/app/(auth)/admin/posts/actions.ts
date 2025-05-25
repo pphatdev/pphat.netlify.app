@@ -33,6 +33,35 @@ export async function createPost(formData: FormData) {
     }
 }
 
+export async function updatePost(id: string, postData: Partial<Post>) {
+    try {
+        const existingPost = db.getById<Post>('posts', id);
+        
+        if (!existingPost) {
+            return { error: 'Post not found' };
+        }
+
+        const updatedPost = {
+            ...existingPost,
+            ...postData,
+            id: existingPost.id, // Ensure ID doesn't change
+            createdAt: existingPost.createdAt, // Preserve creation date
+            updatedAt: new Date().toISOString()
+        };
+
+        db.update<Post>('posts', id, updatedPost);
+
+        revalidatePath('/admin/posts');
+        revalidatePath('/posts');
+        revalidatePath(`/posts/${updatedPost.slug}`);
+
+        return { success: true, data: updatedPost };
+    } catch (error) {
+        console.error('Post update failed:', error);
+        return { error: 'Failed to update post' };
+    }
+}
+
 export async function deletePost(id: string) {
     try {
         const deleted = db.delete('posts', id);
