@@ -2,6 +2,8 @@ import React from "react";
 import GetInTouchSections from "./sections/home-getintouch";
 import HeroSection from "@components/heros/home-hero";
 import OrganizationStructuredData from "@components/organization-structured-data";
+import HomePersonStructuredData from "@components/home-person-structured-data";
+import WebsiteStructuredData from "@components/website-structured-data";
 import { Metadata } from "next";
 import { appDescriptions, appName, currentDomain } from "@lib/constants";
 import { BlurFade } from "@components/ui/blur-fade";
@@ -18,9 +20,34 @@ export const metadata: Metadata = {
     description: appDescriptions,
     authors: [{
         url: currentDomain,
-        name: appName,
+        name: "Leat Sophat",
     }],
     generator: appName,
+    keywords: [
+        "Leat Sophat",
+        "PPhat",
+        "Senior Front-end Developer",
+        "UI/UX Designer",
+        "Web Developer",
+        "React Developer",
+        "Next.js Developer",
+        "JavaScript Developer",
+        "TypeScript Developer",
+        "Phnom Penh",
+        "Cambodia",
+        "TURBOTECH"
+    ],
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-video-preview': -1,
+            'max-image-preview': 'large' as const,
+            'max-snippet': -1,
+        },
+    },
     openGraph: {
         type: "profile",
         url: currentDomain,
@@ -29,12 +56,30 @@ export const metadata: Metadata = {
         siteName: appName,
         images: [{
             url: currentDomain + "/assets/avatars/hero.webp",
+            width: 800,
+            height: 600,
+            alt: "Leat Sophat - Senior Front-end Developer and UI/UX Designer"
         }],
+        locale: 'en_US',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        site: '@pphatdev',
+        creator: '@pphatdev',
+        title: appName,
+        description: appDescriptions,
+        images: [currentDomain + "/assets/avatars/hero.webp"],
     },
     formatDetection: {
-        email: false,
-        address: false,
-        telephone: false,
+        email: true,
+        address: true,
+        telephone: true,
+    },
+    alternates: {
+        canonical: currentDomain,
+    },
+    other: {
+        'google-site-verification': 'your-google-site-verification-code'
     }
 };
 
@@ -42,6 +87,8 @@ export default function Home() {
 
     return (
         <div className="w-full flex flex-col">
+            <HomePersonStructuredData />
+            <WebsiteStructuredData />
             <OrganizationStructuredData />
             <NavigationBar />
             <section id="hero" className="xl:pt-20">
