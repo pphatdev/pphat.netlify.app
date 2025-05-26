@@ -6,6 +6,7 @@ export interface Post extends Record<string, unknown> {
     title: string;
     content: string;
     slug: string;
+    description?: string;
     published: boolean;
     tags: string[];
     authors: Array<{
