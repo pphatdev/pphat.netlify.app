@@ -19,6 +19,27 @@
       "slug": "css-grid-layout",
       "published": true,
       "createdAt": "2025-04-03T16:45:00.000Z"
+    },
+    {
+      "id": "heading-test-h1-h6",
+      "tags": [
+        "typography",
+        "headings",
+        "testing"
+      ],
+      "authors": [
+        {
+          "name": "PPhat DEv",
+          "profile": "https://github.com/pphatdev.png",
+          "url": "https://pphat.top"
+        }
+      ],
+      "thumbnail": "https://picsum.photos/200/307",
+      "title": "Heading Levels Test - H1 to H6",
+      "content": "{\"type\":\"doc\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"This post demonstrates all six heading levels with proper typography and spacing.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":1},\"content\":[{\"type\":\"text\",\"text\":\"Heading Level 1 - Main Title\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"This is a paragraph following an H1 heading. It should have proper spacing and readability.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"text\":\"Heading Level 2 - Section Title\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"This paragraph follows an H2 heading. H2 headings are typically used for major sections.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":3},\"content\":[{\"type\":\"text\",\"text\":\"Heading Level 3 - Subsection Title\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"H3 headings are used for subsections and should have distinct but harmonious styling.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":4},\"content\":[{\"type\":\"text\",\"text\":\"Heading Level 4 - Sub-subsection\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"H4 headings provide further subdivision while maintaining readability hierarchy.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":5},\"content\":[{\"type\":\"text\",\"text\":\"Heading Level 5 - Minor Section\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"H5 headings are useful for detailed breakdowns and minor sections within content.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":6},\"content\":[{\"type\":\"text\",\"text\":\"Heading Level 6 - Smallest Heading\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"H6 represents the smallest heading level, often used for fine-grained content organization.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"text\":\"Typography Hierarchy\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"The heading hierarchy should provide clear visual distinction between different levels while maintaining consistency with the overall design system.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":3},\"content\":[{\"type\":\"text\",\"text\":\"Design Principles\"}]},{\"type\":\"bulletList\",\"content\":[{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Consistent font weights and spacing\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Clear size hierarchy from H1 to H6\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Proper margins for visual breathing room\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Responsive typography that works on all devices\"}]}]}]}]}",
+      "slug": "heading-levels-test",
+      "published": true,
+      "createdAt": "2025-05-26T12:30:00.000Z"
     }
   ],
   "postDetail": []
