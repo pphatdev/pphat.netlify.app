@@ -18,14 +18,13 @@ const Posts = () => {
         setLoading(true);
 
         try {
-            const response = await fetch(`/api/posts?page=${pageNumber}&limit=${limit}&sort=desc`);
+            const response = await fetch(`/api/posts?page=${pageNumber}&limit=${limit}&sort=desc&published=true`);
             if (!response.ok) {
                 throw new Error('Failed to fetch posts');
             }
 
             const result = await response.json();
-            console.log(result);
-            
+
             setPosts(result.data);
             setTotalPages(result.metadata.pages);
         } catch (error) {
