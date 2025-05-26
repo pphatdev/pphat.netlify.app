@@ -1,7 +1,16 @@
 'use client';
 
 import React from 'react';
-import { appName, currentDomain } from '@lib/constants';
+import {
+    appName,
+    currentDomain,
+    PERSON_NAME,
+    PERSON_ALTERNATE_NAME,
+    PERSON_JOB_TITLE,
+    COMPANY_NAME,
+    GITHUB_URL,
+    LINKEDIN_URL
+} from '@lib/constants';
 
 export default function AboutStructuredData() {
     const structuredData = {
@@ -9,22 +18,22 @@ export default function AboutStructuredData() {
         "@type": "AboutPage",
         "mainEntity": {
             "@type": "Person",
-            "name": "Leat Sophat",
-            "alternateName": "PPhat",
-            "description": "Senior Front-end Developer and Freelance UI/UX Designer from Phnom Penh, Cambodia",
-            "jobTitle": "Senior Front-end Developer",
+            "name": PERSON_NAME,
+            "alternateName": PERSON_ALTERNATE_NAME,
+            "description": `I'm ${PERSON_NAME} (${PERSON_ALTERNATE_NAME}), a ${PERSON_JOB_TITLE}.`,
+            "jobTitle": PERSON_JOB_TITLE,
             "worksFor": {
                 "@type": "Organization",
-                "name": "TURBOTECH CO., LTD"
+                "name": COMPANY_NAME,
             },
             "url": `${currentDomain}/about`,
             "sameAs": [
-                "https://github.com/leatsophat",
-                "https://www.linkedin.com/in/leatsophat/"
+                GITHUB_URL,
+                LINKEDIN_URL
             ]
         },
         "name": `About ${appName}`,
-        "description": "I'm Leat Sophat (PPhat), a Senior Front-end Developer and Freelance UI/UX Designer from Phnom Penh, Cambodia.",
+        "description": `I'm ${PERSON_NAME} (${PERSON_ALTERNATE_NAME}), a ${PERSON_JOB_TITLE}.`,
         "url": `${currentDomain}/about`
     };
 
