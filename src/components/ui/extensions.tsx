@@ -1,33 +1,9 @@
-import {
-    AIHighlight,
-    CharacterCount,
-    CodeBlockLowlight,
-    Color,
-    CustomKeymap,
-    GlobalDragHandle,
-    HighlightExtension,
-    HorizontalRule,
-    Mathematics,
-    Placeholder,
-    StarterKit,
-    TaskItem,
-    TaskList,
-    TextStyle,
-    TiptapImage,
-    TiptapLink,
-    TiptapUnderline,
-    Twitter,
-    UpdatedImage,
-    UploadImagesPlugin,
-    Youtube,
-} from "novel";
+import { AIHighlight, CharacterCount, CodeBlockLowlight, Color, CustomKeymap, GlobalDragHandle, HighlightExtension, HorizontalRule, Mathematics, Placeholder, StarterKit, TaskItem, TaskList, TextStyle, TiptapImage, TiptapLink, TiptapUnderline, Twitter, UpdatedImage, UploadImagesPlugin, Youtube, } from "novel";
 
 import { common, createLowlight } from "lowlight";
 import { cn } from "@lib/utils";
 
-//TODO I am using cx here to get tailwind autocomplete working, idk if someone else can write a regex to just capture the class key in objects
 const aiHighlight = AIHighlight;
-//You can overwrite the placeholder with your own configuration
 const placeholder = Placeholder;
 const tiptapLink = TiptapLink.configure({
     HTMLAttributes: {
@@ -77,6 +53,12 @@ const horizontalRule = HorizontalRule.configure({
 });
 
 const starterKit = StarterKit.configure({
+    heading: {
+        levels: [1, 2, 3, 4, 5, 6],
+        HTMLAttributes: {
+            class: cn("font-bold tracking-tight"),
+        },
+    },
     bulletList: {
         HTMLAttributes: {
             class: cn("list-disc leading-tight ml-5"),
@@ -97,7 +79,6 @@ const starterKit = StarterKit.configure({
             class: cn("border-l-4 border-primary"),
         },
     },
-    // Disable default codeBlock since we're using CodeBlockLowlight
     codeBlock: false,
     code: {
         HTMLAttributes: {
@@ -114,8 +95,6 @@ const starterKit = StarterKit.configure({
 });
 
 const codeBlockLowlight = CodeBlockLowlight.configure({
-    // configure lowlight: common /  all / use highlightJS in case there is a need to specify certain language grammars only
-    // common: covers 37 language grammars which should be good enough in most cases
     lowlight: createLowlight(common),
     HTMLAttributes: {
         class: cn(
