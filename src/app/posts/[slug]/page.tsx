@@ -12,6 +12,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
 import { Calendar, Clock, Edit, User } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import { NovelRenderer } from '@components/ui/novel-renderer';
+import Image from 'next/image';
 
 interface Params {
     params: Promise<{ slug: string; }>;
@@ -116,9 +117,12 @@ export default async function PostDetail(props: Params) {
                 <div className="mb-8">
                     {post.thumbnail && (
                         <div className="relative w-full h-64 md:h-96 mb-6 rounded-lg overflow-hidden">
-                            <img
+                            <Image
                                 src={post.thumbnail}
                                 alt={post.title}
+                                width={800}
+                                height={450}
+                                loading='lazy'
                                 className="w-full h-full object-cover"
                             />
                         </div>
@@ -173,7 +177,7 @@ export default async function PostDetail(props: Params) {
                             </div>
 
                             <Button variant="outline" size="sm" asChild>
-                                <Link href={`/admin/posts/${post.slug}/edit`}>
+                                <Link href={`/admin/posts/${post.id}/edit`}>
                                     <Edit className="w-4 h-4 mr-2" />
                                     Edit Post
                                 </Link>
