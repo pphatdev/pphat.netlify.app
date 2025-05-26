@@ -84,7 +84,7 @@ const starterKit = StarterKit.configure({
     },
     orderedList: {
         HTMLAttributes: {
-            class: cn("list-decimal list-outside leading-tight"),
+            class: cn("list-decimal leading-tight ml-5"),
         },
     },
     listItem: {
