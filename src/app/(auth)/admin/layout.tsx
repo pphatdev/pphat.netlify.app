@@ -58,31 +58,31 @@ const navigation: NavItem[] = [
             { href: '/admin/posts/new', label: 'New Post', icon: FileText },
         ]
     },
-    {
-        href: '/admin/media',
-        label: 'Media',
-        icon: Image,
-    },
-    {
-        href: '/admin/categories',
-        label: 'Categories',
-        icon: Tag,
-    },
-    {
-        href: '/admin/users',
-        label: 'Users',
-        icon: Users,
-    },
-    {
-        href: '/admin/analytics',
-        label: 'Analytics',
-        icon: BarChart3,
-    },
-    {
-        href: '/admin/settings',
-        label: 'Settings',
-        icon: Settings,
-    },
+    // {
+    //     href: '/admin/media',
+    //     label: 'Media',
+    //     icon: Image,
+    // },
+    // {
+    //     href: '/admin/categories',
+    //     label: 'Categories',
+    //     icon: Tag,
+    // },
+    // {
+    //     href: '/admin/users',
+    //     label: 'Users',
+    //     icon: Users,
+    // },
+    // {
+    //     href: '/admin/analytics',
+    //     label: 'Analytics',
+    //     icon: BarChart3,
+    // },
+    // {
+    //     href: '/admin/settings',
+    //     label: 'Settings',
+    //     icon: Settings,
+    // },
 ];
 
 function NavLink({ item, isMobile = false, onClick }: {

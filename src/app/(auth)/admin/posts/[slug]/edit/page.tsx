@@ -394,7 +394,7 @@ export default function EditPostPage() {
                         <EditorContent
                             initialContent={editorContent}
                             extensions={extensions}
-                            className="relative min-h-[500px] w-full max-w-screen-lg border-muted sm:mb-[calc(20vh)] sm:rounded-lg"
+                            className="relative min-h-[500px] w-full max-w-screen-lg border-muted sm:rounded-lg"
                             immediatelyRender={false}
                             editorProps={{
                                 handleDOMEvents: {
