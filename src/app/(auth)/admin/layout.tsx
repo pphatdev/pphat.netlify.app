@@ -141,16 +141,15 @@ function Breadcrumb() {
 
     return (
         <nav className="flex items-center space-x-1 text-sm text-muted-foreground mb-4">
-            <Link href="/admin" className="hover:text-foreground">
-                Admin
-            </Link>
+            <span> Admin  </span>
             {segments.slice(1).map((segment, index) => {
-                const href = '/' + segments.slice(0, index + 2).join('/');
+
+                const href = index === 0 ? '/' + segments.slice(0, index + 2).join('/') : `#${index}`;
                 const isLast = index === segments.length - 2;
                 const label = segment.charAt(0).toUpperCase() + segment.slice(1);
 
                 return (
-                    <React.Fragment key={href}>
+                    <React.Fragment key={`breadcrumb-${index}-${segment}`}>
                         <ChevronRight className="h-3 w-3" />
                         {isLast ? (
                             <span className="text-foreground font-medium">{label}</span>
@@ -161,10 +160,12 @@ function Breadcrumb() {
                         )}
                     </React.Fragment>
                 );
+
             })}
         </nav>
     );
 }
+
 
 export default function AdminLayout({ children, title, description }: AdminLayoutProps) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
