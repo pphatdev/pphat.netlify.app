@@ -11,9 +11,7 @@ import { usePathname } from "next/navigation"
 export const NavigationBar = (
     { className }: { className?: string },
 ) => {
-    const pathname = usePathname();
-
-    const navItems = [
+    const pathname = usePathname(); const navItems = [
         {
             name: "Contributes",
             link: "/projects",
@@ -22,7 +20,7 @@ export const NavigationBar = (
         {
             name: "Articles",
             link: "/posts",
-            active: pathname === "/posts",
+            active: pathname.startsWith("/posts"),
         },
         {
             name: "About me",
