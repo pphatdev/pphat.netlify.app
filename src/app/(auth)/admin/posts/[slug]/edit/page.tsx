@@ -22,6 +22,8 @@ import { toast } from "sonner";
 import { ImageIcon, Save, X, Eye, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@components/ui/alert-dialog";
+import "../../../../../../styles/code-block-node.css"
+
 
 interface PostFormData {
     id: string;
@@ -392,7 +394,7 @@ export default function EditPostPage() {
                         <EditorContent
                             initialContent={editorContent}
                             extensions={extensions}
-                            className="relative min-h-[500px] w-full max-w-screen-lg border-muted bg-background sm:mb-[calc(20vh)] sm:rounded-lg"
+                            className="relative min-h-[500px] w-full max-w-screen-lg border-muted sm:mb-[calc(20vh)] sm:rounded-lg"
                             immediatelyRender={false}
                             editorProps={{
                                 handleDOMEvents: {
