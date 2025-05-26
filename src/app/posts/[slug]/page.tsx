@@ -6,13 +6,13 @@ import { appName, currentDomain } from '@lib/constants';
 import { NavigationBar } from '@components/navbar/navbar';
 import { Badge } from '@components/ui/badge';
 import { Button } from '@components/ui/button';
-import { Card, CardContent } from '@components/ui/card';
 import { Separator } from '@components/ui/separator';
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
 import { Calendar, Clock, Edit, User } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import { NovelRenderer } from '@components/ui/novel-renderer';
 import Image from 'next/image';
+import "../../../styles/code-block-node.css"
 
 interface Params {
     params: Promise<{ slug: string; }>;
