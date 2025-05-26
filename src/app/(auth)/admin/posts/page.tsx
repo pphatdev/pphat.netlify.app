@@ -101,7 +101,7 @@ export default function AdminPostsPage() {
                                     placeholder="Search posts..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="pl-10 border-dashed rounded-lg"
+                                    className="pl-10 border rounded-lg shadow-none"
                                 />
                             </div>
                         </div>
@@ -109,7 +109,7 @@ export default function AdminPostsPage() {
                             <Button
                                 variant={filter === 'all' ? 'default' : 'outline'}
                                 size="sm"
-                                className='rounded-lg'
+                                className='rounded-lg border border-primary/5'
                                 onClick={() => setFilter('all')}
                             >
                                 All ({posts.length})
@@ -117,7 +117,7 @@ export default function AdminPostsPage() {
                             <Button
                                 variant={filter === 'published' ? 'default' : 'outline'}
                                 size="sm"
-                                className='rounded-lg'
+                                className='rounded-lg border border-primary/5'
                                 onClick={() => setFilter('published')}
                             >
                                 Published ({posts.filter(p => p.published).length})
@@ -125,7 +125,7 @@ export default function AdminPostsPage() {
                             <Button
                                 variant={filter === 'draft' ? 'default' : 'outline'}
                                 size="sm"
-                                className='rounded-lg'
+                                className='rounded-lg border border-primary/5'
                                 onClick={() => setFilter('draft')}
                             >
                                 Drafts ({posts.filter(p => !p.published).length})
@@ -200,7 +200,7 @@ export default function AdminPostsPage() {
                                             </AlertDialog>
                                         </>
                                     }
-                                    className='rounded-none'
+                                    className='rounded-2xl'
                                 />
                             ))}
                         </div>
