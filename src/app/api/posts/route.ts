@@ -10,8 +10,19 @@ export async function GET(request: NextRequest) {
         const limit = parseInt(searchParams.get('limit') || '10');
         const sort = searchParams.get('sort') || 'asc';
         const search = searchParams.get('search') || '';
+        const published = searchParams.get('published');
 
-        const posts = db.getAll<Post>('posts', search, page, limit, sort);
+        let posts = db.getAll<Post>('posts', search, page, limit, sort);
+
+        // Filter by published status if specified
+        if (published !== null) {
+            const isPublished = published === 'true';
+            posts.data = posts.data.filter(post => post.published === isPublished);
+
+            // Recalculate pagination metadata for filtered results
+            posts.metadata.total = posts.data.length;
+            posts.metadata.pages = Math.ceil(posts.data.length / limit);
+        }
 
         return NextResponse.json(posts, {
             status: 200,
