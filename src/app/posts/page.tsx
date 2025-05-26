@@ -1,117 +1,69 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
+import InfiniteScroll from "@components/infinit-scroll";
 import { Spinner } from "@components/ui/loading";
-import { Post } from "@lib/db/post";
+import { PostCard } from "@components/cards/post-card";
+import { Post } from "../../lib/types/interfaces";
 import { BlurFade } from '@components/ui/blur-fade';
 import { NavigationBar } from "@components/navbar/navbar";
 import { PostsHero } from "@components/heros/posts-hero";
-import { PostCard } from "@components/cards/post-card";
 
 const Posts = () => {
     const limit = 9;
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
+    const [hasMore, setHasMore] = useState(true);
     const [posts, setPosts] = useState<Post[]>([]);
-    const [totalPages, setTotalPages] = useState(1);    // Load data for the current page
-    const loadPage = async (pageNumber: number) => {
+
+    // This function depends on page state
+    const next = useCallback(async () => {
+        if (loading) return;
+
         setLoading(true);
 
         try {
-            const response = await fetch(`/api/posts?page=${pageNumber}&limit=${limit}&sort=desc&published=true`);
+            const response = await fetch(`/api/posts?page=${page}&limit=${limit}`);
+
             if (!response.ok) {
-                throw new Error('Failed to fetch posts');
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            const result = await response.json();
+            const { data, hasMore: apiHasMore } = await response.json();
 
-            setPosts(result.data);
-            setTotalPages(result.metadata.pages);
+            setPosts((prev) => [...prev, ...(data as Post[])]);
+            setPage((prev) => prev + 1);
+            setHasMore(apiHasMore);
+
         } catch (error) {
             console.error('Error fetching posts:', error);
+            setHasMore(false);
         } finally {
             setLoading(false);
         }
-    };
+    }, [loading, page, limit]);
 
-    // Handle page change
-    const handlePageChange = (newPage: number) => {
-        if (newPage > 0 && newPage <= totalPages) {
-            setPage(newPage);
-            loadPage(newPage);
-            // Scroll to top when changing page
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    };
-
-    // Load initial page
+    // Only call next() on initial mount
     useEffect(() => {
-        loadPage(page);
+        next();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    // Pagination controls component
-    const PaginationControls = () => {
-        return (
-            <div className="flex justify-center items-center mt-8 gap-2">
-                <button
-                    onClick={() => handlePageChange(page - 1)}
-                    disabled={page === 1}
-                    className="px-4 py-2 rounded-md bg-foreground/10 hover:bg-foreground/20 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                    Previous
-                </button>
-
-                <div className="flex gap-2">
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
-                        <button
-                            key={pageNum}
-                            onClick={() => handlePageChange(pageNum)}
-                            className={`w-10 h-10 rounded-md flex items-center justify-center ${pageNum === page
-                                ? 'bg-foreground/20 font-bold'
-                                : 'bg-foreground/10 hover:bg-foreground/15'
-                                }`}
-                        >
-                            {pageNum}
-                        </button>
-                    ))}
-                </div>
-
-                <button
-                    onClick={() => handlePageChange(page + 1)}
-                    disabled={page === totalPages}
-                    className="px-4 py-2 rounded-md bg-foreground/10 hover:bg-foreground/20 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                    Next
-                </button>
-            </div>
-        );
-    };
 
     return (
         <main className="w-full flex flex-col gap-7 pb-5">
             <NavigationBar />
             <PostsHero />
             <BlurFade delay={0.9} inView={true}>
-                <article className="grid max-w-5xl mx-auto p-5 grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[300px] relative">
-                    {loading ? (
-                        <div className='col-span-full flex justify-center items-center py-20'>
-                            <Spinner variant={'bars'} />
-                        </div>
-                    ) : (
-                        <>
-                            {posts.map((post, index) => (
-                                <PostCard key={index} post={post} />
-                            ))}
-                            <div className="col-span-full">
-                                <PaginationControls />
+                <article className="grid max-w-5xl mx-auto p-5 grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4 min-h-[300px] relative">
+                    {posts.map((post, index) => (<PostCard key={index} post={{ ...post, createdAt: post.createdAt.toString() }} />))}
+                    <InfiniteScroll hasMore={hasMore} isLoading={loading} next={next} threshold={1}>
+                        {hasMore && (
+                            <div className='col-span-full flex justify-center items-center'>
+                                <Spinner variant={'bars'} />
                             </div>
-                        </>
-                    )}
+                        )}
+                    </InfiniteScroll>
                 </article>
-                {/* <div className="w-xs shrink-0 max-md:hidden order-last duration-300 mt-5 sticky h-[calc(100vh_-10rem)] overflow-y-auto p-5 top-28 bg-foreground/5 group font-sans rounded-3xl mb-4 ring-1 ring-foreground/10">
-
-                </div> */}
             </BlurFade>
         </main>
     );
