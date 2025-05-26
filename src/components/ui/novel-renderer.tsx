@@ -36,7 +36,9 @@ export function NovelRenderer({ content, className }: NovelRendererProps) {
             }
         }
         return content;
-    }, [content]);    const editor = useEditor({
+    }, [content]);
+
+    const editor = useEditor({
         extensions: defaultExtensions,
         content: parsedContent,
         editable: false,
@@ -52,12 +54,17 @@ export function NovelRenderer({ content, className }: NovelRendererProps) {
                     'prose-p:mb-4 prose-p:leading-relaxed',
                     'prose-a:text-primary prose-a:no-underline hover:prose-a:underline',
                     'prose-blockquote:border-l-4 prose-blockquote:border-primary/30 prose-blockquote:pl-4 prose-blockquote:italic',
-                    'prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm',
-                    'prose-pre:bg-muted prose-pre:p-4 prose-pre:rounded-lg prose-pre:overflow-x-auto',
+                    'prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono',
+                    'prose-pre:bg-transparent prose-pre:p-0 prose-pre:rounded-lg prose-pre:overflow-x-auto prose-pre:border-0',
                     'prose-img:rounded-lg prose-img:shadow-md',
                     'prose-ul:list-disc prose-ol:list-decimal',
                     'prose-li:mb-1',
                     '[&_.ProseMirror]:outline-none [&_.ProseMirror]:focus:outline-none',
+                    // Code block specific styles
+                    '[&_pre[class*="language-"]]:bg-muted [&_pre[class*="language-"]]:border [&_pre[class*="language-"]]:border-border',
+                    '[&_pre[class*="language-"]]:rounded-lg [&_pre[class*="language-"]]:p-4 [&_pre[class*="language-"]]:my-6',
+                    '[&_pre[class*="language-"]]:overflow-x-auto [&_pre[class*="language-"]]:font-mono [&_pre[class*="language-"]]:text-sm',
+                    '[&_code[class*="language-"]]:bg-transparent [&_code[class*="language-"]]:text-foreground',
                     className
                 ),
             },
@@ -84,7 +91,7 @@ export function NovelRenderer({ content, className }: NovelRendererProps) {
 // Helper function to extract plain text from content for SEO/descriptions
 export function extractTextFromContent(content: JSONContent | string): string {
     let parsedContent: JSONContent;
-    
+
     if (typeof content === 'string') {
         try {
             parsedContent = JSON.parse(content);
