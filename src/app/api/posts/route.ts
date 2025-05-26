@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import originData from 'public/data/post.json';
+import { db, Post } from '@lib/db/post';
 import { staticPaginationJSON } from '@lib/functions/pagination-list';
-import { Post } from '@lib/types/interfaces';
 
 export async function GET(request: NextRequest) {
     try {
@@ -9,8 +8,9 @@ export async function GET(request: NextRequest) {
         const page = parseInt(searchParams.get('page') || '1');
         const limit = parseInt(searchParams.get('limit') || '9');
 
-        const { posts } = originData;
-        const postData = (posts as unknown as Post[]).filter(post => post.published === true);
+        // Use database to get latest posts instead of static import
+        const allPosts = db.getAll<Post>('posts', '', 1, -1).data;
+        const postData = allPosts.filter(post => post.published === true);
 
         const { data } = staticPaginationJSON(
             postData,
@@ -79,8 +79,8 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const { posts } = originData;
-        const existingPosts = posts as unknown as Post[];
+        // Use database to get existing posts
+        const existingPosts = db.getAll<Post>('posts', '', 1, -1).data;
 
         // Check for duplicate title
         const duplicateTitle = existingPosts.find(post =>
@@ -94,27 +94,37 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Generate unique ID (handle empty array case)
-        const newId = existingPosts.length > 0
-            ? Math.max(...existingPosts.map(post => parseInt(post.id) || 0)) + 1
-            : 1;
+        // Generate slug from title
+        const slug = title.trim()
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/(^-|-$)/g, '');
 
-        // Create new post object with sanitized data
+        // Create new post object with all required fields
         const currentTime = new Date().toISOString();
-        const newPost: Post = {
-            id: newId.toString(),
+        const newPostData = {
             title: title.trim(),
             content: content.trim(),
-            author: author.trim(),
+            slug: slug,
             published: typeof body.published === 'boolean' ? body.published : true,
+            tags: Array.isArray(body.tags) ? body.tags : [],
+            authors: body.authors || [{
+                name: author.trim(),
+                profile: "",
+                url: ""
+            }],
+            thumbnail: body.thumbnail || "",
+            description: body.description || title.trim(),
             createdAt: currentTime,
             updatedAt: currentTime,
             // Include additional optional fields if provided
-            ...(body.tags && Array.isArray(body.tags) && { tags: body.tags }),
             ...(body.category && typeof body.category === 'string' && { category: body.category.trim() }),
             ...(body.excerpt && typeof body.excerpt === 'string' && { excerpt: body.excerpt.trim() }),
             ...(body.featuredImage && typeof body.featuredImage === 'string' && { featuredImage: body.featuredImage.trim() })
         };
+
+        // Use database to create the post
+        const newPost = db.create<Post>('posts', newPostData);
 
         return NextResponse.json(
             {
