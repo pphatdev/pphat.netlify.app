@@ -1,10 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import originData from 'public/data/post.json';
 import { Spinner } from "@components/ui/loading";
-import { staticPaginationJSON } from "@lib/functions/pagination-list";
-import { Post } from "../../lib/types/interfaces";
+import { Post } from "@lib/db/post";
 import { BlurFade } from '@components/ui/blur-fade';
 import { NavigationBar } from "@components/navbar/navbar";
 import { PostsHero } from "@components/heros/posts-hero";
@@ -15,29 +13,20 @@ const Posts = () => {
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
     const [posts, setPosts] = useState<Post[]>([]);
-    const [totalPages, setTotalPages] = useState(1);
-
-    // Load data for the current page
+    const [totalPages, setTotalPages] = useState(1);    // Load data for the current page
     const loadPage = async (pageNumber: number) => {
         setLoading(true);
 
         try {
-            const { posts } = originData;
-            const postData = (posts as unknown as Post[]).filter(post => post.published === true);
+            const response = await fetch(`/api/posts?page=${pageNumber}&limit=${limit}&sort=desc&published=true`);
+            if (!response.ok) {
+                throw new Error('Failed to fetch posts');
+            }
 
-            const { data, metadata  } = staticPaginationJSON(
-                postData,
-                postData.length,
-                {
-                    page: pageNumber,
-                    limit: limit,
-                    search: null,
-                    sort: 'asc',
-                }
-            );
+            const result = await response.json();
 
-            setPosts(data as Post[]);
-            setTotalPages(Math.ceil(metadata.total / limit));
+            setPosts(result.data);
+            setTotalPages(result.metadata.pages);
         } catch (error) {
             console.error('Error fetching posts:', error);
         } finally {

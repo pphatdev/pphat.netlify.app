@@ -1,9 +1,11 @@
 import { Button } from "@components/ui/button";
+import { RainbowGlow } from "@components/ui/rainbow-glow";
 import { appName, appPositions } from "@lib/constants";
 
 export const GetInTouchSections = () => {
     return (
         <div className="relative z-20 mx-auto grid w-full mt-20 overflow-clip max-w-5xl grid-cols-1 justify-start bg-gradient-to-br from-background via-foreground/10 md:grid-cols-3">
+            <RainbowGlow className="opacity-5"/>
             {/* Horizontal lines */}
             <div
                 style={{

@@ -1,0 +1,6 @@
+messages:
+  - role: system
+    content: 'Welcome to new contributors '
+  - role: user
+    content: ''
+model: openai/gpt-4o

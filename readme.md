@@ -33,11 +33,11 @@ For detailed setup instructions, see [Email Setup Documentation](./doc/email-set
 
 Light Mode:
 
-![Light Mode](./public/assets/screenshots/origin-light.png)
+![Light Mode](./public/assets/screenshots/light.png)
 
 Dark Mode:
 
-![Dark Mode](./public/assets/screenshots/origin-dark.png)
+![Dark Mode](./public/assets/screenshots/dark.png)
 
 
 ![Alt](https://repobeats.axiom.co/api/embed/783418e8759bcaf96b6392aaaaf6bc42783ede45.svg "Repobeats analytics image")

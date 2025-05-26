@@ -16,7 +16,7 @@ export const HomeSkills = () => {
                     <Badge variant="outline" className='py-1.5 px-3'>My Skills</Badge>
                 </div>
                 <Title as='h2' title={title} description={description} />
-                <div className="w-full flex gap-5 mb-5 rounded-2xl shadow-card shadow-primary/5 bg-background p-8 px-5 flex-wrap justify-start">
+                <div className="w-full flex gap-5 mb-5 rounded-2xl shadow-card shadow-primary/5 bg-background/10 p-8 px-5 flex-wrap justify-start">
                     {languages.map((lang, key) => (
                         <MagneticArea key={key}>
                             <div className="relative flex max-sm:h-9 max-sm:w-9 h-14 shadow-card shadow-primary/5 w-14 p-1 bg-background rounded-full items-center justify-center overflow-hidden border text-foreground/10 bg-[size:8px_8px] bg-top-left bg-[image:repeating-linear-gradient(315deg,currentColor_0,currentColor_1px,transparent_0,transparent_50%)]">

@@ -1,5 +1,6 @@
 import { bgGradientLine45deg } from '@components/background/gradient-line';
 import { Badge } from '@components/ui/badge';
+import { RainbowGlow } from '@components/ui/rainbow-glow';
 import { Title } from '@components/ui/title';
 import { cn } from '@lib/utils';
 import Link from 'next/link';
@@ -16,7 +17,8 @@ export const HomeAboutMe = () => {
     `;
 
     return (
-        <div className="max-w-5xl flex flex-col items-center my-20 justify-center mx-auto">
+        <div className="max-w-5xl flex flex-col relative items-center my-20 justify-center mx-auto">
+            <RainbowGlow className="opacity-5"/>
             <div className="grid grid-cols-1 gap-8 items-center md:grid-cols-2">
                 <div className="flex gap-4 flex-col">
                     <div className='px-5'>

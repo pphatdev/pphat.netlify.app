@@ -1,6 +1,23 @@
 'use client';
 
-import { appDescriptions, appName, appPositions, appTitle, currentDomain } from "@lib/constants";
+import {
+    currentDomain,
+    PERSON_NAME,
+    PERSON_ALTERNATE_NAME,
+    PERSON_JOB_TITLE,
+    PERSON_IMAGE,
+    CONTACT_EMAIL,
+    CONTACT_PHONE,
+    ADDRESS_STREET,
+    ADDRESS_LOCALITY,
+    ADDRESS_REGION,
+    ADDRESS_POSTAL_CODE,
+    ADDRESS_COUNTRY,
+    GITHUB_URL,
+    LINKEDIN_URL,
+    TWITTER_URL,
+    FIGMA_URL
+} from "@lib/constants";
 import Script from "next/script";
 
 export default function JsonLd() {
@@ -12,50 +29,54 @@ export default function JsonLd() {
             dangerouslySetInnerHTML={{
                 __html: JSON.stringify({
                     "@context": "https://schema.org",
-                    "@type": "Authorship",
-                    "author": {
-                        "@type": "Person",
-                        "name": appName,
-                        "url": currentDomain,
-                        "image": `${currentDomain}/assets/avatars/hero.webp`,
-                        "jobTitle": appPositions[0],
-                        "address": {
-                            "@type": "PostalAddress",
-                            "streetAddress": "Street 123",
-                            "addressLocality": "Sangkat Kamboul",
-                            "addressRegion": "Phnom Penh",
-                            "postalCode": "120905",
-                            "addressCountry": "KH"
-                        },
-                        "telephone": "+855-96-918-3363",
-                        "sameAs": [
-                            "https://github.com/pphatdev",
-                            "https://pphatdev.github.io",
-                            currentDomain,
-                            "https://figma.com/@PPhat",
-                            "https://kh.linkedin.com/in/pphatdev",
-                            "https://x.com/pphatdev",
-                        ]
-                    },
-                    "headline": appName,
-                    "description": appDescriptions,
-                    "image": `${currentDomain}/assets/screenshots/origin-dark.png`,
+                    "@type": "Person",
+                    "@id": `${currentDomain}#person`,
+                    "name": PERSON_NAME,
+                    "alternateName": PERSON_ALTERNATE_NAME,
+                    "jobTitle": PERSON_JOB_TITLE,
                     "url": currentDomain,
+                    "image": `${currentDomain}${PERSON_IMAGE}`,
+                    "email": `mailto:${CONTACT_EMAIL}`,
+                    "telephone": CONTACT_PHONE,
+                    "address": {
+                        "@type": "PostalAddress",
+                        "@id": `${currentDomain}#address`,
+                        "streetAddress": ADDRESS_STREET,
+                        "addressLocality": ADDRESS_LOCALITY,
+                        "addressRegion": ADDRESS_REGION,
+                        "postalCode": ADDRESS_POSTAL_CODE,
+                        "addressCountry": ADDRESS_COUNTRY
+                    },
+                    "colleague": [
+                        "https://turbotech.com.kh/",
+                        "https://github.com/pphatdev"
+                    ],
+                    "sameAs": [
+                        GITHUB_URL,
+                        `${GITHUB_URL.replace('github.com', 'pphatdev.github.io')}`,
+                        currentDomain,
+                        FIGMA_URL,
+                        LINKEDIN_URL,
+                        TWITTER_URL
+                    ],
+                    "knowsAbout": [
+                        "Web Development",
+                        "Front-end Development",
+                        "UI/UX Design",
+                        "JavaScript",
+                        "TypeScript",
+                        "React",
+                        "Next.js"
+                    ],
+                    "worksFor": {
+                        "@type": "Organization",
+                        "name": "TURBOTECH CO., LTD",
+                        "url": "https://turbotech.com.kh/"
+                    },
                     "mainEntityOfPage": {
                         "@type": "WebPage",
                         "@id": currentDomain
                     },
-                    "publisher": {
-                        "@type": "Organization",
-                        "name": appTitle,
-                        "url": currentDomain,
-                        "logo": {
-                            "@type": "ImageObject",
-                            "url": `${currentDomain}/assets/logo/logo-solid-dark-mode.png`
-                        }
-                    },
-                    "datePublished": "2020-01-10T00:00:00+00:00",
-                    "dateModified": new Date().toISOString(),
                     "potentialAction": {
                         "@type": "SearchAction",
                         "target": `${currentDomain}/?search={search_term_string}`,

@@ -69,13 +69,11 @@
 
   @keyframes orbit {
     0% {
-      transform: rotate(calc(var(--angle) * 1deg))
-        translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
+      transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
     }
+
     100% {
-      transform: rotate(calc(var(--angle) * 1deg + 360deg))
-        translateY(calc(var(--radius) * 1px))
-        rotate(calc((var(--angle) * -1deg) - 360deg));
+      transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg));
     }
   }
 
@@ -84,9 +82,11 @@
       transform: rotate(var(--angle)) translateX(0);
       opacity: 1;
     }
+
     70% {
       opacity: 1;
     }
+
     100% {
       transform: rotate(var(--angle)) translateX(-500px);
       opacity: 0;
@@ -94,10 +94,12 @@
   }
 
   @keyframes ripple {
+
     0%,
     100% {
       transform: translate(-50%, -50%) scale(1);
     }
+
     50% {
       transform: translate(-50%, -50%) scale(0.9);
     }
@@ -109,6 +111,7 @@
     0% {
       background-position: top center;
     }
+
     100% {
       background-position: bottom center;
     }
@@ -159,6 +162,7 @@
     --sidebar-border: hsl(220 13% 91%);
     --sidebar-ring: hsl(217.2 91.2% 59.8%);
   }
+
   .dark {
     --background: 240 10% 11%;
     --foreground: 0 0% 98%;
@@ -202,9 +206,11 @@
   ::file-selector-button {
     border-color: var(--color-border, currentColor);
   }
+
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground font-default;
   }
@@ -212,15 +218,19 @@
   .color-1 {
     color: hsl(var(--color-1));
   }
+
   .color-2 {
     color: hsl(var(--color-2));
   }
+
   .color-3 {
     color: hsl(var(--color-3));
   }
+
   .color-4 {
     color: hsl(var(--color-4));
   }
+
   .color-5 {
     color: hsl(var(--color-5));
   }
@@ -228,15 +238,19 @@
   .bg-color-1 {
     background-color: hsl(var(--color-1));
   }
+
   .bg-color-2 {
     background-color: hsl(var(--color-2));
   }
+
   .bg-color-3 {
     background-color: hsl(var(--color-3));
   }
+
   .bg-color-4 {
     background-color: hsl(var(--color-4));
   }
+
   .bg-color-5 {
     background-color: hsl(var(--color-5));
   }
@@ -263,9 +277,11 @@
     animation: spinner-bars-animation 0.8s linear infinite;
     animation-delay: -0.8s;
   }
+
   .spinner-bars-2 {
     animation-delay: -0.65s;
   }
+
   .spinner-bars-3 {
     animation-delay: -0.5s;
   }
@@ -275,6 +291,7 @@
       opacity: 0;
       transform: translate(-72%, -62%) scale(0.5);
     }
+
     100% {
       opacity: 1;
       transform: translate(-50%, -40%) scale(1);
@@ -285,6 +302,7 @@
     0% {
       opacity: 1;
     }
+
     100% {
       transform: scale(2);
       opacity: 0;
@@ -295,6 +313,7 @@
     0% {
       background-position: 0%;
     }
+
     100% {
       background-position: 200%;
     }
@@ -304,6 +323,7 @@
     from {
       transform: rotate(0deg);
     }
+
     to {
       transform: rotate(360deg);
     }
@@ -314,6 +334,7 @@
       y: 1px;
       height: 22px;
     }
+
     93.75% {
       y: 5px;
       height: 14px;
@@ -326,19 +347,25 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
-  p, div, a {
+
+  p,
+  div,
+  a {
     @apply font-sans;
   }
 
   *::-webkit-scrollbar {
     @apply w-2 bg-transparent;
   }
+
   *::-webkit-scrollbar-thumb {
     @apply bg-border rounded;
   }
+
   *::-webkit-scrollbar-track {
     @apply bg-transparent;
   }
