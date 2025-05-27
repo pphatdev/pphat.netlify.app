@@ -1,5 +1,3 @@
-'use client';
-
 import {
     currentDomain,
     PERSON_NAME,
