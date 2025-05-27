@@ -2,6 +2,7 @@
 
 import { db, Post } from '@lib/db/post';
 import { revalidatePath } from 'next/cache';
+import { description } from '../dashboard/utils/chart-area-interactive';
 
 export async function createPost(formData: FormData) {
     const title = formData.get('title') as string;
@@ -18,6 +19,7 @@ export async function createPost(formData: FormData) {
         db.create<Post>('posts', {
             title,
             content,
+            description,
             slug,
             published,
             createdAt: new Date().toISOString()
@@ -36,7 +38,7 @@ export async function createPost(formData: FormData) {
 export async function updatePost(id: string, postData: Partial<Post>) {
     try {
         const existingPost = db.getById<Post>('posts', id);
-        
+
         if (!existingPost) {
             return { error: 'Post not found' };
         }

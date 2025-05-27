@@ -16,6 +16,7 @@ export interface Post {
     title: string;
     content: string;
     published: boolean;
+    description: string;
     tags: string[];
     createdAt: Date;
     thumbnail: string;
