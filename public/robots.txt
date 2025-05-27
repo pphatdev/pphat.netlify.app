@@ -1,7 +1,9 @@
-user-agent: *
-disallow: /downloads/
+User-agent: *
+Allow: /
+Disallow: /downloads/
 
-user-agent: magicsearchbot
-disallow: /uploads/
+User-agent: magicsearchbot
+Disallow: /uploads/
 
 Sitemap: https://pphat.top/sitemap.xml
+Sitemap: https://pphat.top/image-sitemap.xml
