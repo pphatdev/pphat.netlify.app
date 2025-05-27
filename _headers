@@ -8,7 +8,3 @@
 # Explicitly allow indexing for all pages
 /*
   X-Robots-Tag: index, follow
-
-# Remove any noindex directives
-/*
-  ! X-Robots-Tag: noindex

@@ -25,6 +25,12 @@ const nextConfig: NextConfig = {
             },
             {
                 protocol: 'https',
+                hostname: 'images.unsplash.com',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
                 hostname: 'avatars.githubusercontent.com',
                 port: '',
                 pathname: '/**',
@@ -41,11 +47,11 @@ const nextConfig: NextConfig = {
         turbo: {
             loaders: {},
             rules: {}
-        }, // Enable Turbo with required options
-        optimizeServerReact: true, // Optimize server-side React
+        },
+        optimizeServerReact: true,
     },
-    poweredByHeader: false, // Remove X-Powered-By header
-    generateEtags: true, // Generate ETags for caching
+    poweredByHeader: false,
+    generateEtags: true,
 };
 
 export default nextConfig;
