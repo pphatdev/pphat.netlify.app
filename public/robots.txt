@@ -1,6 +1,11 @@
 User-agent: *
 Allow: /
 Disallow: /downloads/
+Disallow: /admin/*
+Disallow: /login*
+Disallow: /(auth)/*
+Disallow: /data/
+Disallow: /google*.html
 
 User-agent: magicsearchbot
 Disallow: /uploads/
