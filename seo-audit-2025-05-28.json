@@ -1,0 +1,166 @@
+{
+  "domain": "https://pphat.netlify.app",
+  "auditDate": "2025-05-28T15:04:58.368Z",
+  "totalPages": 18,
+  "indexablePages": 18,
+  "blockedPages": 0,
+  "pages": [
+    {
+      "url": "https://pphat.netlify.app/",
+      "path": "/",
+      "lastModified": "2025-05-28",
+      "priority": 1,
+      "issues": [],
+      "recommendations": []
+    },
+    {
+      "url": "https://pphat.netlify.app/about",
+      "path": "/about",
+      "lastModified": "2025-05-28",
+      "priority": 0.8,
+      "issues": [],
+      "recommendations": []
+    },
+    {
+      "url": "https://pphat.netlify.app/contact",
+      "path": "/contact",
+      "lastModified": "2025-05-28",
+      "priority": 0.8,
+      "issues": [],
+      "recommendations": []
+    },
+    {
+      "url": "https://pphat.netlify.app/gallery",
+      "path": "/gallery",
+      "lastModified": "2025-05-28",
+      "priority": 0.8,
+      "issues": [],
+      "recommendations": []
+    },
+    {
+      "url": "https://pphat.netlify.app/posts",
+      "path": "/posts",
+      "lastModified": "2025-05-28",
+      "priority": 0.9,
+      "issues": [],
+      "recommendations": []
+    },
+    {
+      "url": "https://pphat.netlify.app/projects",
+      "path": "/projects",
+      "lastModified": "2025-05-28",
+      "priority": 0.8,
+      "issues": [],
+      "recommendations": []
+    },
+    {
+      "url": "https://pphat.netlify.app/posts/basic-html-tutorial",
+      "path": "/posts/basic-html-tutorial",
+      "lastModified": "2025-05-26",
+      "priority": 0.7,
+      "issues": [],
+      "recommendations": []
+    },
+    {
+      "url": "https://pphat.netlify.app/posts/heading-levels-test",
+      "path": "/posts/heading-levels-test",
+      "lastModified": "2025-05-26",
+      "priority": 0.7,
+      "issues": [],
+      "recommendations": []
+    },
+    {
+      "url": "https://pphat.netlify.app/posts/modern-javascript-es6-features",
+      "path": "/posts/modern-javascript-es6-features",
+      "lastModified": "2025-03-15",
+      "priority": 0.7,
+      "issues": [],
+      "recommendations": []
+    },
+    {
+      "url": "https://pphat.netlify.app/posts/understanding-react-hooks",
+      "path": "/posts/understanding-react-hooks",
+      "lastModified": "2025-02-28",
+      "priority": 0.7,
+      "issues": [],
+      "recommendations": []
+    },
+    {
+      "url": "https://pphat.netlify.app/posts/css-flexbox-complete-guide",
+      "path": "/posts/css-flexbox-complete-guide",
+      "lastModified": "2025-01-22",
+      "priority": 0.7,
+      "issues": [],
+      "recommendations": []
+    },
+    {
+      "url": "https://pphat.netlify.app/posts/building-rest-apis-nodejs",
+      "path": "/posts/building-rest-apis-nodejs",
+      "lastModified": "2025-04-10",
+      "priority": 0.7,
+      "issues": [],
+      "recommendations": []
+    },
+    {
+      "url": "https://pphat.netlify.app/posts/typescript-for-javascript-developers",
+      "path": "/posts/typescript-for-javascript-developers",
+      "lastModified": "2025-05-18",
+      "priority": 0.7,
+      "issues": [],
+      "recommendations": []
+    },
+    {
+      "url": "https://pphat.netlify.app/posts/git-workflow-best-practices",
+      "path": "/posts/git-workflow-best-practices",
+      "lastModified": "2025-03-08",
+      "priority": 0.7,
+      "issues": [],
+      "recommendations": []
+    },
+    {
+      "url": "https://pphat.netlify.app/posts/responsive-web-design-principles",
+      "path": "/posts/responsive-web-design-principles",
+      "lastModified": "2025-01-15",
+      "priority": 0.7,
+      "issues": [],
+      "recommendations": []
+    },
+    {
+      "url": "https://pphat.netlify.app/posts/web-performance-optimization-techniques",
+      "path": "/posts/web-performance-optimization-techniques",
+      "lastModified": "2025-04-20",
+      "priority": 0.7,
+      "issues": [],
+      "recommendations": []
+    },
+    {
+      "url": "https://pphat.netlify.app/posts/web-security-best-practices",
+      "path": "/posts/web-security-best-practices",
+      "lastModified": "2025-02-12",
+      "priority": 0.7,
+      "issues": [],
+      "recommendations": []
+    },
+    {
+      "url": "https://pphat.netlify.app/posts/javascript-testing-with-jest",
+      "path": "/posts/javascript-testing-with-jest",
+      "lastModified": "2025-05-05",
+      "priority": 0.7,
+      "issues": [],
+      "recommendations": []
+    }
+  ],
+  "robotsConfig": {
+    "blocked": [
+      "/downloads/",
+      "/admin/",
+      "/login",
+      "/(auth)/",
+      "/uploads/"
+    ],
+    "allowed": [
+      "/"
+    ],
+    "issues": []
+  }
+}

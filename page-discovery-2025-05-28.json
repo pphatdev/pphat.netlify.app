@@ -1,0 +1,524 @@
+{
+  "discoveryDate": "2025-05-28T15:06:24.763Z",
+  "domain": "https://pphat.netlify.app",
+  "totalDiscoveredPages": 31,
+  "sitemapPages": 18,
+  "pagesInSitemap": 18,
+  "pagesNotInSitemap": 13,
+  "orphanedUrls": [],
+  "allPages": [
+    {
+      "path": "/admin/dashboard",
+      "file": "src\\app\\(auth)\\admin\\dashboard\\page.tsx",
+      "type": "static"
+    },
+    {
+      "path": "/admin/posts/add",
+      "file": "src\\app\\(auth)\\admin\\posts\\add\\page.tsx",
+      "type": "static"
+    },
+    {
+      "path": "/admin/posts",
+      "file": "src\\app\\(auth)\\admin\\posts\\page.tsx",
+      "type": "static"
+    },
+    {
+      "path": "/admin/posts/[slug]/edit",
+      "file": "src\\app\\(auth)\\admin\\posts\\[slug]\\edit\\page.tsx",
+      "type": "static"
+    },
+    {
+      "path": "/login",
+      "file": "src\\app\\(auth)\\login\\page.tsx",
+      "type": "static"
+    },
+    {
+      "path": "/",
+      "file": "src\\app\\(home)\\page.tsx",
+      "type": "static"
+    },
+    {
+      "path": "/about",
+      "file": "src\\app\\about\\page.tsx",
+      "type": "static"
+    },
+    {
+      "path": "/contact",
+      "file": "src\\app\\contact\\page.tsx",
+      "type": "static"
+    },
+    {
+      "path": "/gallery",
+      "file": "src\\app\\gallery\\page.tsx",
+      "type": "static"
+    },
+    {
+      "path": "/posts",
+      "file": "src\\app\\posts\\page.tsx",
+      "type": "static"
+    },
+    {
+      "path": "/posts/[slug]",
+      "file": "src\\app\\posts\\[slug]\\page.tsx",
+      "type": "static"
+    },
+    {
+      "path": "/projects",
+      "file": "src\\app\\projects\\page.tsx",
+      "type": "static"
+    },
+    {
+      "path": "/data/post.json",
+      "file": "public\\data\\post.json",
+      "type": "static-file"
+    },
+    {
+      "path": "/data/project.json",
+      "file": "public\\data\\project.json",
+      "type": "static-file"
+    },
+    {
+      "path": "/google39cde7dcbec7f9f3.html",
+      "file": "public\\google39cde7dcbec7f9f3.html",
+      "type": "static-file"
+    },
+    {
+      "path": "/googleff785c31669eafd5.html",
+      "file": "public\\googleff785c31669eafd5.html",
+      "type": "static-file"
+    },
+    {
+      "path": "/image-sitemap.xml",
+      "file": "public\\image-sitemap.xml",
+      "type": "static-file"
+    },
+    {
+      "path": "/robots.txt",
+      "file": "public\\robots.txt",
+      "type": "static-file"
+    },
+    {
+      "path": "/sitemap.xml",
+      "file": "public\\sitemap.xml",
+      "type": "static-file"
+    },
+    {
+      "path": "/posts/basic-html-tutorial",
+      "file": "src/app/posts/[slug]/page.tsx",
+      "type": "dynamic-post",
+      "data": {
+        "id": "s7t8u9v0-w1x2-y3z4-a5b6-c7d8e9f0g1h2",
+        "tags": [
+          "css",
+          "design"
+        ],
+        "authors": [
+          {
+            "name": "PPhat DEv",
+            "profile": "https://github.com/pphatdev.png",
+            "url": "https://pphat.top"
+          }
+        ],
+        "thumbnail": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d",
+        "title": "Basic HTML Tutorial",
+        "description": "Learn the fundamentals of HTML with this comprehensive beginner's guide. Covers document structure, common tags, links, images, and lists to get you started with web development.",
+        "content": "{\"type\":\"doc\",\"content\":[{\"type\":\"heading\",\"attrs\":{\"level\":1},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Basic HTML Tutorials\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Welcome! This tutorial will introduce you to the basics of HTML (HyperText Markup Language), the standard markup language for creating web pages.\"}]},{\"type\":\"horizontalRule\"},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Table of Contents\"}]},{\"type\":\"orderedList\",\"attrs\":{\"start\":1,\"type\":null},\"content\":[{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"link\",\"attrs\":{\"href\":\"https://github.com/copilot/c/c5f9b6c1-3bab-44bb-a40b-542ceb2d5e03#what-is-html\",\"target\":\"_blank\",\"rel\":\"noopener noreferrer nofollow\",\"class\":\"text-muted-foreground underline underline-offset-[3px] hover:text-primary transition-colors cursor-pointer\"}},{\"type\":\"underline\"}],\"text\":\"What is HTML?\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"link\",\"attrs\":{\"href\":\"https://github.com/copilot/c/c5f9b6c1-3bab-44bb-a40b-542ceb2d5e03#html-document-structure\",\"target\":\"_blank\",\"rel\":\"noopener noreferrer nofollow\",\"class\":\"text-muted-foreground underline underline-offset-[3px] hover:text-primary transition-colors cursor-pointer\"}},{\"type\":\"underline\"}],\"text\":\"HTML Document Structure\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"link\",\"attrs\":{\"href\":\"https://github.com/copilot/c/c5f9b6c1-3bab-44bb-a40b-542ceb2d5e03#common-html-tags\",\"target\":\"_blank\",\"rel\":\"noopener noreferrer nofollow\",\"class\":\"text-muted-foreground underline underline-offset-[3px] hover:text-primary transition-colors cursor-pointer\"}},{\"type\":\"underline\"}],\"text\":\"Common HTML Tags\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"link\",\"attrs\":{\"href\":\"https://github.com/copilot/c/c5f9b6c1-3bab-44bb-a40b-542ceb2d5e03#creating-links-and-images\",\"target\":\"_blank\",\"rel\":\"noopener noreferrer nofollow\",\"class\":\"text-muted-foreground underline underline-offset-[3px] hover:text-primary transition-colors cursor-pointer\"}},{\"type\":\"underline\"}],\"text\":\"Creating Links and Images\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"link\",\"attrs\":{\"href\":\"https://github.com/copilot/c/c5f9b6c1-3bab-44bb-a40b-542ceb2d5e03#lists-in-html\",\"target\":\"_blank\",\"rel\":\"noopener noreferrer nofollow\",\"class\":\"text-muted-foreground underline underline-offset-[3px] hover:text-primary transition-colors cursor-pointer\"}},{\"type\":\"underline\"}],\"text\":\"Lists in HTML\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"link\",\"attrs\":{\"href\":\"https://github.com/copilot/c/c5f9b6c1-3bab-44bb-a40b-542ceb2d5e03#adding-comments\",\"target\":\"_blank\",\"rel\":\"noopener noreferrer nofollow\",\"class\":\"text-muted-foreground underline underline-offset-[3px] hover:text-primary transition-colors cursor-pointer\"}},{\"type\":\"underline\"}],\"text\":\"Adding Comments\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"link\",\"attrs\":{\"href\":\"https://github.com/copilot/c/c5f9b6c1-3bab-44bb-a40b-542ceb2d5e03#conclusion\",\"target\":\"_blank\",\"rel\":\"noopener noreferrer nofollow\",\"class\":\"text-muted-foreground underline underline-offset-[3px] hover:text-primary transition-colors cursor-pointer\"}},{\"type\":\"underline\"}],\"text\":\"Conclusion\"}]}]}]},{\"type\":\"horizontalRule\"},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"What is HTML?\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"HTML stands for \"},{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"HyperText Markup Language\"},{\"type\":\"text\",\"text\":\". It is used to create the structure of web pages using elements called \\\"tags.\\\"\"}]},{\"type\":\"horizontalRule\"},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"HTML Document Structure\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Every HTML document has a basic structure:\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"typescript\"},\"content\":[{\"type\":\"text\",\"text\":\"<!DOCTYPE html>\\n<html>\\n  <head>\\n    <title>My First HTML Page</title>\\n  </head>\\n  <body>\\n    <!-- Content goes here -->\\n  </body>\\n</html>\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Explanation:\"}]},{\"type\":\"bulletList\",\"content\":[{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"code\"}],\"text\":\"<!DOCTYPE html>\"},{\"type\":\"text\",\"text\":\": Tells the browser this is an HTML5 document.\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"code\"}],\"text\":\"<html>\"},{\"type\":\"text\",\"text\":\": Root element.\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"code\"}],\"text\":\"<head>\"},{\"type\":\"text\",\"text\":\": Contains meta information (not shown on the page).\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"code\"}],\"text\":\"<title>\"},{\"type\":\"text\",\"text\":\": Sets the page title in the browser tab.\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"code\"}],\"text\":\"<body>\"},{\"type\":\"text\",\"text\":\": Contains visible content.\"}]}]}]},{\"type\":\"horizontalRule\"},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Common HTML Tags\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Here are some essential HTML tags:\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"TagDescriptionExample\"},{\"type\":\"text\",\"marks\":[{\"type\":\"code\"}],\"text\":\"<h1>\"},{\"type\":\"text\",\"text\":\"–\"},{\"type\":\"text\",\"marks\":[{\"type\":\"code\"}],\"text\":\"<h6>\"},{\"type\":\"text\",\"text\":\"Headings (largest to smallest)\"},{\"type\":\"text\",\"marks\":[{\"type\":\"code\"}],\"text\":\"<h1>Hello</h1><p>\"},{\"type\":\"text\",\"text\":\"Paragraph\"},{\"type\":\"text\",\"marks\":[{\"type\":\"code\"}],\"text\":\"<p>This is a paragraph.</p><strong>\"},{\"type\":\"text\",\"text\":\"Bold text\"},{\"type\":\"text\",\"marks\":[{\"type\":\"code\"}],\"text\":\"<strong>Important</strong><em>\"},{\"type\":\"text\",\"text\":\"Italic text\"},{\"type\":\"text\",\"marks\":[{\"type\":\"code\"}],\"text\":\"<em>Emphasized</em><br>\"},{\"type\":\"text\",\"text\":\"Line break\"},{\"type\":\"text\",\"marks\":[{\"type\":\"code\"}],\"text\":\"First line<br>Second line<hr>\"},{\"type\":\"text\",\"text\":\"Horizontal rule (line)\"},{\"type\":\"text\",\"marks\":[{\"type\":\"code\"}],\"text\":\"<hr>\"}]},{\"type\":\"horizontalRule\"},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Creating Links and Images\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":3},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Links\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"To link to another page, use the \"},{\"type\":\"text\",\"marks\":[{\"type\":\"code\"}],\"text\":\"<a>\"},{\"type\":\"text\",\"text\":\" tag:\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"typescript\"},\"content\":[{\"type\":\"text\",\"text\":\"<a href=\\\"https://www.example.com\\\">Visit Example.com</a>\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":3},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Images\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"To display an image, use the \"},{\"type\":\"text\",\"marks\":[{\"type\":\"code\"}],\"text\":\"<img>\"},{\"type\":\"text\",\"text\":\" tag:\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"typescript\"},\"content\":[{\"type\":\"text\",\"text\":\"<img src=\\\"https://www.example.com/image.jpg\\\" alt=\\\"Description\\\">\"}]},{\"type\":\"bulletList\",\"content\":[{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"code\"}],\"text\":\"src\"},{\"type\":\"text\",\"text\":\": Image URL or file path.\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"code\"}],\"text\":\"alt\"},{\"type\":\"text\",\"text\":\": Alternative text for screen readers.\"}]}]}]},{\"type\":\"horizontalRule\"},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Lists in HTML\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":3},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Unordered List\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"typescript\"},\"content\":[{\"type\":\"text\",\"text\":\"<ul>\\n  <li>Item One</li>\\n  <li>Item Two</li>\\n</ul>\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":3},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Ordered List\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"typescript\"},\"content\":[{\"type\":\"text\",\"text\":\"<ol>\\n  <li>First</li>\\n  <li>Second</li>\\n</ol>\"}]},{\"type\":\"horizontalRule\"},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Adding Comments\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Comments are not displayed in the browser. They are useful for notes in your code:\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"typescript\"},\"content\":[{\"type\":\"text\",\"text\":\"<!-- This is a comment -->\"}]},{\"type\":\"horizontalRule\"},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Conclusion\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"This covers the basics of HTML! To learn more, explore resources like:\"}]},{\"type\":\"bulletList\",\"content\":[{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"link\",\"attrs\":{\"href\":\"https://developer.mozilla.org/en-US/docs/Web/HTML\",\"target\":\"_blank\",\"rel\":\"nofollow\",\"class\":\"text-muted-foreground underline underline-offset-[3px] hover:text-primary transition-colors cursor-pointer\"}},{\"type\":\"underline\"}],\"text\":\"MDN Web Docs - HTML\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"link\",\"attrs\":{\"href\":\"https://www.w3schools.com/html/\",\"target\":\"_blank\",\"rel\":\"nofollow\",\"class\":\"text-muted-foreground underline underline-offset-[3px] hover:text-primary transition-colors cursor-pointer\"}},{\"type\":\"underline\"}],\"text\":\"W3Schools HTML Tutorial\"}]}]}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Happy coding!\"}]}]}",
+        "slug": "basic-html-tutorial",
+        "published": true,
+        "createdAt": "2025-04-03T16:45:00.000Z",
+        "updatedAt": "2025-05-26T18:42:43.907Z"
+      }
+    },
+    {
+      "path": "/posts/heading-levels-test",
+      "file": "src/app/posts/[slug]/page.tsx",
+      "type": "dynamic-post",
+      "data": {
+        "id": "heading-test-h1-h6",
+        "tags": [
+          "typography",
+          "headings",
+          "testing"
+        ],
+        "authors": [
+          {
+            "name": "PPhat DEv",
+            "profile": "https://github.com/pphatdev.png",
+            "url": "https://pphat.top"
+          }
+        ],
+        "thumbnail": "https://images.unsplash.com/photo-1586953208448-b95a79798f07",
+        "title": "Heading Levels Test - H1 to H6",
+        "description": "A comprehensive test of all six heading levels in HTML, demonstrating proper typography hierarchy, spacing, and design principles for accessible and readable content structure.",
+        "content": "{\"type\":\"doc\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"This post demonstrates all six heading levels with proper typography and spacing.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":1},\"content\":[{\"type\":\"text\",\"text\":\"Heading Level 1 - Main Title\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"This is a paragraph following an H1 heading. It should have proper spacing and readability.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"text\":\"Heading Level 2 - Section Title\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"This paragraph follows an H2 heading. H2 headings are typically used for major sections.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":3},\"content\":[{\"type\":\"text\",\"text\":\"Heading Level 3 - Subsection Title\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"H3 headings are used for subsections and should have distinct but harmonious styling.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":4},\"content\":[{\"type\":\"text\",\"text\":\"Heading Level 4 - Sub-subsection\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"H4 headings provide further subdivision while maintaining readability hierarchy.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":5},\"content\":[{\"type\":\"text\",\"text\":\"Heading Level 5 - Minor Section\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"H5 headings are useful for detailed breakdowns and minor sections within content.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":6},\"content\":[{\"type\":\"text\",\"text\":\"Heading Level 6 - Smallest Heading\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"H6 represents the smallest heading level, often used for fine-grained content organization.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"text\":\"Typography Hierarchy\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"The heading hierarchy should provide clear visual distinction between different levels while maintaining consistency with the overall design system.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":3},\"content\":[{\"type\":\"text\",\"text\":\"Design Principles\"}]},{\"type\":\"bulletList\",\"content\":[{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Consistent font weights and spacing\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Clear size hierarchy from H1 to H6\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Proper margins for visual breathing room\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Responsive typography that works on all devices\"}]}]}]}]}",
+        "slug": "heading-levels-test",
+        "published": true,
+        "createdAt": "2025-05-26T12:30:00.000Z"
+      }
+    },
+    {
+      "path": "/posts/modern-javascript-es6-features",
+      "file": "src/app/posts/[slug]/page.tsx",
+      "type": "dynamic-post",
+      "data": {
+        "id": "a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6",
+        "tags": [
+          "javascript",
+          "es6",
+          "programming"
+        ],
+        "authors": [
+          {
+            "name": "PPhat DEv",
+            "profile": "https://github.com/pphatdev.png",
+            "url": "https://pphat.top"
+          }
+        ],
+        "thumbnail": "https://images.unsplash.com/photo-1627398242454-45a1465c2479",
+        "title": "Modern JavaScript ES6+ Features",
+        "description": "Explore the most important ES6+ features that every JavaScript developer should know, including arrow functions, destructuring, async/await, and more.",
+        "content": "{\"type\":\"doc\",\"content\":[{\"type\":\"heading\",\"attrs\":{\"level\":1},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Modern JavaScript ES6+ Features\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"JavaScript has evolved significantly with ES6 and later versions. Let's explore the essential features every developer should master.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Arrow Functions\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Arrow functions provide a concise way to write functions:\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"javascript\"},\"content\":[{\"type\":\"text\",\"text\":\"// Traditional function\\nfunction add(a, b) {\\n  return a + b;\\n}\\n\\n// Arrow function\\nconst add = (a, b) => a + b;\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Destructuring\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Extract values from arrays and objects easily:\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"javascript\"},\"content\":[{\"type\":\"text\",\"text\":\"// Object destructuring\\nconst person = { name: 'John', age: 30 };\\nconst { name, age } = person;\\n\\n// Array destructuring\\nconst colors = ['red', 'green', 'blue'];\\nconst [first, second] = colors;\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Template Literals\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Use template literals for string interpolation:\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"javascript\"},\"content\":[{\"type\":\"text\",\"text\":\"const name = 'World';\\nconst greeting = `Hello, ${name}!`;\"}]}]}",
+        "slug": "modern-javascript-es6-features",
+        "published": true,
+        "createdAt": "2025-03-15T09:20:00.000Z"
+      }
+    },
+    {
+      "path": "/posts/understanding-react-hooks",
+      "file": "src/app/posts/[slug]/page.tsx",
+      "type": "dynamic-post",
+      "data": {
+        "id": "q2w3e4r5-t6y7-u8i9-o0p1-a2s3d4f5g6h7",
+        "tags": [
+          "react",
+          "hooks",
+          "frontend"
+        ],
+        "authors": [
+          {
+            "name": "PPhat DEv",
+            "profile": "https://github.com/pphatdev.png",
+            "url": "https://pphat.top"
+          }
+        ],
+        "thumbnail": "https://images.unsplash.com/photo-1633356122544-f134324a6cee",
+        "title": "Understanding React Hooks",
+        "description": "A comprehensive guide to React Hooks including useState, useEffect, useContext, and custom hooks. Learn how to manage state and side effects in functional components.",
+        "content": "{\"type\":\"doc\",\"content\":[{\"type\":\"heading\",\"attrs\":{\"level\":1},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Understanding React Hooks\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"React Hooks revolutionized how we write React components. They allow you to use state and other React features in functional components.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"useState Hook\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"The useState hook lets you add state to functional components:\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"javascript\"},\"content\":[{\"type\":\"text\",\"text\":\"import { useState } from 'react';\\n\\nfunction Counter() {\\n  const [count, setCount] = useState(0);\\n\\n  return (\\n    <div>\\n      <p>You clicked {count} times</p>\\n      <button onClick={() => setCount(count + 1)}>\\n        Click me\\n      </button>\\n    </div>\\n  );\\n}\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"useEffect Hook\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"useEffect handles side effects in functional components:\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"javascript\"},\"content\":[{\"type\":\"text\",\"text\":\"import { useState, useEffect } from 'react';\\n\\nfunction DataFetcher() {\\n  const [data, setData] = useState(null);\\n\\n  useEffect(() => {\\n    fetch('/api/data')\\n      .then(response => response.json())\\n      .then(data => setData(data));\\n  }, []); // Empty dependency array means this runs once\\n\\n  return <div>{data ? JSON.stringify(data) : 'Loading...'}</div>;\\n}\"}]}]}",
+        "slug": "understanding-react-hooks",
+        "published": true,
+        "createdAt": "2025-02-28T14:15:00.000Z"
+      }
+    },
+    {
+      "path": "/posts/css-flexbox-complete-guide",
+      "file": "src/app/posts/[slug]/page.tsx",
+      "type": "dynamic-post",
+      "data": {
+        "id": "z9x8c7v6-b5n4-m3q2-w1e0-r9t8y7u6i5o4",
+        "tags": [
+          "css",
+          "flexbox",
+          "layout"
+        ],
+        "authors": [
+          {
+            "name": "PPhat DEv",
+            "profile": "https://github.com/pphatdev.png",
+            "url": "https://pphat.top"
+          }
+        ],
+        "thumbnail": "https://images.unsplash.com/photo-1558655146-d09347e92766",
+        "title": "CSS Flexbox Complete Guide",
+        "description": "Master CSS Flexbox with this comprehensive guide. Learn about flex containers, items, alignment, distribution, and practical examples for modern web layouts.",
+        "content": "{\"type\":\"doc\",\"content\":[{\"type\":\"heading\",\"attrs\":{\"level\":1},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"CSS Flexbox Complete Guide\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Flexbox is a powerful layout method that makes it easy to design flexible and responsive layout structures.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Flex Container Properties\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Start by making an element a flex container:\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"css\"},\"content\":[{\"type\":\"text\",\"text\":\".container {\\n  display: flex;\\n  flex-direction: row; /* row | row-reverse | column | column-reverse */\\n  justify-content: center; /* flex-start | flex-end | center | space-between | space-around | space-evenly */\\n  align-items: center; /* stretch | flex-start | flex-end | center | baseline */\\n  flex-wrap: wrap; /* nowrap | wrap | wrap-reverse */\\n}\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Flex Item Properties\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Control individual flex items:\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"css\"},\"content\":[{\"type\":\"text\",\"text\":\".item {\\n  flex-grow: 1; /* How much the item should grow */\\n  flex-shrink: 1; /* How much the item should shrink */\\n  flex-basis: auto; /* Initial size before free space is distributed */\\n  align-self: auto; /* Override the container's align-items */\\n  order: 0; /* Change the order without changing HTML */\\n}\"}]}]}",
+        "slug": "css-flexbox-complete-guide",
+        "published": true,
+        "createdAt": "2025-01-22T11:45:00.000Z"
+      }
+    },
+    {
+      "path": "/posts/building-rest-apis-nodejs",
+      "file": "src/app/posts/[slug]/page.tsx",
+      "type": "dynamic-post",
+      "data": {
+        "id": "p0o9i8u7-y6t5-r4e3-w2q1-a0s9d8f7g6h5",
+        "tags": [
+          "nodejs",
+          "api",
+          "backend"
+        ],
+        "authors": [
+          {
+            "name": "PPhat DEv",
+            "profile": "https://github.com/pphatdev.png",
+            "url": "https://pphat.top"
+          }
+        ],
+        "thumbnail": "https://images.unsplash.com/photo-1627398242454-45a1465c2479",
+        "title": "Building REST APIs with Node.js",
+        "description": "Learn how to build robust REST APIs using Node.js and Express. Covers routing, middleware, error handling, authentication, and best practices for API development.",
+        "content": "{\"type\":\"doc\",\"content\":[{\"type\":\"heading\",\"attrs\":{\"level\":1},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Building REST APIs with Node.js\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Node.js and Express make it easy to build powerful REST APIs. Let's explore the fundamentals.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Setting Up Express\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"First, install Express and set up a basic server:\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"javascript\"},\"content\":[{\"type\":\"text\",\"text\":\"const express = require('express');\\nconst app = express();\\nconst PORT = process.env.PORT || 3000;\\n\\n// Middleware\\napp.use(express.json());\\napp.use(express.urlencoded({ extended: true }));\\n\\n// Basic route\\napp.get('/', (req, res) => {\\n  res.json({ message: 'Welcome to our API!' });\\n});\\n\\napp.listen(PORT, () => {\\n  console.log(`Server running on port ${PORT}`);\\n});\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Creating CRUD Routes\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Implement the four basic operations:\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"javascript\"},\"content\":[{\"type\":\"text\",\"text\":\"// GET all users\\napp.get('/api/users', (req, res) => {\\n  // Return all users\\n});\\n\\n// GET single user\\napp.get('/api/users/:id', (req, res) => {\\n  // Return user by ID\\n});\\n\\n// POST new user\\napp.post('/api/users', (req, res) => {\\n  // Create new user\\n});\\n\\n// PUT update user\\napp.put('/api/users/:id', (req, res) => {\\n  // Update user by ID\\n});\\n\\n// DELETE user\\napp.delete('/api/users/:id', (req, res) => {\\n  // Delete user by ID\\n});\"}]}]}",
+        "slug": "building-rest-apis-nodejs",
+        "published": true,
+        "createdAt": "2025-04-10T08:30:00.000Z"
+      }
+    },
+    {
+      "path": "/posts/typescript-for-javascript-developers",
+      "file": "src/app/posts/[slug]/page.tsx",
+      "type": "dynamic-post",
+      "data": {
+        "id": "l1k2j3h4-g5f6-d7s8-a9z0-x1c2v3b4n5m6",
+        "tags": [
+          "typescript",
+          "javascript",
+          "types"
+        ],
+        "authors": [
+          {
+            "name": "PPhat DEv",
+            "profile": "https://github.com/pphatdev.png",
+            "url": "https://pphat.top"
+          }
+        ],
+        "thumbnail": "https://images.unsplash.com/photo-1555949963-aa79dcee981c",
+        "title": "TypeScript for JavaScript Developers",
+        "description": "Make the transition from JavaScript to TypeScript smoothly. Learn about type annotations, interfaces, generics, and how TypeScript can improve your code quality.",
+        "content": "{\"type\":\"doc\",\"content\":[{\"type\":\"heading\",\"attrs\":{\"level\":1},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"TypeScript for JavaScript Developers\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"TypeScript adds static type checking to JavaScript, helping you catch errors early and write more maintainable code.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Basic Type Annotations\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Add type annotations to variables and functions:\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"typescript\"},\"content\":[{\"type\":\"text\",\"text\":\"// Variables\\nlet name: string = 'John';\\nlet age: number = 30;\\nlet isActive: boolean = true;\\n\\n// Functions\\nfunction greet(name: string): string {\\n  return `Hello, ${name}!`;\\n}\\n\\n// Arrays\\nlet numbers: number[] = [1, 2, 3, 4, 5];\\nlet names: string[] = ['Alice', 'Bob', 'Charlie'];\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Interfaces\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Define object shapes with interfaces:\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"typescript\"},\"content\":[{\"type\":\"text\",\"text\":\"interface User {\\n  id: number;\\n  name: string;\\n  email: string;\\n  isActive?: boolean; // Optional property\\n}\\n\\nfunction createUser(userData: User): User {\\n  return {\\n    id: Date.now(),\\n    ...userData\\n  };\\n}\"}]}]}",
+        "slug": "typescript-for-javascript-developers",
+        "published": true,
+        "createdAt": "2025-05-18T13:20:00.000Z"
+      }
+    },
+    {
+      "path": "/posts/git-workflow-best-practices",
+      "file": "src/app/posts/[slug]/page.tsx",
+      "type": "dynamic-post",
+      "data": {
+        "id": "n7b6v5c4-x3z2-a1s0-d9f8-g7h6j5k4l3m2",
+        "tags": [
+          "git",
+          "version-control",
+          "workflow"
+        ],
+        "authors": [
+          {
+            "name": "PPhat DEv",
+            "profile": "https://github.com/pphatdev.png",
+            "url": "https://pphat.top"
+          }
+        ],
+        "thumbnail": "https://images.unsplash.com/photo-1556075798-4825dfaaf498",
+        "title": "Git Workflow Best Practices",
+        "description": "Learn essential Git workflows and best practices for team collaboration. Covers branching strategies, commit conventions, and effective version control techniques.",
+        "content": "{\"type\":\"doc\",\"content\":[{\"type\":\"heading\",\"attrs\":{\"level\":1},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Git Workflow Best Practices\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Effective Git workflows are crucial for team collaboration and project maintenance. Let's explore the best practices.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Branching Strategy\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Use a consistent branching strategy like Git Flow:\"}]},{\"type\":\"bulletList\",\"content\":[{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"code\"}],\"text\":\"main\"},{\"type\":\"text\",\"text\":\": Production-ready code\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"code\"}],\"text\":\"develop\"},{\"type\":\"text\",\"text\":\": Integration branch for features\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"code\"}],\"text\":\"feature/*\"},{\"type\":\"text\",\"text\":\": Individual feature branches\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"code\"}],\"text\":\"release/*\"},{\"type\":\"text\",\"text\":\": Release preparation branches\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"code\"}],\"text\":\"hotfix/*\"},{\"type\":\"text\",\"text\":\": Emergency fixes for production\"}]}]}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Commit Message Conventions\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Follow conventional commit format:\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"bash\"},\"content\":[{\"type\":\"text\",\"text\":\"# Format: <type>(<scope>): <description>\\n\\nfeat(auth): add user login functionality\\nfix(api): resolve database connection issue\\ndocs(readme): update installation instructions\\nstyle(css): improve button hover effects\\nrefactor(utils): optimize helper functions\"}]}]}",
+        "slug": "git-workflow-best-practices",
+        "published": true,
+        "createdAt": "2025-03-08T16:40:00.000Z"
+      }
+    },
+    {
+      "path": "/posts/responsive-web-design-principles",
+      "file": "src/app/posts/[slug]/page.tsx",
+      "type": "dynamic-post",
+      "data": {
+        "id": "q1w2e3r4-t5y6-u7i8-o9p0-a1s2d3f4g5h6",
+        "tags": [
+          "responsive",
+          "css",
+          "mobile"
+        ],
+        "authors": [
+          {
+            "name": "PPhat DEv",
+            "profile": "https://github.com/pphatdev.png",
+            "url": "https://pphat.top"
+          }
+        ],
+        "thumbnail": "https://images.unsplash.com/photo-1555066931-4365d14bab8c",
+        "title": "Responsive Web Design Principles",
+        "description": "Master responsive web design with CSS Grid, Flexbox, and media queries. Learn how to create websites that work perfectly on all devices and screen sizes.",
+        "content": "{\"type\":\"doc\",\"content\":[{\"type\":\"heading\",\"attrs\":{\"level\":1},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Responsive Web Design Principles\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Responsive design ensures your website looks great and functions well on all devices, from smartphones to desktop computers.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Mobile-First Approach\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Start designing for mobile devices first, then enhance for larger screens:\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"css\"},\"content\":[{\"type\":\"text\",\"text\":\"/* Mobile styles (default) */\\n.container {\\n  width: 100%;\\n  padding: 1rem;\\n}\\n\\n/* Tablet styles */\\n@media (min-width: 768px) {\\n  .container {\\n    max-width: 750px;\\n    margin: 0 auto;\\n  }\\n}\\n\\n/* Desktop styles */\\n@media (min-width: 1024px) {\\n  .container {\\n    max-width: 1200px;\\n    padding: 2rem;\\n  }\\n}\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Flexible Images\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Make images responsive:\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"css\"},\"content\":[{\"type\":\"text\",\"text\":\"img {\\n  max-width: 100%;\\n  height: auto;\\n}\\n\\n/* For background images */\\n.hero {\\n  background-size: cover;\\n  background-position: center;\\n  background-repeat: no-repeat;\\n}\"}]}]}",
+        "slug": "responsive-web-design-principles",
+        "published": true,
+        "createdAt": "2025-01-15T10:25:00.000Z"
+      }
+    },
+    {
+      "path": "/posts/web-performance-optimization-techniques",
+      "file": "src/app/posts/[slug]/page.tsx",
+      "type": "dynamic-post",
+      "data": {
+        "id": "m9n8b7v6-c5x4-z3a2-s1d0-f9g8h7j6k5l4",
+        "tags": [
+          "performance",
+          "optimization",
+          "web"
+        ],
+        "authors": [
+          {
+            "name": "PPhat DEv",
+            "profile": "https://github.com/pphatdev.png",
+            "url": "https://pphat.top"
+          }
+        ],
+        "thumbnail": "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
+        "title": "Web Performance Optimization Techniques",
+        "description": "Boost your website's performance with proven optimization techniques. Learn about image optimization, code splitting, caching, and Core Web Vitals improvements.",
+        "content": "{\"type\":\"doc\",\"content\":[{\"type\":\"heading\",\"attrs\":{\"level\":1},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Web Performance Optimization Techniques\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Fast-loading websites provide better user experience and rank higher in search engines. Let's explore key optimization techniques.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Image Optimization\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Images often account for the majority of page weight. Optimize them effectively:\"}]},{\"type\":\"bulletList\",\"content\":[{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Use modern formats like WebP and AVIF\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Implement lazy loading for below-the-fold images\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Use responsive images with srcset\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Compress images without losing quality\"}]}]}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Code Splittings\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Split your JavaScript bundles to reduce initial load time:\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"javascript\"},\"content\":[{\"type\":\"text\",\"text\":\"// Dynamic imports for code splitting\\nconst LazyComponent = React.lazy(() => import('./LazyComponent'));\\n\\n// Route-based code splitting\\nconst Home = React.lazy(() => import('./pages/Home'));\\nconst About = React.lazy(() => import('./pages/About'));\"}]}]}",
+        "slug": "web-performance-optimization-techniques",
+        "published": true,
+        "createdAt": "2025-04-20T15:10:00.000Z"
+      }
+    },
+    {
+      "path": "/posts/web-security-best-practices",
+      "file": "src/app/posts/[slug]/page.tsx",
+      "type": "dynamic-post",
+      "data": {
+        "id": "r4t5y6u7-i8o9-p0a1-s2d3-f4g5h6j7k8l9",
+        "tags": [
+          "security",
+          "web",
+          "authentication"
+        ],
+        "authors": [
+          {
+            "name": "PPhat DEv",
+            "profile": "https://github.com/pphatdev.png",
+            "url": "https://pphat.top"
+          }
+        ],
+        "thumbnail": "https://images.unsplash.com/photo-1563986768609-322da13575f3",
+        "title": "Web Security Best Practices",
+        "description": "Protect your web applications with essential security practices. Learn about HTTPS, authentication, authorization, XSS prevention, and secure coding principles.",
+        "content": "{\"type\":\"doc\",\"content\":[{\"type\":\"heading\",\"attrs\":{\"level\":1},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Web Security Best Practices\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Security should be a top priority in web development. Let's explore essential practices to protect your applications and users.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"HTTPS Everywhere\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Always use HTTPS to encrypt data in transit:\"}]},{\"type\":\"bulletList\",\"content\":[{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Obtain SSL/TLS certificates\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Redirect HTTP to HTTPS\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Use HTTP Strict Transport Security (HSTS)\"}]}]},{\"type\":\"listItem\",\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Keep certificates up to date\"}]}]}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Input Validation\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Always validate and sanitize user input:\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"javascript\"},\"content\":[{\"type\":\"text\",\"text\":\"// Server-side validation example\\nfunction validateEmail(email) {\\n  const emailRegex = /^[^\\\\s@]+@[^\\\\s@]+\\\\.[^\\\\s@]+$/;\\n  return emailRegex.test(email);\\n}\\n\\n// Sanitize HTML to prevent XSS\\nfunction sanitizeHTML(input) {\\n  return input\\n    .replace(/&/g, '&amp;')\\n    .replace(/</g, '&lt;')\\n    .replace(/>/g, '&gt;')\\n    .replace(/\\\"/g, '&quot;')\\n    .replace(/'/g, '&#x27;');\\n}\"}]}]}",
+        "slug": "web-security-best-practices",
+        "published": true,
+        "createdAt": "2025-02-12T12:55:00.000Z"
+      }
+    },
+    {
+      "path": "/posts/javascript-testing-with-jest",
+      "file": "src/app/posts/[slug]/page.tsx",
+      "type": "dynamic-post",
+      "data": {
+        "id": "e6r7t8y9-u0i1-o2p3-a4s5-d6f7g8h9j0k1",
+        "tags": [
+          "testing",
+          "jest",
+          "quality"
+        ],
+        "authors": [
+          {
+            "name": "PPhat DEv",
+            "profile": "https://github.com/pphatdev.png",
+            "url": "https://pphat.top"
+          }
+        ],
+        "thumbnail": "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
+        "title": "JavaScript Testing with Jest",
+        "description": "Learn how to write effective tests for your JavaScript applications using Jest. Covers unit testing, mocking, snapshot testing, and test-driven development.",
+        "content": "{\"type\":\"doc\",\"content\":[{\"type\":\"heading\",\"attrs\":{\"level\":1},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"JavaScript Testing with Jest\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Testing is crucial for maintaining code quality and preventing bugs. Jest makes JavaScript testing simple and enjoyable.\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Writing Your First Test\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Start with a simple unit test:\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"javascript\"},\"content\":[{\"type\":\"text\",\"text\":\"// math.js\\nfunction add(a, b) {\\n  return a + b;\\n}\\n\\nfunction subtract(a, b) {\\n  return a - b;\\n}\\n\\nmodule.exports = { add, subtract };\\n\\n// math.test.js\\nconst { add, subtract } = require('./math');\\n\\ndescribe('Math functions', () => {\\n  test('adds 1 + 2 to equal 3', () => {\\n    expect(add(1, 2)).toBe(3);\\n  });\\n\\n  test('subtracts 5 - 3 to equal 2', () => {\\n    expect(subtract(5, 3)).toBe(2);\\n  });\\n});\"}]},{\"type\":\"heading\",\"attrs\":{\"level\":2},\"content\":[{\"type\":\"text\",\"marks\":[{\"type\":\"bold\"}],\"text\":\"Mocking Functions\"}]},{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Use mocks to isolate units under test:\"}]},{\"type\":\"codeBlock\",\"attrs\":{\"language\":\"javascript\"},\"content\":[{\"type\":\"text\",\"text\":\"// Mock a module\\njest.mock('./api');\\n\\n// Mock a function\\nconst mockFetch = jest.fn();\\nglobal.fetch = mockFetch;\\n\\ntest('should fetch user data', async () => {\\n  mockFetch.mockResolvedValue({\\n    json: () => Promise.resolve({ name: 'John' })\\n  });\\n\\n  const user = await fetchUser(1);\\n  expect(user.name).toBe('John');\\n  expect(mockFetch).toHaveBeenCalledWith('/api/users/1');\\n});\"}]}]}",
+        "slug": "javascript-testing-with-jest",
+        "published": true,
+        "createdAt": "2025-05-05T09:15:00.000Z"
+      }
+    }
+  ],
+  "notInSitemap": [
+    {
+      "path": "/admin/dashboard",
+      "file": "src\\app\\(auth)\\admin\\dashboard\\page.tsx",
+      "type": "static"
+    },
+    {
+      "path": "/admin/posts/add",
+      "file": "src\\app\\(auth)\\admin\\posts\\add\\page.tsx",
+      "type": "static"
+    },
+    {
+      "path": "/admin/posts",
+      "file": "src\\app\\(auth)\\admin\\posts\\page.tsx",
+      "type": "static"
+    },
+    {
+      "path": "/admin/posts/[slug]/edit",
+      "file": "src\\app\\(auth)\\admin\\posts\\[slug]\\edit\\page.tsx",
+      "type": "static"
+    },
+    {
+      "path": "/login",
+      "file": "src\\app\\(auth)\\login\\page.tsx",
+      "type": "static"
+    },
+    {
+      "path": "/posts/[slug]",
+      "file": "src\\app\\posts\\[slug]\\page.tsx",
+      "type": "static"
+    },
+    {
+      "path": "/data/post.json",
+      "file": "public\\data\\post.json",
+      "type": "static-file"
+    },
+    {
+      "path": "/data/project.json",
+      "file": "public\\data\\project.json",
+      "type": "static-file"
+    },
+    {
+      "path": "/google39cde7dcbec7f9f3.html",
+      "file": "public\\google39cde7dcbec7f9f3.html",
+      "type": "static-file"
+    },
+    {
+      "path": "/googleff785c31669eafd5.html",
+      "file": "public\\googleff785c31669eafd5.html",
+      "type": "static-file"
+    },
+    {
+      "path": "/image-sitemap.xml",
+      "file": "public\\image-sitemap.xml",
+      "type": "static-file"
+    },
+    {
+      "path": "/robots.txt",
+      "file": "public\\robots.txt",
+      "type": "static-file"
+    },
+    {
+      "path": "/sitemap.xml",
+      "file": "public\\sitemap.xml",
+      "type": "static-file"
+    }
+  ],
+  "adminPages": [
+    {
+      "path": "/admin/dashboard",
+      "file": "src\\app\\(auth)\\admin\\dashboard\\page.tsx",
+      "type": "static"
+    },
+    {
+      "path": "/admin/posts/add",
+      "file": "src\\app\\(auth)\\admin\\posts\\add\\page.tsx",
+      "type": "static"
+    },
+    {
+      "path": "/admin/posts",
+      "file": "src\\app\\(auth)\\admin\\posts\\page.tsx",
+      "type": "static"
+    },
+    {
+      "path": "/admin/posts/[slug]/edit",
+      "file": "src\\app\\(auth)\\admin\\posts\\[slug]\\edit\\page.tsx",
+      "type": "static"
+    },
+    {
+      "path": "/login",
+      "file": "src\\app\\(auth)\\login\\page.tsx",
+      "type": "static"
+    }
+  ]
+}
