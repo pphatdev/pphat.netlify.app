@@ -6,7 +6,7 @@
     "dev": "next dev --turbopack",
     "generate": "tsc src/scripts/build.ts --outDir build && node build/scripts/build.js",
     "generate:manifest": "tsc src/scripts/generate-manifest.ts --outDir build && node build/scripts/generate-manifest.js",
-    "generate:sitemap": "set NEXT_PUBLIC_APP_URL=https://pphat.netlify.app && tsc src/scripts/generate-sitemap.ts --outDir build/scripts && set NEXT_PUBLIC_APP_URL=https://pphat.netlify.app && node build/scripts/scripts/generate-sitemap.js",
+    "generate:sitemap": "set NEXT_PUBLIC_APP_URL=https://pphat.top && tsc src/scripts/generate-sitemap.ts --outDir build/scripts && set NEXT_PUBLIC_APP_URL=https://pphat.top && node build/scripts/scripts/generate-sitemap.js",
     "generate:images": "tsc src/scripts/generate-images-sitemap.ts --outDir build/scripts && node build/scripts/generate-images-sitemap.js",
 
     "test:seo": "tsc src/scripts/test-seo-config.ts --outDir build/test && node build/test/test-seo-config.js",
