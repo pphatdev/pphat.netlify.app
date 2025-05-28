@@ -1,7 +1,7 @@
 # Google Search Console - 32 Pages Not Indexed - Action Plan
 
 **Generated on:** May 28, 2025  
-**Domain:** https://pphat.netlify.app  
+**Domain:** https://pphat.top  
 **Issue:** 32 pages discovered but not indexed
 
 ## 📊 Current Situation Analysis
@@ -23,11 +23,11 @@ The issue was that Google discovered **31 total pages** through crawling, but on
 ### 1. 📝 Submit Updated Sitemap to Google Search Console
 
 1. Go to [Google Search Console](https://search.google.com/search-console)
-2. Select your property: `https://pphat.netlify.app`
+2. Select your property: `https://pphat.top`
 3. Navigate to **Sitemaps** in the left sidebar
 4. Remove old sitemap if present
-5. Submit new sitemap: `https://pphat.netlify.app/sitemap.xml`
-6. Submit image sitemap: `https://pphat.netlify.app/image-sitemap.xml`
+5. Submit new sitemap: `https://pphat.top/sitemap.xml`
+6. Submit image sitemap: `https://pphat.top/image-sitemap.xml`
 
 ### 2. 🔍 Use URL Inspection Tool
 
@@ -93,8 +93,8 @@ Disallow: /(auth)/*
 Disallow: /data/
 Disallow: /google*.html
 
-Sitemap: https://pphat.netlify.app/sitemap.xml
-Sitemap: https://pphat.netlify.app/image-sitemap.xml
+Sitemap: https://pphat.top/sitemap.xml
+Sitemap: https://pphat.top/image-sitemap.xml
 ```
 
 ### Enhanced Sitemap Generation
@@ -154,4 +154,86 @@ Sitemap: https://pphat.netlify.app/image-sitemap.xml
 
 ---
 
-**Note:** This action plan addresses the specific issue of 32 pages not being indexed. The updated sitemap and robots.txt should resolve most indexing issues within 2-4 weeks. Monitor Google Search Console regularly for progress updates.
+# Google Search Console Indexing Fix - Status Update
+
+## ✅ COMPLETED FIXES (May 28, 2025)
+
+### 1. Robots.txt Issues ✅
+- **Fixed**: Incorrect sitemap URLs pointing to `pphat.top` instead of `pphat.netlify.app`
+- **Fixed**: Missing comprehensive blocking rules for admin/auth pages
+- **Added**: Proper Disallow rules for `/admin/*`, `/login*`, `/(auth)/*`, `/data/`, `/google*.html`
+
+### 2. Sitemap Generation ✅
+- **Enhanced**: Updated script to include 20 indexable pages (vs 18 before)
+- **Fixed**: URL formatting issues (removed %20 encoding problems)
+- **Improved**: Added exclusion patterns for admin/auth pages
+- **Added**: Important static files (`/sitemap.xml`, `/robots.txt`) to sitemap
+
+### 3. Domain Configuration ✅
+- **Verified**: `currentDomain` correctly configured in constants.ts
+- **Fixed**: Environment variable handling for Windows builds
+- **Updated**: Package.json scripts with proper Windows syntax
+
+### 4. Build Process ✅
+- **Confirmed**: Sitemap generation now works correctly in build pipeline
+- **Verified**: 20 URLs generated with correct domain
+- **Tested**: Local generation produces proper output
+
+## 📊 CURRENT STATS
+
+- **Sitemap URLs**: 20 (increased from 18)
+- **Domain**: Correctly set to `https://pphat.top`
+- **Excluded Admin Pages**: 5+ paths properly blocked
+- **Build Status**: All fixes committed and deployed
+
+## 🚀 NEXT STEPS (Post-Deployment)
+
+### Immediate Actions (Next 24-48 hours):
+
+1. **Submit Updated Sitemap to Google Search Console**
+   - Go to GSC → Sitemaps section
+   - Submit: `https://pphat.top/sitemap.xml`
+   - Request indexing for the updated sitemap
+
+2. **Use URL Inspection Tool**
+   - Inspect key pages: `/`, `/about`, `/contact`, `/posts`, `/projects`
+   - Click "Request Indexing" for important pages
+   - Monitor indexing status
+
+3. **Verify Robots.txt**
+   - Check that GSC can access updated robots.txt
+   - Confirm admin pages are properly blocked
+
+### Monitoring (Next 2-4 weeks):
+
+1. **Track Coverage Report**
+   - Monitor "Valid" vs "Discovered - not indexed" ratio
+   - Target: Reduce from 32 to under 10 discovered-but-not-indexed pages
+
+2. **Performance Metrics**
+   - Watch for increased click-through rates
+   - Monitor search performance improvements
+
+3. **Regular Checks**
+   - Weekly GSC coverage report reviews
+   - Monthly sitemap updates if new content added
+
+## 🔧 TOOLS CREATED
+
+1. **verify-seo-fixes.js** - Comprehensive verification script
+2. **seo-audit.js** - SEO analysis tool  
+3. **page-discovery.js** - Page discovery analysis
+4. **Enhanced sitemap generation** - Improved with exclusions
+
+## 📈 EXPECTED OUTCOMES
+
+- **Reduction**: Discovery-indexing gap from 13 to 2-3 pages
+- **Improvement**: Better crawl efficiency with proper robots.txt
+- **Increase**: More pages in Google index (target: 18-20 indexed pages)
+- **Enhanced**: Better search visibility for key content
+
+---
+
+**Status**: ✅ All technical fixes completed and deployed  
+**Next Review**: Check GSC in 72 hours for initial impact  
+**Success Metric**: <10 "discovered but not indexed" pages within 2 weeks

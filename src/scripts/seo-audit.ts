@@ -30,47 +30,47 @@ interface SEOAuditReport {
 
 function auditSitemap(): PageAudit[] {
     const pages: PageAudit[] = [];
-    
+
     try {
         const sitemapPath = join(process.cwd(), 'public/sitemap.xml');
         const sitemapContent = readFileSync(sitemapPath, 'utf-8');
-        
+
         // Parse sitemap URLs
         const urlMatches = sitemapContent.match(/<loc>(.*?)<\/loc>/g);
         const lastmodMatches = sitemapContent.match(/<lastmod>(.*?)<\/lastmod>/g);
         const priorityMatches = sitemapContent.match(/<priority>(.*?)<\/priority>/g);
-        
+
         if (urlMatches) {
             urlMatches.forEach((match, index) => {
                 const url = match.replace(/<\/?loc>/g, '');
                 const path = url.replace(currentDomain, '');
                 const lastmod = lastmodMatches?.[index]?.replace(/<\/?lastmod>/g, '');
                 const priority = parseFloat(priorityMatches?.[index]?.replace(/<\/?priority>/g, '') || '0.5');
-                
+
                 const issues: string[] = [];
                 const recommendations: string[] = [];
-                
+
                 // Check for common SEO issues
                 if (!lastmod) {
                     issues.push('Missing lastmod date');
                     recommendations.push('Add lastmod date to improve crawl efficiency');
                 }
-                
+
                 if (priority < 0.5 && path !== '/login') {
                     issues.push('Low priority value');
                     recommendations.push('Consider increasing priority for important pages');
                 }
-                
+
                 // Check for blocked paths
-                const isBlocked = ['/admin/', '/login', '/(auth)/'].some(blocked => 
+                const isBlocked = ['/admin/', '/login', '/(auth)/'].some(blocked =>
                     path.includes(blocked.replace('/', ''))
                 );
-                
+
                 if (isBlocked) {
                     issues.push('Page is blocked in robots.txt');
                     recommendations.push('This is intentional for admin/auth pages');
                 }
-                
+
                 pages.push({
                     url,
                     title: getPageTitle(path),
@@ -84,7 +84,7 @@ function auditSitemap(): PageAudit[] {
     } catch (error) {
         console.error('Error reading sitemap:', error);
     }
-    
+
     return pages;
 }
 
@@ -98,16 +98,16 @@ function getPageTitle(path: string): string {
         '/projects': 'Projects - PPhat Dev',
         '/login': 'Login - PPhat Dev'
     };
-    
+
     if (pathMap[path]) {
         return pathMap[path];
     }
-    
+
     if (path.startsWith('/posts/')) {
         const slug = path.replace('/posts/', '');
         return `${slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} - PPhat Dev`;
     }
-    
+
     return `${path} - PPhat Dev`;
 }
 
@@ -115,13 +115,13 @@ function auditRobotsTxt(): { blocked: string[], allowed: string[], issues: strin
     const blocked: string[] = [];
     const allowed: string[] = [];
     const issues: string[] = [];
-    
+
     try {
         const robotsPath = join(process.cwd(), 'public/robots.txt');
         const robotsContent = readFileSync(robotsPath, 'utf-8');
-        
+
         const lines = robotsContent.split('\n');
-        
+
         lines.forEach(line => {
             const trimmed = line.trim();
             if (trimmed.startsWith('Disallow:')) {
@@ -141,11 +141,11 @@ function auditRobotsTxt(): { blocked: string[], allowed: string[], issues: strin
                 }
             }
         });
-        
+
     } catch (error) {
         issues.push('Could not read robots.txt file');
     }
-    
+
     return { blocked, allowed, issues };
 }
 
@@ -159,38 +159,38 @@ function checkMissingPages(): string[] {
         '/terms-of-service',
         '/404'
     ];
-    
+
     const missing: string[] = [];
     const currentPages = auditSitemap().map(p => p.url.replace(currentDomain, ''));
-    
+
     potentialPages.forEach(page => {
         if (!currentPages.includes(page)) {
             missing.push(page);
         }
     });
-    
+
     return missing;
 }
 
 function generateSEOReport(): SEOAuditReport {
     console.log('🔍 Starting SEO audit...\n');
-    
+
     const pages = auditSitemap();
     const robotsAudit = auditRobotsTxt();
     const missingPages = checkMissingPages();
-    
-    const indexablePages = pages.filter(p => 
+
+    const indexablePages = pages.filter(p =>
         !robotsAudit.blocked.some(blocked => p.url.includes(blocked.replace('/', '')))
     );
-    
-    const blockedPages = pages.filter(p => 
+
+    const blockedPages = pages.filter(p =>
         robotsAudit.blocked.some(blocked => p.url.includes(blocked.replace('/', '')))
     );
-    
+
     let criticalIssues = 0;
     let warningIssues = 0;
     let infoIssues = 0;
-    
+
     pages.forEach(page => {
         if (page.issues.some(issue => issue.includes('blocked'))) {
             if (page.url.includes('/admin') || page.url.includes('/login')) {
@@ -204,7 +204,7 @@ function generateSEOReport(): SEOAuditReport {
             infoIssues++;
         }
     });
-    
+
     const summary = [
         `📊 SEO Audit Summary for ${currentDomain}`,
         `📄 Total pages in sitemap: ${pages.length}`,
@@ -228,7 +228,7 @@ function generateSEOReport(): SEOAuditReport {
         '   4. Monitor crawl errors and fix them',
         '   5. Ensure proper internal linking structure'
     ];
-    
+
     return {
         domain: currentDomain,
         totalPages: pages.length,
@@ -251,8 +251,8 @@ function generateActionPlan(): string[] {
         '1. 📝 Submit Updated Sitemap:',
         '   - Go to Google Search Console',
         '   - Navigate to Sitemaps section',
-        '   - Submit: https://pphat.netlify.app/sitemap.xml',
-        '   - Submit: https://pphat.netlify.app/image-sitemap.xml',
+        '   - Submit: https://pphat.top/sitemap.xml',
+        '   - Submit: https://pphat.top/image-sitemap.xml',
         '',
         '2. 🔍 Check Page Indexing Status:',
         '   - Use "URL Inspection" tool in GSC',
@@ -285,19 +285,19 @@ function generateActionPlan(): string[] {
 export function runSEOAudit(): void {
     const report = generateSEOReport();
     const actionPlan = generateActionPlan();
-    
+
     // Print summary to console
     report.summary.forEach(line => console.log(line));
     console.log('\n');
     actionPlan.forEach(line => console.log(line));
-    
+
     // Save detailed report to file
     const timestamp = new Date().toISOString().split('T')[0];
     const reportPath = join(process.cwd(), `seo-audit-${timestamp}.json`);
-    
+
     writeFileSync(reportPath, JSON.stringify(report, null, 2), 'utf-8');
     console.log(`\n📋 Detailed report saved to: ${reportPath}`);
-    
+
     // Save action plan to file
     const actionPlanPath = join(process.cwd(), `seo-action-plan-${timestamp}.md`);
     const actionPlanContent = [
@@ -319,7 +319,7 @@ export function runSEOAudit(): void {
             ''
         ]).flat()
     ].join('\n');
-    
+
     writeFileSync(actionPlanPath, actionPlanContent, 'utf-8');
     console.log(`📝 Action plan saved to: ${actionPlanPath}`);
 }
