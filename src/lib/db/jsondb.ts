@@ -28,6 +28,21 @@ interface PaginatedResult<T> {
     };
 }
 
+interface InsertSuccess<T> {
+    status: number;
+    message: string;
+    success: boolean;
+    data: T;
+}
+
+interface UpdateSuccess<T> {
+    status: number;
+    message: string;
+    success: boolean;
+    data: T;
+}
+
+
 /**
  * JsonDB - A simple JSON file-based database for local development
  * Handles basic CRUD operations on collections within a JSON file
@@ -200,7 +215,7 @@ export class JsonDB {
      * @param item Item data to insert (ID will be generated)
      * @returns The created item with generated ID
      */
-    create<T>(collection: string, item: Omit<T, 'id'>): T {
+    insert<T>(collection: string, item: Omit<T, 'id'>): InsertSuccess<T> {
         this.refreshData();
 
         if (!this.data[collection]) {
@@ -214,7 +229,12 @@ export class JsonDB {
 
         this.data[collection].push(newItem);
         this.save();
-        return newItem;
+        return {
+            status: 200,
+            message: 'Item created successfully',
+            success: true,
+            data: newItem,
+        };
     }
 
     /**
@@ -224,7 +244,7 @@ export class JsonDB {
      * @param updates Partial data to update
      * @returns Updated item or null if not found
      */
-    update<T>(collection: string, id: string, updates: Partial<T>): T | null {
+    update<T>(collection: string, id: string, updates: Partial<T>): UpdateSuccess<T> | null {
         this.refreshData();
 
         if (!this.data[collection]) {
@@ -243,7 +263,12 @@ export class JsonDB {
         };
 
         this.save();
-        return this.data[collection][index] as T;
+        return {
+            status: 200,
+            message: 'Item updated successfully',
+            success: true,
+            data: this.data[collection][index] as T
+        }
     }
 
     /**
