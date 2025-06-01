@@ -14,20 +14,28 @@ import { EditorCommand, EditorCommandEmpty, EditorCommandItem, EditorCommandList
 import { handleCommandNavigation, ImageResizer } from "novel";
 import { Button } from "@components/ui/button";
 import { Input } from "@components/ui/input";
+import { Textarea } from "@components/ui/textarea";
 import { Label } from "@components/ui/label";
 import { Badge } from "@components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@components/ui/card";
 import { Separator } from "@components/ui/separator";
 import { toast } from "sonner";
 import { ImageIcon, Save, X } from "lucide-react";
+import { CloseIcon } from "@components/icons/close-icon";
 
 interface PostFormData {
     title: string;
     content: string;
+    description: string;
     thumbnail: string;
     tags: string[];
     published: boolean;
     slug: string;
+    authors: Array<{
+        name: string;
+        profile: string;
+        url: string;
+    }>
 }
 
 const extensions = [...defaultExtensions, slashCommand];
@@ -44,10 +52,16 @@ export default function AddPostPage() {
     const [formData, setFormData] = useState<PostFormData>({
         title: "",
         content: "",
+        description: "",
         thumbnail: "",
         tags: [],
         published: false,
-        slug: ""
+        slug: "",
+        authors: [{
+            name: "PPhat DEv",
+            profile: "",
+            url: "https://pphat.top"
+        }]
     });
 
     const [editorContent, setEditorContent] = useState<JSONContent | undefined>(undefined);
@@ -106,8 +120,12 @@ export default function AddPostPage() {
 
         try {
             const postData = {
-                ...formData,
+                title: formData.title,
                 content: JSON.stringify(editorContent),
+                description: formData.description,
+                thumbnail: formData.thumbnail,
+                tags: formData.tags,
+                slug: formData.slug,
                 published: publish,
                 createdAt: new Date().toISOString(),
                 authors: [{
@@ -191,6 +209,17 @@ export default function AddPostPage() {
                     </div>
 
                     <div className="space-y-2">
+                        <Label htmlFor="description">Description</Label>
+                        <Textarea
+                            id="description"
+                            placeholder="Enter post description..."
+                            value={formData.description}
+                            onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+                            rows={3}
+                        />
+                    </div>
+
+                    <div className="space-y-2">
                         <Label htmlFor="thumbnail">Thumbnail URL</Label>
                         <div className="flex gap-2">
                             <Input
@@ -218,7 +247,7 @@ export default function AddPostPage() {
                             {formData.tags.map((tag) => (
                                 <Badge key={tag} variant="secondary" className="flex items-center gap-1">
                                     {tag}
-                                    <X
+                                    <CloseIcon
                                         className="w-3 h-3 cursor-pointer"
                                         onClick={() => removeTag(tag)}
                                     />
@@ -232,12 +261,14 @@ export default function AddPostPage() {
             <Card>
                 <CardHeader>
                     <CardTitle>Content</CardTitle>
-                </CardHeader>                    <CardContent>
+                </CardHeader>
+
+                <CardContent>
                     <EditorRoot>
                         <EditorContent
                             initialContent={editorContent}
                             extensions={extensions}
-                            className="relative min-h-[500px] w-full max-w-screen-lg border-muted sm:rounded-lg sm:border sm:shadow-lg"
+                            className="relative min-h-[500px] [&>div>div.tiptap]:border-b [&>div>div.tiptap]:bg-primary/5 [&>div>div.tiptap]:border-dashed [&>div>div.tiptap]:animate-pulse p-1 w-full max-w-screen-lg sm:rounded-lg"
                             immediatelyRender={false}
                             editorProps={{
                                 handleDOMEvents: {
