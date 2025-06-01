@@ -16,7 +16,7 @@ export async function createPost(formData: FormData) {
     try {
         const slug = title.toLowerCase().replace(/\s+/g, '-');
 
-        db.create<Post>('posts', {
+        db.insert<Post>('posts', {
             title,
             content,
             description,
