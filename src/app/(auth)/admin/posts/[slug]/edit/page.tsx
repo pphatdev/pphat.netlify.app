@@ -14,6 +14,7 @@ import { EditorCommand, EditorCommandEmpty, EditorCommandItem, EditorCommandList
 import { handleCommandNavigation, ImageResizer } from "novel";
 import { Button } from "@components/ui/button";
 import { Input } from "@components/ui/input";
+import { Textarea } from "@components/ui/textarea";
 import { Label } from "@components/ui/label";
 import { Badge } from "@components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@components/ui/card";
@@ -29,6 +30,7 @@ interface PostFormData {
     id: string;
     title: string;
     content: string;
+    description: string;
     thumbnail: string;
     tags: string[];
     published: boolean;
@@ -61,6 +63,7 @@ export default function EditPostPage() {
         id: "",
         title: "",
         content: "",
+        description: "",
         thumbnail: "",
         tags: [],
         published: false,
@@ -81,6 +84,7 @@ export default function EditPostPage() {
                         id: post.id,
                         title: post.title,
                         content: post.content,
+                        description: post.description || "",
                         thumbnail: post.thumbnail || "",
                         tags: post.tags || [],
                         published: post.published,
@@ -347,6 +351,17 @@ export default function EditPostPage() {
                     </div>
 
                     <div className="space-y-2">
+                        <Label htmlFor="description">Description</Label>
+                        <Textarea
+                            id="description"
+                            placeholder="Enter post description..."
+                            value={formData.description}
+                            onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+                            rows={3}
+                        />
+                    </div>
+
+                    <div className="space-y-2">
                         <Label htmlFor="thumbnail">Thumbnail URL</Label>
                         <div className="flex gap-2">
                             <Input
@@ -394,7 +409,7 @@ export default function EditPostPage() {
                         <EditorContent
                             initialContent={editorContent}
                             extensions={extensions}
-                            className="relative min-h-[500px] w-full max-w-screen-lg border-muted sm:rounded-lg"
+                            className="relative min-h-[500px] [&>div>div.tiptap]:border-b [&>div>div.tiptap]:bg-primary/5 [&>div>div.tiptap]:border-dashed [&>div>div.tiptap]:animate-pulse p-1 w-full max-w-screen-lg sm:rounded-lg"
                             immediatelyRender={false}
                             editorProps={{
                                 handleDOMEvents: {
