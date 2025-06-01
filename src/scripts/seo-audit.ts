@@ -136,7 +136,7 @@ function auditRobotsTxt(): { blocked: string[], allowed: string[], issues: strin
                 }
             } else if (trimmed.startsWith('Sitemap:')) {
                 const sitemapUrl = trimmed.replace('Sitemap:', '').trim();
-                if (!sitemapUrl.includes('pphat.netlify.app')) {
+                if (!sitemapUrl.includes('pphat.top')) {
                     issues.push(`Incorrect sitemap URL: ${sitemapUrl}`);
                 }
             }
