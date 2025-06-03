@@ -1,10 +1,19 @@
 import React from "react";
+import GetInTouchSections from "./sections/home-getintouch";
+import HeroSection from "@components/heros/home-hero";
 import OrganizationStructuredData from "@components/organization-structured-data";
+import HomePersonStructuredData from "@components/home-person-structured-data";
 import WebsiteStructuredData from "@components/website-structured-data";
-import PersonStructuredData from "@components/person-structured-data";
 import { Metadata } from "next";
 import { appDescriptions, appName, currentDomain } from "@lib/constants";
-import { HeaderNavigation } from "./sections/navigation";
+import { BlurFade } from "@components/ui/blur-fade";
+import { HomeSkills } from "./sections/home-skills";
+import { HomeFeatureSection } from "./sections/home-feature";
+import { HomeAboutMe } from "./sections/home-aboutme";
+import { HomeFAQSection } from "./sections/home-faq";
+import { NavigationBar } from "@components/navbar/navbar";
+import { RainbowGlow } from "@components/ui/rainbow-glow";
+import { SectionNavigation } from "@components/section-navigation";
 
 export const metadata: Metadata = {
     title: appName,
@@ -78,17 +87,42 @@ export default function Home() {
 
     return (
         <div className="w-full flex flex-col">
-            <PersonStructuredData />
+            <HomePersonStructuredData />
             <WebsiteStructuredData />
             <OrganizationStructuredData />
+            <NavigationBar />
+            <section id="hero" className="xl:pt-20">
+                <HeroSection />
+            </section>
 
-            <HeaderNavigation/>
+            <section id="skills" className="relative">
+                <BlurFade delay={0.2} inView>
+                    <HomeSkills />
+                </BlurFade>
+            </section>
 
-            <div className="h-screen">
+            <section id="about">
+                <BlurFade delay={0.2} inView>
+                    <HomeAboutMe />
+                </BlurFade>
+            </section>
 
-            </div>
+            <section id="features">
+                <BlurFade delay={0.2} inView>
+                    <HomeFeatureSection />
+                </BlurFade>
+            </section>
 
-            {/* <div className="h-20 pointer-events-none fixed bottom-0 inset-x-0 bg-gradient-to-b from-transparent to-background z-50" /> */}
+            <HomeFAQSection />
+
+            <section id="contact" className="flex flex-col snap-end">
+                <GetInTouchSections />
+            </section>
+
+            <RainbowGlow className="opacity-5 top-0 h-96"/>
+
+            <SectionNavigation />
+            <div className="h-20 pointer-events-none fixed bottom-0 inset-x-0 bg-gradient-to-b from-transparent to-background z-50" />
         </div>
     );
 }

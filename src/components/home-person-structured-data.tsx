@@ -1,27 +1,6 @@
-'use client';
-
 import React from 'react';
-import {
-    currentDomain,
-    PERSON_NAME,
-    PERSON_ALTERNATE_NAME,
-    PERSON_JOB_TITLE,
-    PERSON_IMAGE,
-    CONTACT_EMAIL,
-    CONTACT_PHONE,
-    ADDRESS_STREET,
-    ADDRESS_LOCALITY,
-    ADDRESS_REGION,
-    ADDRESS_POSTAL_CODE,
-    ADDRESS_COUNTRY,
-    COMPANY_NAME,
-    COMPANY_URL,
-    GITHUB_URL,
-    LINKEDIN_URL,
-    TWITTER_URL,
-    FIGMA_URL,
-    UNIVERSITY_NAME
-} from '@lib/constants';
+import Script from 'next/script';
+import { currentDomain, PERSON_NAME, PERSON_ALTERNATE_NAME, PERSON_JOB_TITLE, PERSON_IMAGE, CONTACT_EMAIL, CONTACT_PHONE, ADDRESS_STREET, ADDRESS_LOCALITY, ADDRESS_REGION, ADDRESS_POSTAL_CODE, ADDRESS_COUNTRY, COMPANY_NAME, COMPANY_URL, GITHUB_URL, LINKEDIN_URL, TWITTER_URL, FIGMA_URL, UNIVERSITY_NAME } from '@lib/constants';
 
 export default function HomePersonStructuredData() {
     const structuredData = {
@@ -92,10 +71,11 @@ export default function HomePersonStructuredData() {
     };
 
     return (
-        <script
+        <Script
+            id="person-structured-data"
             type="application/ld+json"
             dangerouslySetInnerHTML={{
-                __html: JSON.parse(JSON.stringify(structuredData))
+                __html: JSON.stringify(structuredData)
             }}
         />
     );

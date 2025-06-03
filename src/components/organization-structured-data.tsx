@@ -1,38 +1,41 @@
 // import { appName } from '@lib/constants';
 import Head from 'next/head';
 import JsonLd from './JsonLd';
+import { currentDomain } from "@lib/constants";
 
 const OrganizationStructuredData = () => {
-
-    // const url = process.env.NEXT_PUBLIC_APP_URL || 'https://pphat.top';
-    // const logoUrl = `${url}/assets/logo/logo-solid-dark-mode.png`;
+    const organizationData = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "PPhat Development",
+        "url": currentDomain,
+        "logo": currentDomain + "/assets/logo/logo-solid-dark-mode.png",
+        "founder": {
+            "@type": "Person",
+            "name": "Leat Sophat"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Phnom Penh",
+            "addressCountry": "Cambodia"
+        },
+        "sameAs": [
+            "https://twitter.com/pphatdev",
+            "https://github.com/pphatdev"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "availableLanguage": ["English", "Khmer"]
+        }
+    };
 
     return (
         <Head>
-            {/* <script
+            <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "Organization",
-                        "name": appName,
-                        "url": url,
-                        "logo": logoUrl,
-                        // "contactPoint": {
-                        //     "@type": "ContactPoint",
-                        //     "telephone": "+1-800-555-5555",
-                        //     "contactType": "Customer Service"
-                        // },
-                        "sameAs": [
-                            "https://pphat.top",
-                            "https://figma.com/PPhat",
-                            "https://kh.linkedin.com/in/pphatdev",
-                            "https://x.com/pphatdev",
-                            // "https://www.facebook.com/phathub.am",
-                        ]
-                    })
-                }}
-            /> */}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
+            />
             <JsonLd/>
         </Head>
     );
