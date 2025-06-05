@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { appDescriptions, appName, appPositions, currentDomain } from "@lib/constants";
+import { appDescriptions, appName, appPositions, currentDomain, GOOGLE_SITE_VERIFICATION } from "@lib/constants";
 import { icons } from "./icons";
 import { keywords } from "./keywords";
 
@@ -65,6 +65,6 @@ export const homeHome: Metadata = {
         canonical: currentDomain,
     },
     other: {
-        'google-site-verification': process.env.GOOGLE_SITE_VERIFICATION || ''
+        'google-site-verification': GOOGLE_SITE_VERIFICATION
     }
 };

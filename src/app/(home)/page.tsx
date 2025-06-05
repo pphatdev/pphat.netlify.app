@@ -3,7 +3,7 @@ import OrganizationStructuredData from "@components/organization-structured-data
 import WebsiteStructuredData from "@components/website-structured-data";
 import PersonStructuredData from "@components/person-structured-data";
 import { Metadata } from "next";
-import { appDescriptions, appName, currentDomain } from "@lib/constants";
+import { appDescriptions, appName, currentDomain, GOOGLE_SITE_VERIFICATION } from "@lib/constants";
 import { HeaderNavigation } from "./sections/navigation";
 
 export const metadata: Metadata = {
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
         canonical: currentDomain,
     },
     other: {
-        'google-site-verification': 'your-google-site-verification-code'
+        'google-site-verification': GOOGLE_SITE_VERIFICATION
     }
 };
 

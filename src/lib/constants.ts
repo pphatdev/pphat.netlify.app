@@ -35,6 +35,10 @@ export const FIGMA_URL = process.env.FIGMA_URL || "https://figma.com/@PPhat";
 // Education
 export const UNIVERSITY_NAME = process.env.UNIVERSITY_NAME || "Royal University of Phnom Penh";
 
+
+// Google Search Console
+export const GOOGLE_SITE_VERIFICATION = process.env.GOOGLE_SITE_VERIFICATION || ''
+
 export const appName = "LEAT Sophat"
 export const appTitle = "PPhat Dev"
 export const appPositions = ["Senior Front-end Developer.", "UI/UX Designer."]
