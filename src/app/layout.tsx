@@ -12,24 +12,25 @@ export const metadata: Metadata = homeHome;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
     return (
-        <html lang="en" suppressHydrationWarning className="scroll-smooth">
+        <html lang="en" suppressHydrationWarning>
             <head>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 <CanonicalURL />
             </head>
             <body className={cn(
+                openSans.variable,
                 poppins.variable,
                 kantumruyPro.variable,
                 aladin.variable,
                 srisakdi.variable,
-                openSans.variable,
-                `antialiased p-0 m-0 font-sans bg-body`
+                "font-default antialiased"
             )}>
                 <ThemeProvider
                     attribute="class"
-                    enableSystem
                     defaultTheme="system"
+                    enableSystem
+                    disableTransitionOnChange
                 >
                     <Providers>
                         {children}
