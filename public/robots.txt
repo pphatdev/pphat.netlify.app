@@ -2,4 +2,4 @@ User-agent: *
 Allow: *
 Disallow: /admin/*
 
-Sitemap: https://www.pphat.top/sitemap.xml
+Sitemap: https://pphat.top/sitemap.xml
