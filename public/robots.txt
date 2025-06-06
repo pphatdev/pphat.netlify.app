@@ -1,14 +1,5 @@
 User-agent: *
-Allow: /
-Disallow: /downloads/
+Allow: *
 Disallow: /admin/*
-Disallow: /login*
-Disallow: /(auth)/*
-Disallow: /data/
-Disallow: /google*.html
 
-User-agent: magicsearchbot
-Disallow: /uploads/
-
-Sitemap: https://pphat.top/sitemap.xml
-Sitemap: https://pphat.top/image-sitemap.xml
+Sitemap: https://www.pphat.top/sitemap.xml
