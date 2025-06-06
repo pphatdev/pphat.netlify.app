@@ -35,9 +35,9 @@ export const PostCard = ({ post, actionChildren, className, isAdmin = false }: {
                     {actionChildren
                         ? actionChildren
                         : <>
-                            <Link href={''} className="flex cursor-pointer rounded-full p-2 hover:ring hover:text-background ring-foreground/20 outline-none hover:bg-foreground/10 transition-all items-center justify-center">
+                            {/* <Link href={''} className="flex cursor-pointer rounded-full p-2 hover:ring hover:text-background ring-foreground/20 outline-none hover:bg-foreground/10 transition-all items-center justify-center">
                                 <TagIcon className="size-4" />
-                            </Link>
+                            </Link> */}
                             <button
                                 aria-label={`Share ${post.title}`}
                                 type="button"
