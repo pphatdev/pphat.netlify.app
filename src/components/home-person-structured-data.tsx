@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import {
     NEXT_PUBLIC_APP_URL,
