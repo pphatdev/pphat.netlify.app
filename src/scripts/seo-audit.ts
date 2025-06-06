@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
-import { currentDomain } from '../lib/constants';
+import { NEXT_PUBLIC_APP_URL } from '../lib/constants';
 
 interface PageAudit {
     url: string;
@@ -43,7 +43,7 @@ function auditSitemap(): PageAudit[] {
         if (urlMatches) {
             urlMatches.forEach((match, index) => {
                 const url = match.replace(/<\/?loc>/g, '');
-                const path = url.replace(currentDomain, '');
+                const path = url.replace(NEXT_PUBLIC_APP_URL, '');
                 const lastmod = lastmodMatches?.[index]?.replace(/<\/?lastmod>/g, '');
                 const priority = parseFloat(priorityMatches?.[index]?.replace(/<\/?priority>/g, '') || '0.5');
 
@@ -161,7 +161,7 @@ function checkMissingPages(): string[] {
     ];
 
     const missing: string[] = [];
-    const currentPages = auditSitemap().map(p => p.url.replace(currentDomain, ''));
+    const currentPages = auditSitemap().map(p => p.url.replace(NEXT_PUBLIC_APP_URL, ''));
 
     potentialPages.forEach(page => {
         if (!currentPages.includes(page)) {
@@ -206,7 +206,7 @@ function generateSEOReport(): SEOAuditReport {
     });
 
     const summary = [
-        `📊 SEO Audit Summary for ${currentDomain}`,
+        `📊 SEO Audit Summary for ${NEXT_PUBLIC_APP_URL}`,
         `📄 Total pages in sitemap: ${pages.length}`,
         `✅ Indexable pages: ${indexablePages.length}`,
         `🚫 Blocked pages: ${blockedPages.length}`,
@@ -230,7 +230,7 @@ function generateSEOReport(): SEOAuditReport {
     ];
 
     return {
-        domain: currentDomain,
+        domain: NEXT_PUBLIC_APP_URL,
         totalPages: pages.length,
         indexablePages: indexablePages.length,
         blockedPages: blockedPages.length,
@@ -303,7 +303,7 @@ export function runSEOAudit(): void {
     const actionPlanContent = [
         '# SEO Action Plan',
         `Generated on: ${new Date().toISOString()}`,
-        `Domain: ${currentDomain}`,
+        `Domain: ${NEXT_PUBLIC_APP_URL}`,
         '',
         ...actionPlan,
         '',

@@ -1,5 +1,19 @@
 User-agent: *
-Allow: *
+Allow: /
 Disallow: /admin/*
+Disallow: /login*
+Disallow: /(auth)/*
+Disallow: /data/
+Disallow: /google*.html
+
+# Make sure Googlebot can access these
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/*
+Disallow: /login*
+Disallow: /(auth)/*
+Disallow: /data/
+Disallow: /google*.html
 
 Sitemap: https://pphat.top/sitemap.xml
+Sitemap: https://pphat.top/image-sitemap.xml

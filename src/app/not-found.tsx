@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { appName, currentDomain } from '@lib/constants';
+import { appName, NEXT_PUBLIC_APP_URL } from '@lib/constants';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -8,9 +8,9 @@ export const metadata: Metadata = {
     openGraph: {
         title: `Not Found | ${appName}`,
         description: 'The page you were looking for could not be found.',
-        url: currentDomain,
+        url: NEXT_PUBLIC_APP_URL,
         images: [{
-            url: currentDomain + "/assets/avatars/hero.webp",
+            url: NEXT_PUBLIC_APP_URL + "/assets/avatars/hero.webp",
         }],
     }
 };

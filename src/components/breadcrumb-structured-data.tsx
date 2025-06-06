@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { currentDomain } from '@lib/constants';
+import { NEXT_PUBLIC_APP_URL } from '@lib/constants';
 
 interface BreadcrumbItem {
     name: string;
@@ -23,7 +23,7 @@ export default function BreadcrumbStructuredData({ items }: BreadcrumbStructured
             "name": item.name,
             "item": {
                 "@type": "WebPage",
-                "@id": item.url.startsWith('http') ? item.url : `${currentDomain}${item.url}`
+                "@id": item.url.startsWith('http') ? item.url : `${NEXT_PUBLIC_APP_URL}${item.url}`
             }
         }))
     };
