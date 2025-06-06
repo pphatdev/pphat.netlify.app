@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { appName, NEXT_PUBLIC_APP_URL } from "@lib/constants";
+import { appName, NEXT_PUBLIC_APP_URL } from "../../lib/constants";
 import { getOgImageMetadata } from "@lib/utils/og-image";
 
 const contactDescription = "Get in touch with me. I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.";

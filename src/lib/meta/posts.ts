@@ -1,4 +1,4 @@
-import { appName, NEXT_PUBLIC_APP_URL } from "@lib/constants";
+import { appName, NEXT_PUBLIC_APP_URL } from "../../lib/constants";
 import { icons } from "./icons";
 import { keywords } from "./keywords";
 import { Metadata } from "next";

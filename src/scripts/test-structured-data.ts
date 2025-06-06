@@ -63,7 +63,7 @@ components.forEach((component: string) => {
         const content: string = fs.readFileSync(componentPath, 'utf-8');
 
         // Check if it imports from constants
-        if (content.includes('from "@lib/constants"') || content.includes('from \'@lib/constants\'')) {
+        if (content.includes('from "../lib/constants"') || content.includes('from \'../lib/constants\'')) {
             console.log(`\t${colors.green}✅ ${component} uses constants${colors.reset}`);
         } else {
             console.log(`\t${colors.red}❌ ${component} doesn't use constants${colors.reset}`);
