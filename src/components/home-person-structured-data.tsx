@@ -95,7 +95,7 @@ export default function HomePersonStructuredData() {
         <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
-                __html: JSON.parse(JSON.stringify(structuredData))
+                __html: JSON.stringify(structuredData, null, 2)
             }}
         />
     );
