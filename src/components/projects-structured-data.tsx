@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { appName, currentDomain } from '@lib/constants';
+import { appName, NEXT_PUBLIC_APP_URL } from '@lib/constants';
 
 export default function ProjectsStructuredData() {
     const structuredData = {
@@ -13,7 +13,7 @@ export default function ProjectsStructuredData() {
                 {
                     "@type": "ListItem",
                     "position": 1,
-                    "url": `${currentDomain}/projects`,
+                    "url": `${NEXT_PUBLIC_APP_URL}/projects`,
                     "name": `${appName} Projects Portfolio`,
                     "description": "A collection of web development projects created by Leat Sophat (PPhat)"
                 }
@@ -21,7 +21,7 @@ export default function ProjectsStructuredData() {
         },
         "name": `${appName} Projects`,
         "description": "Explore my portfolio of web development projects and applications.",
-        "url": `${currentDomain}/projects`
+        "url": `${NEXT_PUBLIC_APP_URL}/projects`
     };
 
     return (

@@ -170,7 +170,7 @@ Sitemap: https://pphat.top/image-sitemap.xml
 - **Added**: Important static files (`/sitemap.xml`, `/robots.txt`) to sitemap
 
 ### 3. Domain Configuration ✅
-- **Verified**: `currentDomain` correctly configured in constants.ts
+- **Verified**: `NEXT_PUBLIC_APP_URL` correctly configured in constants.ts
 - **Fixed**: Environment variable handling for Windows builds
 - **Updated**: Package.json scripts with proper Windows syntax
 

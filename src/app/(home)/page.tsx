@@ -5,7 +5,7 @@ import OrganizationStructuredData from "@components/organization-structured-data
 import HomePersonStructuredData from "@components/home-person-structured-data";
 import WebsiteStructuredData from "@components/website-structured-data";
 import { Metadata } from "next";
-import { appDescriptions, appName, currentDomain } from "@lib/constants";
+import { appDescriptions, appName, NEXT_PUBLIC_APP_URL } from "@lib/constants";
 import { BlurFade } from "@components/ui/blur-fade";
 import { HomeSkills } from "./sections/home-skills";
 import { HomeFeatureSection } from "./sections/home-feature";
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: appName,
     description: appDescriptions,
     authors: [{
-        url: currentDomain,
+        url: NEXT_PUBLIC_APP_URL,
         name: "Leat Sophat",
     }],
     generator: appName,
@@ -50,12 +50,12 @@ export const metadata: Metadata = {
     },
     openGraph: {
         type: "profile",
-        url: currentDomain,
+        url: NEXT_PUBLIC_APP_URL,
         title: appName,
         description: appDescriptions,
         siteName: appName,
         images: [{
-            url: currentDomain + "/assets/avatars/hero.webp",
+            url: NEXT_PUBLIC_APP_URL + "/assets/avatars/hero.webp",
             width: 800,
             height: 600,
             alt: "Leat Sophat - Senior Front-end Developer and UI/UX Designer"
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
         creator: '@pphatdev',
         title: appName,
         description: appDescriptions,
-        images: [currentDomain + "/assets/avatars/hero.webp"],
+        images: [NEXT_PUBLIC_APP_URL + "/assets/avatars/hero.webp"],
     },
     formatDetection: {
         email: true,
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
         telephone: true,
     },
     alternates: {
-        canonical: currentDomain,
+        canonical: NEXT_PUBLIC_APP_URL,
     },
     other: {
         'google-site-verification': 'your-google-site-verification-code'

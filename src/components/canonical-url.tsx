@@ -1,7 +1,6 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { currentDomain } from '@lib/constants';
 import { useEffect, useState } from 'react';
 
 export default function CanonicalURL() {
@@ -15,12 +14,10 @@ export default function CanonicalURL() {
             path = path.slice(0, -1);
         }
 
-        // Normalize the domain to ensure it doesn't have a trailing slash
-        const domain = currentDomain.endsWith('/')
-            ? currentDomain.slice(0, -1)
-            : currentDomain;
-
-        setCanonicalURL(`${domain}${path}`);
+        // Always use pphat.top as the canonical domain
+        const canonicalDomain = 'https://pphat.top';
+        
+        setCanonicalURL(`${canonicalDomain}${path}`);
     }, [pathname]);
 
     if (!canonicalURL) return null;

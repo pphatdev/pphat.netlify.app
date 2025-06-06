@@ -1,5 +1,5 @@
 import {
-    currentDomain,
+    NEXT_PUBLIC_APP_URL,
     PERSON_NAME,
     PERSON_ALTERNATE_NAME,
     PERSON_JOB_TITLE,
@@ -28,17 +28,17 @@ export default function JsonLd() {
                 __html: JSON.stringify({
                     "@context": "https://schema.org",
                     "@type": "Person",
-                    "@id": `${currentDomain}#person`,
+                    "@id": `${NEXT_PUBLIC_APP_URL}#person`,
                     "name": PERSON_NAME,
                     "alternateName": PERSON_ALTERNATE_NAME,
                     "jobTitle": PERSON_JOB_TITLE,
-                    "url": currentDomain,
-                    "image": `${currentDomain}${PERSON_IMAGE}`,
+                    "url": NEXT_PUBLIC_APP_URL,
+                    "image": `${NEXT_PUBLIC_APP_URL}${PERSON_IMAGE}`,
                     "email": `mailto:${CONTACT_EMAIL}`,
                     "telephone": CONTACT_PHONE,
                     "address": {
                         "@type": "PostalAddress",
-                        "@id": `${currentDomain}#address`,
+                        "@id": `${NEXT_PUBLIC_APP_URL}#address`,
                         "streetAddress": ADDRESS_STREET,
                         "addressLocality": ADDRESS_LOCALITY,
                         "addressRegion": ADDRESS_REGION,
@@ -52,7 +52,7 @@ export default function JsonLd() {
                     "sameAs": [
                         GITHUB_URL,
                         `${GITHUB_URL.replace('github.com', 'pphatdev.github.io')}`,
-                        currentDomain,
+                        NEXT_PUBLIC_APP_URL,
                         FIGMA_URL,
                         LINKEDIN_URL,
                         TWITTER_URL
@@ -73,11 +73,11 @@ export default function JsonLd() {
                     },
                     "mainEntityOfPage": {
                         "@type": "WebPage",
-                        "@id": currentDomain
+                        "@id": NEXT_PUBLIC_APP_URL
                     },
                     "potentialAction": {
                         "@type": "SearchAction",
-                        "target": `${currentDomain}/?search={search_term_string}`,
+                        "target": `${NEXT_PUBLIC_APP_URL}/?search={search_term_string}`,
                         "query-input": "required name=search_term_string"
                     }
                 })

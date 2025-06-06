@@ -1,10 +1,10 @@
-import { appName, currentDomain } from "@lib/constants";
+import { appName, NEXT_PUBLIC_APP_URL } from "@lib/constants";
 import { icons } from "./icons";
 import { keywords } from "./keywords";
 import { Metadata } from "next";
 
 export const postsMeta: Metadata = {
-    metadataBase: new URL(currentDomain),
+    metadataBase: new URL(NEXT_PUBLIC_APP_URL),
     title: `Articles | ${appName}`,
     description: 'Read my blog posts about web development, design, and technology.',
     keywords: [...keywords, 'blog', 'articles', 'tech blog', 'web development blog', 'programming', 'front-end'],
@@ -17,7 +17,7 @@ export const postsMeta: Metadata = {
     openGraph: {
         title: `Articles | ${appName}`,
         description: 'Read my blog posts about web development, design, and technology.',
-        url: `${currentDomain}/posts`,
+        url: `${NEXT_PUBLIC_APP_URL}/posts`,
         images: [
             {
                 url: '/assets/screenshots/origin-dark.png',

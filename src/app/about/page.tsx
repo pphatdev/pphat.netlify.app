@@ -3,7 +3,7 @@ import { AboutMeHero } from "@components/heros/about-hero";
 import { AboutTimeline } from "./sections/timeline";
 import { BlurFade } from '@components/ui/blur-fade';
 import { Metadata } from "next";
-import { appName, currentDomain } from "@lib/constants";
+import { appName, NEXT_PUBLIC_APP_URL } from "@lib/constants";
 import AboutStructuredData from "@components/about-structured-data";
 
 const appPositions = ["I'm a Senior Front-end Developer", "and a Freelance UI/UX Designer."];
@@ -20,19 +20,19 @@ export const metadata: Metadata = {
     title: `About ${appName}`,
     description: aboutDescription,
     authors: [{
-        url: currentDomain,
+        url: NEXT_PUBLIC_APP_URL,
         name: appName,
     }],
     generator: appName,
     openGraph: {
         type: "profile",
-        url: currentDomain + "/about",
+        url: NEXT_PUBLIC_APP_URL + "/about",
         title: `${appName}`,
         description: aboutDescription,
         siteName: appName,
         images: [
-            { url: `${currentDomain}/assets/screenshots/about-light.png`, },
-            { url: `${currentDomain}/assets/screenshots/about-dark.png`, },
+            { url: `${NEXT_PUBLIC_APP_URL}/assets/screenshots/about-light.png`, },
+            { url: `${NEXT_PUBLIC_APP_URL}/assets/screenshots/about-dark.png`, },
         ],
     },
     formatDetection: {

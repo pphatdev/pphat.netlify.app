@@ -4,24 +4,24 @@ import { images } from "./image"
 import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from "next";
-import { appName, currentDomain } from "@lib/constants";
+import { appName, NEXT_PUBLIC_APP_URL } from "@lib/constants";
 
 export const metadata: Metadata = {
     title: `Gallery | ${appName}`,
     description: "Explore my photo gallery showcasing memorable moments and experiences.",
     authors: [{
-        url: currentDomain,
+        url: NEXT_PUBLIC_APP_URL,
         name: `${appName}`,
     }],
     generator: `Gallery | ${appName}`,
     openGraph: {
         type: "website",
-        url: `${currentDomain}/gallery`,
+        url: `${NEXT_PUBLIC_APP_URL}/gallery`,
         title: `Gallery | ${appName}`,
         description: "Explore my photo gallery showcasing memorable moments and experiences.",
         siteName: `${appName} | Gallery`,
         images: [{
-            url: currentDomain + "/assets/avatars/hero.webp",
+            url: NEXT_PUBLIC_APP_URL + "/assets/avatars/hero.webp",
         }],
     },
     formatDetection: {

@@ -3,7 +3,7 @@
 import React from 'react';
 import {
     appName,
-    currentDomain,
+    NEXT_PUBLIC_APP_URL,
     PERSON_NAME,
     PERSON_ALTERNATE_NAME,
     PERSON_JOB_TITLE,
@@ -26,7 +26,7 @@ export default function AboutStructuredData() {
                 "@type": "Organization",
                 "name": COMPANY_NAME,
             },
-            "url": `${currentDomain}/about`,
+            "url": `${NEXT_PUBLIC_APP_URL}/about`,
             "sameAs": [
                 GITHUB_URL,
                 LINKEDIN_URL
@@ -34,7 +34,7 @@ export default function AboutStructuredData() {
         },
         "name": `About ${appName}`,
         "description": `I'm ${PERSON_NAME} (${PERSON_ALTERNATE_NAME}), a ${PERSON_JOB_TITLE}.`,
-        "url": `${currentDomain}/about`
+        "url": `${NEXT_PUBLIC_APP_URL}/about`
     };
 
     return (

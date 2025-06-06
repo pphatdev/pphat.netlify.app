@@ -2,7 +2,7 @@ import React from 'react';
 import { db, Post } from '@lib/db/post';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { appName, currentDomain } from '@lib/constants';
+import { appName, NEXT_PUBLIC_APP_URL } from '@lib/constants';
 import { NavigationBar } from '@components/navbar/navbar';
 import { Badge } from '@components/ui/badge';
 import { Button } from '@components/ui/button';
@@ -48,13 +48,13 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
             url: author.url
         })) || [{
             name: appName,
-            url: currentDomain
+            url: NEXT_PUBLIC_APP_URL
         }],
         openGraph: {
             title: `${post.title} | ${appName}`,
             description,
             type: 'article',
-            url: `${currentDomain}/posts/${post.slug}`,
+            url: `${NEXT_PUBLIC_APP_URL}/posts/${post.slug}`,
             images: post.thumbnail ? [{ url: post.thumbnail.toString() }] : undefined,
             publishedTime: post.createdAt,
             authors: post.authors?.map(author => author.name),

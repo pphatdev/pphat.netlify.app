@@ -2,7 +2,7 @@
  * Utility functions for generating OpenGraph image URLs
  */
 
-import { currentDomain } from "@lib/constants";
+import { NEXT_PUBLIC_APP_URL } from "@lib/constants";
 
 type OgImageParams = {
     title?: string;
@@ -24,7 +24,7 @@ export function getOgImageUrl({
     if (subtitle) params.append('subtitle', subtitle);
     if (description) params.append('description', description);
 
-    const baseUrl = currentDomain;
+    const baseUrl = NEXT_PUBLIC_APP_URL;
     return `${baseUrl}/api/og?${params.toString()}`;
 }
 
