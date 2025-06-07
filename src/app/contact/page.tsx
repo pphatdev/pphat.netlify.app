@@ -13,6 +13,7 @@ import { BorderBeam } from "@components/ui/border-beam";
 import { GridPattern } from "@components/ui/grid-pattern";
 import { Ripple } from "@components/ui/ripple";
 import { ContactHero } from "@components/heros/contact-hero";
+import { cn } from "@lib/utils";
 
 export default function ContactPage() {
     // Form state
@@ -133,7 +134,7 @@ export default function ContactPage() {
         <>
             <NavigationBar/>
             <ContactHero/>
-            <main className="min-h-screen relative pt-24 bg-gradient-to-b from-background via-muted/30 to-background">
+            <main className="relative pt-24 bg-gradient-to-b from-background via-muted/30 to-background">
                 <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
                     <GridPattern
                         width={30}
@@ -147,20 +148,20 @@ export default function ContactPage() {
                 <div className="absolute overflow-hidden inset-0 pointer-events-none" aria-hidden="true">
                     <Ripple mainCircleSize={300} numCircles={10} className="opacity-30"/>
                 </div>
-                <BlurFade delay={0.7} className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <BlurFade delay={0.2} className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div>
                         {/* Contact Form */}
                         <div className="translate-y-2">
-                            <Card className="overflow-hidden bg-background/90 backdrop-blur-sm relative rounded-3xl border-border/50 shadow-lg shadow-primary/5">
+                            <Card className="overflow-hidden bg-background/80 backdrop-blur-3xl relative rounded-4xl border-border/50 shadow-lg shadow-primary/5">
                                 <CardContent className="p-6 sm:px-8">
                                     {submitted ? (
-                                        <div className="text-center py-12">
-                                            <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full text-primary mb-4">
-                                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <div className="text-center pb-12 pt-5">
+                                            <div className="inline-flex items-center justify-center size-20 bg-primary/10 rounded-full text-primary mb-4">
+                                                <svg className="size-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                                 </svg>
                                             </div>
-                                            <h3 className="text-2xl font-semibold mb-2">Message Sent!</h3>
+                                            <h3 className="text-2xl font-semibold mb-4">Message Sent!</h3>
                                             <p className="text-muted-foreground mb-2">Thank you for reaching out. Your message has been sent to:</p>
                                             <p className="font-medium text-primary mb-6">info.sophat@gmail.com</p>
                                             <p className="text-sm text-muted-foreground mb-6">I'll get back to you as soon as possible.</p>
@@ -185,7 +186,7 @@ export default function ContactPage() {
                                                     required
                                                     value={formData.name}
                                                     onChange={handleChange}
-                                                    className={formErrors.name ? "border-destructive ring-primary" : ""}
+                                                    className={cn(formErrors.name ? "border-destructive ring-primary" : "", "rounded-xl bg-transparent")}
                                                     aria-invalid={Boolean(formErrors.name)}
                                                 />
                                                 {formErrors.name && (
@@ -205,7 +206,7 @@ export default function ContactPage() {
                                                         required
                                                         value={formData.email}
                                                         onChange={handleChange}
-                                                        className={formErrors.email ? "border-destructive ring-primary" : ""}
+                                                        className={cn(formErrors.name ? "border-destructive ring-primary" : "", "rounded-xl bg-transparent")}
                                                         aria-invalid={Boolean(formErrors.email)}
                                                     />
                                                     {formErrors.email && (
@@ -226,7 +227,7 @@ export default function ContactPage() {
                                                     required
                                                     value={formData.subject}
                                                     onChange={handleChange}
-                                                    className={formErrors.subject ? "border-destructive ring-primary" : ""}
+                                                    className={cn(formErrors.name ? "border-destructive ring-primary" : "", "rounded-xl bg-transparent")}
                                                     aria-invalid={Boolean(formErrors.subject)}
                                                 />
                                                 {formErrors.subject && (
@@ -247,7 +248,7 @@ export default function ContactPage() {
                                                     required
                                                     value={formData.message}
                                                     onChange={handleChange}
-                                                    className={formErrors.message ? "border-destructive ring-primary" : ""}
+                                                    className={cn(formErrors.name ? "border-destructive ring-primary" : "", "rounded-xl bg-transparent")}
                                                     aria-invalid={Boolean(formErrors.message)}
                                                 />
                                                 {formErrors.message && (

@@ -2,7 +2,7 @@
  * Utility functions for generating OpenGraph image URLs
  */
 
-import { NEXT_PUBLIC_APP_URL } from "@lib/constants";
+import { NEXT_PUBLIC_APP_URL } from "../../lib/constants";
 
 type OgImageParams = {
     title?: string;

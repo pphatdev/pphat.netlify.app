@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendContactEmail } from '@lib/utils/email-service';
-import { CONTACT_EMAIL } from '@lib/constants';
+import { CONTACT_EMAIL } from '../../../lib/constants';
 
 // Simple rate limiting for spam prevention
 const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
