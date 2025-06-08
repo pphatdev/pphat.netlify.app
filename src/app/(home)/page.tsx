@@ -5,6 +5,8 @@ import PersonStructuredData from "@components/person-structured-data";
 import { Metadata } from "next";
 import { appDescriptions, appName, currentDomain, GOOGLE_SITE_VERIFICATION } from "@lib/constants";
 import { HeaderNavigation } from "./sections/navigation";
+import { GridPattern } from "@components/ui/grid-pattern";
+import { HereOne } from "@components/heros/hero-1";
 
 export const metadata: Metadata = {
     title: appName,
@@ -77,18 +79,25 @@ export const metadata: Metadata = {
 export default function Home() {
 
     return (
-        <div className="w-full flex flex-col">
+        <div className="w-full flex flex-col -z-[5]">
             <PersonStructuredData />
             <WebsiteStructuredData />
             <OrganizationStructuredData />
+            <HeaderNavigation />
 
-            <HeaderNavigation/>
-
-            <div className="h-screen">
-
+            <div className="flex size-full absolute items-center pointer-events-none justify-center overflow-hidden opacity-50 rounded-lg border  p-20">
+                <GridPattern
+                    width={30}
+                    height={30}
+                    x={-1}
+                    y={-1}
+                    className={"[mask-image:radial-gradient(1050px_circle_at_top,white,transparent)] -translate-y-1"}
+                />
             </div>
 
-            {/* <div className="h-20 pointer-events-none fixed bottom-0 inset-x-0 bg-gradient-to-b from-transparent to-background z-50" /> */}
+            <HereOne />
+
+            <div className="h-20 pointer-events-none fixed bottom-0 inset-x-0 bg-gradient-to-b from-transparent z-0 to-background z-10" />
         </div>
     );
 }
