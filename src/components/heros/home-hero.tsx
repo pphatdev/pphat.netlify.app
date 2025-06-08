@@ -36,8 +36,8 @@ export default function HeroSection() {
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
 
-        canvas.width = 500;
-        canvas.height = 500;
+        canvas.width = 300;
+        canvas.height = 300;
 
         Promise.all([
             loadImage('/assets/gallery/WEBP/IMG_1915.webp'),
