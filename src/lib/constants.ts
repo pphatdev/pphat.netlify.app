@@ -39,7 +39,7 @@ export const UNIVERSITY_NAME = process.env.UNIVERSITY_NAME || "Royal University 
 // Google Search Console
 export const GOOGLE_SITE_VERIFICATION = process.env.GOOGLE_SITE_VERIFICATION || ''
 
-export const appName = "LEAT Sophat"
+export const appName = "Sophat LEAT"
 export const appTitle = "PPhat Dev"
 export const appPositions = ["Senior Front-end Developer.", "UI/UX Designer."]
 export const appDescriptions = "Hello! I'm Sophat LEAT, also known as PPhat, and I'm thrilled to have you here. This portfolio showcases my journey, projects, and passions as a developer and creator. Explore my work, check out my skills, and feel free to connect if you'd like to collaborate or learn more.\nLet's build something amazing together!"
