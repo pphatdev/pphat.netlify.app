@@ -33,10 +33,10 @@ export const HeaderNavigation = () => {
     ];
 
     return (
-        <header className="fixed inset-x-0 max-xs:bottom-2 transition-all">
+        <header className="fixed z-[999] inset-x-0 max-xs:bottom-2 transition-all">
             <BlurFade inView={true}>
-                <div className="py-5 w-fit mx-auto max-xs:px-3 px-5">
-                    <nav className="ring ring-foreground/10 rounded-full p-1 flex items-center justify-center bg-background drop-shadow-2xl max-xs:px-0 px-5">
+                <div className="max-xs:pb-2 py-5 max-xs:w-full w-fit mx-auto max-xs:px-3 px-5">
+                    <nav className="ring ring-foreground/10 rounded-full p-1.5 flex items-center justify-center bg-background/90 backdrop-blur-lg drop-shadow-xl">
                         <ul className="flex max-xs:gap-0 gap-3 items-center justify-evenly">
                             <li className="px-1.5">
                                 <Link href={'/'}>
@@ -48,10 +48,10 @@ export const HeaderNavigation = () => {
                             {navItems.map((item, index) => {
                                 return (
                                     <li key={index} className={cn(
-                                        "rounded-full max-xs:px-2.5 py-1 px-3 hover:bg-foreground/5 hover:ring-foreground/10 hover:ring-1",
+                                        "rounded-full max-xs:px-2.5 py-2 px-3 hover:bg-foreground/5 hover:ring-foreground/10 hover:ring-1",
                                         item.active ? "ring bg-foreground/5 ring-foreground/10 text-foreground" : ""
                                     )}>
-                                        <Link href={item.link} className="text-xs align-middle leading-tight font-light">
+                                        <Link href={item.link} className="text-xs align-middle line-clamp-1 leading-tight font-light">
                                             <span className="sr-only">{item?.name}</span>
                                             {item?.name}
                                         </Link>
@@ -62,7 +62,7 @@ export const HeaderNavigation = () => {
                             <li className="px-1.5">
                                 <Link href={'https://github.com/pphatdev/pphat.netlify.app'}>
                                     <span className="sr-only">Go to Github</span>
-                                    <GitHubLogoIcon className="size-6"/>
+                                    <GitHubLogoIcon className="size-7"/>
                                 </Link>
                             </li>
                         </ul>
