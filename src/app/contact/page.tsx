@@ -206,7 +206,7 @@ export default function ContactPage() {
                                                         required
                                                         value={formData.email}
                                                         onChange={handleChange}
-                                                        className={cn(formErrors.name ? "border-destructive ring-primary" : "", "rounded-xl bg-transparent")}
+                                                        className={cn(formErrors.email ? "border-destructive ring-primary" : "", "rounded-xl bg-transparent")}
                                                         aria-invalid={Boolean(formErrors.email)}
                                                     />
                                                     {formErrors.email && (
@@ -227,7 +227,7 @@ export default function ContactPage() {
                                                     required
                                                     value={formData.subject}
                                                     onChange={handleChange}
-                                                    className={cn(formErrors.name ? "border-destructive ring-primary" : "", "rounded-xl bg-transparent")}
+                                                    className={cn(formErrors.subject ? "border-destructive ring-primary" : "", "rounded-xl bg-transparent")}
                                                     aria-invalid={Boolean(formErrors.subject)}
                                                 />
                                                 {formErrors.subject && (
@@ -248,7 +248,7 @@ export default function ContactPage() {
                                                     required
                                                     value={formData.message}
                                                     onChange={handleChange}
-                                                    className={cn(formErrors.name ? "border-destructive ring-primary" : "", "rounded-xl bg-transparent")}
+                                                    className={cn(formErrors.message ? "border-destructive ring-primary" : "", "rounded-xl bg-transparent")}
                                                     aria-invalid={Boolean(formErrors.message)}
                                                 />
                                                 {formErrors.message && (
