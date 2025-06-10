@@ -62,19 +62,23 @@ export const NavigationBar = (
                     isOpen={isMobileMenuOpen}
                     onClose={() => setIsMobileMenuOpen(false)}
                 >
-                    {navItems.map((item, idx) => (
-                        <Link
-                            key={`mobile-link-${idx}`}
-                            href={item.link}
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            className={cn(
-                                "relative text-foreground/300 active:text-primary py-2 hover:text-primary rounded-full hover:bg-foreground/5 w-full text-center active:bg-foreground/5 transition-colors duration-200",
-                                item.active ? "text-primary bg-foreground/5" : "text-foreground/300",
-                            )}
-                        >
-                            <span className="block">{item.name}</span>
-                        </Link>
-                    ))}
+                    <ol>
+                        {navItems.map((item, idx) => (
+                            <li key={idx}>
+                                <Link
+                                    key={`mobile-link-${idx}`}
+                                    href={item.link}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className={cn(
+                                        "relative text-foreground/300 active:text-primary py-2 hover:text-primary rounded-full hover:bg-foreground/5 w-full text-center active:bg-foreground/5 transition-colors duration-200",
+                                        item.active ? "text-primary bg-foreground/5" : "text-foreground/300",
+                                    )}
+                                >
+                                    <span className="block">{item.name}</span>
+                                </Link>
+                            </li>
+                        ))}
+                    </ol>
                     <div className="flex w-full items-center justify-center mt-5 flex-col gap-4">
                         <MagneticArea>
                             <Link aria-label="GitHub repository" href="https://github.com/pphatdev">
