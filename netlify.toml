@@ -1,9 +1,0 @@
-[[redirects]]
-  from = "/sitemap_index.xml"
-  to = "/sitemap.xml"
-  status = 301
-
-[[redirects]]
-  from = "/feed"
-  to = "/sitemap.xml"
-  status = 301
