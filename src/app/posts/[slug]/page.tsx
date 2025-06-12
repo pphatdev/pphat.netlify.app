@@ -14,6 +14,7 @@ import { NovelRenderer } from '@components/ui/novel-renderer';
 import Image from 'next/image';
 import "../../../styles/code-block-node.css"
 import { GridPattern } from '@components/ui/grid-pattern';
+import ArticleStructuredData from '@components/article-structured-data';
 
 interface Params {
     params: Promise<{ slug: string; }>;
@@ -31,18 +32,9 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
         };
     }
 
-    // Extract plain text from content for description
-    let description = '';
-    try {
-        const content = JSON.parse(post.content);
-        description = extractTextFromContent(content).substring(0, 160);
-    } catch {
-        description = post.content.substring(0, 160);
-    }
-
     return {
         title: `${post.title} | ${appName}`,
-        description,
+        description: post.description,
         authors: post.authors?.map(author => ({
             name: author.name,
             url: author.url
@@ -52,7 +44,7 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
         }],
         openGraph: {
             title: `${post.title} | ${appName}`,
-            description,
+            description: post.description,
             type: 'article',
             url: `${NEXT_PUBLIC_APP_URL}/posts/${post.slug}`,
             images: post.thumbnail ? [{ url: post.thumbnail.toString() }] : undefined,
@@ -62,28 +54,10 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
         twitter: {
             card: 'summary_large_image',
             title: `${post.title} | ${appName}`,
-            description,
+            description: post.description,
             images: post.thumbnail ? [{ url: post.thumbnail.toString() }] : undefined,
         }
     };
-}
-
-function extractTextFromContent(content: any): string {
-    if (!content) return '';
-
-    let text = '';
-
-    if (content.type === 'text') {
-        return content.text || '';
-    }
-
-    if (content.content && Array.isArray(content.content)) {
-        content.content.forEach((node: any) => {
-            text += extractTextFromContent(node) + ' ';
-        });
-    }
-
-    return text.trim();
 }
 
 export default async function PostDetail(props: Params) {
@@ -112,6 +86,18 @@ export default async function PostDetail(props: Params) {
 
     return (
         <>
+            <ArticleStructuredData
+                title={post.title}
+                description={post.description || ''}
+                slug={post.slug}
+                thumbnail={post.thumbnail}
+                authors={post.authors || []}
+                tags={post.tags || []}
+                createdAt={post.createdAt}
+                updatedAt={post.updatedAt?.toString()}
+                content={post.content}
+            />
+
             <NavigationBar className='fixed' />
             <div className="absolute inset-y-0 left-0 right-0 pointer-events-none opacity-60" aria-hidden="true">
                 <GridPattern
