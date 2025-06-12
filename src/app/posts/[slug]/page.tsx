@@ -14,7 +14,7 @@ import { NovelRenderer } from '@components/ui/novel-renderer';
 import Image from 'next/image';
 import "../../../styles/code-block-node.css"
 import { GridPattern } from '@components/ui/grid-pattern';
-import ArticleStructuredData from '@components/article-structured-data';
+import ArticleStructuredData from '@components/data-structured/article';
 
 interface Params {
     params: Promise<{ slug: string; }>;
