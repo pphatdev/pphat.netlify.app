@@ -92,7 +92,7 @@ function fetchProjectRoutes(): SitemapRoute[] {
 
         // Filter published projects and create route objects
         const publishedProjects = projects.filter(project => project.published);
-        console.log(`${publishedProjects.length} projects are published and will be included in sitemap`); return publishedProjects.map(project => ({
+        console.log(`${publishedProjects.length} projects are published and will be included in sitemap`);        return publishedProjects.map(project => ({
             path: `/projects/${project.id}`,
             changefreq: 'monthly' as const,
             priority: 0.6,
@@ -112,7 +112,7 @@ export async function createSitemap(): Promise<void> {
         const allRoutes = [...STATIC_ROUTES, ...postRoutes];
 
         // Filter out any routes that should be excluded
-        const filteredRoutes = allRoutes.filter(route =>
+        const filteredRoutes = allRoutes.filter(route => 
             !EXCLUDED_PATHS.some(excluded => route.path.includes(excluded.replace('/', '')))
         );
 
@@ -125,7 +125,7 @@ export async function createSitemap(): Promise<void> {
         // Validate URLs in production environment (optional)
         const validateUrls = process.env.VALIDATE_SITEMAP_URLS === 'true';
         let validatedRoutes = filteredRoutes;
-
+        
         if (validateUrls) {
             console.log('\n🔍 Validating URLs...');
             const validationPromises = filteredRoutes.map(async (route) => {
@@ -136,10 +136,10 @@ export async function createSitemap(): Promise<void> {
                 }
                 return isValid ? route : null;
             });
-
+            
             const validationResults = await Promise.all(validationPromises);
             validatedRoutes = validationResults.filter(route => route !== null) as SitemapRoute[];
-
+            
             if (validatedRoutes.length !== filteredRoutes.length) {
                 console.log(`⚠️  ${filteredRoutes.length - validatedRoutes.length} URLs were excluded due to validation failures`);
             }

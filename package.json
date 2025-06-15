@@ -8,7 +8,6 @@
     "generate:manifest": "tsc src/scripts/generate-manifest.ts --outDir build && node build/scripts/generate-manifest.js",
     "generate:sitemap": "set NEXT_PUBLIC_APP_URL=https://pphat.top && tsc src/scripts/generate-sitemap.ts --outDir build/scripts && set NEXT_PUBLIC_APP_URL=https://pphat.top && node build/scripts/scripts/generate-sitemap.js",
     "generate:images": "tsc src/scripts/generate-images-sitemap.ts --outDir build/scripts && node build/scripts/generate-images-sitemap.js",
-    "validate:sitemap": "tsc src/scripts/validate-sitemap.ts --outDir build/scripts && node build/scripts/validate-sitemap.js",
 
     "test:seo": "tsc src/scripts/test-seo-config.ts --outDir build/test && node build/test/test-seo-config.js",
     "test:structured-data": "tsc src/scripts/test-structured-data.ts --outDir build/test && node build/test/test-structured-data.js",
