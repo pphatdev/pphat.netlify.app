@@ -64,8 +64,6 @@ export default function HeroSection() {
         <div>
             {mounted && (
                 <main className="w-full pt-20 p-5 flex min-h-[45rem] items-center justify-center mx-auto h-full overflow-x-hidden relative">
-                    <h1 className="sr-only">{appName}</h1>
-                    <p className="sr-only">{appDescriptions ?? ""}</p>
                     {/* <BackgroundBeamsWithCollision className="flex items-center absolute -z-[1] pointer-events-none justify-center w-full h-screen" /> */}
                     <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
                         <GridPattern

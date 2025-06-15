@@ -35,7 +35,7 @@ export const metadata: Metadata = {
         "TypeScript Developer",
         "Phnom Penh",
         "Cambodia",
-        "TURBOTECH"
+        "TURBOTECH CO., LTD.",
     ],
     robots: {
         index: true,
@@ -87,6 +87,8 @@ export default function Home() {
 
     return (
         <div className="w-full flex flex-col">
+            <h1 className="sr-only">{appName}</h1>
+            <p className="sr-only">{appDescriptions ?? ""}</p>
             <HomePersonStructuredData />
             <WebsiteStructuredData />
             <OrganizationStructuredData />
