@@ -6,27 +6,8 @@ import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '@components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@components/ui/sheet';
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from '@components/ui/dropdown-menu';
-import {
-    Menu,
-    Home,
-    FileText,
-    Users,
-    Settings,
-    LogOut,
-    ChevronRight,
-    LayoutDashboard,
-    Image,
-    Tag,
-    BarChart3
-} from 'lucide-react';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@components/ui/dropdown-menu';
+import { Menu, Home, FileText, Users, Settings, LogOut, ChevronRight, LayoutDashboard, Image, Tag, BarChart3 } from 'lucide-react';
 import { cn } from '@lib/utils';
 import { toast, Toaster } from 'sonner';
 
@@ -99,7 +80,7 @@ function NavLink({ item, isMobile = false, onClick }: {
             href={item.href}
             onClick={onClick}
             className={cn(
-                'flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:text-primary',
+                'flex items-center gap-3 rounded-xl rounded-e-full px-3 py-2 text-sm transition-all hover:text-primary',
                 isActive
                     ? 'bg-muted text-primary'
                     : 'text-muted-foreground hover:bg-muted/50'
@@ -196,7 +177,7 @@ export default function AdminLayout({ children, title, description }: AdminLayou
             <Toaster />
 
             {/* Desktop Sidebar */}
-            <aside className="hidden lg:block border-r bg-muted/10">
+            <aside className="hidden lg:block bg-muted/10">
                 <Sidebar />
             </aside>
 
@@ -215,7 +196,7 @@ export default function AdminLayout({ children, title, description }: AdminLayou
             {/* Main Content */}
             <div className="flex-1 flex flex-col overflow-hidden">
                 {/* Header */}
-                <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+                <header className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
                     <div className="flex h-14 items-center gap-4 px-4 lg:px-6">
                         <div className="flex-1">
                             {title && (
@@ -270,7 +251,7 @@ export default function AdminLayout({ children, title, description }: AdminLayou
                 </header>
 
                 {/* Page Content */}
-                <main className="flex-1 overflow-auto">
+                <main className="flex-1 overflow-auto bg-accent rounded-4xl rounded-b-none rounded-r-none">
                     <div className="p-4 lg:p-6">
                         <Breadcrumb />
                         {children}
