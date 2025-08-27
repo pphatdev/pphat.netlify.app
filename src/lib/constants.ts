@@ -4,9 +4,11 @@
 import { config } from 'dotenv';
 config()
 
+export const NEXT_APP_API = process.env.NEXT_APP_API || 'https://api.pphatdev.workers.dev';
+
 // Contact information
 export const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'info.sophat@gmail.com';
-export const CONTACT_PHONE = process.env.CONTACT_PHONE || '+855 96918 3363';
+export const CONTACT_PHONE = process.env.CONTACT_PHONE || '+855 96 918 3363';
 export const CONTACT_LOCATION = process.env.CONTACT_LOCATION || 'Phnom Penh, Cambodia';
 
 // Personal information

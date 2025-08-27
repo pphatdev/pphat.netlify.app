@@ -2,11 +2,13 @@ import { Badge } from "@components/ui/badge";
 import { Post } from "@lib/db/post";
 import Link from "next/link";
 import Image from 'next/image';
-import { Share2Icon, TagIcon } from "lucide-react";
+import { Share2Icon } from "lucide-react";
 import * as React from 'react';
 import { cn } from "@lib/utils";
 
-export const PostCard = ({ post, actionChildren, className, isAdmin = false }: { post: Post, actionChildren?: React.ReactNode, className?: string, isAdmin?: boolean}) => {
+export const PostCard = (
+    { post, actionChildren, className, isAdmin = false }:  { post: Post, actionChildren?: React.ReactNode, className?: string, isAdmin?: boolean }
+) => {
     const sharePost = (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
@@ -23,10 +25,11 @@ export const PostCard = ({ post, actionChildren, className, isAdmin = false }: {
         <div className={cn("relative duration-300 group flex flex-col gap-0 hover:translate-y-1 overflow-hidden bg-foreground/5 group font-sans rounded-3xl mb-4 ring-foreground/10 hover:ring-primary hover:ring-2 transition-all ease-in-out h-full", className)} role="article" tabIndex={-1}>
 
             <Image
-                src={post.thumbnail}
+                src={post?.featured_image}
                 width={512}
                 height={512}
                 alt={post.title}
+                // onError={(e)=> { e.currentTarget.src = 'https://github.com/pphatdev.png' }}
                 className="w-full h-40 aspect-video object-cover rounded-b-xl"
             />
 
@@ -65,14 +68,14 @@ export const PostCard = ({ post, actionChildren, className, isAdmin = false }: {
                 </div>
 
                 <div className="flex items-center gap-2 my-2">
-                    <time dateTime={new Date(post.createdAt).toISOString()} className="text-xs text-foreground/50 font-sans">{new Date(post.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
+                    <time dateTime={new Date(post.updated_date).toISOString()} className="text-xs text-foreground/50 font-sans">{new Date(post.updated_date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
                 </div>
                 {isAdmin && post.published && (
                     <div className="size-2.5 absolute top-5 right-3 bg-primary rounded-full"></div>
                 )}
 
                 <h2 className="z-10 font-semibold font-sans tracking-wide line-clamp-1 pb-1">{post.title}</h2>
-                <p className='font-normal text-sm z-10 line-clamp-4 text-foreground/80'>{post.description || ""}</p>
+                <p className='font-normal text-sm z-10 line-clamp-4 text-foreground/80'>{post.excerpt || ""}</p>
             </div>
         </div>
     );

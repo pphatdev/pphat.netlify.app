@@ -8,6 +8,8 @@ import { aladin, kantumruyPro, poppins, srisakdi, openSans } from "../lib/fonts"
 import { cn } from "../lib/utils";
 import CanonicalURL from "../components/canonical-url";
 import GoogleIndexingVerification from "../components/google-indexing-verification";
+import { AuthProvider } from "../components/auth-provider";
+import { Toaster } from "sonner";
 export { viewport } from "../lib/meta/viewport";
 export const metadata: Metadata = homeHome;
 
@@ -36,9 +38,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                     enableSystem
                     defaultTheme="system"
                 >
-                    <Providers>
-                        {children}
-                    </Providers>
+                    <AuthProvider>
+                        <Providers>
+                            {children}
+                        </Providers>
+                        <Toaster />
+                    </AuthProvider>
                 </ThemeProvider>
             </body>
         </html>

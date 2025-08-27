@@ -2,20 +2,20 @@ import path from 'path';
 import { JsonDB } from './jsondb';
 
 export interface Post extends Record<string, unknown> {
-    id: string;
+    id: string | number;
     title: string;
     content: string;
     slug: string;
-    description?: string;
+    excerpt?: string;
     published: boolean;
     tags: string[];
-    authors: Array<{
+    authors?: Array<{
         name: string;
         profile: string;
         url: string;
-    }>;
-    thumbnail: string;
-    createdAt: string;
+    }> | null;
+    featured_image: string;
+    updated_date: string;
 }
 export interface User {
     id: string;

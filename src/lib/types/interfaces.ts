@@ -24,3 +24,21 @@ export interface Post {
     authors: { name: string; profile: string; url: string }[];
     [key: string]: unknown;
 }
+
+export interface User {
+    id: string;
+    email: string;
+    name: string;
+}
+
+export interface AuthResponse {
+    success: boolean;
+    token?: string;
+    user?: User;
+    message?: string;
+}
+
+export interface LoginCredentials {
+    email: string;
+    password: string;
+}

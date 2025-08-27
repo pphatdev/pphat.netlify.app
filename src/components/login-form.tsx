@@ -1,24 +1,69 @@
+'use client'
+
 import { cn } from "@lib/utils"
 import { Button } from "@components/ui/button"
 import { Card, CardContent } from "@components/ui/card"
 import { Input } from "@components/ui/input"
 import { Label } from "@components/ui/label"
 import Image from "next/image"
+import { useState } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
+import { loginUser } from "@lib/utils/auth"
+import { useAuth } from "./auth-provider"
+import { toast } from "sonner"
 
 export function LoginForm({
     className,
     ...props
 }: React.ComponentProps<"div">) {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [loading, setLoading] = useState(false)
+    const router = useRouter()
+    const searchParams = useSearchParams()
+    const { login } = useAuth()
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+
+        if (!email || !password) {
+            toast.error("Please fill in all fields")
+            return
+        }
+
+        setLoading(true)
+
+        try {
+            const response = await loginUser({ email, password })
+
+            if (response.success && response.user) {
+                toast.success("Login successful!")
+                login(response.user)
+
+                // Redirect to callback URL or admin dashboard
+                const callbackUrl = searchParams.get('callbackUrl') || '/admin'
+                router.push(callbackUrl)
+            } else {
+                toast.error(response.message || "Login failed")
+            }
+        } catch (error) {
+            console.error("Login error:", error)
+            toast.error("An unexpected error occurred")
+        } finally {
+            setLoading(false)
+        }
+    }
+
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
             <Card className="p-0 overflow-hidden">
                 <CardContent className="grid p-0 md:grid-cols-2">
-                    <form className="p-6 md:p-8">
+                    <form className="p-6 md:p-8" onSubmit={handleSubmit}>
                         <div className="flex flex-col gap-6">
                             <div className="flex flex-col items-center text-center">
                                 <h1 className="text-2xl font-bold">Welcome back</h1>
                                 <p className="text-balance text-muted-foreground">
-                                    Login to your Acme Inc account
+                                    Login to your account
                                 </p>
                             </div>
                             <div className="grid gap-2">
@@ -27,7 +72,10 @@ export function LoginForm({
                                     id="email"
                                     type="email"
                                     placeholder="m@example.com"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                     required
+                                    disabled={loading}
                                 />
                             </div>
                             <div className="grid gap-2">
@@ -40,10 +88,17 @@ export function LoginForm({
                                         Forgot your password?
                                     </a>
                                 </div>
-                                <Input id="password" type="password" required />
+                                <Input
+                                    id="password"
+                                    type="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                    disabled={loading}
+                                />
                             </div>
-                            <Button type="submit" className="w-full">
-                                Login
+                            <Button type="submit" className="w-full" disabled={loading}>
+                                {loading ? "Signing in..." : "Login"}
                             </Button>
                             <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
                                 <span className="relative z-10 bg-background px-2 text-muted-foreground">
