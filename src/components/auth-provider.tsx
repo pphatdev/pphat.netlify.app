@@ -22,7 +22,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         try {
             setLoading(true)
             const response = await getCurrentUser()
-
             if (response.success && response.user) {
                 setUser(response.user)
             } else {

@@ -10,10 +10,10 @@ interface ProtectedRouteProps {
     requiredAuth?: boolean
 }
 
-export function ProtectedRoute({ 
-    children, 
-    redirectTo = "/login", 
-    requiredAuth = true 
+export function ProtectedRoute({
+    children,
+    redirectTo = "/login",
+    requiredAuth = true
 }: ProtectedRouteProps) {
     const { user, loading } = useAuth()
     const router = useRouter()
