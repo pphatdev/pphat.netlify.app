@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
-
-const AUTH_VERIFY_URL = 'https://api.pphatdev.workers.dev/v1/api/auth/verify'
+import { NEXT_APP_API } from '@lib/constants'
 
 export async function GET(request: NextRequest) {
     try {
@@ -16,7 +15,7 @@ export async function GET(request: NextRequest) {
         }
 
         // Verify token with external API
-        const response = await fetch(AUTH_VERIFY_URL, {
+        const response = await fetch(`${NEXT_APP_API}/v1/api/auth/me`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token.value}`,
@@ -37,7 +36,7 @@ export async function GET(request: NextRequest) {
 
         return NextResponse.json({
             success: true,
-            user: data.user,
+            user: data.data,
             message: 'Token is valid'
         })
     } catch (error) {

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
+import { NEXT_APP_API } from '@lib/constants';
 
 interface LoginRequest {
     email: string
@@ -28,8 +29,6 @@ interface LoginResponse {
     message?: string
 }
 
-const AUTH_API_URL = 'https://api.pphatdev.workers.dev/v1/api/auth/login'
-
 export async function POST(request: NextRequest) {
     try {
         const body: LoginRequest = await request.json()
@@ -44,7 +43,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Call external auth API
-        const response = await fetch(AUTH_API_URL, {
+        const response = await fetch(`${NEXT_APP_API}/v1/api/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
