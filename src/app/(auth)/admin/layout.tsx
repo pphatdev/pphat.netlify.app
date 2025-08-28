@@ -10,6 +10,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { Menu, Home, FileText, Users, Settings, LogOut, ChevronRight, LayoutDashboard, Image, Tag, BarChart3 } from 'lucide-react';
 import { cn } from '@lib/utils';
 import { toast, Toaster } from 'sonner';
+import { useAuth } from '@components/auth-provider';
 
 interface AdminLayoutProps {
     children: React.ReactNode;
@@ -151,6 +152,7 @@ function Breadcrumb() {
 export default function AdminLayout({ children, title, description }: AdminLayoutProps) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const router = useRouter();
+    const { user } = useAuth();
 
     const handleLogout = async () => {
         try {
@@ -173,7 +175,6 @@ export default function AdminLayout({ children, title, description }: AdminLayou
 
     return (
         <div className="flex h-screen bg-background">
-
             <Toaster />
 
             {/* Desktop Sidebar */}
@@ -194,9 +195,9 @@ export default function AdminLayout({ children, title, description }: AdminLayou
             </Sheet>
 
             {/* Main Content */}
-            <div className="flex-1 flex flex-col overflow-hidden">
+            <div className="flex-1 bg-accent relative">
                 {/* Header */}
-                <header className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+                <header className=" backdrop-blur sticky top-0 supports-[backdrop-filter]:bg-background/60">
                     <div className="flex h-14 items-center gap-4 px-4 lg:px-6">
                         <div className="flex-1">
                             {title && (
@@ -221,9 +222,9 @@ export default function AdminLayout({ children, title, description }: AdminLayou
                             <DropdownMenuContent className="w-56" align="end" forceMount>
                                 <DropdownMenuLabel className="font-normal">
                                     <div className="flex flex-col space-y-1">
-                                        <p className="text-sm font-medium leading-none">Admin User</p>
+                                        <p className="text-sm font-medium leading-none">{user?.name}</p>
                                         <p className="text-xs leading-none text-muted-foreground">
-                                            admin@example.com
+                                            {user?.email}
                                         </p>
                                     </div>
                                 </DropdownMenuLabel>
