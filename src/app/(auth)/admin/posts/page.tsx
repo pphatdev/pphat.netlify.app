@@ -9,6 +9,7 @@ import { Plus, Search, Trash2, EditIcon, EyeIcon } from 'lucide-react';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@components/ui/alert-dialog';
 import { toast } from 'sonner';
 import { PostCard } from '@components/cards/post-card';
+import { cn } from '@lib/utils';
 
 export default function AdminPostsPage() {
     const [posts, setPosts] = useState<Post[]>([]);
@@ -105,9 +106,9 @@ export default function AdminPostsPage() {
                         </Button>
                     </div>
                 </div>
-                <div className='max-sm:p-5 pt-7 rounded-b-xl'>
+                <div className={cn(`max-sm:p-5 pt-7 rounded-b-xl relative min-h-[calc(100vh_-_22rem)]`, filteredPosts.length === 0 ? 'flex items-center justify-center' : '')}>
                     {filteredPosts.length === 0 ? (
-                        <div className='flex flex-col bg-background shadow-2xl/5 hover:bg-foreground/5 relative max-w-xl mx-auto border border-dashed rounded-3xl gap-2 items-center justify-center min-h-80'>
+                        <div className='flex flex-col bg-background shadow-2xl/5 hover:bg-foreground/5 relative max-w-xl w-full mx-auto border border-dashed rounded-3xl gap-2 items-center justify-center min-h-80'>
                             <Link className='absolute inset-0' href="/admin/posts/new" />
                             <div className="text-center text-muted-foreground">
                                 {searchTerm ? 'No posts found matching your search.' : `No posts yet. Let's first post!`}
