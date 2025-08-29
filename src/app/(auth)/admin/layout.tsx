@@ -82,9 +82,7 @@ function NavLink({ item, isMobile = false, onClick }: {
             onClick={onClick}
             className={cn(
                 'flex items-center gap-3 rounded-xl rounded-e-full px-3 py-2 text-sm transition-all hover:text-primary',
-                isActive
-                    ? 'bg-muted text-primary'
-                    : 'text-muted-foreground hover:bg-muted/50'
+                isActive ? 'bg-muted text-primary' : 'text-muted-foreground hover:bg-muted/50'
             )}
         >
             <Icon className="h-4 w-4" />
@@ -133,13 +131,7 @@ function Breadcrumb() {
                 return (
                     <React.Fragment key={`breadcrumb-${index}-${segment}`}>
                         <ChevronRight className="h-3 w-3" />
-                        {isLast ? (
-                            <span className="text-foreground font-medium">{label}</span>
-                        ) : (
-                            <Link href={href} className="hover:text-foreground">
-                                {label}
-                            </Link>
-                        )}
+                        {isLast ? <span className="text-foreground font-medium">{label}</span> : <Link href={href} className="hover:text-foreground">{label}</Link>}
                     </React.Fragment>
                 );
 
@@ -157,9 +149,7 @@ export default function AdminLayout({ children, title, description }: AdminLayou
     const handleLogout = async () => {
         try {
             // Add your logout logic here
-            const response = await fetch('/api/auth/logout', {
-                method: 'POST'
-            });
+            const response = await fetch('/api/auth/logout', { method: 'POST' });
 
             if (response.ok) {
                 toast.success('Logged out successfully');
@@ -185,7 +175,7 @@ export default function AdminLayout({ children, title, description }: AdminLayou
             {/* Mobile Sidebar */}
             <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
                 <SheetTrigger asChild className="lg:hidden">
-                    <Button variant="outline" size="icon" className="fixed top-4 left-4 z-40">
+                    <Button variant="outline" size="icon" className="fixed top-2.5 left-4 z-40">
                         <Menu className="h-4 w-4" />
                     </Button>
                 </SheetTrigger>
@@ -195,17 +185,15 @@ export default function AdminLayout({ children, title, description }: AdminLayou
             </Sheet>
 
             {/* Main Content */}
-            <div className="flex-1 bg-accent relative">
+            <div className="flex-1 relative overflow-hidden">
                 {/* Header */}
-                <header className=" backdrop-blur sticky top-0 supports-[backdrop-filter]:bg-background/60">
+                <header className="backdrop-blur sticky top-0 supports-[backdrop-filter]:bg-background/60">
                     <div className="flex h-14 items-center gap-4 px-4 lg:px-6">
                         <div className="flex-1">
                             {title && (
                                 <div>
                                     <h1 className="text-lg font-semibold">{title}</h1>
-                                    {description && (
-                                        <p className="text-sm text-muted-foreground">{description}</p>
-                                    )}
+                                    {description && (<p className="text-sm text-muted-foreground">{description}</p>)}
                                 </div>
                             )}
                         </div>
@@ -252,7 +240,7 @@ export default function AdminLayout({ children, title, description }: AdminLayou
                 </header>
 
                 {/* Page Content */}
-                <main className="flex-1 overflow-auto bg-accent rounded-4xl rounded-b-none rounded-r-none">
+                <main className="flex-1 overflow-auto bg-accent overflow-y-auto h-[calc(100vh_-56px)] rounded-3xl lg:rounded-b-none lg:rounded-r-none">
                     <div className="p-4 lg:p-6">
                         <Breadcrumb />
                         {children}
