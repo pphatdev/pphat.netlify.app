@@ -7,6 +7,7 @@ import { cn } from "@lib/utils";
 import Link from "next/link"
 import { useState } from "react"
 import { usePathname } from "next/navigation"
+import { motion } from 'framer-motion';
 
 export const NavigationBar = (
     { className }: { className?: string },
@@ -42,8 +43,14 @@ export const NavigationBar = (
                 <NavbarLogo />
                 <NavItems items={navItems} />
                 <div className="flex items-center gap-4 z-50">
-                    <MagneticArea>
+                    <MagneticArea className="inline-flex gap-2">
                         <ThemeToggle className="scale-90" />
+                    </MagneticArea>
+                    <MagneticArea className="inline-flex gap-2">
+                        <Link className={`relative px-4 py-1.5 text-sm text-foreground`} href={`/login`} >
+                            <motion.div layoutId={"hovered"} className={`absolute inset-0 h-full w-full rounded-full bg-foreground/10 ring-1 ring-foreground/20`} />
+                            <span className="relative z-20">Login</span>
+                        </Link>
                     </MagneticArea>
                 </div>
             </NavBody>
