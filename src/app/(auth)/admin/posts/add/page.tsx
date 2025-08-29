@@ -17,10 +17,9 @@ import { Input } from "@components/ui/input";
 import { Textarea } from "@components/ui/textarea";
 import { Label } from "@components/ui/label";
 import { Badge } from "@components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@components/ui/card";
 import { Separator } from "@components/ui/separator";
 import { toast } from "sonner";
-import { ImageIcon, Save, X } from "lucide-react";
+import { CloudUpload, ImageIcon, Plus, Save, SaveIcon, Search, X } from "lucide-react";
 import { CloseIcon } from "@components/icons/close-icon";
 
 interface PostFormData {
@@ -159,36 +158,36 @@ export default function AddPostPage() {
     };
 
     return (
-        <div className="container max-w-4xl mx-auto py-8 space-y-6">
-            <div className="flex items-center justify-between">
-                <h1 className="text-3xl font-bold">Create New Post</h1>
-                <div className="flex gap-2">
-                    <Button variant="outline" onClick={() => router.back()}>
-                        Cancel
-                    </Button>
+        <div className="container max-w-6xl mx-auto p-2 space-y-6 bg-primary/5 border rounded-4xl">
+            <div className="flex items-center justify-between px-2 pt-4">
+                <div>
+                    <h1 className="text-3xl font-bold">Create New Post</h1>
+                    <p className="text-muted-foreground">Manage your blog posts</p>
+                </div>
+                <div className="flex gap-4">
                     <Button
-                        variant="outline"
                         onClick={() => handleSave(false)}
                         disabled={saving}
+                        className="rounded-full text-foreground bg-background ring ring-foreground/10 hover:bg-primary/20"
                     >
-                        <Save className="w-4 h-4 mr-2" />
+                        <SaveIcon className="h-4 w-4" />
                         Save Draft
                     </Button>
+
                     <Button
                         onClick={() => handleSave(true)}
                         disabled={saving}
+                        className="rounded-full text-foreground bg-primary ring ring-foreground/10 hover:ring-primary/50"
                     >
+                        <CloudUpload className="h-4 w-4" />
                         Publish
                     </Button>
                 </div>
             </div>
 
-            <Card>
-                <CardHeader>
-                    <CardTitle>Post Details</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                    <div className="space-y-2">
+            <div className='bg-background ring ring-foreground/10 p-4 pt-5 mb-3 rounded-3xl rounded-b-2xl'>
+                <div className="flex flex-col gap-4">
+                    <div className="space-y-3">
                         <Label htmlFor="title">Title</Label>
                         <Input
                             id="title"
@@ -198,7 +197,7 @@ export default function AddPostPage() {
                         />
                     </div>
 
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                         <Label htmlFor="slug">Slug</Label>
                         <Input
                             id="slug"
@@ -208,7 +207,7 @@ export default function AddPostPage() {
                         />
                     </div>
 
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                         <Label htmlFor="description">Description</Label>
                         <Textarea
                             id="description"
@@ -219,7 +218,7 @@ export default function AddPostPage() {
                         />
                     </div>
 
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                         <Label htmlFor="thumbnail">Thumbnail URL</Label>
                         <div className="flex gap-2">
                             <Input
@@ -234,7 +233,7 @@ export default function AddPostPage() {
                         </div>
                     </div>
 
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                         <Label htmlFor="tags">Tags</Label>
                         <Input
                             id="tags"
@@ -247,89 +246,80 @@ export default function AddPostPage() {
                             {formData.tags.map((tag) => (
                                 <Badge key={tag} variant="secondary" className="flex items-center gap-1">
                                     {tag}
-                                    <CloseIcon
-                                        className="w-3 h-3 cursor-pointer"
-                                        onClick={() => removeTag(tag)}
-                                    />
+                                    <CloseIcon className="w-3 h-3 cursor-pointer" onClick={() => removeTag(tag)} />
                                 </Badge>
                             ))}
                         </div>
                     </div>
-                </CardContent>
-            </Card>
+                </div>
+            </div>
 
-            <Card>
-                <CardHeader>
-                    <CardTitle>Content</CardTitle>
-                </CardHeader>
+            <div className='bg-background ring ring-foreground/10 p-4 rounded-3xl rounded-t-2xl'>
+                <EditorRoot>
+                    <EditorContent
+                        initialContent={editorContent}
+                        extensions={extensions}
+                        className="relative min-h-7 p-1 w-full max-w-screen-lg sm:rounded-lg"
+                        immediatelyRender={false}
+                        editorProps={{
+                            handleDOMEvents: {
+                                keydown: (_view, event) => handleCommandNavigation(event),
+                            },
+                            handlePaste: (view, event) => {
+                                const hasFiles = event.clipboardData?.files?.length;
+                                if (hasFiles) {
+                                    event.preventDefault();
+                                    // Handle file paste
+                                    return true;
+                                }
+                                return false;
+                            },
+                            attributes: {
+                                class: "prose prose-lg dark:prose-invert prose-headings:font-title font-default focus:outline-none max-w-full",
+                            },
+                        }}
+                        onUpdate={({ editor }) => {
+                            setEditorContent(editor.getJSON());
+                        }}
+                        slotAfter={<ImageResizer />}
+                    >
+                        <EditorCommand className="z-50 h-auto max-h-[330px] overflow-y-auto rounded-md border border-muted bg-background px-1 py-2 shadow-md transition-all">
+                            <EditorCommandEmpty className="px-2 text-muted-foreground">No results</EditorCommandEmpty>
+                            <EditorCommandList>
+                                {suggestionItems.map((item) => (
+                                    <EditorCommandItem
+                                        value={item.title}
+                                        onCommand={(val) => item.command?.(val)}
+                                        className="flex w-full items-center space-x-2 rounded-md px-2 py-1 text-left text-sm hover:bg-accent aria-selected:bg-accent"
+                                        key={item.title}
+                                    >
+                                        <div className="flex h-10 w-10 items-center justify-center rounded-md border border-muted bg-background">
+                                            {item.icon}
+                                        </div>
+                                        <div>
+                                            <p className="font-medium">{item.title}</p>
+                                            <p className="text-xs text-muted-foreground">{item.description}</p>
+                                        </div>
+                                    </EditorCommandItem>
+                                ))}
+                            </EditorCommandList>
+                        </EditorCommand>
 
-                <CardContent>
-                    <EditorRoot>
-                        <EditorContent
-                            initialContent={editorContent}
-                            extensions={extensions}
-                            className="relative min-h-[500px] [&>div>div.tiptap]:border-b [&>div>div.tiptap]:bg-primary/5 [&>div>div.tiptap]:border-dashed [&>div>div.tiptap]:animate-pulse p-1 w-full max-w-screen-lg sm:rounded-lg"
-                            immediatelyRender={false}
-                            editorProps={{
-                                handleDOMEvents: {
-                                    keydown: (_view, event) => handleCommandNavigation(event),
-                                },
-                                handlePaste: (view, event) => {
-                                    const hasFiles = event.clipboardData?.files?.length;
-                                    if (hasFiles) {
-                                        event.preventDefault();
-                                        // Handle file paste
-                                        return true;
-                                    }
-                                    return false;
-                                },
-                                attributes: {
-                                    class: "prose prose-lg dark:prose-invert prose-headings:font-title font-default focus:outline-none max-w-full",
-                                },
-                            }}
-                            onUpdate={({ editor }) => {
-                                setEditorContent(editor.getJSON());
-                            }}
-                            slotAfter={<ImageResizer />}
-                        >
-                            <EditorCommand className="z-50 h-auto max-h-[330px] overflow-y-auto rounded-md border border-muted bg-background px-1 py-2 shadow-md transition-all">
-                                <EditorCommandEmpty className="px-2 text-muted-foreground">No results</EditorCommandEmpty>
-                                <EditorCommandList>
-                                    {suggestionItems.map((item) => (
-                                        <EditorCommandItem
-                                            value={item.title}
-                                            onCommand={(val) => item.command?.(val)}
-                                            className="flex w-full items-center space-x-2 rounded-md px-2 py-1 text-left text-sm hover:bg-accent aria-selected:bg-accent"
-                                            key={item.title}
-                                        >
-                                            <div className="flex h-10 w-10 items-center justify-center rounded-md border border-muted bg-background">
-                                                {item.icon}
-                                            </div>
-                                            <div>
-                                                <p className="font-medium">{item.title}</p>
-                                                <p className="text-xs text-muted-foreground">{item.description}</p>
-                                            </div>
-                                        </EditorCommandItem>
-                                    ))}
-                                </EditorCommandList>
-                            </EditorCommand>
-
-                            <GenerativeMenuSwitch open={openAI} onOpenChange={setOpenAI}>
-                                <Separator orientation="vertical" />
-                                <NodeSelector open={openNode} onOpenChange={setOpenNode} />
-                                <Separator orientation="vertical" />
-                                <LinkSelector open={openLink} onOpenChange={setOpenLink} />
-                                <Separator orientation="vertical" />
-                                <MathSelector />
-                                <Separator orientation="vertical" />
-                                <TextButtons />
-                                <Separator orientation="vertical" />
-                                <ColorSelector open={openColor} onOpenChange={setOpenColor} />
-                            </GenerativeMenuSwitch>
-                        </EditorContent>
-                    </EditorRoot>
-                </CardContent>
-            </Card>
+                        <GenerativeMenuSwitch open={openAI} onOpenChange={setOpenAI}>
+                            <Separator orientation="vertical" />
+                            <NodeSelector open={openNode} onOpenChange={setOpenNode} />
+                            <Separator orientation="vertical" />
+                            <LinkSelector open={openLink} onOpenChange={setOpenLink} />
+                            <Separator orientation="vertical" />
+                            <MathSelector />
+                            <Separator orientation="vertical" />
+                            <TextButtons />
+                            <Separator orientation="vertical" />
+                            <ColorSelector open={openColor} onOpenChange={setOpenColor} />
+                        </GenerativeMenuSwitch>
+                    </EditorContent>
+                </EditorRoot>
+            </div>
         </div>
     );
 }
