@@ -1,16 +1,26 @@
-import { AIHighlight, CharacterCount, CodeBlockLowlight, Color, CustomKeymap, GlobalDragHandle, HighlightExtension, HorizontalRule, Mathematics, Placeholder, StarterKit, TaskItem, TaskList, TextStyle, TiptapImage, TiptapLink, TiptapUnderline, Twitter, UpdatedImage, UploadImagesPlugin, Youtube, } from "novel";
-
+import { AIHighlight, CharacterCount, CodeBlockLowlight, Color, CustomKeymap, GlobalDragHandle, HorizontalRule, Mathematics, Placeholder, StarterKit, TaskItem, TaskList, TextStyle, TiptapImage, TiptapLink, TiptapUnderline, Twitter, UpdatedImage, UploadImagesPlugin, Youtube, } from "novel";
+import Highlight from "@tiptap/extension-highlight";
+import { Markdown } from "tiptap-markdown";
 import { common, createLowlight } from "lowlight";
 import { cn } from "@lib/utils";
 
 const aiHighlight = AIHighlight;
-const placeholder = Placeholder;
 const tiptapLink = TiptapLink.configure({
     HTMLAttributes: {
         class: cn(
             "text-muted-foreground underline underline-offset-[3px] hover:text-primary transition-colors cursor-pointer",
         ),
     },
+});
+
+const placeholder = Placeholder.configure({
+    placeholder: ({ node }) => {
+        if (node.type.name === "heading") {
+            return `Heading ${node.attrs.level}`;
+        }
+        return "Press '/' for commands";
+    },
+    includeChildren: true,
 });
 
 const tiptapImage = TiptapImage.extend({
@@ -39,6 +49,7 @@ const taskList = TaskList.configure({
         class: cn("not-prose pl-2 "),
     },
 });
+
 const taskItem = TaskItem.configure({
     HTMLAttributes: {
         class: cn("flex gap-2 items-start my-4"),
@@ -92,6 +103,15 @@ const starterKit = StarterKit.configure({
         width: 4,
     },
     gapcursor: false,
+});
+
+const HighlightExtension = Highlight.configure({
+    multicolor: true,
+});
+
+const MarkdownExtension = Markdown.configure({
+    html: false,
+    transformCopiedText: true,
 });
 
 const codeBlockLowlight = CodeBlockLowlight.configure({
@@ -157,4 +177,5 @@ export const defaultExtensions = [
     Color,
     CustomKeymap,
     GlobalDragHandle,
+    MarkdownExtension
 ];
