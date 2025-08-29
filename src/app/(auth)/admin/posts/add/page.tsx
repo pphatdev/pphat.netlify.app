@@ -254,7 +254,8 @@ export default function AddPostPage() {
                 </div>
             </div>
 
-            <div className='bg-background ring ring-foreground/10 p-4 rounded-3xl rounded-t-2xl'>
+
+            <div className='bg-background ring ring-foreground/10 p-4 rounded-3xl rounded-t-2xl focus-within:ring-2 focus-within:ring-primary/50'>
                 <EditorRoot>
                     <EditorContent
                         initialContent={editorContent}

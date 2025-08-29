@@ -1,4 +1,27 @@
-import { AIHighlight, CharacterCount, CodeBlockLowlight, Color, CustomKeymap, GlobalDragHandle, HorizontalRule, Mathematics, Placeholder, StarterKit, TaskItem, TaskList, TextStyle, TiptapImage, TiptapLink, TiptapUnderline, Twitter, UpdatedImage, UploadImagesPlugin, Youtube, } from "novel";
+import {
+    AIHighlight,
+    CharacterCount,
+    CodeBlockLowlight,
+    Color,
+    GlobalDragHandle,
+    CustomKeymap,
+    HorizontalRule,
+    Mathematics,
+    Placeholder,
+    StarterKit,
+    TaskItem,
+    TaskList,
+    TextStyle,
+    TiptapImage,
+    TiptapLink,
+    TiptapUnderline,
+    Twitter,
+    UpdatedImage,
+    UploadImagesPlugin,
+    Youtube
+} from "novel";
+
+import AutoJoiner from 'tiptap-extension-auto-joiner'
 import Highlight from "@tiptap/extension-highlight";
 import { Markdown } from "tiptap-markdown";
 import { common, createLowlight } from "lowlight";
@@ -177,5 +200,6 @@ export const defaultExtensions = [
     Color,
     CustomKeymap,
     GlobalDragHandle,
+    AutoJoiner,
     MarkdownExtension
 ];
