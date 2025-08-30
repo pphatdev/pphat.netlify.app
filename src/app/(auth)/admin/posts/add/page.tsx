@@ -22,6 +22,7 @@ import { toast } from "sonner";
 import { CloudUpload, ImageIcon, Plus, Save, SaveIcon, Search, SparklesIcon, X } from "lucide-react";
 import { CloseIcon } from "@components/icons/close-icon";
 import { useAuth } from "@components/auth-provider";
+import { StringUtils } from "@lib/utils/string";
 
 interface PostFormData {
     title: string;
@@ -47,17 +48,12 @@ export default function AddPostPage() {
     const router = useRouter();
     const { user } = useAuth();
 
-    if (!user) {
-        router.push('/login');
-    }
-
     const [saving, setSaving] = useState(false);
     const [openNode, setOpenNode] = useState(false);
     const [openColor, setOpenColor] = useState(false);
     const [openLink, setOpenLink] = useState(false);
     const [openAI, setOpenAI] = useState(false);
     const [tagInput, setTagInput] = useState("");
-    const [published, setPublished] = useState(false);
 
     const [formData, setFormData] = useState<PostFormData>({
         title: "",
@@ -79,18 +75,11 @@ export default function AddPostPage() {
 
     const [editorContent, setEditorContent] = useState<JSONContent | undefined>(undefined);
 
-    const generateSlug = (title: string) => {
-        return title
-            .toLowerCase()
-            .replace(/[^a-z0-9]+/g, '-')
-            .replace(/(^-|-$)/g, '');
-    };
-
     const handleTitleChange = (title: string) => {
         setFormData(prev => ({
             ...prev,
             title,
-            slug: generateSlug(title)
+            slug: StringUtils.toSlug(title)
         }));
     };
 
@@ -146,7 +135,50 @@ export default function AddPostPage() {
         submitData.set('meta_description', formData.title + " - " + contentParagraph);
         submitData.set('meta_keywords', formData.tags.join(', '));
 
-        console.log(Object.fromEntries(submitData.entries()), editorContent);
+        console.log(Object.fromEntries(submitData.entries()));
+
+        // validate title
+        if (!formData.title.trim()) {
+            toast.info('Field is required', { description: 'Please enter a title for your post.' });
+            const titleInput = document.getElementById('title');
+            titleInput?.focus();
+            return;
+        }
+
+        // validate slug
+        if (!formData.slug.trim()) {
+            toast.info('Field is required', { description: 'Please enter a slug for your post.' });
+            const slugInput = document.getElementById('slug');
+            slugInput?.focus();
+            return;
+        }
+
+        // validate featured image
+        if (!formData.featured_image.trim()) {
+            toast.info('Field is required', { description: 'Please enter a featured image for your post.' });
+            const featuredImageInput = document.getElementById('featured_image');
+            featuredImageInput?.focus();
+            return;
+        }
+
+        // validate tags
+        if (formData.tags.length === 0) {
+            toast.info('Field is required', { description: 'Please enter at least one tag for your post.' });
+            const tagInput = document.getElementById('tags');
+            tagInput?.focus();
+            return;
+        }
+
+        // validate content
+        if (String(JSON.stringify(editorContent || '{}')).trim() === '{}') {
+            toast.info('Field is required', { description: 'Please enter content for your post.' });
+            const contentInput = document.getElementById('content');
+            contentInput?.focus();
+            return;
+        }
+
+
+
 
 
 
@@ -235,7 +267,7 @@ export default function AddPostPage() {
             <div className='bg-background ring ring-foreground/10 p-4 pt-5 mb-3 rounded-3xl rounded-b-2xl'>
                 <div className="flex flex-col gap-4">
                     <div className="space-y-3">
-                        <Label htmlFor="title">Title</Label>
+                        <Label htmlFor="title" className="after:content-['*'] after:text-red-500">Title</Label>
                         <Input
                             id="title"
                             name="title"
@@ -246,7 +278,7 @@ export default function AddPostPage() {
                     </div>
 
                     <div className="space-y-3">
-                        <Label htmlFor="slug">Slug</Label>
+                        <Label htmlFor="slug" className="after:content-['*'] after:text-red-500">Slug</Label>
                         <Input
                             id="slug"
                             name="slug"
@@ -268,11 +300,11 @@ export default function AddPostPage() {
                     </div> */}
 
                     <div className="space-y-3">
-                        <Label htmlFor="feature_image">Thumbnail URL</Label>
+                        <Label htmlFor="featured_image" className="after:content-['*'] after:text-red-500">Thumbnail URL</Label>
                         <div className="flex gap-2">
                             <Input
-                                id="feature_image"
-                                name="feature_image"
+                                id="featured_image"
+                                name="featured_image"
                                 placeholder="https://example.com/image.jpg"
                                 value={formData.featured_image}
                                 onChange={(e) => setFormData(prev => ({ ...prev, featured_image: e.target.value }))}
@@ -284,7 +316,7 @@ export default function AddPostPage() {
                     </div>
 
                     <div className="space-y-3">
-                        <Label htmlFor="tags">Tags</Label>
+                        <Label htmlFor="tags" className="after:content-['*'] after:text-red-500">Tags</Label>
                         <div className=" relative">
                             <Button variant={'ghost'} title="Auto Generate Tags" size="icon" className="absolute right-1 top-1/2 -translate-y-1/2">
                                 <SparklesIcon className="w-4 h-4" />
