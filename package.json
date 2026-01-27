@@ -57,7 +57,7 @@
     "@types/nodemailer": "^6.4.17",
     "@types/react-syntax-highlighter": "^15.5.13",
     "@vercel/og": "^0.6.8",
-    "ai": "^5.0.43",
+    "ai": "^5.0.52",
     "axios": "^1.11.0",
     "beasties": "^0.3.3",
     "class-variance-authority": "^0.7.1",
