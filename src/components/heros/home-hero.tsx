@@ -83,15 +83,15 @@ export default function HeroSection({ latestPostSlug, latestPostTitle }: HeroSec
                             <Link href={latestBlogHref} aria-label={latestBlogAria} className="group inline-flex">
                                 <Badge
                                     variant="outline"
-                                    className="max-w-[min(90vw,42rem)] rounded-full border-primary/40 bg-primary/10 px-3 py-1 text-sm font-semibold text-primary transition-colors hover:bg-primary/15"
+                                    className="max-w-[min(90vw,42rem)] rounded-full hover:border bg-primary/10 px-3 py-1 text-sm font-medium text-primary transition-colors hover:bg-primary/15"
                                     title={latestPostTitle ?? 'Last Blog'}
                                 >
                                     <span className="flex min-w-0 items-center gap-2">
-                                        <span className="relative flex h-2.5 w-2.5 shrink-0">
+                                        <span className="relative flex size-2 shrink-0">
                                             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/60" />
-                                            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
+                                            <span className="relative inline-flex size-2 rounded-full bg-primary" />
                                         </span>
-                                        <span className="shrink-0">New Blog</span>
+                                        <span className="shrink-0">New </span>
                                         <span className="text-primary/60">|</span>
                                         <span className="truncate text-foreground">{latestBlogLabel}</span>
                                         <span className="ml-1 inline-flex w-0 overflow-hidden transition-[width] duration-200 group-hover:w-4">
