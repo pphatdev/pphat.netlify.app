@@ -31,11 +31,11 @@ export function PostCoverImage({ src, alt, className }: PostCoverImageProps) {
                 src={src}
                 alt={alt}
                 width={800}
-                height={450}
+                height={550}
                 priority
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1024px"
                 className={cn(
-                    "w-full h-full object-cover transition-all duration-700 ease-out ring outline-offset-2 ring-foreground/10 rounded-2xl",
+                    "w-full h-full object-cover max-sm:rounded-t-none aspect-video object-bottom transition-all duration-700 ease-out ring outline-offset-2 ring-foreground/10 rounded-2xl",
                     mounted
                         ? loaded ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"
                         : "opacity-0",
