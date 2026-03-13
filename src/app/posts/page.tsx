@@ -138,7 +138,7 @@ const PostsContent = () => {
                 {availableTags.length > 0 && (
                     <div className="max-w-5xl mx-auto w-full px-5 mb-4">
                         <div className="flex flex-wrap max-sm:justify-center items-center gap-1.5">
-                            <p className="text-xs font-medium">Tag:</p>
+                            <p className="text-xs font-medium">Tag: </p>
                             <Button
                                 className={cn("mt-0 py-1 sm:py-2 px-2.5 !h-fit text-xs leading-4 text-foreground/80 hover:text-primary transition-all", !selectedTag && "ring-1 !px-4 bg-primary/5 text-primary")}
                                 onClick={() => handleTagChange("")}

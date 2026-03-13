@@ -16,7 +16,7 @@ export const ProjectCard = React.memo(({ project }: { project: Project }) => {
 
     return (
         <div
-            className="col-span-1 relative duration-300 hover:translate-y-1 overflow-hidden bg-foreground/5 group font-sans rounded-3xl p-4 mb-4 ring-1 ring-foreground/10 hover:ring-primary hover:ring-2 transition-all ease-in-out flex flex-col h-full"
+            className="col-span-1 relative duration-300 bg-foreground/5 group font-sans rounded-3xl p-4 mb-4 border hover:border-primary/50 overflow-hidden transition-all ease-in-out flex flex-col h-full"
             role="article"
             tabIndex={-1}>
 
@@ -26,10 +26,11 @@ export const ProjectCard = React.memo(({ project }: { project: Project }) => {
                     alt={project.title}
                     width={800}
                     height={450}
-                    className="absolute w-full top-0 left-0 h-52 object-right-bottom object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="absolute w-full top-0 left-0 h-full rounded-3xl object-right-bottom object-cover transition-transform duration-500"
                 />
             )}
-            <div className="absolute inset-0 bg-gradient-to-tr from-background from-60% to-background/50" />
+
+            <div className="absolute inset-0 bg-gradient-to-tr from-background via-background to-background/50" />
 
             <div className='bg-foreground/5 ring-1 absolute right-3 top-3 z-10 w-fit ml-auto ring-foreground/10 justify-end flex rounded-full p-1'>
                 <Link
@@ -59,7 +60,7 @@ export const ProjectCard = React.memo(({ project }: { project: Project }) => {
                 ))}
             </div>
 
-            <p className='font-normal z-10 line-clamp-4 font-open-sans text-foreground/80'>{project.description}</p>
+            <p className='font-normal z-10 line-clamp-4 font-open-sans text-sm text-foreground/80'>{project.description}</p>
 
             <footer className="mt-auto flex justify-end items-center gap-2 pt-2 z-10">
                 <div className='bg-foreground/5 ring-1 w-fit ring-foreground/10 justify-end flex ga rounded-full p-1'>
