@@ -8,7 +8,7 @@ import { Badge } from '@components/ui/badge';
 import { Button } from '@components/ui/button';
 import { Separator } from '@components/ui/separator';
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
-import { ArrowLeftIcon, Calendar, Clock, User } from 'lucide-react';
+import { ArrowLeftIcon, Calendar, Clock, ExternalLink, Pencil, User } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import Image from 'next/image';
 import "../../../styles/code-block-node.css"
@@ -21,6 +21,8 @@ import { ScrollToTopButton } from '@components/ui/scroll-to-top-button';
 interface Params {
     params: Promise<{ slug: string; }>;
 }
+
+const GITHUB_REPO_URL = process.env.NEXT_PUBLIC_GITHUB_REPO_URL || 'https://github.com/pphatdev/pphat.me';
 
 export async function generateMetadata(props: Params): Promise<Metadata> {
     const params = await props.params;
@@ -98,6 +100,8 @@ export default async function PostDetail(props: Params) {
     }
 
     const createdDate = new Date(post.createdAt);
+    const postDirectory = post.filePath.split('/').slice(0, -1).join('/');
+    const editPostDirectoryUrl = `${GITHUB_REPO_URL}/tree/main/content/${postDirectory}/index.mdx`;
 
     return (
         <>
@@ -157,11 +161,20 @@ export default async function PostDetail(props: Params) {
 
                     <div className="space-y-4 max-xs:px-3 relative">
 
-                        <Button asChild>
-                            <Link href="/posts">
-                                <ArrowLeftIcon className="w-4 h-4 mr-2" /> Back to Blogs
-                            </Link>
-                        </Button>
+                        <div className="flex justify-between items-center gap-2 flex-wrap">
+                            <Button asChild>
+                                <Link href="/posts">
+                                    <ArrowLeftIcon className="w-4 h-4 mr-2" /> Back to Blogs
+                                </Link>
+                            </Button>
+
+                            <Button asChild>
+                                <Link href={editPostDirectoryUrl} target="_blank" rel="noopener noreferrer">
+                                    <ExternalLink className="w-4 h-4 ml-2" /> Edit Post
+                                </Link>
+                            </Button>
+
+                        </div>
 
                         <h1 className="text-4xl md:text-5xl font-bold leading-tight">
                             {post.title}
