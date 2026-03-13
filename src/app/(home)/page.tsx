@@ -10,6 +10,7 @@ import { BlurFade } from "@components/ui/blur-fade";
 import { NavigationBar } from "@components/navbar/navbar";
 import { RainbowGlow } from "@components/ui/rainbow-glow";
 import { SectionNavigation } from "@components/section-navigation";
+import { getPublishedPosts } from "@lib/content";
 
 // Lazy-load below-the-fold sections to reduce initial bundle size
 const HomeSkills = dynamic(() => import("./sections/home-skills").then(mod => ({ default: mod.HomeSkills })), {
@@ -95,6 +96,7 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+    const latestPost = getPublishedPosts()[0] ?? null;
 
     return (
         <div className="w-full flex flex-col">
@@ -103,7 +105,10 @@ export default function Home() {
             <OrganizationStructuredData />
             <NavigationBar />
             <section id="hero" className="xl:pt-20">
-                <HeroSection />
+                <HeroSection
+                    latestPostSlug={latestPost?.slug}
+                    latestPostTitle={latestPost?.title}
+                />
             </section>
 
             <section id="skills" className="relative">
