@@ -8,6 +8,9 @@ export async function GET(request: NextRequest) {
         const limit = parseInt(searchParams.get('limit') || '9');
 
         const published = getPublishedPosts();
+        const tags = Array.from(
+            new Set(published.flatMap((post) => post.tags || []))
+        ).sort((a, b) => a.localeCompare(b));
         const { data, total, hasMore } = paginatePosts(published, page, limit);
 
         return NextResponse.json({
@@ -15,7 +18,8 @@ export async function GET(request: NextRequest) {
             hasMore,
             total,
             page,
-            limit
+            limit,
+            tags
         }, {
             headers: {
                 'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',

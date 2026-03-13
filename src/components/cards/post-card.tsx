@@ -61,7 +61,7 @@ export const PostCard = React.memo(({ post, actionChildren, className, isAdmin =
 
                 <div className="flex z-50 justify-start items-center flex-wrap gap-2 pointer-events-auto mt-2">
                     {post.tags.slice(0, 3).map((tag, index) => (
-                        <Link key={index} href={`?tag=${tag}`} className="text-xs font-sans">
+                        <Link key={index} href={`/posts?tag=${encodeURIComponent(tag)}`} className="text-xs font-sans">
                             <Badge variant="outline" className="bg-foreground/5 text-foreground/80 hover:bg-foreground/10 hover:text-primary transition-all duration-200 ease-in-out">{tag}</Badge>
                         </Link>
                     ))}

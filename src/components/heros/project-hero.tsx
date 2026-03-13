@@ -9,7 +9,7 @@ import { Button } from "../ui"
 
 export const ProjectHero = () => {
     return (
-        <div className="min-h-36 sm:min-h-80 flex bg-gradient-to-b from-primary/10 pt-14 sm:pt-24 to-background flex-col overflow-clip relative items-start justify-center">
+        <div className="min-h-36 sm:min-h-60 flex bg-gradient-to-b from-primary/10 pt-14 sm:pt-24 to-background flex-col overflow-clip relative items-start justify-center">
             <RainbowGlow className="opacity-10"/>
             <BackgroundBeamsWithCollision className="flex items-center absolute -z-[1] pointer-events-none max-w-5xl left-1/2 -translate-x-1/2 mx-auto justify-center w-full h-full" />
             <div className="absolute inset-y-0 left-1/3 right-0 pointer-events-none" aria-hidden="true">
