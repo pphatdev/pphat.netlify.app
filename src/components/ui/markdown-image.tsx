@@ -16,6 +16,10 @@ const DEFAULT_FALLBACK_SRC = 'https://cdn.api.pphat.stackdev.cloud/api/image/404
 export function MarkdownImage({ src, alt, className, fallbackSrc = DEFAULT_FALLBACK_SRC }: MarkdownImageProps) {
     const pathname = usePathname();
     const [currentSrc, setCurrentSrc] = React.useState(src || fallbackSrc);
+    const assetApiPath = React.useMemo(() => {
+        const [section] = pathname.split('/').filter(Boolean);
+        return section === 'projects' ? '/api/project' : '/api/post';
+    }, [pathname]);
 
     const currentSlug = React.useMemo(() => {
         const segments = pathname.split('/').filter(Boolean);
@@ -44,8 +48,8 @@ export function MarkdownImage({ src, alt, className, fallbackSrc = DEFAULT_FALLB
         }
 
         const asset = trimmed.replace(/^\.\//, '');
-        return `/api/post?slug=${encodeURIComponent(currentSlug)}&asset=${encodeURIComponent(asset)}`;
-    }, [currentSlug, fallbackSrc]);
+        return `${assetApiPath}?slug=${encodeURIComponent(currentSlug)}&asset=${encodeURIComponent(asset)}`;
+    }, [assetApiPath, currentSlug, fallbackSrc]);
 
     React.useEffect(() => {
         setCurrentSrc(resolveImageSrc(src));

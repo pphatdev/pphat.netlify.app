@@ -36,6 +36,10 @@ export function MarkdownGallery({
     layout,
 }: MarkdownGalleryProps) {
     const pathname = usePathname();
+    const assetApiPath = React.useMemo(() => {
+        const [section] = pathname.split('/').filter(Boolean);
+        return section === 'projects' ? '/api/project' : '/api/post';
+    }, [pathname]);
     const [selectedImage, setSelectedImage] = React.useState<{ src: string; alt: string; } | null>(null);
     const [currentIndex, setCurrentIndex] = React.useState<number>(0);
     const [imageLoading, setImageLoading] = React.useState(false);
@@ -74,8 +78,8 @@ export function MarkdownGallery({
         }
 
         const asset = trimmed.replace(/^\.\//, '');
-        return `/api/post?slug=${encodeURIComponent(currentSlug)}&asset=${encodeURIComponent(asset)}`;
-    }, [currentSlug]);
+        return `${assetApiPath}?slug=${encodeURIComponent(currentSlug)}&asset=${encodeURIComponent(asset)}`;
+    }, [assetApiPath, currentSlug]);
 
     const markLoaded = React.useCallback((index: number) => {
         setLoadedMap((prev) => {
