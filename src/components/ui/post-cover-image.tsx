@@ -17,7 +17,7 @@ export function PostCoverImage({ src, alt, className }: PostCoverImageProps) {
     useEffect(() => { setMounted(true); }, []);
 
     return (
-        <>
+        <div className="relative">
             {/* Skeleton shimmer shown while loading */}
             <div
                 className={cn(
@@ -35,7 +35,7 @@ export function PostCoverImage({ src, alt, className }: PostCoverImageProps) {
                 priority
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1024px"
                 className={cn(
-                    "w-full h-full object-cover transition-all duration-700 ease-out",
+                    "w-full h-full object-cover transition-all duration-700 ease-out ring outline-offset-2 ring-foreground/10 rounded-2xl",
                     mounted
                         ? loaded ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"
                         : "opacity-0",
@@ -44,6 +44,7 @@ export function PostCoverImage({ src, alt, className }: PostCoverImageProps) {
                 unoptimized={src?.startsWith("http")}
                 onLoad={() => setLoaded(true)}
             />
-        </>
+
+        </div>
     );
 }

@@ -16,6 +16,7 @@ import SoftwareApplicationStructuredData from '@components/data-structured/softw
 import { MarkdownRenderer } from '@components/ui/markdown-renderer';
 import { ScrollToTopButton } from '@components/ui/scroll-to-top-button';
 import { PostCoverImage } from '@components/ui/post-cover-image';
+import { cn } from '@lib/utils';
 
 interface Params {
     params: Promise<{ slug: string }>;
@@ -138,18 +139,41 @@ export default async function ProjectDetail(props: Params) {
             </div>
 
             <article className='max-w-5xl sm:px-4 mx-auto max-xs:pt-0 sm:mt-16 py-8'>
-                <div className='mb-6'>
+                <div className='mb-1'>
                     {project.image && (
-                        <div className='relative w-full h-full max-xs:max-h-96 md:h-[29rem] mb-6 max-xs:rounded-none max-xs:rounded-b-4xl rounded-2xl overflow-hidden'>
+                        <div className='relative w-full p-3 ring-1 rounded-3xl ring-foreground/10 h-full max-xs:max-h-96 md:h-[29rem] mb-4 max-xs:rounded-none max-xs:rounded-b-4xl overflow-hidden'>
                             <PostCoverImage src={project.image} alt={project.title} />
                         </div>
                     )}
+
+                    <div className="flex items-center justify-between pb-2">
+                        {(project.languages?.length || 0) > 0 && (
+                            <div className='flex w-fit max-sm:justify-center rounded-full gap-1 ring-1 ring-foreground/10 ring-offset-2'>
+                                {project.languages?.map((language) => (
+                                    <Badge key={language} variant='outline' className="py-1">
+                                        {language}
+                                    </Badge>
+                                ))}
+                            </div>
+                        )}
+
+                        {(project.tags?.length || 0) > 0 && (
+                            <div className='flex w-fit max-sm:justify-center rounded-full gap-1 mb-0.5 ring-1 ring-foreground/10 ring-offset-2'>
+                                {project.tags?.map((tag) => (
+                                    <Badge key={tag} variant='secondary'>
+                                        {tag}
+                                    </Badge>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
 
                     <div className='space-y-4 max-xs:px-3 relative'>
                         <div className='flex justify-between items-center gap-2 flex-wrap'>
                             <Button asChild>
                                 <Link href='/projects'>
-                                    <ArrowLeftIcon className='w-4 h-4 mr-2' /> Back to Projects
+                                    <ArrowLeftIcon className='w-4 h-4' /> Back to Projects
                                 </Link>
                             </Button>
 
@@ -158,9 +182,9 @@ export default async function ProjectDetail(props: Params) {
                                     <Button asChild key={`${source.type}-${source.url}`}>
                                         <Link href={source.url} target='_blank' rel='noopener noreferrer'>
                                             {source.type === 'demo' ? (
-                                                <ExternalLink className='w-4 h-4 mr-2' />
+                                                <ExternalLink className='w-4 h-4' />
                                             ) : (
-                                                <Globe className='w-4 h-4 mr-2' />
+                                                <Globe className='w-4 h-4' />
                                             )}
                                             {source.name || (source.type === 'demo' ? 'Live Demo' : 'Source Code')}
                                         </Link>
@@ -169,29 +193,12 @@ export default async function ProjectDetail(props: Params) {
                             </div>
                         </div>
 
+
                         <h1 className='text-4xl md:text-5xl font-bold leading-tight'>
                             {project.title}
                         </h1>
 
-                        {(project.tags?.length || 0) > 0 && (
-                            <div className='flex flex-wrap max-sm:justify-center gap-2'>
-                                {project.tags?.map((tag) => (
-                                    <Badge key={tag} variant='secondary'>
-                                        {tag}
-                                    </Badge>
-                                ))}
-                            </div>
-                        )}
 
-                        {(project.languages?.length || 0) > 0 && (
-                            <div className='flex flex-wrap max-sm:justify-center gap-2'>
-                                {project.languages?.map((language) => (
-                                    <Badge key={language} variant='outline'>
-                                        {language}
-                                    </Badge>
-                                ))}
-                            </div>
-                        )}
 
                         <p className='text-base text-foreground/80 leading-relaxed'>
                             {project.description}

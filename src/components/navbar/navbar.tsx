@@ -72,7 +72,7 @@ export const NavigationBar = (
                     <ol className="w-full flex flex-col items-center justify-center gap-2">
                         {navItems.map((item, idx) => (
                             <li key={idx} className="w-full px-5">
-                                <Button asChild className={cn("w-full text-foreground", item.active && "text-primary")}>
+                                <Button asChild className={cn("w-full text-foreground mt-0", item.active && "text-primary")}>
                                     <Link href={item.link} onClick={() => setIsMobileMenuOpen(false)}>
                                         <item.icon className="w-4 h-4 mr-1" /> {item.name}
                                     </Link>
