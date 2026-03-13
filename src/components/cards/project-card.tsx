@@ -30,11 +30,11 @@ export const ProjectCard = React.memo(({ project }: { project: Project }) => {
                 />
             )}
 
-            <div className='bg-foreground/5 ring-1 w-fit ring-foreground/10 justify-end flex absolute top-1/2 right-5 -translate-y-[16px] rounded-full p-1'>
+            <div className='bg-foreground/5 ring-1 w-fit ring-foreground/10 justify-end flex absolute top-1/2 right-5 -translate-y-[20px] rounded-full p-1'>
                 <AvatarCircles numPeople={avatars.length - 4} avatarUrls={avatars} />
             </div>
 
-            <div className="p-2 flex flex-col h-full pb-4">
+            <div className="p-2 flex flex-col h-full">
                 <div className='bg-foreground/5 ring-1 absolute right-3 top-3 z-10 w-fit ml-auto ring-foreground/10 justify-end flex rounded-full p-1'>
                     <Link
                         href={`/projects/${projectSlug}`}
