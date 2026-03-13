@@ -20,6 +20,8 @@ export const PostsHero = React.memo(({ searchQuery, onSearchChange, onClearSearc
         onSearchChange(e.target.value);
     }, [onSearchChange]);
 
+    const pageDescription = "Read my blog posts about web development, design, and technology.";
+
     return (
         <div className="min-h-36 sm:min-h-60 flex bg-gradient-to-b from-primary/10 pt-14 sm:pt-24 to-background flex-col overflow-clip relative items-start justify-center">
             <RainbowGlow className="opacity-10"/>
@@ -36,7 +38,12 @@ export const PostsHero = React.memo(({ searchQuery, onSearchChange, onClearSearc
             </div>
             <div className="w-full px-4 pt-4 sm:px-5 flex flex-col max-w-5xl mx-auto ">
                 <BlurFade delay={0.6} inView className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 w-full">
-                    <h1 className="text-3xl font-bold sm:text-5xl xl:text-6xl/none"> Blo<span className="text-left bg-background bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">gs</span> </h1>
+                    <div className="space-y-2 max-w-2xl">
+                        <h1 className="text-3xl font-bold sm:text-5xl xl:text-6xl/none"> Blo<span className="text-left bg-background bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">gs</span> </h1>
+                        <p className="text-sm sm:text-base text-foreground/70 leading-relaxed">
+                            {pageDescription}
+                        </p>
+                    </div>
                     <div className="relative w-full sm:max-w-[18rem]">
                         <Input
                             type="text"
