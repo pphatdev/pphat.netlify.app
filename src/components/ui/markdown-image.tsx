@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 interface MarkdownImageProps {
     src?: string;
@@ -13,11 +14,42 @@ interface MarkdownImageProps {
 const DEFAULT_FALLBACK_SRC = 'https://cdn.api.pphat.stackdev.cloud/api/image/404.png?fm=webp&w=500';
 
 export function MarkdownImage({ src, alt, className, fallbackSrc = DEFAULT_FALLBACK_SRC }: MarkdownImageProps) {
+    const pathname = usePathname();
     const [currentSrc, setCurrentSrc] = React.useState(src || fallbackSrc);
 
+    const currentSlug = React.useMemo(() => {
+        const segments = pathname.split('/').filter(Boolean);
+        return segments[segments.length - 1] || '';
+    }, [pathname]);
+
+    const resolveImageSrc = React.useCallback((value?: string) => {
+        if (!value) {
+            return fallbackSrc;
+        }
+
+        const trimmed = value.trim();
+        if (
+            trimmed.startsWith('http://')
+            || trimmed.startsWith('https://')
+            || trimmed.startsWith('//')
+            || trimmed.startsWith('/')
+            || trimmed.startsWith('data:')
+            || trimmed.startsWith('blob:')
+        ) {
+            return trimmed;
+        }
+
+        if (!currentSlug) {
+            return trimmed;
+        }
+
+        const asset = trimmed.replace(/^\.\//, '');
+        return `/api/post?slug=${encodeURIComponent(currentSlug)}&asset=${encodeURIComponent(asset)}`;
+    }, [currentSlug, fallbackSrc]);
+
     React.useEffect(() => {
-        setCurrentSrc(src || fallbackSrc);
-    }, [src, fallbackSrc]);
+        setCurrentSrc(resolveImageSrc(src));
+    }, [src, resolveImageSrc]);
 
     const handleError = () => {
         if (currentSrc !== fallbackSrc) {

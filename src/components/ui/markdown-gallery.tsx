@@ -5,6 +5,7 @@ import { cn } from '@lib/utils';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ChevronLeft, ChevronRight, RotateCw, Download } from 'lucide-react';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 interface MarkdownGalleryProps extends React.HTMLAttributes<HTMLDivElement> {
     children?: React.ReactNode;
@@ -34,6 +35,7 @@ export function MarkdownGallery({
     'data-captions': dataCaptions,
     layout,
 }: MarkdownGalleryProps) {
+    const pathname = usePathname();
     const [selectedImage, setSelectedImage] = React.useState<{ src: string; alt: string; } | null>(null);
     const [currentIndex, setCurrentIndex] = React.useState<number>(0);
     const [imageLoading, setImageLoading] = React.useState(false);
@@ -44,6 +46,36 @@ export function MarkdownGallery({
     const [scrollProgress, setScrollProgress] = React.useState(0);
     const isSnapLayout = layout === 'snap' || layout === 'snap-x';
     const snapScrollerRef = React.useRef<HTMLDivElement>(null);
+
+    const currentSlug = React.useMemo(() => {
+        const segments = pathname.split('/').filter(Boolean);
+        return segments[segments.length - 1] || '';
+    }, [pathname]);
+
+    const resolveImageSrc = React.useCallback((value?: string) => {
+        if (!value) {
+            return value;
+        }
+
+        const trimmed = value.trim();
+        if (
+            trimmed.startsWith('http://')
+            || trimmed.startsWith('https://')
+            || trimmed.startsWith('//')
+            || trimmed.startsWith('/')
+            || trimmed.startsWith('data:')
+            || trimmed.startsWith('blob:')
+        ) {
+            return trimmed;
+        }
+
+        if (!currentSlug) {
+            return trimmed;
+        }
+
+        const asset = trimmed.replace(/^\.\//, '');
+        return `/api/post?slug=${encodeURIComponent(currentSlug)}&asset=${encodeURIComponent(asset)}`;
+    }, [currentSlug]);
 
     const markLoaded = React.useCallback((index: number) => {
         setLoadedMap((prev) => {
@@ -66,10 +98,10 @@ export function MarkdownGallery({
             // Check if it's an img element or has an img child
             const findImageProps = (element: any): { src?: string; alt?: string } | null => {
                 if (element.type === 'img') {
-                    return { src: element.props.src, alt: element.props.alt };
+                    return { src: resolveImageSrc(element.props.src), alt: element.props.alt };
                 }
                 if (element.props?.src) {
-                    return { src: element.props.src, alt: element.props.alt };
+                    return { src: resolveImageSrc(element.props.src), alt: element.props.alt };
                 }
                 if (element.props?.children) {
                     const children = React.Children.toArray(element.props.children);
