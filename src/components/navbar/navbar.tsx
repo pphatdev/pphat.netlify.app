@@ -8,8 +8,7 @@ import Link from "next/link"
 import { useState } from "react"
 import { usePathname } from "next/navigation"
 import { Button } from "../ui";
-import { ContactIcon, Newspaper, UserIcon } from "lucide-react";
-import { GitCompareArrowsIcon } from "src/app/components/ui/git-compare-arrows";
+import { ContactIcon, GitCompareArrowsIcon, Newspaper, UserIcon } from "lucide-react";
 
 export const NavigationBar = (
     { className }: { className?: string },
