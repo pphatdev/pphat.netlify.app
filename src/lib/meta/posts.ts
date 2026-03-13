@@ -5,9 +5,9 @@ import { Metadata } from "next";
 
 export const postsMeta: Metadata = {
     metadataBase: new URL(NEXT_PUBLIC_APP_URL),
-    title: `Articles | ${appName}`,
+    title: `Blogs | ${appName}`,
     description: 'Read my blog posts about web development, design, and technology.',
-    keywords: [...keywords, 'blog', 'articles', 'tech blog', 'web development blog', 'programming', 'front-end'],
+    keywords: [...keywords, 'blog', 'blogs', 'tech blog', 'web development blog', 'programming', 'front-end'],
     icons: icons,
     manifest: "/site.webmanifest",
     robots: {
@@ -15,7 +15,7 @@ export const postsMeta: Metadata = {
         follow: true
     },
     openGraph: {
-        title: `Articles | ${appName}`,
+        title: `Blogs | ${appName}`,
         description: 'Read my blog posts about web development, design, and technology.',
         url: `${NEXT_PUBLIC_APP_URL}/posts`,
         images: [
@@ -23,7 +23,7 @@ export const postsMeta: Metadata = {
                 url: '/assets/screenshots/origin-dark.png',
                 width: 1900,
                 height: 926,
-                alt: `${appName} Articles`
+                alt: `${appName} Blogs`
             }
         ]
     },

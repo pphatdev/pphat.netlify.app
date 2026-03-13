@@ -89,7 +89,7 @@ export default async function PostDetail(props: Params) {
 
                     <Button asChild className='ring'>
                         <Link href="/posts">
-                            <ArrowLeftIcon className="w-4 h-4 mr-2" /> Back to Articles
+                            <ArrowLeftIcon className="w-4 h-4 mr-2" /> Back to Blogs
                         </Link>
                     </Button>
                 </div>
@@ -159,7 +159,7 @@ export default async function PostDetail(props: Params) {
 
                         <Button asChild>
                             <Link href="/posts">
-                                <ArrowLeftIcon className="w-4 h-4 mr-2" /> Back to Articles
+                                <ArrowLeftIcon className="w-4 h-4 mr-2" /> Back to Blogs
                             </Link>
                         </Button>
 
@@ -243,7 +243,7 @@ export default async function PostDetail(props: Params) {
 
                         <Button asChild>
                             <Link href="/posts">
-                                <ArrowLeftIcon className="w-4 h-4 mr-2" /> All Articles
+                                <ArrowLeftIcon className="w-4 h-4 mr-2" /> All Blogs
                             </Link>
                         </Button>
                     </div>

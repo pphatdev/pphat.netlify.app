@@ -21,7 +21,7 @@ export const NavigationBar = (
             active: pathname === "/projects",
         },
         {
-            name: "Articles",
+            name: "Blogs",
             link: "/posts",
             icon: Newspaper,
             active: pathname.startsWith("/posts"),

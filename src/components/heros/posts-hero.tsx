@@ -36,11 +36,11 @@ export const PostsHero = React.memo(({ searchQuery, onSearchChange, onClearSearc
             </div>
             <div className="w-full p-4 sm:px-5 flex flex-col max-w-5xl mx-auto ">
                 <BlurFade delay={0.6} inView className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 w-full">
-                    <h1 className="text-3xl font-bold sm:text-5xl xl:text-6xl/none"> Arti<span className="text-left bg-background bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">cles</span> </h1>
+                    <h1 className="text-3xl font-bold sm:text-5xl xl:text-6xl/none"> Blo<span className="text-left bg-background bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">gs</span> </h1>
                     <div className="relative w-full sm:max-w-md">
                         <Input
                             type="text"
-                            placeholder="Search articles..."
+                            placeholder="Search blogs..."
                             value={searchQuery}
                             onChange={handleInputChange}
                             className="pl-4 pr-20 h-10 rounded-full border-input bg-background/50 hover:bg-background transition-all"

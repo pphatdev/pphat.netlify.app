@@ -41,7 +41,7 @@ I'm passionate about:
 - Building scalable design systems
 - Exploring AI integration in web applications
 - Contributing to open-source projects
-- Writing technical articles and tutorials
+- Writing technical blogs and tutorials
 - Expanding expertise in web3 and blockchain technologies
 
 ## 🎮 When I'm Not Coding

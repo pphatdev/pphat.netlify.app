@@ -109,7 +109,7 @@ const PostsContent = () => {
                 {searchQuery && (
                     <div className="max-w-5xl mx-auto w-full px-5">
                         <p className="text-sm text-muted-foreground mb-4">
-                            Found {filteredPosts.length} article{filteredPosts.length !== 1 ? 's' : ''}
+                            Found {filteredPosts.length} blog{filteredPosts.length !== 1 ? 's' : ''}
                         </p>
                     </div>
                 )}
@@ -117,7 +117,7 @@ const PostsContent = () => {
                     {filteredPosts.map((post) => (<PostCard key={post.id || post.slug} post={post} />))}
                     {filteredPosts.length === 0 && searchQuery && (
                         <div className="col-span-full text-center py-12">
-                            <p className="text-muted-foreground text-lg">No articles found matching "{searchQuery}"</p>
+                            <p className="text-muted-foreground text-lg">No blogs found matching "{searchQuery}"</p>
                         </div>
                     )}
                     <InfiniteScroll hasMore={hasMore} isLoading={loading} next={next} threshold={1}>
