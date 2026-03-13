@@ -15,7 +15,7 @@ export const NavigationBar = (
 ) => {
     const pathname = usePathname(); const navItems = [
         {
-            name: "Contributes",
+            name: "Projects",
             link: "/projects",
             icon: GitCompareArrowsIcon,
             active: pathname === "/projects",

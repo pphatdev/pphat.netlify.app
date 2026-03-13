@@ -14,7 +14,7 @@ export const ProjectCard = React.memo(({ project }: { project: Project }) => {
 
     return (
         <div
-            className="col-span-1 relative duration-300 hover:translate-y-1 overflow-hidden bg-foreground/5 group font-sans rounded-2xl p-4 mb-4 ring-1 ring-foreground/10 hover:ring-primary hover:ring-2 transition-all ease-in-out flex flex-col h-full"
+            className="col-span-1 relative duration-300 hover:translate-y-1 overflow-hidden bg-foreground/5 group font-sans rounded-3xl p-4 mb-4 ring-1 ring-foreground/10 hover:ring-primary hover:ring-2 transition-all ease-in-out flex flex-col h-full"
             role="article"
             tabIndex={-1}>
             <header className='mb-2 relative flex justify-between items-center'>

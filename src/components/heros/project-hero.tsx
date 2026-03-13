@@ -24,7 +24,7 @@ export const ProjectHero = () => {
             </div>
             <div className="w-full p-4 sm:px-5 flex flex-col max-w-5xl mx-auto ">
                 <BlurFade delay={0.6} inView className="flex flex-col items-start justify-start">
-                    <h1 className="text-3xl font-bold sm:text-5xl xl:text-6xl/none"> Contr<span className="text-left bg-background  bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">ibute</span> </h1>
+                    <h1 className="text-3xl font-bold sm:text-5xl xl:text-6xl/none"> Pro<span className="text-left bg-background  bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">jects</span> </h1>
                 </BlurFade>
                 <BlurFade delay={0.5} inView className="flex max-sm:order-first max-sm:mb-5 flex-col items-start justify-start">
                     <Button asChild>
