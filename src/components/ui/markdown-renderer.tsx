@@ -114,6 +114,7 @@ function createMarkdownComponents(): Components {
                 const galleryProps = props as React.HTMLAttributes<HTMLDivElement> & {
                     'data-columns'?: string;
                     'data-captions'?: string;
+                    'data-layout'?: string;
                 };
 
                 return (
@@ -121,6 +122,7 @@ function createMarkdownComponents(): Components {
                         className={className}
                         data-columns={galleryProps['data-columns']}
                         data-captions={galleryProps['data-captions']}
+                        layout={galleryProps['data-layout']}
                     >
                         {children}
                     </MarkdownGallery>

@@ -10,6 +10,7 @@ interface MarkdownGalleryProps extends React.HTMLAttributes<HTMLDivElement> {
     children?: React.ReactNode;
     'data-columns'?: string;
     'data-captions'?: string;
+    layout?: string;
 }
 
 function getColumnsClass(columnsValue?: string): string {
@@ -31,13 +32,27 @@ export function MarkdownGallery({
     className,
     'data-columns': dataColumns,
     'data-captions': dataCaptions,
-    ...props
+    layout,
 }: MarkdownGalleryProps) {
     const [selectedImage, setSelectedImage] = React.useState<{ src: string; alt: string; } | null>(null);
     const [currentIndex, setCurrentIndex] = React.useState<number>(0);
     const [imageLoading, setImageLoading] = React.useState(false);
     const [rotation, setRotation] = React.useState<number>(0);
     const showCaptions = dataCaptions === 'true';
+    const [loadedMap, setLoadedMap] = React.useState<Record<number, boolean>>({});
+    const [snapIndex, setSnapIndex] = React.useState(0);
+    const [scrollProgress, setScrollProgress] = React.useState(0);
+    const isSnapLayout = layout === 'snap' || layout === 'snap-x';
+    const snapScrollerRef = React.useRef<HTMLDivElement>(null);
+
+    const markLoaded = React.useCallback((index: number) => {
+        setLoadedMap((prev) => {
+            if (prev[index]) {
+                return prev;
+            }
+            return { ...prev, [index]: true };
+        });
+    }, []);
     const items = React.Children.toArray(children).filter((child) => {
         if (typeof child === 'string') {
             return child.trim().length > 0;
@@ -119,7 +134,7 @@ export function MarkdownGallery({
 
     const handleDownload = async () => {
         if (!selectedImage) return;
-        
+
         try {
             const response = await fetch(selectedImage.src);
             const blob = await response.blob();
@@ -135,6 +150,80 @@ export function MarkdownGallery({
             console.error('Error downloading image:', error);
         }
     };
+
+    const handleSnapScroll = React.useCallback((direction: 'prev' | 'next') => {
+        const container = snapScrollerRef.current;
+        if (!container) return;
+
+        const nextTarget = direction === 'next'
+            ? Math.min(snapIndex + 1, items.length - 1)
+            : Math.max(snapIndex - 1, 0);
+
+        const cards = container.querySelectorAll('figure');
+        const targetCard = cards[nextTarget] as HTMLElement | undefined;
+        if (targetCard) {
+            targetCard.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+            setSnapIndex(nextTarget);
+        }
+    }, [snapIndex, items.length]);
+
+    React.useEffect(() => {
+        if (!isSnapLayout) {
+            setScrollProgress(0);
+            return;
+        }
+        const container = snapScrollerRef.current;
+        if (!container) return;
+
+        let rafId: number | null = null;
+        const updateActiveIndex = () => {
+            const cards = Array.from(container.querySelectorAll('figure')) as HTMLElement[];
+            if (cards.length === 0) return;
+
+            const maxScroll = Math.max(container.scrollWidth - container.clientWidth, 0);
+            const nextProgress = maxScroll === 0
+                ? 100
+                : Math.min((container.scrollLeft / maxScroll) * 100, 100);
+            setScrollProgress((prev) => (Math.abs(prev - nextProgress) < 0.1 ? prev : nextProgress));
+
+            const containerRect = container.getBoundingClientRect();
+            const containerCenter = containerRect.left + containerRect.width / 2;
+
+            let nearestIndex = 0;
+            let nearestDistance = Number.POSITIVE_INFINITY;
+
+            cards.forEach((card, index) => {
+                const rect = card.getBoundingClientRect();
+                const cardCenter = rect.left + rect.width / 2;
+                const distance = Math.abs(cardCenter - containerCenter);
+                if (distance < nearestDistance) {
+                    nearestDistance = distance;
+                    nearestIndex = index;
+                }
+            });
+
+            setSnapIndex((prev) => (prev === nearestIndex ? prev : nearestIndex));
+        };
+
+        const onScroll = () => {
+            if (rafId !== null) {
+                window.cancelAnimationFrame(rafId);
+            }
+            rafId = window.requestAnimationFrame(updateActiveIndex);
+        };
+
+        updateActiveIndex();
+        container.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+
+        return () => {
+            if (rafId !== null) {
+                window.cancelAnimationFrame(rafId);
+            }
+            container.removeEventListener('scroll', onScroll);
+            window.removeEventListener('resize', onScroll);
+        };
+    }, [isSnapLayout, items.length]);
 
     React.useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -153,44 +242,124 @@ export function MarkdownGallery({
         };
     }, [selectedImage, currentIndex, handleNext, handlePrev]);
 
+    const snapProgress = Math.max(0, Math.min(scrollProgress, 100));
+
     return (
         <>
-            <div
-                className={cn(
-                    'not-prose my-8 columns-2 [column-gap:0.75rem] md:[column-gap:1rem]',
-                    getColumnsClass(dataColumns),
-                    className
-                )}
-                {...props}
-            >
-                {items.map((item, index) => {
-                    const caption = React.isValidElement<{ alt?: string }>(item)
-                        ? item.props.alt
-                        : undefined;
+            <div className="relative">
+                <div
+                    className={cn(
+                        'mb-3 flex items-center justify-end gap-2',
+                        isSnapLayout && items.length > 1 ? 'opacity-100' : 'pointer-events-none opacity-0'
+                    )}
+                >
+                    <button
+                        type="button"
+                        onClick={() => handleSnapScroll('prev')}
+                        className="inline-flex items-center gap-1 rounded-full border border-border/60 bg-background/70 px-3 py-1.5 text-sm hover:bg-muted/80 transition-colors"
+                        aria-label="Scroll gallery previous"
+                        disabled={!isSnapLayout || items.length <= 1}
+                    >
+                        <ChevronLeft className="h-4 w-4" />
+                        Prev
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => handleSnapScroll('next')}
+                        className="inline-flex items-center gap-1 rounded-full border border-border/60 bg-background/70 px-3 py-1.5 text-sm hover:bg-muted/80 transition-colors"
+                        aria-label="Scroll gallery next"
+                        disabled={!isSnapLayout || items.length <= 1}
+                    >
+                        Next
+                        <ChevronRight className="h-4 w-4" />
+                    </button>
+                </div>
 
-                    return (
-                        <motion.figure
-                            key={`gallery-item-${index}`}
-                            className="group bg-background/40 border border-border/60 overflow-hidden rounded-2xl p-1 mb-3 md:mb-4 break-inside-avoid [&_img]:h-auto [&_img]:w-full cursor-pointer hover:border-primary/40 transition-colors"
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-100px" }}
-                            transition={{
-                                duration: 0.5,
-                                delay: index * 0.1,
-                                ease: [0.25, 0.1, 0.25, 1]
-                            }}
-                            onClick={() => handleImageClick(item, index)}
-                        >
-                            <div className="overflow-hidden">{item}</div>
-                            {showCaptions && caption ? (
-                                <figcaption className="text-muted-foreground px-3 py-2 text-sm">
-                                    {caption}
-                                </figcaption>
-                            ) : null}
-                        </motion.figure>
-                    );
-                })}
+                <div
+                    ref={snapScrollerRef}
+                    className={cn(
+                        isSnapLayout
+                            ? 'not-prose mt-8 flex flex-row gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]'
+                            : cn(
+                                'not-prose my-8 columns-2 [column-gap:0.75rem] md:[column-gap:1rem]',
+                                getColumnsClass(dataColumns)
+                            ),
+                        className
+                    )}
+                >
+                    {items.map((item, index) => {
+                        const caption = React.isValidElement<{ alt?: string }>(item)
+                            ? item.props.alt
+                            : undefined;
+
+                        return (
+                            <motion.figure
+                                key={`gallery-item-${index}`}
+                                className={cn(
+                                    'group bg-background/40 border border-border/60 overflow-hidden rounded-2xl p-1 cursor-pointer hover:border-primary/40 transition-colors',
+                                    isSnapLayout
+                                        ? 'snap-start flex-none w-56 sm:w-64 md:w-72 [&_img]:w-full [&_img]:h-44 [&_img]:object-cover [&_img]:rounded-xl'
+                                        : 'mb-3 md:mb-4 break-inside-avoid [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl'
+                                )}
+                                initial={isSnapLayout ? { opacity: 0, x: 40 } : { opacity: 0, y: 50 }}
+                                whileInView={isSnapLayout ? { opacity: 1, x: 0 } : { opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: isSnapLayout ? '-60px' : '-100px' }}
+                                transition={{
+                                    duration: 0.5,
+                                    delay: index * 0.1,
+                                    ease: [0.25, 0.1, 0.25, 1]
+                                }}
+                                onClick={() => handleImageClick(item, index)}
+                            >
+                                <div className="relative overflow-hidden rounded-xl">
+                                    {!loadedMap[index] && (
+                                        <div
+                                            className={cn(
+                                                'absolute inset-0 animate-pulse rounded-xl bg-muted/60',
+                                                isSnapLayout ? 'h-44' : 'min-h-[120px]'
+                                            )}
+                                        />
+                                    )}
+                                    <div
+                                        className={cn(
+                                            'transition-opacity duration-500',
+                                            loadedMap[index] ? 'opacity-100' : 'opacity-0'
+                                        )}
+                                        ref={(el) => {
+                                            if (!el) return;
+                                            const img = el.querySelector('img');
+                                            if (img?.complete) markLoaded(index);
+                                        }}
+                                        onLoad={() => markLoaded(index)}
+                                    >
+                                        {item}
+                                    </div>
+                                </div>
+                                {showCaptions && caption ? (
+                                    <figcaption className="text-muted-foreground px-3 py-2 text-sm">
+                                        {caption}
+                                    </figcaption>
+                                ) : null}
+                            </motion.figure>
+                        );
+                    })}
+                </div>
+
+                <div
+                    className={cn(
+                        '-mt-1 flex items-center justify-center',
+                        isSnapLayout && items.length > 1 ? 'opacity-100' : 'pointer-events-none opacity-0'
+                    )}
+                >
+                    <div className="w-full rounded-full border border-border/60 bg-background/70 p-1" aria-label="Gallery progress">
+                        <div className="h-2 rounded-full bg-muted/80">
+                            <div
+                                className="h-2 rounded-full bg-primary transition-all duration-300"
+                                style={{ width: `${snapProgress}%` }}
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
 
             {/* Lightbox Modal */}
@@ -233,7 +402,7 @@ export function MarkdownGallery({
                                 <X className="w-6 h-6 text-white" />
                             </button>
                         </div>
-                        
+
                         {/* Navigation Buttons */}
                         {items.length > 1 && (
                             <>
@@ -259,7 +428,7 @@ export function MarkdownGallery({
                                 </button>
                             </>
                         )}
-                        
+
                         <motion.div
                             className="relative max-w-7xl max-h-[90vh] w-full h-full flex items-center justify-center"
                             initial={{ scale: 0.9 }}
