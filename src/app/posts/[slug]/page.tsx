@@ -17,6 +17,7 @@ import ArticleStructuredData from '@components/data-structured/article';
 import BreadcrumbStructuredData from '@components/breadcrumb-structured-data';
 import { MarkdownRenderer } from '@components/ui/markdown-renderer';
 import { ScrollToTopButton } from '@components/ui/scroll-to-top-button';
+import { PostCoverImage } from '@components/ui/post-cover-image';
 
 interface Params {
     params: Promise<{ slug: string; }>;
@@ -137,15 +138,9 @@ export default async function PostDetail(props: Params) {
                 <div className="mb-6">
                     {post.thumbnail && (
                         <div className="relative w-full h-full max-xs:max-h-96 md:h-[29rem] mb-6 max-xs:rounded-none max-xs:rounded-b-4xl rounded-2xl overflow-hidden">
-                            <Image
+                            <PostCoverImage
                                 src={post.thumbnail}
                                 alt={post.title}
-                                width={800}
-                                height={450}
-                                priority
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1024px"
-                                className="w-full h-full object-cover"
-                                unoptimized={post.thumbnail?.startsWith('http')}
                             />
 
                             <div className="absolute w-full hidden bottom-3 left-1/2 transform -translate-x-1/2 max-sm:flex flex-wrap max-sm:justify-center  gap-2">
