@@ -192,7 +192,7 @@ export default async function PostDetail(props: Params) {
                             <div className="flex max-xs:flex-col max-sm:items-center max-sm:justify-center w-full items-center space-x-4">
                                 <div className='flex gap-5 flex-wrap border-t sm:py-3 border-background'>
                                     {post.authors?.map((author, index) => (
-                                        <div key={index} className="flex items-center space-x-2">
+                                        <Link rel="noopener noreferrer" target='_blank' href={ author.url === "" ? String(author.profile).replace('.png', '') : author.url } key={index} className="flex items-center space-x-2">
                                             <Avatar className="w-8 h-8">
                                                 <AvatarImage src={author.profile} alt={author.name} />
                                                 <AvatarFallback>
@@ -202,7 +202,7 @@ export default async function PostDetail(props: Params) {
                                             <div className="text-sm">
                                                 <p className="font-medium">{author.name}</p>
                                             </div>
-                                        </div>
+                                        </Link>
                                     ))}
                                 </div>
 
