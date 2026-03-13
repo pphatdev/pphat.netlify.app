@@ -143,10 +143,19 @@ export default async function PostDetail(props: Params) {
                                 className="w-full h-full object-cover"
                                 unoptimized={post.thumbnail?.startsWith('http')}
                             />
+
+                            <div className="absolute w-full hidden bottom-3 left-1/2 transform -translate-x-1/2 max-sm:flex flex-wrap max-sm:justify-center  gap-2">
+                                {post.tags?.map((tag) => (
+                                    <Badge key={tag} variant="secondary">
+                                        {tag}
+                                    </Badge>
+                                ))}
+                            </div>
+
                         </div>
                     )}
 
-                    <div className="space-y-4 max-xs:px-3">
+                    <div className="space-y-4 max-xs:px-3 relative">
 
                         <Button asChild>
                             <Link href="/posts">
@@ -158,7 +167,7 @@ export default async function PostDetail(props: Params) {
                             {post.title}
                         </h1>
 
-                        <div className="flex flex-wrap max-sm:justify-center  gap-2">
+                        <div className="hidden sm:flex flex-wrap max-sm:justify-center  gap-2">
                             {post.tags?.map((tag) => (
                                 <Badge key={tag} variant="secondary">
                                     {tag}
@@ -168,24 +177,26 @@ export default async function PostDetail(props: Params) {
 
                         <div className="flex mt-5 max-sm:flex-col items-center justify-between gap-4">
                             <div className="flex max-xs:flex-col max-sm:items-center max-sm:justify-center w-full items-center space-x-4">
-                                {post.authors?.map((author, index) => (
-                                    <div key={index} className="flex items-center space-x-2">
-                                        <Avatar className="w-8 h-8">
-                                            <AvatarImage src={author.profile} alt={author.name} />
-                                            <AvatarFallback>
-                                                <User className="w-4 h-4" />
-                                            </AvatarFallback>
-                                        </Avatar>
-                                        <div className="text-sm">
-                                            <p className="font-medium">{author.name}</p>
+                                <div className='flex gap-5 flex-wrap border-t sm:py-3 border-background'>
+                                    {post.authors?.map((author, index) => (
+                                        <div key={index} className="flex items-center space-x-2">
+                                            <Avatar className="w-8 h-8">
+                                                <AvatarImage src={author.profile} alt={author.name} />
+                                                <AvatarFallback>
+                                                    <User className="w-4 h-4" />
+                                                </AvatarFallback>
+                                            </Avatar>
+                                            <div className="text-sm">
+                                                <p className="font-medium">{author.name}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
 
                                 <Separator orientation="vertical" className="h-6" />
 
                                 <div className="flex items-center justify-between max-xs:mt-5 gap-4">
-                                    <div className="flex items-center space-x-1 text-sm text-muted-foreground">
+                                    <div className="flex items-center space-x-1 max-sm:text-xs text-sm text-muted-foreground">
                                         <Calendar className="w-4 h-4" />
                                         <time dateTime={post.createdAt} className='whitespace-nowrap'>
                                             {createdDate.toLocaleDateString('en-US', {
@@ -196,7 +207,7 @@ export default async function PostDetail(props: Params) {
                                         </time>
                                     </div>
 
-                                    <div className="flex items-center space-x-1 text-sm text-muted-foreground whitespace-nowrap">
+                                    <div className="flex items-center space-x-1 max-sm:text-xs text-sm text-muted-foreground whitespace-nowrap">
                                         <Clock className="w-4 h-4" />
                                         <span>{formatDistanceToNow(createdDate)} ago</span>
                                     </div>
