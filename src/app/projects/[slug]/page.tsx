@@ -8,7 +8,7 @@ import { NavigationBar } from '@components/navbar/navbar';
 import { GridPattern } from '@components/ui/grid-pattern';
 import { Badge } from '@components/ui/badge';
 import { Button } from '@components/ui/button';
-import { Separator } from '@components/ui/separator';
+import "../../../styles/code-block-node.css"
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
 import { ArrowLeftIcon, Calendar, Clock, ExternalLink, Globe, User } from 'lucide-react';
 import BreadcrumbStructuredData from '@components/breadcrumb-structured-data';
@@ -235,88 +235,6 @@ export default async function ProjectDetail(props: Params) {
                         </Link>
                     ))}
                 </div>
-
-
-                {/* <div className='mb-1 flex flex-col'>
-
-                    <div className='space-y-4 max-xs:px-3 flex flex-col relative order-1'>
-
-                        <div className='flex justify-between items-center gap-2 flex-wrap'>
-                            <Button asChild>
-                                <Link href='/projects'>
-                                    <ArrowLeftIcon className='w-4 h-4' /> Back to Projects
-                                </Link>
-                            </Button>
-                        </div>
-
-                        <div className='flex items-center gap-2 flex-wrap'>
-                            {(project.source ?? []).map((source) => (
-                                <Button asChild key={`${source.type}-${source.url}`}>
-                                    <Link href={source.url} target='_blank' rel='noopener noreferrer'>
-                                        {source.type === 'demo' ? (
-                                            <ExternalLink className='w-4 h-4' />
-                                        ) : (
-                                            <Globe className='w-4 h-4' />
-                                        )}
-                                        {source.name || (source.type === 'demo' ? 'Live Demo' : 'Source Code')}
-                                    </Link>
-                                </Button>
-                            ))}
-                        </div>
-
-                        <h1 className='text-4xl md:text-5xl font-bold leading-tight'> {project.title} </h1>
-                        <p className='text-base text-foreground/80 leading-relaxed'>{project.description}</p>
-
-
-                        <div className='flex max-xs:flex-col max-sm:items-center max-sm:justify-center w-full items-center space-x-4'>
-                            <div className='flex gap-5 flex-wrap border-t sm:py-3 border-background'>
-                                {(project.authors ?? []).map((author, index) => (
-                                    <Link
-                                        rel='noopener noreferrer'
-                                        target='_blank'
-                                        href={author.url === '' ? String(author.profile).replace('.png', '') : author.url}
-                                        key={index}
-                                        className='flex items-center space-x-2'
-                                    >
-                                        <Avatar className='w-8 h-8'>
-                                            <AvatarImage src={author.profile} alt={author.name} />
-                                            <AvatarFallback>
-                                                <User className='w-4 h-4' />
-                                            </AvatarFallback>
-                                        </Avatar>
-                                        <div className='text-sm'>
-                                            <p className='font-medium'>{author.name}</p>
-                                        </div>
-                                    </Link>
-                                ))}
-                            </div>
-
-                            {createdDate && (
-                                <>
-                                    <Separator orientation='vertical' className='h-6' />
-
-                                    <div className='flex items-center justify-between max-xs:mt-5 gap-4'>
-                                        <div className='flex items-center space-x-1 max-sm:text-xs text-sm text-muted-foreground'>
-                                            <Calendar className='w-4 h-4' />
-                                            <time dateTime={project.createdAt} className='whitespace-nowrap'>
-                                                {createdDate.toLocaleDateString('en-US', {
-                                                    year: 'numeric',
-                                                    month: 'long',
-                                                    day: 'numeric',
-                                                })}
-                                            </time>
-                                        </div>
-
-                                        <div className='flex items-center space-x-1 max-sm:text-xs text-sm text-muted-foreground whitespace-nowrap'>
-                                            <Clock className='w-4 h-4' />
-                                            <span>{formatDistanceToNow(createdDate)} ago</span>
-                                        </div>
-                                    </div>
-                                </>
-                            )}
-                        </div>
-                    </div>
-                </div> */}
 
                 <div className='py-5'>
                     <div className='mx-auto max-xs:px-3'>

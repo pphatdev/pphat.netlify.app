@@ -10,7 +10,6 @@ import { Separator } from '@components/ui/separator';
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
 import { ArrowLeftIcon, Calendar, Clock, ExternalLink, Pencil, User } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
-import Image from 'next/image';
 import "../../../styles/code-block-node.css"
 import { GridPattern } from '@components/ui/grid-pattern';
 import ArticleStructuredData from '@components/data-structured/article';

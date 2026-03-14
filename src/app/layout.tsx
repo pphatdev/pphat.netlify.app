@@ -35,7 +35,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 srisakdi.variable,
                 openSans.variable,
                 `antialiased p-0 m-0 font-sans bg-body`
-            )}>
+            )} style={{ overflowX: 'hidden' }}>
                 <ThemeProvider
                     attribute="class"
                     enableSystem
