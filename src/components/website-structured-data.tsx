@@ -9,11 +9,21 @@ export default function WebsiteStructuredData() {
         "@type": "WebSite",
         "@id": `${NEXT_PUBLIC_APP_URL}#website`,
         "name": `${PERSON_NAME} - ${PERSON_JOB_TITLE}`,
-        "alternateName": "PPhat Dev",
+        "alternateName": PERSON_ALTERNATE_NAME,
         "url": NEXT_PUBLIC_APP_URL,
         "image": websiteImage,
-        "description": `Portfolio of ${PERSON_NAME} (${PERSON_ALTERNATE_NAME}), ${PERSON_JOB_TITLE} from Phnom Penh, Cambodia. Showcasing web development projects, skills, and professional experience.`,
+        "description": `Portfolio of ${PERSON_NAME} (${PERSON_ALTERNATE_NAME}), ${PERSON_JOB_TITLE} from Phnom Penh, Cambodia. Explore projects, technical articles, and professional experience.`,
         "inLanguage": "en-US",
+        "author": {
+            "@type": "Person",
+            "@id": `${NEXT_PUBLIC_APP_URL}#person`,
+            "name": PERSON_NAME
+        },
+        "creator": {
+            "@type": "Person",
+            "@id": `${NEXT_PUBLIC_APP_URL}#person`,
+            "name": PERSON_NAME
+        },
         "publisher": {
             "@type": "Person",
             "@id": `${NEXT_PUBLIC_APP_URL}#person`,
