@@ -5,7 +5,7 @@ import OrganizationStructuredData from "@components/organization-structured-data
 import HomePersonStructuredData from "@components/home-person-structured-data";
 import WebsiteStructuredData from "@components/website-structured-data";
 import { Metadata } from "next";
-import { appDescriptions, appName, NEXT_PUBLIC_APP_URL } from "@lib/constants";
+import { appName, NEXT_PUBLIC_APP_URL } from "@lib/constants";
 import { BlurFade } from "@components/ui/blur-fade";
 import { NavigationBar } from "@components/navbar/navbar";
 import { RainbowGlow } from "@components/ui/rainbow-glow";
@@ -27,18 +27,29 @@ const HomeFAQSection = dynamic(() => import("./sections/home-faq").then(mod => (
 });
 const GetInTouchSections = dynamic(() => import("./sections/home-getintouch"));
 const homeSearchImage = `${NEXT_PUBLIC_APP_URL}/assets/screenshots/home-dark.png`;
+const homeTitle = `${appName} | Senior Front-end Developer & UI/UX Designer`;
+const homeDescription = "Sophat LEAT (PPhat, Sophat L.) is a Senior Front-end Developer at TURBOTECH CO., LTD and Freelance UI/UX Designer in Phnom Penh, Cambodia. Explore projects, case studies, technical articles, blogs, and contact details.";
 
 export const metadata: Metadata = {
-    title: appName,
-    description: appDescriptions,
+    title: homeTitle,
+    description: homeDescription,
     authors: [{
         url: NEXT_PUBLIC_APP_URL,
-        name: "Leat Sophat",
+        name: "Sophat LEAT",
     }],
     generator: appName,
     keywords: [
-        "Leat Sophat",
+        "Sophat LEAT",
         "PPhat",
+        "pphat",
+        "pphatdev",
+        "creator of pphat.me",
+        "sophat",
+        "sophatleat",
+        "Sophat LEAT",
+        "Sophat Leat",
+        "LEAT Sophat",
+        "leatsophat",
         "Senior Front-end Developer",
         "UI/UX Designer",
         "Web Developer",
@@ -65,7 +76,7 @@ export const metadata: Metadata = {
         type: "website",
         url: NEXT_PUBLIC_APP_URL,
         title: appName,
-        description: appDescriptions,
+        description: homeDescription,
         siteName: appName,
         images: [
             {
@@ -82,8 +93,8 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         site: '@pphatdev',
         creator: '@pphatdev',
-        title: appName,
-        description: appDescriptions,
+        title: homeTitle,
+        description: homeDescription,
         images: [homeSearchImage],
     },
     formatDetection: {
@@ -94,9 +105,9 @@ export const metadata: Metadata = {
     alternates: {
         canonical: NEXT_PUBLIC_APP_URL,
     },
-    other: {
-        'google-site-verification': 'your-google-site-verification-code'
-    }
+    verification: {
+        google: process.env.GOOGLE_SITE_VERIFICATION,
+    },
 };
 
 export default function Home() {
