@@ -160,7 +160,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
                 'prose-pre:before:content-none prose-pre:after:content-none',
                 'prose-img:rounded-lg prose-img:shadow-md',
                 'prose-ul:list-disc prose-ol:list-decimal',
-                'prose-li:mb-1',
+                'prose-li:mb-0',
                 className
             )}
         >
