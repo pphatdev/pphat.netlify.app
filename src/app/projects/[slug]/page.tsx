@@ -214,32 +214,38 @@ export default async function ProjectDetail(props: Params) {
 
 
                 <div className='max-sm:px-3 flex flex-col relative order-1 mb-4'>
-                    <h1 className='text-4xl md:text-5xl font-bold leading-tight'> {project.title} </h1>
+                    <h1 className='text-4xl md:text-5xl font-bold leading-tight'>
+                        <span className="text-left bg-background  bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]"> {project.title} </span>
+                    </h1>
                     <p className='text-base text-foreground/80 mt-3 leading-relaxed font-sans'>{project.description}</p>
                 </div>
 
-                <div className="p-2 border-y">
-                    {/* <div className="2xl:before:hidden py-2 max-xs:px-3 2xl:after:hidden relative before:absolute before:top-0 before:h-px before:w-[200vw] before:bg-gray-950/5 dark:before:bg-white/10 before:-left-[100vw] after:absolute after:bottom-0 after:h-px after:w-[200vw] after:bg-gray-950/5 dark:after:bg-white/10 after:-left-[100vw]"> */}
+                <ul className="p-2 border-y flex items-start">
                     {(project.authors ?? []).map((author, index) => (
-                        <Link
-                            rel='noopener noreferrer'
-                            target='_blank'
-                            href={author.url === '' ? String(author.profile).replace('.png', '') : author.url}
-                            key={index}
-                            className='flex items-center space-x-2'
-                        >
-                            <Avatar className='w-8 h-8'>
-                                <AvatarImage src={author.profile} alt={author.name} />
-                                <AvatarFallback>
-                                    <User className='w-4 h-4' />
-                                </AvatarFallback>
-                            </Avatar>
-                            <div className='text-sm'>
-                                <p className='font-medium'>{author.name}</p>
-                            </div>
-                        </Link>
+                        <li key={index} className='flex items-center'>
+                            <Link
+                                rel='noopener noreferrer'
+                                target='_blank'
+                                href={author.url === '' ? String(author.profile).replace('.png', '') : author.url}
+                                key={index}
+                                className='flex items-center space-x-2'
+                            >
+                                <Avatar className='w-8 h-8'>
+                                    <AvatarImage src={author.profile} alt={author.name} />
+                                    <AvatarFallback>
+                                        <User className='w-4 h-4' />
+                                    </AvatarFallback>
+                                </Avatar>
+                                <div className='text-sm'>
+                                    <p className='font-medium'>{author.name}</p>
+                                </div>
+                            </Link>
+                            {index < (project.authors?.length ?? 0) - 1 && (
+                                <DividerVerticalIcon orientation='vertical' className='mx-1 text-foreground/50 h-4' />
+                            )}
+                        </li>
                     ))}
-                </div>
+                </ul>
 
                 <div className='py-5'>
                     <div className='mx-auto max-xs:px-3'>

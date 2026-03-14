@@ -3,7 +3,7 @@ import { Badge } from "@components/ui/badge";
 import { Project } from "../../lib/types/interfaces";
 import Link from "next/link";
 import Image from 'next/image';
-import { ExternalLinkIcon, GlobeIcon } from "@radix-ui/react-icons";
+import { ExternalLinkIcon } from "@radix-ui/react-icons";
 import { AvatarCircles } from '../ui/avatar-circles';
 
 export const ProjectCard = React.memo(({ project }: { project: Project }) => {
@@ -46,22 +46,19 @@ export const ProjectCard = React.memo(({ project }: { project: Project }) => {
                 </div>
                 <header className='mb-2 absolute top-3 left-3 flex justify-between items-center drop-shadow-2xl'>
                     <div className="flex gap-2 items-center">
-                        {(project?.tags).slice(0, 2).map((tag, index) => (
-                            <Badge key={index} className="font-medium px-2 font-open-sans">{tag}</Badge>
+                        {(project?.tags ?? []).slice(0, 3).map((tag, index) => (
+                            <Badge key={index} className="font-medium px-2 py-1 font-open-sans">{tag}</Badge>
                         ))}
                     </div>
                 </header>
 
                 <div className="flex z-10 flex-wrap gap-2 my-1">
-                    {(project.languages ?? []).map((language, index) => (
+                    {(project.languages ?? []).slice(0, 3).map((language, index) => (
                         <Badge key={index} variant="outline" className="text-[10px] px-1 leading-5 rounded-md border border-primary/50 font-open-sans">{language}</Badge>
                     ))}
                 </div>
 
-                <h2 className="text-lg z-10 my-1 font-semibold font-sans tracking-wide line-clamp-1 pb-1">
-                    {project.title}
-                </h2>
-
+                <h2 className="text-lg z-10 my-1 font-semibold font-sans tracking-wide line-clamp-1 pb-1">{project.title} </h2>
                 <p className='font-normal z-10 line-clamp-3 font-open-sans text-sm text-foreground/80'>{project.description}</p>
             </div>
         </div>

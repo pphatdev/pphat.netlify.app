@@ -34,6 +34,7 @@ export const AvatarCircles = ({
                         <Image
                             className="rounded-full border-2 border-foreground/10"
                             src={url.imageUrl}
+                            style={{ zIndex: avatarUrls.length - index }} // Ensure later avatars are on top
                             fill
                             sizes="40px"
                             alt={`Avatar ${url?.title ?? ''} ?? ""`}
