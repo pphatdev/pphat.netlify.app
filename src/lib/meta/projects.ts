@@ -5,7 +5,7 @@ import { Metadata } from "next";
 
 export const projectsMeta: Metadata = {
     metadataBase: new URL(NEXT_PUBLIC_APP_URL),
-    title: `Projects | ${appName}`,
+    title: `${appName} Projects`,
     description: 'Explore my portfolio of web development projects and applications.',
     keywords: [...keywords, 'web development', 'projects', 'portfolio', 'React', 'TypeScript', 'fullstack'],
     icons: icons,
@@ -15,7 +15,7 @@ export const projectsMeta: Metadata = {
         follow: true
     },
     openGraph: {
-        title: `Projects | ${appName}`,
+        title: `${appName} Projects`,
         description: 'Explore my portfolio of web development projects and applications.',
         url: `${NEXT_PUBLIC_APP_URL}/projects`,
         images: [

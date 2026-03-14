@@ -15,7 +15,7 @@ export const AboutMeHero = ({
 }) => {
     return (
         <section id='about-hero' className="max-w-5xl flex flex-col items-center my-20 pt-10 justify-center mx-auto">
-            <h1 className='sr-only'>About Me</h1>
+            <h1 className='sr-only'>About PPhat</h1>
             <p className='sr-only'>{description}</p>
             <div className="grid grid-cols-1 gap-8 items-center justify-center lg:grid-cols-2 relative">
                 <div className="px-2 sm:p-5 z-10 max-w-3xl bg-gradient-to-b from-background/5 via-background to-background">

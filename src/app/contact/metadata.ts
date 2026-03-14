@@ -6,13 +6,13 @@ const contactDescription = "Get in touch with me. I'm always open to discussing 
 
 // Generate OG image metadata for this page
 const ogImage = getOgImageMetadata({
-    title: `${appName} | Contact`,
+    title: `${appName} Contact`,
     subtitle: "Get in touch",
     description: contactDescription
 });
 
 export const metadata: Metadata = {
-    title: `${appName} | Contact`,
+    title: `${appName} Contact`,
     description: contactDescription,
     authors: [{
         url: NEXT_PUBLIC_APP_URL,
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     openGraph: {
         type: "website",
         url: NEXT_PUBLIC_APP_URL + "/contact",
-        title: `${appName} | Contact`,
+        title: `${appName} Contact`,
         description: contactDescription,
         siteName: appName,
         images: [ogImage],

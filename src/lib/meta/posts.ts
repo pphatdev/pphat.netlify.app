@@ -5,7 +5,7 @@ import { Metadata } from "next";
 
 export const postsMeta: Metadata = {
     metadataBase: new URL(NEXT_PUBLIC_APP_URL),
-    title: `Blogs | ${appName}`,
+    title: `${appName} Blogs`,
     description: 'Read my blog posts about web development, design, and technology.',
     keywords: [...keywords, 'blog', 'blogs', 'tech blog', 'web development blog', 'programming', 'front-end'],
     icons: icons,
@@ -15,7 +15,7 @@ export const postsMeta: Metadata = {
         follow: true
     },
     openGraph: {
-        title: `Blogs | ${appName}`,
+        title: `${appName} Blogs`,
         description: 'Read my blog posts about web development, design, and technology.',
         url: `${NEXT_PUBLIC_APP_URL}/posts`,
         images: [

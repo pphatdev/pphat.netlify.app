@@ -6,7 +6,7 @@ import { NEXT_PUBLIC_APP_URL } from '@lib/constants';
 
 export const metadata: Metadata = {
     ...postsMeta,
-    title: `Posts | ${postsMeta.title}`,
+    title: `Posts`,
     openGraph: {
         images: [{url: '/assets/screenshots/origin-dark.png', width: 1900, height: 926, alt: 'Posts'}],
     }

@@ -33,13 +33,13 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
 
     if (!project) {
         return {
-            title: `Project Not Found | ${appName}`,
+            title: `Project Not Found`,
             description: 'The requested project could not be found',
         };
     }
 
     return {
-        title: `${project.title} | ${appName}`,
+        title: `${project.title}`,
         description: project.description,
         authors: project.authors?.map((author) => ({
             name: author.name,
@@ -49,7 +49,7 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
             url: NEXT_PUBLIC_APP_URL,
         }],
         openGraph: {
-            title: `${project.title} | ${appName}`,
+            title: `${project.title}`,
             description: project.description,
             type: 'website',
             url: `${NEXT_PUBLIC_APP_URL}/projects/${project.slug}`,
@@ -57,7 +57,7 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
         },
         twitter: {
             card: 'summary_large_image',
-            title: `${project.title} | ${appName}`,
+            title: `${project.title}`,
             description: project.description,
             images: project.image ? [{ url: project.image.toString() }] : undefined,
         },

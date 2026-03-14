@@ -3,10 +3,10 @@ import { appName, NEXT_PUBLIC_APP_URL } from '@lib/constants';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-    title: `Not Found | ${appName}`,
+    title: `Not Found`,
     description: 'The page you were looking for could not be found.',
     openGraph: {
-        title: `Not Found | ${appName}`,
+        title: `Not Found`,
         description: 'The page you were looking for could not be found.',
         url: NEXT_PUBLIC_APP_URL,
         images: [{

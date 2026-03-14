@@ -7,19 +7,19 @@ import { Metadata } from "next";
 import { appName, NEXT_PUBLIC_APP_URL } from "@lib/constants";
 
 export const metadata: Metadata = {
-    title: `Gallery | ${appName}`,
+    title: `${appName} Gallery`,
     description: "Explore my photo gallery showcasing memorable moments and experiences.",
     authors: [{
         url: NEXT_PUBLIC_APP_URL,
         name: `${appName}`,
     }],
-    generator: `Gallery | ${appName}`,
+    generator: `${appName} Gallery`,
     openGraph: {
         type: "website",
         url: `${NEXT_PUBLIC_APP_URL}/gallery`,
-        title: `Gallery | ${appName}`,
+        title: `${appName} Gallery`,
         description: "Explore my photo gallery showcasing memorable moments and experiences.",
-        siteName: `${appName} | Gallery`,
+        siteName: `${appName} Gallery`,
         images: [{
             url: NEXT_PUBLIC_APP_URL + "/assets/avatars/hero.webp",
         }],

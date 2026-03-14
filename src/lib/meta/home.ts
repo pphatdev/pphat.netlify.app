@@ -6,7 +6,7 @@ import { keywords } from "./keywords";
 export const homeHome: Metadata = {
     metadataBase: new URL(NEXT_PUBLIC_APP_URL),
     title: {
-        template: `%s | ${appName}`,
+        template: `%s`,
         default: `${appName} - Senior Front-end Developer & UI/UX Designer`
     },
     description: appDescriptions,
