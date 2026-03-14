@@ -19,6 +19,8 @@ import {
 import Script from "next/script";
 
 export default function JsonLd() {
+    const homeSearchImage = `${NEXT_PUBLIC_APP_URL}/assets/screenshots/home-dark.png`;
+
     return (
         <Script
             type="application/ld+json"
@@ -32,8 +34,13 @@ export default function JsonLd() {
                     "name": PERSON_NAME,
                     "alternateName": PERSON_ALTERNATE_NAME,
                     "jobTitle": PERSON_JOB_TITLE,
+                    "description": `${PERSON_NAME} (${PERSON_ALTERNATE_NAME}) is the creator of pphat.me and a ${PERSON_JOB_TITLE} based in Phnom Penh, Cambodia.`,
                     "url": NEXT_PUBLIC_APP_URL,
                     "image": `${NEXT_PUBLIC_APP_URL}${PERSON_IMAGE}`,
+                    "owns": {
+                        "@type": "WebSite",
+                        "@id": `${NEXT_PUBLIC_APP_URL}#website`
+                    },
                     "email": `mailto:${CONTACT_EMAIL}`,
                     "telephone": CONTACT_PHONE,
                     "address": {
@@ -73,7 +80,12 @@ export default function JsonLd() {
                     },
                     "mainEntityOfPage": {
                         "@type": "WebPage",
-                        "@id": NEXT_PUBLIC_APP_URL
+                        "@id": NEXT_PUBLIC_APP_URL,
+                        "primaryImageOfPage": {
+                            "@type": "ImageObject",
+                            "url": homeSearchImage,
+                            "contentUrl": homeSearchImage
+                        }
                     },
                     "potentialAction": {
                         "@type": "SearchAction",

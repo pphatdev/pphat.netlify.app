@@ -16,10 +16,14 @@ const description = `My name is <span className="text-primary font-semibold">Lea
 `;
 
 const aboutDescription = "I am Leat Sophat (PPhat), a Senior Front-end Developer and Freelance UI/UX Designer from Phnom Penh, Cambodia. Learn more about my journey, skills, and experience.";
+const aboutImage = `${NEXT_PUBLIC_APP_URL}/assets/screenshots/about-light.png`;
 
 export const metadata: Metadata = {
     title: `About ${appName}`,
     description: aboutDescription,
+    alternates: {
+        canonical: `${NEXT_PUBLIC_APP_URL}/about`,
+    },
     authors: [{
         url: NEXT_PUBLIC_APP_URL,
         name: appName,
@@ -28,13 +32,22 @@ export const metadata: Metadata = {
     openGraph: {
         type: "profile",
         url: NEXT_PUBLIC_APP_URL + "/about",
-        title: `${appName}`,
+        title: `About ${appName}`,
         description: aboutDescription,
         siteName: appName,
         images: [
-            { url: `${NEXT_PUBLIC_APP_URL}/assets/screenshots/about-light.png`, },
-            { url: `${NEXT_PUBLIC_APP_URL}/assets/screenshots/about-dark.png`, },
+            {
+                url: aboutImage,
+                alt: `About ${appName}`,
+                type: "image/png",
+            },
         ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: `About ${appName}`,
+        description: aboutDescription,
+        images: [aboutImage],
     },
     formatDetection: {
         email: false,

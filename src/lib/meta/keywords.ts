@@ -1,1 +1,16 @@
-export const keywords = ["leatsophat.me", "leat sophat", "sophat", "pphatdev", "pphat", "phat", "sophat", "leat", "sophat leat", "sophat dev"]
+export const keywords = [
+	"leatsophat.me",
+	"leat sophat",
+	"sophat",
+	"pphatdev",
+	"pphat",
+	"phat",
+	"leat",
+	"sophat leat",
+	"sophat dev",
+	"sophatleat",
+	"Sophat LEAT",
+	"Sophat Leat",
+	"LEAT Sophat",
+	"leatsophat",
+]

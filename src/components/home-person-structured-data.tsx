@@ -29,8 +29,13 @@ export default function HomePersonStructuredData() {
         "name": PERSON_NAME,
         "alternateName": PERSON_ALTERNATE_NAME,
         "jobTitle": PERSON_JOB_TITLE,
+        "description": `${PERSON_NAME} (${PERSON_ALTERNATE_NAME}) is the creator of pphat.me and a ${PERSON_JOB_TITLE} based in Phnom Penh, Cambodia.`,
         "url": NEXT_PUBLIC_APP_URL,
         "image": `${NEXT_PUBLIC_APP_URL}${PERSON_IMAGE}`,
+        "owns": {
+            "@type": "WebSite",
+            "@id": `${NEXT_PUBLIC_APP_URL}#website`
+        },
         "email": `mailto:${CONTACT_EMAIL}`,
         "telephone": CONTACT_PHONE,
         "address": {
