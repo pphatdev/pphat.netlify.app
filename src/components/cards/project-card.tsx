@@ -40,7 +40,7 @@ export const ProjectCard = React.memo(({ project }: { project: Project }) => {
                         href={`/projects/${projectSlug}`}
                         aria-label={'Project details'}
                         title={'Project details'}
-                        className="flex rounded-full p-2 hover:ring ring-foreground/20 hover:bg-background/10 dark:hover:bg-foreground/10 transition-all items-center justify-center">
+                        className="flex rounded-full p-2 bg-accent/10 hover:ring ring-foreground/20 hover:bg-background/10 dark:hover:bg-foreground/10 transition-all items-center justify-center">
                         <ExternalLinkIcon className="size-4" />
                     </Link>
                 </div>
