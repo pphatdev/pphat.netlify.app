@@ -97,7 +97,7 @@ export function MarkdownGallery({
         return React.isValidElement(child);
     });
 
-    const getImageData = (item: React.ReactNode) => {
+    const getImageData = React.useCallback((item: React.ReactNode) => {
         if (React.isValidElement(item)) {
             // Check if it's an img element or has an img child
             const findImageProps = (element: any): { src?: string; alt?: string } | null => {
@@ -121,7 +121,7 @@ export function MarkdownGallery({
             return findImageProps(item);
         }
         return null;
-    };
+    }, [resolveImageSrc]);
 
     const removeWidthParam = (url: string): string => {
         try {
@@ -144,7 +144,7 @@ export function MarkdownGallery({
             setRotation(0);
             setSelectedImage({ src: cleanSrc, alt: imageData.alt || 'Image' });
         }
-    }, []);
+    }, [getImageData]);
 
     const handleNext = React.useCallback(() => {
         const nextIndex = (currentIndex + 1) % items.length;
