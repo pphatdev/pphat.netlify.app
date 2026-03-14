@@ -26,6 +26,7 @@ const HomeFAQSection = dynamic(() => import("./sections/home-faq").then(mod => (
     loading: () => <div className="min-h-[100px]" />,
 });
 const GetInTouchSections = dynamic(() => import("./sections/home-getintouch"));
+const homeSearchImage = `${NEXT_PUBLIC_APP_URL}/assets/screenshots/home-dark.png`;
 
 export const metadata: Metadata = {
     title: appName,
@@ -61,17 +62,20 @@ export const metadata: Metadata = {
         },
     },
     openGraph: {
-        type: "profile",
+        type: "website",
         url: NEXT_PUBLIC_APP_URL,
         title: appName,
         description: appDescriptions,
         siteName: appName,
-        images: [{
-            url: NEXT_PUBLIC_APP_URL + "/assets/avatars/hero.webp",
-            width: 800,
-            height: 600,
-            alt: "Leat Sophat - Senior Front-end Developer and UI/UX Designer"
-        }],
+        images: [
+            {
+                url: homeSearchImage,
+                width: 1900,
+                height: 926,
+                alt: `${appName} - Senior Front-end Developer and UI/UX Designer`,
+                type: "image/png",
+            },
+        ],
         locale: 'en_US',
     },
     twitter: {
@@ -80,7 +84,7 @@ export const metadata: Metadata = {
         creator: '@pphatdev',
         title: appName,
         description: appDescriptions,
-        images: [NEXT_PUBLIC_APP_URL + "/assets/avatars/hero.webp"],
+        images: [homeSearchImage],
     },
     formatDetection: {
         email: true,

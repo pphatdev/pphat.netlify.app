@@ -2,6 +2,8 @@ import React from 'react';
 import { NEXT_PUBLIC_APP_URL, PERSON_ALTERNATE_NAME, PERSON_JOB_TITLE, PERSON_NAME } from '@lib/constants';
 
 export default function WebsiteStructuredData() {
+    const websiteImage = `${NEXT_PUBLIC_APP_URL}/assets/screenshots/home-dark.png`;
+
     const structuredData = {
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -9,6 +11,7 @@ export default function WebsiteStructuredData() {
         "name": `${PERSON_NAME} - ${PERSON_JOB_TITLE}`,
         "alternateName": "PPhat Dev",
         "url": NEXT_PUBLIC_APP_URL,
+        "image": websiteImage,
         "description": `Portfolio of ${PERSON_NAME} (${PERSON_ALTERNATE_NAME}), ${PERSON_JOB_TITLE} from Phnom Penh, Cambodia. Showcasing web development projects, skills, and professional experience.`,
         "inLanguage": "en-US",
         "publisher": {

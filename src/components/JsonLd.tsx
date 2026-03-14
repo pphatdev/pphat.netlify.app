@@ -19,6 +19,8 @@ import {
 import Script from "next/script";
 
 export default function JsonLd() {
+    const homeSearchImage = `${NEXT_PUBLIC_APP_URL}/assets/screenshots/home-dark.png`;
+
     return (
         <Script
             type="application/ld+json"
@@ -73,7 +75,12 @@ export default function JsonLd() {
                     },
                     "mainEntityOfPage": {
                         "@type": "WebPage",
-                        "@id": NEXT_PUBLIC_APP_URL
+                        "@id": NEXT_PUBLIC_APP_URL,
+                        "primaryImageOfPage": {
+                            "@type": "ImageObject",
+                            "url": homeSearchImage,
+                            "contentUrl": homeSearchImage
+                        }
                     },
                     "potentialAction": {
                         "@type": "SearchAction",
