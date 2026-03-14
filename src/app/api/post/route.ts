@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 import { NextRequest, NextResponse } from 'next/server';
-import { getAllProjects, getProjectBySlug } from '@lib/content';
+import { getAllPosts, getPostBySlug } from '@lib/content';
 
 // Force dynamic rendering to prevent caching issues on Netlify
 export const dynamic = 'force-dynamic';
@@ -30,7 +30,7 @@ function getMimeType(filePath: string): string {
     }
 }
 
-function getProjectFolderName(filePath: string): string {
+function getPostFolderName(filePath: string): string {
     return path.basename(path.dirname(filePath));
 }
 
@@ -42,11 +42,11 @@ export async function GET(request: NextRequest) {
             return NextResponse.json({ error: 'Missing required slug query parameter' }, { status: 400 });
         }
 
-        const project = getProjectBySlug(slug)
-            ?? getAllProjects().find((entry) => entry.id === slug || getProjectFolderName(entry.filePath) === slug);
+        const post = getPostBySlug(slug)
+            ?? getAllPosts().find((entry) => entry.id === slug || getPostFolderName(entry.filePath) === slug);
 
-        if (!project) {
-            return NextResponse.json({ error: 'Project not found' }, { status: 404 });
+        if (!post) {
+            return NextResponse.json({ error: 'Post not found' }, { status: 404 });
         }
 
         const assetName = request.nextUrl.searchParams.get('asset')
@@ -54,14 +54,14 @@ export async function GET(request: NextRequest) {
 
         if (assetName) {
             const safeAssetName = path.basename(assetName);
-            const projectDir = path.join(process.cwd(), 'content', path.dirname(project.filePath));
-            const assetPath = path.join(projectDir, safeAssetName);
+            const postDir = path.join(process.cwd(), 'content', path.dirname(post.filePath));
+            const assetPath = path.join(postDir, safeAssetName);
 
-            console.log('[API/Project] Asset request:', {
+            console.log('[API/Post] Asset request:', {
                 slug,
                 assetName,
                 safeAssetName,
-                projectDir,
+                postDir,
                 assetPath,
                 exists: fs.existsSync(assetPath),
             });
@@ -89,13 +89,13 @@ export async function GET(request: NextRequest) {
             });
         }
 
-        return NextResponse.json(project, {
+        return NextResponse.json(post, {
             headers: {
                 'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
             },
         });
     } catch (error) {
-        console.error('Error fetching project:', error);
-        return NextResponse.json({ error: 'Failed to fetch project' }, { status: 500 });
+        console.error('Error fetching post:', error);
+        return NextResponse.json({ error: 'Failed to fetch post' }, { status: 500 });
     }
 }
