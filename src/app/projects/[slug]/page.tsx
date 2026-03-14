@@ -16,6 +16,7 @@ import SoftwareApplicationStructuredData from '@components/data-structured/softw
 import { MarkdownRenderer } from '@components/ui/markdown-renderer';
 import { ScrollToTopButton } from '@components/ui/scroll-to-top-button';
 import { PostCoverImage } from '@components/ui/post-cover-image';
+import { DividerVerticalIcon } from '@radix-ui/react-icons';
 
 interface Params {
     params: Promise<{ slug: string }>;
@@ -144,52 +145,52 @@ export default async function ProjectDetail(props: Params) {
                     </div>
                 )}
 
-                <div className='flex justify-center items-center py-4 gap-2 flex-wrap'>
-                    {(project.source ?? []).map((source) => (
-                        <Button asChild key={`${source.type}-${source.url}`} className='mt-0 border'>
-                            <Link href={source.url} target='_blank' rel='noopener noreferrer'>
-                                {source.type === 'demo' ? (
-                                    <ExternalLink className='w-4 h-4' />
-                                ) : (
-                                    <Globe className='w-4 h-4' />
-                                )}
-                                {source.name || (source.type === 'demo' ? 'Live Demo' : 'Source Code')}
-                            </Link>
-                        </Button>
-                    ))}
-                </div>
+                <div className='flex items-center justify-between gap-2 max-sm:px-3 py-4 order-2'>
+                    <Button asChild className='mt-0 rounded-xl h-8'>
+                        <Link href='/projects'>
+                            <ArrowLeftIcon className='w-4 h-4' /> Back
+                        </Link>
+                    </Button>
 
-                <div className="flex items-center justify-between gap-2 max-xs:px-3 pb-4">
-                    <div className='flex justify-between items-center gap-2 flex-wrap'>
-                        <Button asChild className='mt-0 rounded-xl h-8'>
-                            <Link href='/projects'>
-                                <ArrowLeftIcon className='w-4 h-4' /> Back
-                            </Link>
-                        </Button>
-                    </div>
-
-                    <div className="flex items-center justify-end gap-2">
-                        {(project.languages?.length || 0) > 0 && (
-                            <div className='flex w-fit max-sm:justify-center rounded-full p-0.5 sm:p-1 ring-1 ring-foreground/10 gap-1 bg-background'>
-                                {(project.languages ?? []).map((language) => (
-                                    <Badge key={language} variant='outline' className="py-1"> {language} </Badge>
-                                ))}
-                            </div>
-                        )}
-
-                        {(project.tags?.length || 0) > 0 && (
-                            <div className='flex w-fit max-sm:justify-center rounded-xl p-0.5 sm:p-1 ring-1 ring-foreground/10 gap-1 bg-background'>
-                                {(project.tags ?? []).map((tag) => (
-                                    <Badge key={tag} variant='default' className='rounded-lg py-1'> {tag} </Badge>
-                                ))}
-                            </div>
-                        )}
+                    <div className='flex justify-end max-sm:pr-3 items-center py-4 gap-2 flex-wrap'>
+                        {(project.source ?? []).map((source) => (
+                            <Button asChild key={`${source.type}-${source.url}`} className='mt-0 border'>
+                                <Link href={source.url} target='_blank' rel='noopener noreferrer'>
+                                    {source.type === 'demo' ? (
+                                        <ExternalLink className='w-4 h-4' />
+                                    ) : (
+                                        <Globe className='w-4 h-4' />
+                                    )}
+                                    {source.name || (source.type === 'demo' ? 'Live Demo' : 'Source Code')}
+                                </Link>
+                            </Button>
+                        ))}
                     </div>
                 </div>
 
-                <div className="2xl:before:hidden py-2 max-xs:px-3 2xl:after:hidden relative before:absolute before:top-0 before:h-px before:w-[200vw] before:bg-gray-950/5 dark:before:bg-white/10 before:-left-[100vw] after:absolute after:bottom-0 after:h-px after:w-[200vw] after:bg-gray-950/5 dark:after:bg-white/10 after:-left-[100vw]">
+                <div className='flex flex-wrap items-center mb-4 justify-between'>
+                    {(project.languages?.length || 0) > 0 && (
+                        <div className='flex w-fit justify-center rounded-full p-0.5 sm:p-1 ring-1 ring-foreground/10 gap-1 bg-background'>
+                            {(project.languages ?? []).map((language) => (
+                                <Badge key={language} variant='outline' className="py-1"> {language} </Badge>
+                            ))}
+                        </div>
+                    )}
+
+                    {(project.tags?.length || 0) > 0 && (
+                        <div className='flex w-fit justify-center border p-0.5 sm:p-1 rounded-full gap-1 bg-background'>
+                            {(project.tags ?? []).map((tag) => (
+                                <Badge key={tag} variant='default' className='py-1 leading-tight font-open-sans'> @{tag} </Badge>
+                            ))}
+                        </div>
+                    )}
+                </div>
+
+
+                <div className="max-sm:p-3 py-2 border-y border-foreground/10">
+                    {/* <div className="2xl:before:hidden py-2 max-xs:px-3 2xl:after:hidden relative before:absolute before:top-0 before:h-px before:w-[200vw] before:bg-gray-950/5 dark:before:bg-white/10 before:-left-[100vw] after:absolute after:bottom-0 after:h-px after:w-[200vw] after:bg-gray-950/5 dark:after:bg-white/10 after:-left-[100vw]"> */}
                     {createdDate && (
-                        <div className='flex items-center justify-between gap-4'>
+                        <div className='flex items-center justify-start'>
                             <div className='flex items-center space-x-1 max-sm:text-xs text-sm text-muted-foreground'>
                                 <Calendar className='size-4' />
                                 <time dateTime={project.createdAt} className='whitespace-nowrap'>
@@ -201,6 +202,8 @@ export default async function ProjectDetail(props: Params) {
                                 </time>
                             </div>
 
+                            <DividerVerticalIcon orientation='vertical' className='mx-1 text-foreground/50 h-4' />
+
                             <div className='flex items-center space-x-1 max-sm:text-xs text-sm text-muted-foreground whitespace-nowrap'>
                                 <Clock className='w-4 h-4' />
                                 <span>{formatDistanceToNow(createdDate)} ago</span>
@@ -209,12 +212,14 @@ export default async function ProjectDetail(props: Params) {
                     )}
                 </div>
 
-                <div className='max-xs:px-3 flex flex-col pt-2 relative order-1 mb-4'>
+
+                <div className='max-sm:px-3 flex flex-col relative order-1 mb-4'>
                     <h1 className='text-4xl md:text-5xl font-bold leading-tight'> {project.title} </h1>
-                    <p className='text-base text-foreground/80 mt-3 leading-relaxed'>{project.description}</p>
+                    <p className='text-base text-foreground/80 mt-3 leading-relaxed font-sans'>{project.description}</p>
                 </div>
 
-                <div className="2xl:before:hidden py-2 max-xs:px-3 2xl:after:hidden relative before:absolute before:top-0 before:h-px before:w-[200vw] before:bg-gray-950/5 dark:before:bg-white/10 before:-left-[100vw] after:absolute after:bottom-0 after:h-px after:w-[200vw] after:bg-gray-950/5 dark:after:bg-white/10 after:-left-[100vw]">
+                <div className="p-2 border-y">
+                    {/* <div className="2xl:before:hidden py-2 max-xs:px-3 2xl:after:hidden relative before:absolute before:top-0 before:h-px before:w-[200vw] before:bg-gray-950/5 dark:before:bg-white/10 before:-left-[100vw] after:absolute after:bottom-0 after:h-px after:w-[200vw] after:bg-gray-950/5 dark:after:bg-white/10 after:-left-[100vw]"> */}
                     {(project.authors ?? []).map((author, index) => (
                         <Link
                             rel='noopener noreferrer'
