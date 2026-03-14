@@ -1,0 +1,197 @@
+---
+title: "GitHub Stats API"
+slug: "github-stats"
+description: "Fast GitHub Stats Graph - Generate beautiful, real-time GitHub stats cards, badges, and contribution graphs for your README files."
+image: "https://pphat.me/assets/projects/stats.pphat.top/cover.webp"
+tags: ["GitHub Stats", "SVG"]
+languages: ["TypeScript", "Express.js", "Node.js"]
+source:
+  - 
+    name: "source"
+    type: "source"
+    url: "https://github.com/pphatdev/github-stats"
+  - 
+    name: "demo"
+    type: "demo"
+    url: "https://stats.pphat.top"
+
+authors:
+  - 
+    name: "PPhat Dev"
+    profile: "https://github.com/pphatdev.png"
+    url: "https://github.com/pphatdev"
+
+published: true
+createdAt: "2026-03-15T10:00:00.000Z"
+---
+
+
+<img src="https://stats.pphat.top/graph?username=pphatdev&false&animate=pulse&size=small&show_title=false&show_total_contribution=false" alt="Contribution Graph" className=""/>
+
+<div class="blog-gallery" data-layout="snap" data-captions="true">
+  <img src="https://stats.pphat.top/stats?username=pphatdev&avatar_mode=radar&data_border_style=frame&data_border_frame=out&hide_title=false" alt="GitHub Stats Card" className=""/>
+  <img src="https://stats.pphat.top/languages?username=pphatdev" alt="Languages Card" className=""/>
+  <img src="https://stats.pphat.top/languages?username=pphatdev&type=pie" alt="Languages Pie Chart" className=""/>
+  <img src="https://stats.pphat.top/graph?username=pphatdev&false&animate=glow&show_title=true&show_total_contribution=true" alt="Contribution Graph" className=""/>
+</div>
+
+<br/>
+
+<table>
+    <tbody>
+        <tr>
+            <td><img src="https://stats.pphat.top/icons/typescript?color=green" alt="icon of typescript"/></td>
+            <td><img src="https://stats.pphat.top/icons/javascript?color=green" alt="icon of javascript"/></td>
+            <td><img src="https://stats.pphat.top/icons/nodedotjs?color=green" alt="icon of nodedotjs"/></td>
+            <td><img src="https://stats.pphat.top/icons/nextjs?color=green" alt="icon of nextjs"/></td>
+            <td><img src="https://stats.pphat.top/icons/shadcnui?color=green" alt="icon of shadcnui"/></td>
+            <td><img src="https://stats.pphat.top/icons/nuxt?color=green" alt="icon of nuxt"/></td>
+            <td><img src="https://stats.pphat.top/icons/postgresql?color=green" alt="icon of postgresql"/></td>
+            <td><img src="https://stats.pphat.top/icons/drizzle?color=green" alt="icon of drizzle"/></td>
+            <td><img src="https://stats.pphat.top/icons/tailwindcss?color=green" alt="icon of tailwindcss"/></td>
+            <td><img src="https://stats.pphat.top/icons/laravel?color=green" alt="icon of laravel"/></td>
+            <td><img src="https://stats.pphat.top/icons/csharp?color=green&foreground=white" alt="icon of csharp"/></td>
+        </tr>
+    </tbody>
+</table>
+
+<br/>
+
+# ✨ **About Project**
+
+GitHub Stats is a high-performance API service that generates beautiful, customizable GitHub statistics cards, badges, and contribution graphs.
+Built for developers who want to showcase their GitHub activity in README files, portfolios, and documentation.
+The service features real-time data fetching from GitHub's REST and GraphQL APIs, multi-tier caching with Redis support, and 60+ built-in themes.
+With TypeScript, Express.js, and SQLite/Drizzle ORM for visitor tracking, it provides a robust and scalable solution for displaying GitHub statistics.
+
+# 🛠️ **Project Tech Stack**
+
+- **Core:**
+  - Node.js `v18+`
+  - TypeScript `v5`
+  - Express.js
+
+- **Data & Caching:**
+  - GitHub REST API
+  - GitHub GraphQL API
+  - Redis (optional)
+  - SQLite
+  - Drizzle ORM
+
+- **Rendering & Export:**
+  - SVG Generation
+  - WebP, PNG, GIF Export
+  - Server-side Rendering
+
+- **Development & Deployment:**
+  - PM2 Cluster Mode
+  - Express Rate Limiting
+  - CORS Support
+
+# 🌈 **Project Features**
+
+- **Stats Cards**
+  - User statistics with customizable themes
+  - Avatar modes (none, avatar, radar)
+  - Custom titles and border styles
+  - 60+ built-in themes
+
+- **Language Cards**
+  - Top programming languages
+  - Pie chart visualization
+  - Detailed language statistics
+
+- **Contribution Graphs**
+  - Activity heatmaps by year or last 365 days
+  - Multiple animation modes (glow, wave, pulse)
+  - Size presets (small, medium, large)
+  - Multiple export formats (SVG, GIF, WebP, PNG)
+
+- **Badges System**
+  - User badges (visitors, followers, repos, stars, etc.)
+  - Project badges (stars, forks, issues, PRs, etc.)
+  - Customizable themes and colors
+  - Frame and icon toggle options
+
+- **Icons Library**
+  - Reusable SVG icons
+  - Color customization
+  - Glow effects
+  - Interactive demo gallery
+
+- **Performance**
+  - Multi-tier caching (Memory → Redis → Source)
+  - Intelligent batching
+  - 2-hour default TTL
+  - Cluster mode for multi-core scaling
+
+- **Monitoring**
+  - Health check endpoints
+  - Cache statistics
+  - Performance metrics
+  - Visitor tracking with IP hashing
+
+# 📊 **API Endpoints**
+
+### Core Routes
+- `GET /stats` - User statistics card
+- `GET /languages` - Programming languages card/pie
+- `GET /graph` - Contribution activity graph
+
+### Badge Routes
+- `GET /badge/:type` - User badges (visitors, repos, followers, stars, etc.)
+- `GET /project/:type` - Project badges (stars, forks, issues, PRs, etc.)
+
+### Utility Routes
+- `GET /icons` - List all available icons
+- `GET /icons/:name` - Get specific icon SVG
+- `GET /icons/demo` - Interactive icons gallery
+
+### Monitoring
+- `GET /health` - Health check
+- `GET /cache/health` - Cache health status
+- `GET /cache/stats` - Cache statistics
+
+# 🎨 **Themes**
+
+60+ built-in themes including:
+- **Dark:** default, dark, radical, tokyonight, dracula, monokai, gruvbox, onedark
+- **Light:** solarized-light, graywhite
+- **Graph Themes:** aurora, matrix, inferno, ocean, neon, solar, galaxy, github-dark
+
+# 💻 **Preview**
+
+Here are example outputs from the API:
+
+![GitHub Stats](https://stats.pphat.top/stats?username=pphatdev&avatar_mode=radar&data_border_style=frame&data_border_frame=out)
+
+![Languages](https://stats.pphat.top/languages?username=pphatdev)
+
+![Contribution Graph](https://stats.pphat.top/graph?username=pphatdev&theme=aurora&animate=wave)
+
+# 🚀 **Usage**
+
+### In Markdown
+```markdown
+![GitHub Stats](https://stats.pphat.top/stats?username=YOUR_USERNAME)
+![Top Languages](https://stats.pphat.top/languages?username=YOUR_USERNAME)
+![Activity Graph](https://stats.pphat.top/graph?username=YOUR_USERNAME)
+```
+
+### User Badges
+```markdown
+![Visitors](https://stats.pphat.top/badge/visitors?username=YOUR_USERNAME)
+![Total Stars](https://stats.pphat.top/badge/total-stars?username=YOUR_USERNAME)
+![Followers](https://stats.pphat.top/badge/followers?username=YOUR_USERNAME)
+```
+
+### Project Badges
+```markdown
+![Repo Stars](https://stats.pphat.top/project/stars?repo=OWNER/REPO)
+![Repo Forks](https://stats.pphat.top/project/forks?repo=OWNER/REPO)
+![Contributors](https://stats.pphat.top/project/contributors?repo=OWNER/REPO)
+```
+
+# 📝 **License**
+
+MIT License - See [LICENSE](https://github.com/pphatdev/github-stats/blob/latest/LICENSE)
