@@ -12,6 +12,7 @@ import ProjectsStructuredData from "@components/projects-structured-data";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Button } from "src/components/ui";
 import { cn } from "@lib/utils";
+import Footer from "src/components/layouts/footer";
 
 const ProjectsContent = () => {
     const router = useRouter();
@@ -190,6 +191,8 @@ const ProjectsContent = () => {
                     </InfiniteScroll>
                 </article>
             </BlurFade>
+
+            <Footer />
         </main>
     );
 };

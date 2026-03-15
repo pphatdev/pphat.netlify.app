@@ -7,7 +7,6 @@ import { FlipWords } from "@components/flip-words";
 import { GridPattern } from "@components/ui/grid-pattern";
 import { appDescriptions, appName, appPositions } from "@lib/constants";
 import { NavMenu } from "@components/dock-menu";
-import { ThemeToggle } from "@components/ui/theme-switch";
 import { MagneticArea } from "@components/ui/magnetic-button";
 import { cn } from "@lib/utils";
 import { Logos3 } from "@components/ui/logos3";

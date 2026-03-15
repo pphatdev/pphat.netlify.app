@@ -17,6 +17,7 @@ import { MarkdownRenderer } from '@components/ui/markdown-renderer';
 import { ScrollToTopButton } from '@components/ui/scroll-to-top-button';
 import { PostCoverImage } from '@components/ui/post-cover-image';
 import { DividerVerticalIcon } from '@radix-ui/react-icons';
+import Footer from 'src/components/layouts/footer';
 
 interface Params {
     params: Promise<{ slug: string }>;
@@ -270,6 +271,8 @@ export default async function ProjectDetail(props: Params) {
                 </div>
 
             </article>
+
+            <Footer />
 
             <ScrollToTopButton />
         </>

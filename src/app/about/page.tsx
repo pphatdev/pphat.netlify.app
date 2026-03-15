@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import { appName, NEXT_PUBLIC_APP_URL } from "@lib/constants";
 import AboutStructuredData from "@components/about-structured-data";
 import BreadcrumbStructuredData from "@components/breadcrumb-structured-data";
+import Footer from "src/components/layouts/footer";
 
 const appPositions = ["I'm a Senior Front-end Developer", "and a Freelance UI/UX Designer."];
 const description = `My name is <span className="text-primary font-semibold">Leat Sophat</span>, also known as <span className="text-primary font-semibold">PPhat</span>.
@@ -73,6 +74,8 @@ const AboutPage = () => {
                     <AboutTimeline />
                 </BlurFade>
             </section>
+
+            <Footer />
 
             {/* <SectionNavigation sections={[ 'about-hero', 'experience', ]}/> */}
         </main>

@@ -17,6 +17,7 @@ import BreadcrumbStructuredData from '@components/breadcrumb-structured-data';
 import { MarkdownRenderer } from '@components/ui/markdown-renderer';
 import { ScrollToTopButton } from '@components/ui/scroll-to-top-button';
 import { PostCoverImage } from '@components/ui/post-cover-image';
+import Footer from 'src/components/layouts/footer';
 
 interface Params {
     params: Promise<{ slug: string; }>;
@@ -186,7 +187,7 @@ export default async function PostDetail(props: Params) {
                             <div className="flex max-xs:flex-col max-sm:items-center max-sm:justify-center w-full items-center space-x-4">
                                 <div className='flex gap-5 flex-wrap border-t sm:py-3 border-background'>
                                     {post.authors?.map((author, index) => (
-                                        <Link rel="noopener noreferrer" target='_blank' href={ author.url === "" ? String(author.profile).replace('.png', '') : author.url } key={index} className="flex items-center space-x-2">
+                                        <Link rel="noopener noreferrer" target='_blank' href={author.url === "" ? String(author.profile).replace('.png', '') : author.url} key={index} className="flex items-center space-x-2">
                                             <Avatar className="w-8 h-8">
                                                 <AvatarImage src={author.profile} alt={author.name} />
                                                 <AvatarFallback>
@@ -256,6 +257,7 @@ export default async function PostDetail(props: Params) {
                     </div>
                 </div>
             </article>
+            <Footer />
             <ScrollToTopButton />
         </>
     );

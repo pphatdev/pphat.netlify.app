@@ -12,6 +12,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { Badge } from "@components/ui/badge";
 import { cn } from "@lib/utils";
 import { Button } from "src/components/ui";
+import Footer from "src/components/layouts/footer";
 
 const PostsContent = () => {
     const router = useRouter();
@@ -210,6 +211,7 @@ const Posts = () => {
             </main>
         }>
             <PostsContent />
+            <Footer />
         </Suspense>
     );
 };
