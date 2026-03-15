@@ -11,6 +11,7 @@ import { NavigationBar } from "@components/navbar/navbar";
 import { RainbowGlow } from "@components/ui/rainbow-glow";
 import { SectionNavigation } from "@components/section-navigation";
 import { getPublishedPosts } from "@lib/content";
+import Footer from "@components/layouts/footer";
 
 // Lazy-load below-the-fold sections to reduce initial bundle size
 const HomeSkills = dynamic(() => import("./sections/home-skills").then(mod => ({ default: mod.HomeSkills })), {
@@ -153,6 +154,8 @@ export default function Home() {
             <section id="contact" className="flex flex-col snap-end">
                 <GetInTouchSections />
             </section>
+
+            <Footer />
 
             <RainbowGlow className="opacity-5 top-0 h-96"/>
 
