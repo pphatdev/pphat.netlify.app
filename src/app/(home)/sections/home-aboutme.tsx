@@ -33,12 +33,12 @@ export const HomeAboutMe = () => {
                         </p>
                     </div>
                     <div className="flex flex-row gap-4 px-5">
-                        <Link href={`/gallery`} className="rounded-full cursor-pointer bg-primary px-4 py-1.5 bg-gradient-to-tr from-primary/10 to-primary/90 text-primary-foreground"> Gallery </Link>
+                        <Link href={`/gallery`} className="rounded-full cursor-pointer bg-primary px-4 py-1.5 bg-linear-to-tr from-primary/10 to-primary/90 text-primary-foreground"> Gallery </Link>
                     </div>
                 </div>
                 <div className="grid grid-cols-2 max-md:gap-5 max-lg:gap-2 gap-8 max-md:p-5">
                     <div>
-                        <div className={cn("relative flex aspect-square w-full rounded-xl px-1 items-center justify-center overflow-hidden border text-foreground/10 bg-[size:8px_8px] bg-top-left", bgGradientLine45deg)}>
+                        <div className={cn("relative flex aspect-square w-full rounded-xl px-1 items-center justify-center overflow-hidden border text-foreground/10 bg-size-[8px_8px] bg-top-left", bgGradientLine45deg)}>
                             <Image
                                 src={PERSON_IMAGE}
                                 alt={`Profile photo of ${PERSON_NAME} (${PERSON_RELEGIEN_NAME}), known online as ${PERSON_ALTERNATE_NAME}`}
@@ -57,7 +57,7 @@ export const HomeAboutMe = () => {
                         </div>
                     </div>
                     <div className='row-span-2'>
-                        <div className={cn("relative flex w-full h-full rounded-xl px-2 items-center justify-center overflow-hidden border text-foreground/10 bg-[size:8px_8px] bg-top-left", bgGradientLine45deg)}>
+                        <div className={cn("relative flex w-full h-full rounded-xl px-2 items-center justify-center overflow-hidden border text-foreground/10 bg-size-[8px_8px] bg-top-left", bgGradientLine45deg)}>
                             <div
                                 className="h-full w-full bg-center bg-no-repeat mask-size-[130%_100%] mask-center mask-no-repeat"
                                 style={{
@@ -69,7 +69,7 @@ export const HomeAboutMe = () => {
                         </div>
                     </div>
                     <div>
-                        <div className={cn("relative flex aspect-square w-full rounded-xl items-center justify-center overflow-hidden border text-foreground/10 bg-[size:8px_8px] bg-top-left", bgGradientLine45deg)}>
+                        <div className={cn("relative flex aspect-square w-full rounded-xl items-center justify-center overflow-hidden border text-foreground/10 bg-size-[8px_8px] bg-top-left", bgGradientLine45deg)}>
                             <div
                                 className="h-full w-full bg-center bg-no-repeat mask-size-[105%_100%] mask-center mask-no-repeat"
                                 style={{

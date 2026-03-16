@@ -220,7 +220,7 @@ export default async function ProjectDetail(props: Params) {
 
                 <div className='max-sm:px-3 flex flex-col relative order-1 mb-4'>
                     <h1 className='text-4xl md:text-5xl font-bold leading-tight'>
-                        <span className="text-left bg-background  bg-clip-text bg-no-repeat text-transparent bg-linear-to-r from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]"> {project.title} </span>
+                        <span className="text-left bg-background  bg-clip-text bg-no-repeat text-transparent bg-linear-to-r  from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]"> {project.title} </span>
                     </h1>
                     <p className='text-base text-foreground/80 mt-3 leading-relaxed font-sans'>{project.description}</p>
                 </div>

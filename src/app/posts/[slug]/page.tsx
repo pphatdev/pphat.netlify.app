@@ -81,7 +81,7 @@ export default async function PostDetail(props: Params) {
                     height={30}
                     x={-1}
                     y={-1}
-                    className={"[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] "}
+                    className={"mask-[linear-gradient(to_bottom_right,white,transparent,transparent)] "}
                 />
                 <NavigationBar className='sticky' />
                 <div className="container flex min-h-svh flex-col justify-center items-center mx-auto py-16 text-center">
@@ -130,14 +130,14 @@ export default async function PostDetail(props: Params) {
                     height={30}
                     x={-1}
                     y={-1}
-                    className={"[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] "}
+                    className={"mask-[linear-gradient(to_bottom_right,white,transparent,transparent)] "}
                 />
             </div>
             <article className="max-w-5xl sm:px-4 mx-auto max-sm:pt-0 sm:mt-16 py-8">
                 {/* Header */}
                 <div className="mb-6">
                     {post.thumbnail && (
-                        <div className="relative w-full h-full max-xs:max-h-96 md:h-[29rem] mb-6 max-sm:rounded-none max-xs:rounded-b-4xl rounded-2xl overflow-hidden">
+                        <div className="relative w-full h-full max-xs:max-h-96 md:h-116 mb-6 max-sm:rounded-none max-xs:rounded-b-4xl rounded-2xl overflow-hidden">
                             <PostCoverImage
                                 src={post.thumbnail}
                                 alt={post.title}

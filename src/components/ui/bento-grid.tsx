@@ -91,7 +91,7 @@ function BentoGrid({ items = itemsSample }: BentoGridProps) {
 
                     <div className="relative flex flex-col space-y-3">
                         <div className="flex items-center justify-between">
-                            <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-black/5 dark:bg-white/10 group-hover:bg-gradient-to-br transition-all duration-300">
+                            <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-black/5 dark:bg-white/10 group-hover:bg-linear-to-br transition-all duration-300">
                                 {item.icon}
                             </div>
                             <span
@@ -132,7 +132,7 @@ function BentoGrid({ items = itemsSample }: BentoGridProps) {
                     </div>
 
                     <div
-                        className={`absolute inset-0 -z-10 rounded-xl p-px bg-gradient-to-br from-transparent via-gray-100/50 to-transparent dark:via-white/10 ${item.hasPersistentHover
+                        className={`absolute inset-0 -z-10 rounded-xl p-px bg-linear-to-br from-transparent via-gray-100/50 to-transparent dark:via-white/10 ${item.hasPersistentHover
                             ? "opacity-100"
                             : "opacity-0 group-hover:opacity-100"
                             } transition-opacity duration-300`}

@@ -31,7 +31,7 @@ const FaqSection = React.forwardRef<HTMLElement, FaqSectionProps>(
                 id="faq"
                 ref={ref}
                 className={cn(
-                    "w-full bg-gradient-to-b flex mt-20 snap-center items-center justify-center from-transparent via-muted/50 to-transparent min-h-[45rem]",
+                    "w-full bg-linear-to-b flex mt-20 snap-center items-center justify-center from-transparent via-muted/50 to-transparent min-h-180",
                     className
                 )}
                 {...props}
@@ -90,7 +90,7 @@ const FaqItem = React.forwardRef<
                 "transition-all duration-200 ease-in-out",
                 "border border-border/50",
                 isOpen
-                    ? "bg-gradient-to-br from-background via-muted/50 to-background"
+                    ? "bg-linear-to-br from-background via-muted/50 to-background"
                     : "hover:bg-muted/50"
             )}
         >
@@ -115,7 +115,7 @@ const FaqItem = React.forwardRef<
                     }}
                     transition={{ duration: 0.2 }}
                     className={cn(
-                        "p-0.5 rounded-full flex-shrink-0",
+                        "p-0.5 rounded-full shrink-0",
                         "transition-colors duration-200",
                         isOpen ? "text-primary" : "text-muted-foreground"
                     )}
