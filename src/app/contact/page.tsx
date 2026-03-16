@@ -142,7 +142,7 @@ export default function ContactPage() {
                         x={-1}
                         y={-1}
                         strokeDasharray={"4 2"}
-                        className={"[mask-image:radial-gradient(300px_circle_at_center,white,transparent)] absolute w-full "}
+                        className={"mask-[radial-gradient(300px_circle_at_center,white,transparent)] absolute w-full "}
                     />
                 </div>
                 <div className="absolute overflow-hidden inset-0 pointer-events-none" aria-hidden="true">

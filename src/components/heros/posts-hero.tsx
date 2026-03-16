@@ -33,7 +33,7 @@ export const PostsHero = React.memo(({ searchQuery, onSearchChange, onClearSearc
                     x={-1}
                     y={-1}
                     strokeDasharray={"4 2"}
-                    className={"[mask-image:radial-gradient(300px_circle_at_center,white,transparent)] absolute w-full "}
+                    className={"mask-[radial-gradient(300px_circle_at_center,white,transparent)] absolute w-full "}
                 />
             </div>
             <div className="w-full px-4 pt-4 sm:px-5 flex flex-col max-w-5xl mx-auto ">

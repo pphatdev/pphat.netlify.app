@@ -71,7 +71,7 @@ export default function HeroSection({ latestPostSlug, latestPostTitle }: HeroSec
                     x={-1}
                     y={-1}
                     strokeDasharray={"4 2"}
-                    className={"[mask-image:radial-gradient(300px_circle_at_center,white,transparent)] absolute w-full "}
+                    className={"mask-[radial-gradient(300px_circle_at_center,white,transparent)] absolute w-full "}
                 />
             </div>
 
