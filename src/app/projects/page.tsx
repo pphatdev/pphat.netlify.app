@@ -191,7 +191,6 @@ const ProjectsContent = () => {
                     </InfiniteScroll>
                 </article>
             </BlurFade>
-
             <Footer />
         </main>
     );
@@ -203,7 +202,7 @@ const Projects = () => {
             <main className="w-full flex flex-col gap-7 pb-5">
                 <ProjectsStructuredData />
                 <NavigationBar />
-                <div className="flex justify-center items-center min-h-[400px]">
+                <div className="flex justify-center items-center min-h-100">
                     <Spinner variant={'bars'} />
                 </div>
             </main>
