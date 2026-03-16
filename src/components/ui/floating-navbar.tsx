@@ -78,7 +78,7 @@ export const FloatingNav = ({
           className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full hover:bg-neutral-100 dark:hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
         >
           <span>Login</span>
-          <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent h-px" />
+          <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-linear-to-r  from-transparent via-blue-500 to-transparent h-px" />
         </button> */}
       </motion.div>
     </AnimatePresence>

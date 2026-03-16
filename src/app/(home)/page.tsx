@@ -15,16 +15,16 @@ import Footer from "@components/layouts/footer";
 
 // Lazy-load below-the-fold sections to reduce initial bundle size
 const HomeSkills = dynamic(() => import("./sections/home-skills").then(mod => ({ default: mod.HomeSkills })), {
-    loading: () => <div className="min-h-[200px]" />,
+    loading: () => <div className="min-h-50" />,
 });
 const HomeFeatureSection = dynamic(() => import("./sections/home-feature").then(mod => ({ default: mod.HomeFeatureSection })), {
-    loading: () => <div className="min-h-[200px]" />,
+    loading: () => <div className="min-h-50" />,
 });
 const HomeAboutMe = dynamic(() => import("./sections/home-aboutme").then(mod => ({ default: mod.HomeAboutMe })), {
-    loading: () => <div className="min-h-[200px]" />,
+    loading: () => <div className="min-h-50" />,
 });
 const HomeFAQSection = dynamic(() => import("./sections/home-faq").then(mod => ({ default: mod.HomeFAQSection })), {
-    loading: () => <div className="min-h-[100px]" />,
+    loading: () => <div className="min-h-25" />,
 });
 const GetInTouchSections = dynamic(() => import("./sections/home-getintouch"));
 const homeSearchImage = `${NEXT_PUBLIC_APP_URL}/assets/screenshots/home-dark.png`;
@@ -160,7 +160,7 @@ export default function Home() {
             <RainbowGlow className="opacity-5 top-0 h-96"/>
 
             <SectionNavigation />
-            <div className="h-20 pointer-events-none fixed bottom-0 inset-x-0 bg-gradient-to-b from-transparent to-background z-50" />
+            <div className="h-20 pointer-events-none fixed bottom-0 inset-x-0 bg-linear-to-b from-transparent to-background z-50" />
         </div>
     );
 }

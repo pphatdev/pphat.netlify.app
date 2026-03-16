@@ -134,7 +134,7 @@ export default function ContactPage() {
         <>
             <NavigationBar/>
             <ContactHero/>
-            <main className="relative pt-24 bg-gradient-to-b from-background via-muted/30 to-background">
+            <main className="relative pt-24 bg-linear-to-b from-background via-muted/30 to-background">
                 <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
                     <GridPattern
                         width={30}
