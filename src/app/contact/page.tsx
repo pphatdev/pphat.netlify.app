@@ -11,6 +11,7 @@ import { Textarea, LoadingSpinner } from "@components/ui";
 import { useState, FormEvent, useCallback } from "react";
 import { Send, AlertCircle } from "lucide-react";
 import { cn } from "@lib/utils";
+import Footer from '../../components/layouts/footer';
 
 const BorderBeam = dynamic(() => import("@components/ui/border-beam").then(mod => ({ default: mod.BorderBeam })));
 const GridPattern = dynamic(() => import("@components/ui/grid-pattern").then(mod => ({ default: mod.GridPattern })));
@@ -132,8 +133,8 @@ export default function ContactPage() {
 
     return (
         <>
-            <NavigationBar/>
-            <ContactHero/>
+            <NavigationBar />
+            <ContactHero />
             <main className="relative pt-24 bg-linear-to-b from-background via-muted/30 to-background">
                 <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
                     <GridPattern
@@ -145,10 +146,10 @@ export default function ContactPage() {
                         className={"mask-[radial-gradient(300px_circle_at_center,white,transparent)] absolute w-full "}
                     />
                 </div>
-                <div className="absolute overflow-hidden inset-0 pointer-events-none" aria-hidden="true">
+                {/* <div className="absolute overflow-hidden inset-0 pointer-events-none" aria-hidden="true">
                     <Ripple mainCircleSize={300} numCircles={10} className="opacity-30"/>
-                </div>
-                <BlurFade delay={0.2} className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                </div> */}
+                <BlurFade delay={0.2} className="max-w-3xl mx-auto px-4 sm:px-6 mb-20 lg:px-8">
                     <div>
                         {/* Contact Form */}
                         <div className="translate-y-2">
@@ -177,26 +178,27 @@ export default function ContactPage() {
                                                 </div>
                                             )}
 
-                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">                                                    <div className="space-y-2">
-                                                <Label htmlFor="name">Your Name</Label>
-                                                <Input
-                                                    id="name"
-                                                    name="name"
-                                                    placeholder="John Doe"
-                                                    required
-                                                    value={formData.name}
-                                                    onChange={handleChange}
-                                                    className={cn(formErrors.name ? "border-destructive ring-primary" : "", "rounded-xl bg-transparent")}
-                                                    aria-invalid={Boolean(formErrors.name)}
-                                                />
-                                                {formErrors.name && (
-                                                    <p className="text-sm text-destructive flex items-center gap-1 mt-1">
-                                                        <AlertCircle className="h-3 w-3" />
-                                                        {formErrors.name}
-                                                    </p>
-                                                )}
-                                            </div>
-                                                <div className="space-y-2">
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                                <div className="gap-3 flex flex-col">
+                                                    <Label htmlFor="name">Your Name</Label>
+                                                    <Input
+                                                        id="name"
+                                                        name="name"
+                                                        placeholder="John Doe"
+                                                        required
+                                                        value={formData.name}
+                                                        onChange={handleChange}
+                                                        className={cn(formErrors.name ? "border-destructive ring-primary" : "", "rounded-xl bg-transparent")}
+                                                        aria-invalid={Boolean(formErrors.name)}
+                                                    />
+                                                    {formErrors.name && (
+                                                        <p className="text-sm text-destructive flex items-center gap-1 mt-1">
+                                                            <AlertCircle className="h-3 w-3" />
+                                                            {formErrors.name}
+                                                        </p>
+                                                    )}
+                                                </div>
+                                                <div className="gap-3 flex flex-col">
                                                     <Label htmlFor="email">Your Email</Label>
                                                     <Input
                                                         id="email"
@@ -216,9 +218,10 @@ export default function ContactPage() {
                                                         </p>
                                                     )}
                                                 </div>
+
                                             </div>
 
-                                            <div className="space-y-2">
+                                            <div className="gap-3 flex flex-col">
                                                 <Label htmlFor="subject">Subject</Label>
                                                 <Input
                                                     id="subject"
@@ -238,7 +241,7 @@ export default function ContactPage() {
                                                 )}
                                             </div>
 
-                                            <div className="space-y-2">
+                                            <div className="gap-3 flex flex-col">
                                                 <Label htmlFor="message">Your Message</Label>
                                                 <Textarea
                                                     id="message"
@@ -248,7 +251,7 @@ export default function ContactPage() {
                                                     required
                                                     value={formData.message}
                                                     onChange={handleChange}
-                                                    className={cn(formErrors.message ? "border-destructive ring-primary" : "", "rounded-xl bg-transparent")}
+                                                    className={cn("resize-none", formErrors.message ? "border-destructive ring-primary" : "", "rounded-xl bg-transparent")}
                                                     aria-invalid={Boolean(formErrors.message)}
                                                 />
                                                 {formErrors.message && (
@@ -261,7 +264,7 @@ export default function ContactPage() {
                                             <Button
                                                 type="submit"
                                                 variant="default"
-                                                className="w-full sm:w-auto rounded-full"
+                                                className="w-full mx-auto border sm:w-auto rounded-full"
                                                 disabled={isSubmitting}
                                             >
                                                 {isSubmitting ? (
@@ -294,6 +297,8 @@ export default function ContactPage() {
                         </div>
                     </div>
                 </BlurFade>
+
+                <Footer />
             </main>
         </>
     );
