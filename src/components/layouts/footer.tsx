@@ -54,10 +54,10 @@ export default function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="w-full border-t px-3 border-border/40 bg-linear-to-b from-background via-background/95 to-background backdrop-blur supports-backdrop-filter:bg-background/60">
+        <footer className="w-full border-t sm:px-3 border-border/40 bg-linear-to-b from-background via-background/95 to-background backdrop-blur supports-backdrop-filter:bg-background/60">
             <div className="max-w-5xl mx-auto max-sm:px-5 py-12 md:py-16">
                 {/* Main Footer Content */}
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 md:gap-12 mb-12 sm:px-5">
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 md:gap-12 mb-12 md:px-5">
                     {/* Brand Section */}
                     <div className="col-span-2 md:col-span-4 lg:col-span-1 space-y-4">
                         <Link href="/" className="inline-block group">
@@ -68,11 +68,11 @@ export default function Footer() {
 
                     {/* Product Links */}
                     <div className="space-y-4">
-                        <h3 className="font-semibold text-base text-primary pl-2">Product</h3>
-                        <ul className="gap-2">
+                        <h3 className="font-semibold text-base text-primary sm:pl-2">Product</h3>
+                        <ul className="max-sm:gap-2 flex flex-col">
                             {footerLinks.product.map((link) => (
                                 <li key={link.href}>
-                                    <Button asChild className="mt-0 text-foreground/70 h-7 text-xs hover:text-primary -translate-x-2.5">
+                                    <Button asChild className="mt-0 text-foreground/70 h-7 text-xs hover:text-primary xs:-translate-x-2.5">
                                         <Link href={link.href}>
                                             <ArrowRightIcon className='w-4 h-4' /> {link.label}
                                         </Link>
@@ -84,11 +84,11 @@ export default function Footer() {
 
                     {/* Company Links */}
                     <div className="space-y-4">
-                        <h3 className="font-semibold text-base text-primary pl-2">Company</h3>
-                        <ul className="gap-2">
+                        <h3 className="font-semibold text-base text-primary sm:pl-2">Company</h3>
+                        <ul className="max-sm:gap-2 flex flex-col">
                             {footerLinks.company.map((link) => (
                                 <li key={link.href}>
-                                    <Button asChild className="mt-0 text-foreground/70 h-7 text-xs hover:text-primary -translate-x-2.5">
+                                    <Button asChild className="mt-0 text-foreground/70 h-7 text-xs hover:text-primary xs:-translate-x-2.5">
                                         <Link href={link.href}>
                                             <ArrowRightIcon className='w-4 h-4' /> {link.label}
                                         </Link>
@@ -100,11 +100,11 @@ export default function Footer() {
 
                     {/* Resources Links */}
                     <div className="space-y-4">
-                        <h3 className="font-semibold text-base text-primary pl-2">Resources</h3>
-                        <ul className="gap-2">
+                        <h3 className="font-semibold text-base text-primary sm:pl-2">Resources</h3>
+                        <ul className="max-sm:gap-2 flex flex-col">
                             {footerLinks.resources.map((link) => (
                                 <li key={link.href}>
-                                    <Button asChild className="mt-0 text-foreground/70 h-7 text-xs hover:text-primary -translate-x-2.5">
+                                    <Button asChild className="mt-0 text-foreground/70 h-7 text-xs hover:text-primary xs:-translate-x-2.5">
                                         <Link href={link.href}>
                                             <ArrowRightIcon className='w-4 h-4' /> {link.label}
                                         </Link>
@@ -116,14 +116,14 @@ export default function Footer() {
 
                     {/* Social Links */}
                     <div className="space-y-4">
-                        <h3 className="font-semibold text-base pl-2 text-primary">Social</h3>
-                        <ul className="gap-2">
+                        <h3 className="font-semibold text-base sm:pl-2 text-primary">Social</h3>
+                        <ul className="max-sm:gap-2 flex flex-col">
                             {socialLinks.map((link) => {
                                 const Icon = link.icon;
 
                                 return (
                                     <li key={link.href}>
-                                        <Button asChild className="mt-0 text-foreground/70 h-7 text-xs hover:text-primary -translate-x-2.5">
+                                        <Button asChild className="mt-0 text-foreground/70 h-7 text-xs hover:text-primary xs:-translate-x-2.5">
                                             <Link href={link.href}>
                                                 <ArrowRightIcon className='w-4 h-4' /> {link.label}
                                             </Link>

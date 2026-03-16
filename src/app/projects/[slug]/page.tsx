@@ -10,7 +10,7 @@ import { Badge } from '@components/ui/badge';
 import { Button } from '@components/ui/button';
 import "../../../styles/code-block-node.css"
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
-import { ArrowLeftIcon, Calendar, Clock, ExternalLink, Globe, User } from 'lucide-react';
+import { ArrowLeftIcon, ArrowRightIcon, Calendar, Clock, ExternalLink, Globe, User } from 'lucide-react';
 import BreadcrumbStructuredData from '@components/breadcrumb-structured-data';
 import SoftwareApplicationStructuredData from '@components/data-structured/software-application';
 import { MarkdownRenderer } from '@components/ui/markdown-renderer';
@@ -73,6 +73,7 @@ export async function generateStaticParams() {
 export default async function ProjectDetail(props: Params) {
     const params = await props.params;
     const project = getProjectBySlug(params.slug);
+    const projects = getPublishedProjects();
 
     if (!project) {
         return (
@@ -82,7 +83,7 @@ export default async function ProjectDetail(props: Params) {
                     height={30}
                     x={-1}
                     y={-1}
-                    className={'[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] '}
+                    className={'mask-[linear-gradient(to_bottom_right,white,transparent,transparent)] '}
                 />
 
                 <NavigationBar className='sticky' />
@@ -106,6 +107,9 @@ export default async function ProjectDetail(props: Params) {
     const createdAtValid = isValidDateValue(project.createdAt);
     const createdDate = createdAtValid ? new Date(project.createdAt) : null;
     const screenshot = project.image ? [project.image] : [];
+    const currentIndex = projects.findIndex((item) => item.slug === project.slug);
+    const previousProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
+    const nextProject = currentIndex >= 0 && currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
 
     return (
         <>
@@ -135,13 +139,13 @@ export default async function ProjectDetail(props: Params) {
                     height={30}
                     x={-1}
                     y={-1}
-                    className={'[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] '}
+                    className={'mask-[linear-gradient(to_bottom_right,white,transparent,transparent)] '}
                 />
             </div>
 
             <article className='max-w-5xl sm:px-4 relative mx-auto max-xs:pt-0 sm:mt-16 py-8'>
                 {project.image && (
-                    <div className='relative w-full sm:p-2 ring-1 rounded-3xl ring-foreground/10 h-full max-xs:max-h-96 md:h-[29rem] max-xs:rounded-none max-xs:rounded-b-4xl overflow-hidden'>
+                    <div className='relative w-full sm:p-2 ring-1 rounded-3xl ring-foreground/10 h-full max-xs:max-h-96 md:h-116 max-xs:rounded-none max-xs:rounded-b-4xl overflow-hidden'>
                         <PostCoverImage src={project.image} alt={project.title} />
                     </div>
                 )}
@@ -153,7 +157,7 @@ export default async function ProjectDetail(props: Params) {
                         </Link>
                     </Button>
 
-                    <div className='flex justify-end max-sm:pr-3 items-center py-4 gap-2 flex-wrap'>
+                    <div className='flex justify-end items-center py-4 gap-2 flex-wrap'>
                         {(project.source ?? []).map((source) => (
                             <Button asChild key={`${source.type}-${source.url}`} className='mt-0 border'>
                                 <Link href={source.url} target='_blank' rel='noopener noreferrer'>
@@ -169,7 +173,7 @@ export default async function ProjectDetail(props: Params) {
                     </div>
                 </div>
 
-                <div className='flex flex-wrap items-center mb-4 justify-between'>
+                <div className='flex px-3 xs:px-0 gap-2 flex-wrap items-center mb-4 justify-between'>
                     {(project.languages?.length || 0) > 0 && (
                         <div className='flex w-fit justify-center rounded-full p-0.5 sm:p-1 ring-1 ring-foreground/10 gap-1 bg-background'>
                             {(project.languages ?? []).map((language) => (
@@ -216,7 +220,7 @@ export default async function ProjectDetail(props: Params) {
 
                 <div className='max-sm:px-3 flex flex-col relative order-1 mb-4'>
                     <h1 className='text-4xl md:text-5xl font-bold leading-tight'>
-                        <span className="text-left bg-background  bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]"> {project.title} </span>
+                        <span className="text-left bg-background  bg-clip-text bg-no-repeat text-transparent bg-linear-to-r from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]"> {project.title} </span>
                     </h1>
                     <p className='text-base text-foreground/80 mt-3 leading-relaxed font-sans'>{project.description}</p>
                 </div>
@@ -253,20 +257,28 @@ export default async function ProjectDetail(props: Params) {
                         <MarkdownRenderer content={project.content} />
                     </div>
 
-                    <div className='flex items-center mx-auto justify-between max-xs:px-3 mt-8'>
-                        <div className='flex flex-wrap gap-2'>
-                            {project.tags?.map((tag) => (
-                                <Badge key={`${project.slug}-${tag}`} variant='outline'>
-                                    #{tag}
-                                </Badge>
-                            ))}
-                        </div>
+                    <div className='flex flex-col gap-3 max-xs:px-3 mt-10'>
+                        <div className='flex items-center mx-auto justify-between w-full gap-3'>
+                            {previousProject ? (
+                                <Button asChild>
+                                    <Link href={`/projects/${previousProject.slug}`}>
+                                        <ArrowLeftIcon className='w-4 h-4 mr-2 shrink-0' />
+                                        <span className='line-clamp-1 max-xs:hidden'>{previousProject.title}</span>
+                                        <span className='sm:hidden'>Prev</span>
+                                    </Link>
+                                </Button>
+                            ) : ( <div /> )}
 
-                        <Button asChild>
-                            <Link href='/projects'>
-                                <ArrowLeftIcon className='w-4 h-4 mr-2' /> All Projects
-                            </Link>
-                        </Button>
+                            {nextProject ? (
+                                <Button asChild>
+                                    <Link href={`/projects/${nextProject.slug}`}>
+                                        <span className='line-clamp-1 max-xs:hidden'>{nextProject.title}</span>
+                                        <span className='sm:hidden'>Next</span>
+                                        <ArrowRightIcon className='w-4 h-4 ml-2 shrink-0' />
+                                    </Link>
+                                </Button>
+                            ) : ( <div /> )}
+                        </div>
                     </div>
                 </div>
 
