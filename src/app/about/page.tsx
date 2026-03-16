@@ -3,25 +3,32 @@ import { AboutMeHero } from "@components/heros/about-hero";
 import { AboutTimeline } from "./sections/timeline";
 import { BlurFade } from '@components/ui/blur-fade';
 import { Metadata } from "next";
-import { appName, NEXT_PUBLIC_APP_URL } from "@lib/constants";
+import { appName, NEXT_PUBLIC_APP_URL, PERSON_ALTERNATE_NAME, PERSON_IMAGE, PERSON_NAME, PERSON_RELEGIEN_NAME } from "@lib/constants";
 import AboutStructuredData from "@components/about-structured-data";
 import BreadcrumbStructuredData from "@components/breadcrumb-structured-data";
 import Footer from "src/components/layouts/footer";
 
 const appPositions = ["I'm a Senior Front-end Developer", "and a Freelance UI/UX Designer."];
-const description = `My name is <span className="text-primary font-semibold">Leat Sophat</span>, also known as <span className="text-primary font-semibold">PPhat</span>.
+const description = `My name is <span className="text-primary font-semibold">${PERSON_NAME}</span>, my relegien name is <span className="text-primary font-semibold">${PERSON_RELEGIEN_NAME}</span>, and I am known online as <span className="text-primary font-semibold">${PERSON_ALTERNATE_NAME}</span>.
     I'm a Senior Front-end Developer at <a href="https://turbotech.com.kh/" target="_blank" rel="noopener noreferrer">TURBOTECH CO., LTD</a>, and as a Freelance UI/UX Designer.
     I'm from <a href="https://en.wikipedia.org/wiki/Phnom_Penh" target="_blank" rel="noopener noreferrer">Phnom Penh, Cambodia</a>.
 
     I started my career as a Front-end Developer in 2021, and I have a passion for creating beautiful and functional user interfaces. I love to learn new technologies and improve my skills every day. I am also a big fan of open-source projects and I enjoy contributing to the community. I believe that sharing knowledge is the key to success in this field.
 `;
 
-const aboutDescription = "I am Leat Sophat (PPhat), a Senior Front-end Developer and Freelance UI/UX Designer from Phnom Penh, Cambodia. Learn more about my journey, skills, and experience.";
-const aboutImage = `${NEXT_PUBLIC_APP_URL}/assets/screenshots/about-light.png`;
+const aboutDescription = `I am ${PERSON_NAME} (${PERSON_RELEGIEN_NAME}, ${PERSON_ALTERNATE_NAME}), a Senior Front-end Developer and Freelance UI/UX Designer from Phnom Penh, Cambodia. Learn more about my journey, skills, and experience.`;
+const aboutImage = `${NEXT_PUBLIC_APP_URL}${PERSON_IMAGE}`;
 
 export const metadata: Metadata = {
     title: `About ${appName}`,
     description: aboutDescription,
+    keywords: [
+        PERSON_NAME,
+        PERSON_RELEGIEN_NAME,
+        PERSON_ALTERNATE_NAME,
+        `About ${PERSON_NAME}`,
+        `About ${PERSON_RELEGIEN_NAME}`
+    ],
     alternates: {
         canonical: `${NEXT_PUBLIC_APP_URL}/about`,
     },

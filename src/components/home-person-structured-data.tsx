@@ -3,6 +3,11 @@ import {
     NEXT_PUBLIC_APP_URL,
     PERSON_NAME,
     PERSON_ALTERNATE_NAME,
+    PERSON_RELEGIEN_NAME,
+    PERSON_SHORT_NAME,
+    PERSON_NAME_VARIANTS,
+    PERSON_GIVEN_NAME,
+    PERSON_FAMILY_NAME,
     PERSON_JOB_TITLE,
     PERSON_IMAGE,
     CONTACT_EMAIL,
@@ -22,16 +27,37 @@ import {
 } from '@lib/constants';
 
 export default function HomePersonStructuredData() {
+    const profileImageUrl = `${NEXT_PUBLIC_APP_URL}${PERSON_IMAGE}`;
+
     const structuredData = {
         "@context": "https://schema.org",
         "@type": "Person",
         "@id": `${NEXT_PUBLIC_APP_URL}#person`,
         "name": PERSON_NAME,
-        "alternateName": PERSON_ALTERNATE_NAME,
+        "givenName": PERSON_GIVEN_NAME,
+        "familyName": PERSON_FAMILY_NAME,
+        "alternateName": Array.from(new Set([
+            PERSON_RELEGIEN_NAME,
+            PERSON_ALTERNATE_NAME,
+            PERSON_SHORT_NAME,
+            ...PERSON_NAME_VARIANTS
+        ])),
+        "additionalName": PERSON_ALTERNATE_NAME,
         "jobTitle": PERSON_JOB_TITLE,
         "description": `${PERSON_NAME} (${PERSON_ALTERNATE_NAME}) is the creator of pphat.me and a ${PERSON_JOB_TITLE} based in Phnom Penh, Cambodia.`,
         "url": NEXT_PUBLIC_APP_URL,
-        "image": `${NEXT_PUBLIC_APP_URL}${PERSON_IMAGE}`,
+        "image": {
+            "@type": "ImageObject",
+            "url": profileImageUrl,
+            "contentUrl": profileImageUrl,
+            "caption": `${PERSON_NAME} profile photo`
+        },
+        "mainEntityOfPage": `${NEXT_PUBLIC_APP_URL}/about`,
+        "subjectOf": `${NEXT_PUBLIC_APP_URL}/about`,
+        "hasCredential": [
+            "Senior Front-end Developer",
+            "Freelance UI/UX Designer"
+        ],
         "owns": {
             "@type": "WebSite",
             "@id": `${NEXT_PUBLIC_APP_URL}#website`

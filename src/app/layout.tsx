@@ -7,6 +7,7 @@ import { homeHome } from "../lib/meta/home";
 import { aladin, kantumruyPro, poppins, srisakdi, openSans } from "../lib/fonts";
 import { cn } from "../lib/utils";
 import GoogleIndexingVerification from "../components/google-indexing-verification";
+import { GITHUB_URL, LINKEDIN_URL, NEXT_PUBLIC_APP_URL, PERSON_IMAGE, TWITTER_URL } from "@lib/constants";
 export { viewport } from "../lib/meta/viewport";
 export const metadata: Metadata = homeHome;
 
@@ -22,6 +23,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 />
                 <link rel="dns-prefetch" href="https://pphat.me" />
                 <GoogleIndexingVerification />
+                <link rel="me" href={GITHUB_URL} />
+                <link rel="me" href={LINKEDIN_URL} />
+                <link rel="me" href={TWITTER_URL} />
+                <link rel="image_src" href={`${NEXT_PUBLIC_APP_URL}${PERSON_IMAGE}`} />
                 <link rel="alternate" type="application/rss+xml" title="PPhat Dev RSS" href="https://pphat.me/rss.xml" />
                 <link rel="alternate" type="application/atom+xml" title="PPhat Dev Atom" href="https://pphat.me/atom.xml" />
                 <link rel="alternate" type="application/feed+json" title="PPhat Dev JSON Feed" href="https://pphat.me/feed.json" />
