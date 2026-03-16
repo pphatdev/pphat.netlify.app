@@ -1,0 +1,94 @@
+---
+title: "Maskify"
+slug: "maskify"
+description: "A browser-based image masking tool for uploading masks and images, previewing results instantly on canvas, and exporting the final composition."
+image: "/assets/projects/maskify.pphat.top/dark-1.webp"
+tags: ["Image Tool", "Photo Editing", "Web App"]
+languages: ["Next.js", "TypeScript", "TailwindCSS", "React"]
+source:
+  - 
+    name: "source"
+    type: "source"
+    url: "https://github.com/pphatlabs/maskify"
+  - 
+    name: "demo"
+    type: "demo"
+    url: "https://maskify.pphat.top"
+
+authors:
+  - 
+    name: "PPhat Dev"
+    profile: "https://github.com/pphatdev.png"
+    url: "https://github.com/pphatdev"
+  - 
+    name: "PPhat Labs"
+    profile: "https://github.com/pphatlabs.png"
+    url: "https://github.com/pphatlabs"
+
+published: true
+createdAt: "2026-03-16T10:12:15.648Z"
+---
+
+<div class="blog-gallery" data-layout="snap" data-captions="true">
+  <img src="/assets/projects/maskify.pphat.top/dark-1.webp" alt="Maskify home screen dark mode" className=""/>
+  <img src="/assets/projects/maskify.pphat.top/light-1.webp" alt="Maskify home screen light mode" className=""/>
+  <img src="/assets/projects/maskify.pphat.top/dark-2.webp" alt="Mask gallery dark mode" className=""/>
+  <img src="/assets/projects/maskify.pphat.top/light-2.webp" alt="Mask gallery light mode" className=""/>
+  <img src="/assets/projects/maskify.pphat.top/dark-3.webp" alt="Image gallery dark mode" className=""/>
+  <img src="/assets/projects/maskify.pphat.top/light-3.webp" alt="Image gallery light mode" className=""/>
+  <img src="/assets/projects/maskify.pphat.top/dark-4.webp" alt="Canvas export workflow dark mode" className=""/>
+</div>
+
+<br/>
+
+# ✨ **About Project**
+
+Maskify is a focused web tool for quick image masking directly in the browser.
+Users can upload a mask, upload an image, preview the composition in real time, and download the final masked output.
+The app is designed for speed and simplicity, with a clean mobile-friendly interface and no account requirement.
+It also keeps uploaded mask and image items in browser session storage so the workflow feels seamless while editing.
+
+# 🛠️ **Project Tech Stack**
+
+- **Core:**
+  - Next.js
+  - React
+  - TypeScript
+
+- **UI & Styling:**
+  - TailwindCSS
+  - Radix UI Icons
+  - next-themes (light/dark mode)
+
+- **Canvas & Processing:**
+  - HTML Canvas 2D API
+  - Composite masking via `destination-in`
+  - Client-side PNG export
+
+- **Architecture:**
+  - App Router structure
+  - API routes for loading example masks/images
+  - Session storage for uploaded assets
+
+# 🌈 **Project Features**
+
+- Upload custom masks and apply them instantly
+- Upload custom images and keep them in the current browser session
+- Preview masked output in real time on a canvas
+- Built-in dark mode and light mode interface
+- Fast, single-page workflow optimized for desktop and mobile
+- One-click export of the final masked image
+
+# 💻 **How It Works**
+
+1. Upload or pick a mask from the mask gallery.
+2. Upload or pick an image from the image gallery.
+3. The app draws the image and applies the mask using canvas compositing.
+4. Download the generated result as an image file.
+
+# 💻 **Preview**
+
+Here is the screenshot preview:
+
+![maskify-dark](/assets/projects/maskify.pphat.top/dark-1.webp)
+![maskify-light](/assets/projects/maskify.pphat.top/light-1.webp)
