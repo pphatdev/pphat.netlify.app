@@ -191,7 +191,6 @@ const ProjectsContent = () => {
                     </InfiniteScroll>
                 </article>
             </BlurFade>
-            <Footer />
         </main>
     );
 };
@@ -207,7 +206,7 @@ const Projects = () => {
                 </div>
             </main>
         }>
-            <ProjectsContent />
+        <ProjectsContent />
         </Suspense>
     );
 };

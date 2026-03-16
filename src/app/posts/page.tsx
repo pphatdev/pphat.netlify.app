@@ -141,7 +141,7 @@ const PostsContent = () => {
                         <div className="flex flex-wrap max-sm:justify-center items-center gap-1.5">
                             <p className="text-xs font-medium">Tag: </p>
                             <Button
-                                className={cn("mt-0 py-1 sm:py-2 px-2.5 !h-fit text-xs leading-4 text-foreground/80 hover:text-primary transition-all", !selectedTag && "ring-1 !px-4 bg-primary/5 text-primary")}
+                                className={cn("mt-0 py-1 sm:py-2 px-2.5 h-fit! text-xs leading-4 text-foreground/80 hover:text-primary transition-all", !selectedTag && "ring-1 px-4! bg-primary/5 text-primary")}
                                 onClick={() => handleTagChange("")}
                                 aria-pressed={!selectedTag}
                             >
@@ -156,7 +156,7 @@ const PostsContent = () => {
                                         type="button"
                                         onClick={() => handleTagChange(isActive ? "" : tag)}
                                         className={cn(
-                                            "mt-0 py-1 sm:py-2 px-2.5 !h-fit text-xs leading-4 text-foreground/80 hover:text-primary transition-all",
+                                            "mt-0 py-1 sm:py-2 px-2.5 h-fit! text-xs leading-4 text-foreground/80 hover:text-primary transition-all",
                                             isActive && "ring-1 bg-primary/5 text-primary"
                                         )}
                                         aria-pressed={isActive}
@@ -176,7 +176,7 @@ const PostsContent = () => {
                         </p>
                     </div>
                 )} */}
-                <article className="grid max-w-5xl mx-auto p-5 grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4 min-h-[300px] relative">
+                <article className="grid max-w-5xl mx-auto p-5 grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4 min-h-75 relative">
                     {filteredPosts.map((post) => (<PostCard key={post.id || post.slug} post={post} />))}
                     {filteredPosts.length === 0 && (searchQuery || selectedTag) && (
                         <div className="col-span-full text-center py-12">
@@ -205,13 +205,12 @@ const Posts = () => {
         <Suspense fallback={
             <main className="w-full flex flex-col gap-7 pb-5">
                 <NavigationBar />
-                <div className="flex justify-center items-center min-h-[400px]">
+                <div className="flex justify-center items-center min-h-100">
                     <Spinner variant={'bars'} />
                 </div>
             </main>
         }>
-            <PostsContent />
-            <Footer />
+        <PostsContent />
         </Suspense>
     );
 };
