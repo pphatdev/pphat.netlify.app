@@ -10,7 +10,7 @@ import {
 import { GitHubIcon } from "../icons/github";
 // import { LinkedInIcon } from "../icons/linkedin";
 // import { TwitterLogoIcon } from "@radix-ui/react-icons";
-import { ArrowLeftIcon, ArrowRightIcon, MailCheckIcon } from "lucide-react";
+import { ArrowRightIcon, MailCheckIcon } from "lucide-react";
 import { Button } from "../ui";
 // import { Github, Linkedin, Twitter, Mail } from "lucide-react";
 
@@ -54,29 +54,25 @@ export default function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="w-full border-t px-3 border-border/40 bg-gradient-to-b from-background via-background/95 to-background backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="max-w-5xl mx-auto max-sm:px-5 py-12 md:py-16 lg:py-20">
+        <footer className="w-full border-t sm:px-3 border-border/40 bg-linear-to-b from-background via-background/95 to-background backdrop-blur supports-backdrop-filter:bg-background/60">
+            <div className="max-w-5xl mx-auto max-sm:px-5 py-12 md:py-16">
                 {/* Main Footer Content */}
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 md:gap-12 mb-12">
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 md:gap-12 mb-12 md:px-5">
                     {/* Brand Section */}
                     <div className="col-span-2 md:col-span-4 lg:col-span-1 space-y-4">
                         <Link href="/" className="inline-block group">
-                            <h2 className="text-xl font-bold text-primary group-hover:text-primary transition-colors">
-                                Sophat L.
-                            </h2>
+                            <h2 className="text-xl font-bold text-primary group-hover:text-primary transition-colors">Sophat L.</h2>
                         </Link>
-                        <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
-                            Building scalable systems & crafting digital experiences.
-                        </p>
+                        <p className="text-sm text-muted-foreground max-w-xs leading-relaxed"> Building scalable systems & crafting digital experiences. </p>
                     </div>
 
                     {/* Product Links */}
                     <div className="space-y-4">
-                        <h3 className="font-semibold text-base text-primary pl-2">Product</h3>
-                        <ul className="gap-2">
+                        <h3 className="font-semibold text-base text-primary sm:pl-2">Product</h3>
+                        <ul className="max-sm:gap-2 flex flex-col">
                             {footerLinks.product.map((link) => (
                                 <li key={link.href}>
-                                    <Button asChild className="mt-0 text-foreground hover:text-primary -translate-x-2.5">
+                                    <Button asChild className="mt-0 text-foreground/70 h-7 text-xs hover:text-primary xs:-translate-x-2.5">
                                         <Link href={link.href}>
                                             <ArrowRightIcon className='w-4 h-4' /> {link.label}
                                         </Link>
@@ -88,11 +84,11 @@ export default function Footer() {
 
                     {/* Company Links */}
                     <div className="space-y-4">
-                        <h3 className="font-semibold text-base text-primary pl-2">Company</h3>
-                        <ul className="gap-2">
+                        <h3 className="font-semibold text-base text-primary sm:pl-2">Company</h3>
+                        <ul className="max-sm:gap-2 flex flex-col">
                             {footerLinks.company.map((link) => (
                                 <li key={link.href}>
-                                    <Button asChild className="mt-0 text-foreground hover:text-primary -translate-x-2.5">
+                                    <Button asChild className="mt-0 text-foreground/70 h-7 text-xs hover:text-primary xs:-translate-x-2.5">
                                         <Link href={link.href}>
                                             <ArrowRightIcon className='w-4 h-4' /> {link.label}
                                         </Link>
@@ -104,11 +100,11 @@ export default function Footer() {
 
                     {/* Resources Links */}
                     <div className="space-y-4">
-                        <h3 className="font-semibold text-base text-primary pl-2">Resources</h3>
-                        <ul className="gap-2">
+                        <h3 className="font-semibold text-base text-primary sm:pl-2">Resources</h3>
+                        <ul className="max-sm:gap-2 flex flex-col">
                             {footerLinks.resources.map((link) => (
                                 <li key={link.href}>
-                                    <Button asChild className="mt-0 text-foreground hover:text-primary -translate-x-2.5">
+                                    <Button asChild className="mt-0 text-foreground/70 h-7 text-xs hover:text-primary xs:-translate-x-2.5">
                                         <Link href={link.href}>
                                             <ArrowRightIcon className='w-4 h-4' /> {link.label}
                                         </Link>
@@ -120,14 +116,14 @@ export default function Footer() {
 
                     {/* Social Links */}
                     <div className="space-y-4">
-                        <h3 className="font-semibold text-base pl-2 text-primary">Social</h3>
-                        <ul className="gap-2">
+                        <h3 className="font-semibold text-base sm:pl-2 text-primary">Social</h3>
+                        <ul className="max-sm:gap-2 flex flex-col">
                             {socialLinks.map((link) => {
                                 const Icon = link.icon;
 
                                 return (
                                     <li key={link.href}>
-                                        <Button asChild className="mt-0 text-foreground hover:text-primary -translate-x-2.5">
+                                        <Button asChild className="mt-0 text-foreground/70 h-7 text-xs hover:text-primary xs:-translate-x-2.5">
                                             <Link href={link.href}>
                                                 <ArrowRightIcon className='w-4 h-4' /> {link.label}
                                             </Link>
@@ -141,7 +137,7 @@ export default function Footer() {
 
                 {/* Bottom Bar */}
                 <div className="pt-8 border-t border-border/40">
-                    <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-4 sm:px-5">
                         <div className="flex items-center gap-2">
                             <p className="text-sm text-muted-foreground text-center md:text-left">
                                 Copyright © {currentYear}{" "}
