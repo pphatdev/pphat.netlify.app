@@ -9,10 +9,8 @@ import { BlurFade } from '@components/ui/blur-fade';
 import { NavigationBar } from "@components/navbar/navbar";
 import { PostsHero } from "@components/heros/posts-hero";
 import { useSearchParams, useRouter } from "next/navigation";
-import { Badge } from "@components/ui/badge";
 import { cn } from "@lib/utils";
 import { Button } from "src/components/ui";
-import Footer from "src/components/layouts/footer";
 
 const PostsContent = () => {
     const router = useRouter();
@@ -26,14 +24,17 @@ const PostsContent = () => {
     const [selectedTag, setSelectedTag] = useState("");
     const [availableTags, setAvailableTags] = useState<string[]>([]);
     const hasFetched = useRef(false);
+    const isFetchingRef = useRef(false);
 
     const next = useCallback(async () => {
-        if (loading) return;
+        if (isFetchingRef.current || !hasMore) return;
 
+        isFetchingRef.current = true;
         setLoading(true);
+        const currentPage = page;
 
         try {
-            const response = await fetch(`/api/posts?page=${page}&limit=${limit}`);
+            const response = await fetch(`/api/posts?page=${currentPage}&limit=${limit}`);
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -56,9 +57,10 @@ const PostsContent = () => {
             console.error('Error fetching posts:', error);
             setHasMore(false);
         } finally {
+            isFetchingRef.current = false;
             setLoading(false);
         }
-    }, [loading, page, limit]);
+    }, [hasMore, page, limit]);
 
     useEffect(() => {
         if (!hasFetched.current) {

@@ -3,16 +3,20 @@
 import React, { useEffect, useState, useCallback, useRef, useMemo, Suspense } from "react";
 import InfiniteScroll from "@components/infinit-scroll";
 import { Spinner } from "@components/ui/loading";
-import { ProjectHero } from "@components/heros/project-hero";
 import { ProjectCard } from "@components/cards/project-card";
 import { Project } from "../../lib/types/interfaces";
 import { BlurFade } from '@components/ui/blur-fade';
 import { NavigationBar } from "@components/navbar/navbar";
 import ProjectsStructuredData from "@components/projects-structured-data";
 import { useSearchParams, useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 import { Button } from "src/components/ui";
 import { cn } from "@lib/utils";
-import Footer from "src/components/layouts/footer";
+
+const ProjectHero = dynamic(
+    () => import("@components/heros/project-hero").then((mod) => mod.ProjectHero),
+    { ssr: false }
+);
 
 const ProjectsContent = () => {
     const router = useRouter();
@@ -26,14 +30,17 @@ const ProjectsContent = () => {
     const [selectedTag, setSelectedTag] = useState("");
     const [availableTags, setAvailableTags] = useState<string[]>([]);
     const hasFetched = useRef(false);
+    const isFetchingRef = useRef(false);
 
     const next = useCallback(async () => {
-        if (loading) return;
+        if (isFetchingRef.current || !hasMore) return;
 
+        isFetchingRef.current = true;
         setLoading(true);
+        const currentPage = page;
 
         try {
-            const response = await fetch(`/api/projects?page=${page}&limit=${limit}`);
+            const response = await fetch(`/api/projects?page=${currentPage}&limit=${limit}`);
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -56,9 +63,10 @@ const ProjectsContent = () => {
             console.error('Error fetching projects:', error);
             setHasMore(false);
         } finally {
+            isFetchingRef.current = false;
             setLoading(false);
         }
-    }, [loading, page, limit]);
+    }, [hasMore, page, limit]);
 
     useEffect(() => {
         if (!hasFetched.current) {
@@ -142,7 +150,7 @@ const ProjectsContent = () => {
                 {availableTags.length > 0 && (
                     <div className="max-w-5xl mx-auto w-full px-5 mb-4">
                         <div className="flex flex-wrap max-sm:justify-center items-center gap-1.5">
-                            <p className="text-xs font-medium">Tag: </p>
+                            {/* <p className="text-xs font-medium">Tag: </p> */}
                             <Button
                                 className={cn("mt-0 py-1 sm:py-2 px-2.5 h-fit! text-xs leading-4 text-foreground/80 hover:text-primary transition-all", !selectedTag && "ring-1 px-4! bg-primary/5 text-primary")}
                                 onClick={() => handleTagChange("")}
