@@ -23,71 +23,65 @@ function extractTitle(mdxContent: string): string | null {
     return match ? match[1] : null;
 }
 
-// Get all blog post images (thumbnail + gallery images)
-function getBlogPostImages(baseUrl: string): Array<{ loc: string; title: string }> {
+interface PostImageGroup {
+    slug: string;
+    title: string;
+    images: Array<{ loc: string; imgTitle: string }>;
+}
+
+// Get all blog post images grouped per post, local images only
+function getBlogPostImageGroups(baseUrl: string): PostImageGroup[] {
     const blogDir = join(process.cwd(), 'content', 'posts');
-    const images: Array<{ loc: string; title: string }> = [];
+    const groups: PostImageGroup[] = [];
 
     if (!existsSync(blogDir)) {
         console.warn('Blog directory not found:', blogDir);
-        return images;
+        return groups;
     }
 
-    const postDirs = readdirSync(blogDir).filter(file => {
-        const fullPath = join(blogDir, file);
-        return existsSync(join(fullPath, 'index.mdx'));
-    });
+    const postDirs = readdirSync(blogDir).filter(file =>
+        existsSync(join(blogDir, file, 'index.mdx'))
+    );
 
     for (const postDir of postDirs) {
         const mdxPath = join(blogDir, postDir, 'index.mdx');
         const mdxContent = readFileSync(mdxPath, 'utf-8');
         const thumbnail = extractThumbnail(mdxContent);
-        const title = extractTitle(mdxContent);
+        const title = extractTitle(mdxContent) ?? postDir;
+        const postImages: Array<{ loc: string; imgTitle: string }> = [];
 
-        // Add thumbnail as primary image
-        if (thumbnail) {
-            let thumbnailUrl = thumbnail;
-            if (!thumbnail.startsWith('http')) {
-                thumbnailUrl = `${baseUrl}${thumbnail}`;
-            }
-
-            images.push({
-                loc: thumbnailUrl,
-                title: title ? `${title} - Cover` : `Blog Post - ${postDir}`
+        // Add thumbnail only if it's a local path (skip external/CDN URLs)
+        if (thumbnail && !thumbnail.startsWith('http')) {
+            postImages.push({
+                loc: `${baseUrl}${thumbnail}`,
+                imgTitle: `${title} - Cover`
             });
         }
 
-        // Extract ALL gallery images from MDX
-            const imgPattern = /src="([^"]*\/(?:assets\/)?blogs\/[^"]+\.webp)"/g;
+        // Extract gallery images from MDX src attributes (local paths only)
+        const imgPattern = /src="([^"]*\/(?:assets\/)?blogs\/[^"]+\.webp)"/g;
         let match;
-        const galleryImages: string[] = [];
-
         while ((match = imgPattern.exec(mdxContent)) !== null) {
             const imgPath = match[1];
-            // Only include local blog images, not the thumbnail we already added
-                if (
-                    imgPath !== thumbnail
-                    && (imgPath.startsWith('/blogs/') || imgPath.startsWith('/assets/blogs/'))
-                ) {
-                if (!galleryImages.includes(imgPath)) {
-                    galleryImages.push(imgPath);
-                }
+            if (
+                (imgPath.startsWith('/blogs/') || imgPath.startsWith('/assets/blogs/'))
+                && imgPath !== thumbnail
+                && !postImages.some(i => i.loc === `${baseUrl}${imgPath}`)
+            ) {
+                const fileName = imgPath.split('/').pop() ?? 'image';
+                postImages.push({
+                    loc: `${baseUrl}${imgPath}`,
+                    imgTitle: `${title} - ${fileName}`
+                });
             }
         }
 
-        // Add all gallery images to sitemap
-        for (const imgPath of galleryImages) {
-            const imageUrl = imgPath.startsWith('http') ? imgPath : `${baseUrl}${imgPath}`;
-            const fileName = imgPath.split('/').pop() || 'image';
-
-            images.push({
-                loc: imageUrl,
-                title: title ? `${title} - ${fileName}` : `Gallery - ${fileName}`
-            });
+        if (postImages.length > 0) {
+            groups.push({ slug: postDir, title, images: postImages });
         }
     }
 
-    return images;
+    return groups;
 }
 
 // Function to generate image sitemap
@@ -105,8 +99,9 @@ export async function generateImageSitemap() {
             console.warn('No image files found in directory:', imageDir);
         }
 
-        // Get blog post thumbnails
-        const blogImages = getBlogPostImages(baseUrl);
+        // Get blog post images grouped per post
+        const blogPostGroups = getBlogPostImageGroups(baseUrl);
+        const totalBlogImages = blogPostGroups.reduce((sum, g) => sum + g.images.length, 0);
 
         // Generate sitemap with proper indentation
         const sitemap = [
@@ -132,24 +127,28 @@ export async function generateImageSitemap() {
             '      <image:caption>Profile photo of Leat Sophat</image:caption>',
             '    </image:image>',
             '  </url>',
-            // Add blog post thumbnails
-            ...blogImages.map(img => [
+            // One <url> per post with all its images grouped together
+            ...blogPostGroups.map(post => [
                 '  <url>',
-                `    <loc>${baseUrl}/posts</loc>`,
-                '    <image:image>',
-                `      <image:loc>${img.loc}</image:loc>`,
-                `      <image:title>${img.title}</image:title>`,
-                '    </image:image>',
+                `    <loc>${baseUrl}/posts/${post.slug}</loc>`,
+                post.images.map(img => [
+                    '    <image:image>',
+                    `      <image:loc>${img.loc}</image:loc>`,
+                    `      <image:title>${img.imgTitle}</image:title>`,
+                    '    </image:image>'
+                ].join('\n')).join('\n'),
                 '  </url>'
             ].join('\n')),
             '</urlset>'
-        ].join('\n');        // Write to file with error handling
+        ].join('\n');
+
+        // Write to file
         const outputPath = join(process.cwd(), 'public', 'image-sitemap.xml');
-        writeFileSync(outputPath, sitemap.replace(/\s+/g, " "), 'utf-8');
+        writeFileSync(outputPath, sitemap, 'utf-8');
         console.log('✅ Image sitemap generated successfully.');
         console.log(`   - Gallery images: ${imageFiles.length}`);
-        console.log(`   - Blog images: ${blogImages.length} (thumbnails + gallery images)`);
-        console.log(`   - Total indexed images: ${imageFiles.length + blogImages.length}`);
+        console.log(`   - Blog posts: ${blogPostGroups.length} (${totalBlogImages} images)`);
+        console.log(`   - Total indexed images: ${imageFiles.length + totalBlogImages}`);
     } catch (error) {
         console.error('❌ Error generating sitemap:', error instanceof Error ? error.message : error);
         throw error;
