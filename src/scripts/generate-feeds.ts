@@ -52,6 +52,15 @@ function getBaseUrl(): string {
     return parsed.toString().replace(/\/$/, '');
 }
 
+function toOriginUrl(value: string, baseUrl: string): string {
+    if (!value) return baseUrl;
+    try {
+        return new URL(value, `${baseUrl}/`).toString();
+    } catch {
+        return baseUrl;
+    }
+}
+
 function parseFrontmatter(content: string): Record<string, unknown> {
     const match = content.match(/^---\s*\n([\s\S]*?)\n---/);
     if (!match) return {};
@@ -161,7 +170,7 @@ function buildRss(posts: PostData[], baseUrl: string, opts: FeedOptions = {}): s
             const published = post.createdAt;
             const updatedAt = post.updatedAt || post.createdAt;
             const description = post.description || '';
-            const thumbnail = post.thumbnail || channelImageUrl;
+            const thumbnail = toOriginUrl(post.thumbnail || channelImageUrl, baseUrl);
             const imageType = getImageMimeType(thumbnail);
 
             return [
