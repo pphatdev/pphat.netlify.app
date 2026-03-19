@@ -61,7 +61,7 @@ export default function HeroSection({ latestPostSlug, latestPostTitle }: HeroSec
     const latestBlogLabel = latestPostTitle ?? 'New Blog';
 
     return (
-        <main className="w-full pt-20 p-5 flex min-h-[45rem] items-center justify-center mx-auto h-full overflow-x-hidden relative">
+        <main className="w-full pt-20 p-5 flex min-h-180 items-center justify-center mx-auto h-full overflow-x-hidden relative">
             <h1 className="sr-only">{appName}</h1>
             <p className="sr-only">{appDescriptions ?? ""}</p>
             <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -71,7 +71,7 @@ export default function HeroSection({ latestPostSlug, latestPostTitle }: HeroSec
                     x={-1}
                     y={-1}
                     strokeDasharray={"4 2"}
-                    className={"[mask-image:radial-gradient(300px_circle_at_center,white,transparent)] absolute w-full "}
+                    className={"mask-[radial-gradient(300px_circle_at_center,white,transparent)] absolute w-full "}
                 />
             </div>
 
@@ -103,8 +103,8 @@ export default function HeroSection({ latestPostSlug, latestPostTitle }: HeroSec
                     </BlurFade>
                     <BlurFade delay={0.15} inView>
                         <div className="text-3xl text-center md:text-left md:text-6xl font-bold">
-                            <div className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
-                                <div className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 py-4 [text-rendering:optimizeLegibility]">
+                            <div className="relative mx-auto inline-block w-max filter-[drop-shadow(0px_1px_3px_rgba(27,37,80,0.14))]">
+                                <div className="relative bg-clip-text text-transparent bg-no-repeat bg-linear-to-r  from-sky-500 via-teal-500 to-green-500 py-4 [text-rendering:optimizeLegibility]">
                                     <span className="mr-2 font-sans [font-display:swap]">{`Hi I'm`}</span>
                                 </div>
                             </div>
@@ -131,7 +131,7 @@ export default function HeroSection({ latestPostSlug, latestPostTitle }: HeroSec
                         </nav>
                     </BlurFade>
                 </div>
-                <BlurFade delay={0.25} inView className={cn("order-first relative mt-10 min-lg:min-h-72 min-w-72 sm:mt-0 shrink-0 lg:order-last flex max-md:w-40 mx-auto flex-col items-center justify-center")}>
+                <BlurFade delay={0.25} inView className={cn("order-first relative mt-10 lg:min-h-72 min-w-72 sm:mt-0 shrink-0 lg:order-last flex max-md:w-40 mx-auto flex-col items-center justify-center")}>
                     <MagneticArea className="max-sm:w-56 w-72 aspect-square relative">
                         <canvas ref={renderCanvas} className="h-full w-full bg-center m-1" />
                         <RainbowGlow className="opacity-30" />

@@ -4,7 +4,7 @@ import { appName, appPositions } from "@lib/constants";
 
 export const GetInTouchSections = () => {
     return (
-        <div className="relative z-20 mx-auto grid w-full mt-20 overflow-clip max-w-5xl grid-cols-1 justify-start bg-gradient-to-br from-background via-foreground/10 md:grid-cols-3">
+        <div className="relative z-20 mx-auto grid w-full mt-20 overflow-clip max-w-5xl grid-cols-1 justify-start bg-linear-to-br from-background via-foreground/10 md:grid-cols-3">
             <RainbowGlow className="opacity-5"/>
             {/* Horizontal lines */}
             <div
@@ -18,7 +18,7 @@ export const GetInTouchSections = () => {
                     '--color-dark': 'rgba(255, 255, 255, 0.2)',
                     maskComposite: 'exclude'
                 } as React.CSSProperties}
-                className="absolute left-[calc(var(--offset)/2*-1)] h-[var(--height)] w-[calc(100%+var(--offset))] bg-[linear-gradient(to_right,var(--color),var(--color)_50%,transparent_0,transparent)] [background-size:var(--width)_var(--height)] [mask:linear-gradient(to_left,var(--background)_var(--fade-stop),transparent),_linear-gradient(to_right,var(--background)_var(--fade-stop),transparent),_linear-gradient(black,black)] [mask-composite:exclude] z-30 dark:bg-[linear-gradient(to_right,var(--color-dark),var(--color-dark)_50%,transparent_0,transparent)] top-0"
+                className="absolute left-[calc(var(--offset)/2*-1)] h-(--height) w-[calc(100%+var(--offset))] bg-[linear-gradient(to_right,var(--color),var(--color)_50%,transparent_0,transparent)] bg-size-[var(--width)_var(--height)] [mask:linear-gradient(to_left,var(--background)_var(--fade-stop),transparent),linear-gradient(to_right,var(--background)_var(--fade-stop),transparent),linear-gradient(black,black)] mask-exclude z-30 dark:bg-[linear-gradient(to_right,var(--color-dark),var(--color-dark)_50%,transparent_0,transparent)] top-0"
             />
             <div
                 style={{
@@ -31,7 +31,7 @@ export const GetInTouchSections = () => {
                     '--color-dark': 'rgba(255, 255, 255, 0.2)',
                     maskComposite: 'exclude'
                 } as React.CSSProperties}
-                className="absolute left-[calc(var(--offset)/2*-1)] h-[var(--height)] w-[calc(100%+var(--offset))] bg-[linear-gradient(to_right,var(--color),var(--color)_50%,transparent_0,transparent)] [background-size:var(--width)_var(--height)] [mask:linear-gradient(to_left,var(--background)_var(--fade-stop),transparent),_linear-gradient(to_right,var(--background)_var(--fade-stop),transparent),_linear-gradient(black,black)] [mask-composite:exclude] z-30 dark:bg-[linear-gradient(to_right,var(--color-dark),var(--color-dark)_50%,transparent_0,transparent)] bottom-0 top-auto"
+                className="absolute left-[calc(var(--offset)/2*-1)] h-(--height) w-[calc(100%+var(--offset))] bg-[linear-gradient(to_right,var(--color),var(--color)_50%,transparent_0,transparent)] bg-size-[var(--width)_var(--height)] [mask:linear-gradient(to_left,var(--background)_var(--fade-stop),transparent),linear-gradient(to_right,var(--background)_var(--fade-stop),transparent),linear-gradient(black,black)] mask-exclude z-30 dark:bg-[linear-gradient(to_right,var(--color-dark),var(--color-dark)_50%,transparent_0,transparent)] bottom-0 top-auto"
             />
 
             {/* Vertical lines */}
@@ -48,7 +48,7 @@ export const GetInTouchSections = () => {
                         '--color-dark': 'rgba(255, 255, 255, 0.2)',
                         maskComposite: 'exclude'
                     } as React.CSSProperties}
-                    className={`absolute top-[calc(var(--offset)/2*-1)] h-[calc(100%+var(--offset))] w-[var(--width)] bg-[linear-gradient(to_bottom,var(--color),var(--color)_50%,transparent_0,transparent)] [background-size:var(--width)_var(--height)] [mask:linear-gradient(to_top,var(--background)_var(--fade-stop),transparent),_linear-gradient(to_bottom,var(--background)_var(--fade-stop),transparent),_linear-gradient(black,black)] [mask-composite:exclude] z-30 dark:bg-[linear-gradient(to_bottom,var(--color-dark),var(--color-dark)_50%,transparent_0,transparent)] ${position === 'right' ? 'left-auto right-0' : 'left-0'}`}
+                    className={`absolute top-[calc(var(--offset)/2*-1)] h-[calc(100%+var(--offset))] w-(--width) bg-[linear-gradient(to_bottom,var(--color),var(--color)_50%,transparent_0,transparent)] bg-size-[var(--width)_var(--height)] [mask:linear-gradient(to_top,var(--background)_var(--fade-stop),transparent),linear-gradient(to_bottom,var(--background)_var(--fade-stop),transparent),linear-gradient(black,black)] mask-exclude z-30 dark:bg-[linear-gradient(to_bottom,var(--color-dark),var(--color-dark)_50%,transparent_0,transparent)] ${position === 'right' ? 'left-auto right-0' : 'left-0'}`}
                 />
             ))}
 

@@ -23,9 +23,9 @@ export const PostsHero = React.memo(({ searchQuery, onSearchChange, onClearSearc
     const pageDescription = "Read my blog posts about web development, design, and technology.";
 
     return (
-        <div className="min-h-36 sm:min-h-60 flex bg-gradient-to-b from-primary/10 pt-14 sm:pt-24 to-background flex-col overflow-clip relative items-start justify-center">
+        <div className="min-h-36 sm:min-h-60 flex bg-linear-to-b from-primary/10 pt-14 sm:pt-24 to-background flex-col overflow-clip relative items-start justify-center">
             <RainbowGlow className="opacity-10"/>
-            <BackgroundBeamsWithCollision className="flex items-center absolute -z-[1] pointer-events-none max-w-5xl left-1/2 -translate-x-1/2 mx-auto justify-center w-full h-full" />
+            <BackgroundBeamsWithCollision className="flex items-center absolute -z-1 pointer-events-none max-w-5xl left-1/2 -translate-x-1/2 mx-auto justify-center w-full h-full" />
             <div className="absolute inset-y-0 left-1/3 right-0 pointer-events-none" aria-hidden="true">
                 <GridPattern
                     width={30}
@@ -33,13 +33,13 @@ export const PostsHero = React.memo(({ searchQuery, onSearchChange, onClearSearc
                     x={-1}
                     y={-1}
                     strokeDasharray={"4 2"}
-                    className={"[mask-image:radial-gradient(300px_circle_at_center,white,transparent)] absolute w-full "}
+                    className={"mask-[radial-gradient(300px_circle_at_center,white,transparent)] absolute w-full "}
                 />
             </div>
             <div className="w-full px-4 pt-4 sm:px-5 flex flex-col max-w-5xl mx-auto ">
                 <BlurFade delay={0.6} inView className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 w-full">
                     <div className="space-y-2 max-w-2xl">
-                        <h1 className="text-3xl font-bold sm:text-5xl xl:text-6xl/none"> Blo<span className="text-left bg-background bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">gs</span> </h1>
+                        <h1 className="text-3xl font-bold sm:text-5xl xl:text-6xl/none"> Blo<span className="text-left bg-background bg-clip-text bg-no-repeat text-transparent bg-linear-to-r  from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">gs</span> </h1>
                         <p className="text-sm sm:text-base text-foreground/70 leading-relaxed">
                             {pageDescription}
                         </p>
