@@ -15,21 +15,21 @@ export function HomeFeatureSection() {
             description: "Built with the latest and greatest technologies.",
             icon: <IconTerminal2 />,
         },
-        {
-            title: "Design Application",
-            description: "A design system that is easy to use and customize.",
-            icon: <IconEaseInOut />,
-        },
+        // {
+        //     title: "Design Application",
+        //     description: "A design system that is easy to use and customize.",
+        //     icon: <IconEaseInOut />,
+        // },
         {
             title: "Web Hosting",
             description: "Hosted on the cloud with 99.9% uptime.",
             icon: <IconCloud />,
         },
-        {
-            title: "Multi-tenant Architecture",
-            description: "Built with a multi-tenant architecture for scalability.",
-            icon: <IconRouteAltLeft />,
-        },
+        // {
+        //     title: "Multi-tenant Architecture",
+        //     description: "Built with a multi-tenant architecture for scalability.",
+        //     icon: <IconRouteAltLeft />,
+        // },
     ];
 
     const title = ["What I can", "do for you"];

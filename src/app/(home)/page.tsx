@@ -150,10 +150,10 @@ export default function Home() {
                     <HomeFAQSection />
                 </BlurFade>
             </section>
-
+{/* 
             <section id="contact" className="flex flex-col snap-end">
                 <GetInTouchSections />
-            </section>
+            </section> */}
 
             <Footer />
 

@@ -2,18 +2,12 @@ import Link from "next/link";
 import {
     GITHUB_URL,
     LINKEDIN_URL,
-    TWITTER_URL,
     appTitle,
-    // NEXT_PUBLIC_APP_URL,
-    // appDescriptions
 } from "@lib/constants";
 import { GitHubIcon } from "../icons/github";
-// import { LinkedInIcon } from "../icons/linkedin";
-// import { TwitterLogoIcon } from "@radix-ui/react-icons";
 import { ArrowRightIcon, MailCheckIcon } from "lucide-react";
 import { Button } from "../ui";
 import { Ripple } from "../ui/ripple";
-// import { Github, Linkedin, Twitter, Mail } from "lucide-react";
 
 const footerLinks = {
     product: [
@@ -21,13 +15,12 @@ const footerLinks = {
         { label: "Gallery", href: "/gallery" },
     ],
     company: [
-        { label: "About Me", href: "/about" },
-        { label: "Contact", href: "/contact" },
-        { label: "Blogs", href: "/posts" },
+        { label: "TURBOTECH Co., Ltd", href: "https://turbotech.com.kh/", external: true },
+        { label: "PPhat Labs", href: "https://github.com/pphatlabs", external: true },
     ],
     resources: [
         { label: "Documentation", href: "/posts" },
-        { label: "Community", href: GITHUB_URL, external: true },
+        { label: "Community", href: `${GITHUB_URL}/discussions`, external: true },
         { label: "Support", href: "/contact" },
     ],
 };
@@ -55,7 +48,7 @@ export default function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="w-full border-t sm:px-3 border-border/40 bg-linear-to-b from-background via-background/95 to-background backdrop-blur supports-backdrop-filter:bg-background/60">
+        <footer className="w-full border-t sm:px-3 mt-20 border-border/40 bg-linear-to-b from-background via-background/95 to-background backdrop-blur supports-backdrop-filter:bg-background/60">
 
             <div className="absolute overflow-hidden inset-0 pointer-events-none" aria-hidden="true">
                 <Ripple mainCircleSize={150} numCircles={12} className="opacity-30" />
@@ -82,7 +75,7 @@ export default function Footer() {
 
                     {/* Company Links */}
                     <div className="space-y-4">
-                        <h3 className="font-semibold text-base text-primary sm:pl-1">Company</h3>
+                        <h3 className="font-semibold text-base text-primary sm:pl-1">Working at</h3>
                         <ul className="max-sm:gap-2 flex flex-col">
                             {footerLinks.company.map((link) => (
                                 <li key={link.href}>
