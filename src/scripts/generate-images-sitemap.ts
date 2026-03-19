@@ -58,15 +58,20 @@ function getBlogPostImages(baseUrl: string): Array<{ loc: string; title: string 
         }
 
         // Extract ALL gallery images from MDX
-        const imgPattern = /src="([^"]*\/blogs\/[^"]+\.webp)"/g;
+            const imgPattern = /src="([^"]*\/(?:assets\/)?blogs\/[^"]+\.webp)"/g;
         let match;
-        const galleryImages = new Set<string>();
+        const galleryImages: string[] = [];
 
         while ((match = imgPattern.exec(mdxContent)) !== null) {
             const imgPath = match[1];
             // Only include local blog images, not the thumbnail we already added
-            if (imgPath !== thumbnail && imgPath.startsWith('/blogs/')) {
-                galleryImages.add(imgPath);
+                if (
+                    imgPath !== thumbnail
+                    && (imgPath.startsWith('/blogs/') || imgPath.startsWith('/assets/blogs/'))
+                ) {
+                if (!galleryImages.includes(imgPath)) {
+                    galleryImages.push(imgPath);
+                }
             }
         }
 

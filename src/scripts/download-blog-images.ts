@@ -9,7 +9,7 @@ import sharp from 'sharp';
 async function createPlaceholderImages() {
     try {
         const blogDir = join(process.cwd(), 'content', 'posts', '07-03-2026-kampot');
-        const publicBlogDir = join(process.cwd(), 'public', 'blogs', '07-03-2026-kampot');
+        const publicBlogDir = join(process.cwd(), 'public', 'assets', 'blogs', '07-03-2026-kampot');
 
         // Ensure output directory exists
         if (!existsSync(publicBlogDir)) {
@@ -20,19 +20,28 @@ async function createPlaceholderImages() {
         const mdxContent = readFileSync(mdxPath, 'utf-8');
 
         // Find all section-X-Y.webp references in MDX
-        const imgPattern = /src="\/blogs\/07-03-2026-kampot\/(section-\d+-\d+\.webp)"/g;
-        const matches = new Set<string>();
+        const imgPattern = /src="\/(?:assets\/)?blogs\/07-03-2026-kampot\/(section-\d+-\d+\.webp)"/g;
+        const matches: string[] = [];
         let match;
 
         while ((match = imgPattern.exec(mdxContent)) !== null) {
-            matches.add(match[1]);
+            if (!matches.includes(match[1])) {
+                matches.push(match[1]);
+            }
         }
 
-        console.log(`📸 Found ${matches.size} image references in blog post`);
+        console.log(`📸 Found ${matches.length} image references in blog post`);
 
         // Create placeholder images with a gradient
+        let createdCount = 0;
+        let skippedCount = 0;
         for (const fileName of matches) {
             const filePath = join(publicBlogDir, fileName);
+
+            if (existsSync(filePath)) {
+                skippedCount += 1;
+                continue;
+            }
 
             // Create a colorful placeholder image (1200x630 optimal for blog thumbs)
             const gradient = Buffer.from(`
@@ -55,6 +64,7 @@ async function createPlaceholderImages() {
                 .toFile(filePath);
 
             console.log(`✅ Created: ${fileName}`);
+            createdCount += 1;
         }
 
         // Create cover image if it doesn't exist
@@ -82,7 +92,8 @@ async function createPlaceholderImages() {
             console.log(`✅ Created: cover.webp (thumbnail)`);
         }
 
-        console.log(`\n✨ Blog images ready for search indexing`);
+        console.log(`\n📊 Result: created ${createdCount}, skipped ${skippedCount}`);
+        console.log(`✨ Blog images ready for search indexing`);
     } catch (error) {
         console.error('❌ Error creating images:', error instanceof Error ? error.message : error);
         process.exit(1);
