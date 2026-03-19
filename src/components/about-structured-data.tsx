@@ -26,7 +26,6 @@ export default function AboutStructuredData() {
         "name": `About ${appName}`,
         "description": `I'm ${PERSON_NAME} (${PERSON_ALTERNATE_NAME}), a ${PERSON_JOB_TITLE}.`,
         "url": `${NEXT_PUBLIC_APP_URL}/about`,
-        "mainEntityOfPage": `${NEXT_PUBLIC_APP_URL}/about`,
         "primaryImageOfPage": {
             "@type": "ImageObject",
             "url": personImageUrl,
