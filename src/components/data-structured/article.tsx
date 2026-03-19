@@ -49,6 +49,28 @@ export default function ArticleStructuredData({
         }
     };
 
+    // Extract all blog gallery images from content
+    const extractGalleryImages = (jsonContent: string): string[] => {
+        try {
+            const parsed = JSON.parse(jsonContent);
+            const images: string[] = [];
+
+            const extractImages = (node: any) => {
+                if (node.type === 'image' && node.attrs?.src) {
+                    images.push(node.attrs.src);
+                }
+                if (node.content && Array.isArray(node.content)) {
+                    node.content.forEach(extractImages);
+                }
+            };
+
+            extractImages(parsed);
+            return images;
+        } catch {
+            return [];
+        }
+    };
+
     const formatDateTimeWithOffset = (dateInput: string): string => {
         const date = new Date(dateInput);
 
@@ -66,6 +88,7 @@ export default function ArticleStructuredData({
     };
 
     const plainTextContent = getPlainTextContent(content);
+    const galleryImages = extractGalleryImages(content);
     const wordCount = plainTextContent.split(/\s+/).filter(word => word.length > 0).length;
     const readingTime = Math.ceil(wordCount / 200); // Assume 200 words per minute
     const publishedDate = formatDateTimeWithOffset(createdAt);
@@ -114,12 +137,22 @@ export default function ArticleStructuredData({
             "url": `${NEXT_PUBLIC_APP_URL}/posts`
         },
         ...(thumbnail && {
-            "image": {
-                "@type": "ImageObject",
-                "url": thumbnail,
-                "width": 1200,
-                "height": 630
-            }
+            "image": [
+                {
+                    "@type": "ImageObject",
+                    "url": thumbnail,
+                    "width": 1200,
+                    "height": 630,
+                    "description": `${title} - Cover Image`
+                },
+                ...galleryImages.map((img, idx) => ({
+                    "@type": "ImageObject",
+                    "url": img.startsWith('http') ? img : `${NEXT_PUBLIC_APP_URL}${img}`,
+                    "width": 1200,
+                    "height": 630,
+                    "description": `${title} - Gallery Image ${idx + 1}`
+                }))
+            ]
         }),
         "about": [
             {
