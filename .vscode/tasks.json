@@ -1,0 +1,70 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "generate-feeds",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"generate:feeds"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "generate-feeds",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"generate:feeds"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "generate-feeds-2",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"generate:feeds"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "generate:feeds",
+			"type": "shell",
+			"command": "npm run generate:feeds",
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "generate:images",
+			"type": "shell",
+			"command": "npm run generate:images",
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "generate:images-v2",
+			"type": "shell",
+			"command": "npm run generate:images",
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "generate:images-v3",
+			"type": "shell",
+			"command": "npm run generate:images",
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "generate:sitemap-v2",
+			"type": "shell",
+			"command": "npm run generate:sitemap",
+			"isBackground": false,
+			"group": "build"
+		}
+	]
+}

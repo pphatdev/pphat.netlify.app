@@ -35,11 +35,20 @@ export default function WebsiteStructuredData() {
             "name": PERSON_NAME
         },
         "copyrightYear": new Date().getFullYear().toString(),
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": `${NEXT_PUBLIC_APP_URL}/?search={search_term_string}`,
-            "query-input": "required name=search_term_string"
-        },
+        "potentialAction": [
+            {
+                "@type": "SearchAction",
+                "name": "Search Blog Posts",
+                "target": `${NEXT_PUBLIC_APP_URL}/posts?q={search_term_string}`,
+                "query-input": "required name=search_term_string"
+            },
+            {
+                "@type": "SearchAction",
+                "name": "Search Projects",
+                "target": `${NEXT_PUBLIC_APP_URL}/projects?q={search_term_string}`,
+                "query-input": "required name=search_term_string"
+            }
+        ],
         "mainEntity": {
             "@type": "Person",
             "@id": `${NEXT_PUBLIC_APP_URL}#person`

@@ -87,11 +87,6 @@ export default function JsonLd() {
                             "contentUrl": homeSearchImage
                         }
                     },
-                    "potentialAction": {
-                        "@type": "SearchAction",
-                        "target": `${NEXT_PUBLIC_APP_URL}/?search={search_term_string}`,
-                        "query-input": "required name=search_term_string"
-                    }
                 })
             }}
         />

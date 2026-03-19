@@ -124,6 +124,22 @@ const nextConfig: NextConfig = {
         },
     ],
 
+    redirects: async () => [
+        // Strip referral/tracking query params — redirect to canonical URL
+        {
+            source: '/:path*',
+            has: [{ type: 'query', key: 'ref' }],
+            destination: '/:path*',
+            permanent: true,
+        },
+        {
+            source: '/:path*',
+            has: [{ type: 'query', key: 'utm_source' }],
+            destination: '/:path*',
+            permanent: false,
+        },
+    ],
+
     rewrites: async () => [
         {
             source: '/api/post',

@@ -1,5 +1,4 @@
 # Projects images directory
 
-rss.xml
-atom.xml
-feed.json
+*.xml
+*.json

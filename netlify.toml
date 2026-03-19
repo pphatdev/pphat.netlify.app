@@ -2,5 +2,12 @@
   command = "npm run build"
   publish = ".next"
 
+# Redirect www to non-www (permanent)
+[[redirects]]
+  from = "https://www.pphat.me/*"
+  to = "https://pphat.me/:splat"
+  status = 301
+  force = true
+
 [[plugins]]
   package = "@netlify/plugin-nextjs"

@@ -13,18 +13,7 @@ export default function GoogleIndexingVerification() {
             <meta name="googlebot-news" content="index,follow" />
             <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
-            <Script id="google-indexing-helper" type="application/ld+json" strategy="afterInteractive">
-                {`{
-                        "@context": "https://schema.org",
-                        "@type": "WebSite",
-                        "url": "https://pphat.me/",
-                        "potentialAction": {
-                            "@type": "SearchAction",
-                            "target": "https://pphat.me/search?q={search_term_string}",
-                            "query-input": "required name=search_term_string"
-                        }
-                }`}
-            </Script>
+
             <Script id="person-structured-data" type="application/ld+json" strategy="afterInteractive">
                 {`{
                     "@context": "https://schema.org",
