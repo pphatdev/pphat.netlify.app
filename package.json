@@ -10,6 +10,7 @@
     "generate:images": "tsc src/scripts/generate-images-sitemap.ts --outDir build/scripts && node build/scripts/generate-images-sitemap.js",
     "generate:feeds": "tsc --noEmit false src/scripts/generate-feeds.ts --outDir build/scripts && node build/scripts/scripts/generate-feeds.js",
     "optimize:png:webp": "tsc --noEmit false --esModuleInterop src/scripts/optimize-png-to-webp.ts --outDir build/scripts && node build/scripts/optimize-png-to-webp.js",
+    "optimize:webp": "tsc --noEmit false --esModuleInterop src/scripts/optimize-webp-by-dir.ts --outDir build/scripts && node build/scripts/optimize-webp-by-dir.js",
     "validate:sitemap": "tsc src/scripts/validate-sitemap.ts --outDir build/scripts && node build/scripts/validate-sitemap.js",
     "seo:indexing": "tsc --noEmit false src/scripts/seo-google-indexing-fix.ts --outDir build/scripts && node build/scripts/seo-google-indexing-fix.js",
     "test:seo": "tsc src/scripts/test-seo-config.ts --outDir build/test && node build/test/test-seo-config.js",
