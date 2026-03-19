@@ -27,9 +27,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 <link rel="me" href={LINKEDIN_URL} />
                 <link rel="me" href={TWITTER_URL} />
                 <link rel="image_src" href={`${NEXT_PUBLIC_APP_URL}${PERSON_IMAGE}`} />
-                <link rel="alternate" type="application/rss+xml" title="PPhat Dev RSS" href="https://pphat.me/rss.xml" />
-                <link rel="alternate" type="application/atom+xml" title="PPhat Dev Atom" href="https://pphat.me/atom.xml" />
-                <link rel="alternate" type="application/feed+json" title="PPhat Dev JSON Feed" href="https://pphat.me/feed.json" />
+                <link rel="alternate" type="application/rss+xml" title="PPhat Dev RSS" href="https://pphat.me/blogs/rss.xml" />
+                <link rel="alternate" type="application/atom+xml" title="PPhat Dev Atom" href="https://pphat.me/blogs/atom.xml" />
+                <link rel="alternate" type="application/feed+json" title="PPhat Dev JSON Feed" href="https://pphat.me/blogs/feed.json" />
                 <meta name="priority" content="1.0" />
                 <meta name="revisit-after" content="1 day" />
             </head>

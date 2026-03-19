@@ -75,9 +75,12 @@ const STATIC_ROUTES: SitemapRoute[] = [
     { path: '/gallery', changefreq: 'monthly', priority: 0.8 },
     { path: '/posts', changefreq: 'weekly', priority: 0.9 },
     { path: '/projects', changefreq: 'monthly', priority: 0.8 },
-    { path: '/rss.xml', changefreq: 'daily', priority: 0.5 },
-    { path: '/atom.xml', changefreq: 'daily', priority: 0.5 },
-    { path: '/feed.json', changefreq: 'daily', priority: 0.5 },
+    { path: '/blogs/rss.xml', changefreq: 'daily', priority: 0.5 },
+    { path: '/blogs/atom.xml', changefreq: 'daily', priority: 0.5 },
+    { path: '/blogs/feed.json', changefreq: 'daily', priority: 0.5 },
+    { path: '/projects/rss.xml', changefreq: 'daily', priority: 0.5 },
+    { path: '/projects/atom.xml', changefreq: 'daily', priority: 0.5 },
+    { path: '/projects/feed.json', changefreq: 'daily', priority: 0.5 },
 ];
 
 // Define paths that should be excluded from sitemap
