@@ -1,6 +1,7 @@
 import { NavigationBar } from "@components/navbar/navbar";
 import { AboutMeHero } from "@components/heros/about-hero";
 import { AboutTimeline } from "./sections/timeline";
+import { ProfileFaq } from "./sections/profile-faq";
 import { BlurFade } from '@components/ui/blur-fade';
 import { Metadata } from "next";
 import { appName, NEXT_PUBLIC_APP_URL, PERSON_ALTERNATE_NAME, PERSON_IMAGE, PERSON_NAME, PERSON_RELEGIEN_NAME } from "@lib/constants";
@@ -81,6 +82,8 @@ const AboutPage = () => {
                     <AboutTimeline />
                 </BlurFade>
             </section>
+
+            <ProfileFaq />
 
             <Footer />
 
