@@ -139,8 +139,24 @@ export function getPublishedPosts(): PostEntry[] {
     return getAllPosts().filter(p => p.published);
 }
 
+function normalizeLookupSlug(slug: string): string {
+    const decodedSlug = (() => {
+        try {
+            return decodeURIComponent(slug);
+        } catch {
+            return slug;
+        }
+    })();
+
+    return decodedSlug
+        .trim()
+        .split(/[?#]/)[0]
+        .replace(/^\/+|\/+$/g, '');
+}
+
 export function getPostBySlug(slug: string): PostEntry | null {
-    return getAllPosts().find(p => p.slug === slug) || null;
+    const normalizedSlug = normalizeLookupSlug(slug);
+    return getAllPosts().find(p => p.slug === normalizedSlug) || null;
 }
 
 export function getPostsByTag(tag: string): PostEntry[] {
@@ -213,7 +229,8 @@ export function getPublishedProjects(): ProjectEntry[] {
 }
 
 export function getProjectBySlug(slug: string): ProjectEntry | null {
-    return getAllProjects().find(p => p.slug === slug) || null;
+    const normalizedSlug = normalizeLookupSlug(slug);
+    return getAllProjects().find(p => p.slug === normalizedSlug) || null;
 }
 
 export function paginateProjects(
