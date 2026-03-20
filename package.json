@@ -17,7 +17,7 @@
     "test:structured-data": "tsc src/scripts/test-structured-data.ts --outDir build/test && node build/test/test-structured-data.js",
     "pretest": "tsc src/scripts/pretest.ts --outDir build/test && node build/test/pretest.js",
     "lint": "eslint .",
-    "build": "npm run lint &&npm run generate && next build",
+    "build": "npm run generate && next build",
     "start": "next start",
     "clean": "rm -rf build && rm -rf .next && rm -rf node_modules && rm -rf package-lock.json",
     "reprod": "npm run clean && npm install && npm run build"
