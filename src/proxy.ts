@@ -11,7 +11,7 @@ const TRACKING_PARAMS = new Set([
     'fbclid',
 ]);
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
     const url = request.nextUrl.clone();
     let hasTrackingParam = false;
 
