@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 import sharp from 'sharp';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -66,9 +67,16 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({ error: 'File not found' }, { status: 404 });
     }
 
-    // Stat the file for ETag / Last-Modified
+    // Stat the file and build a cache key that is unique per source + transform params.
+    // This prevents different image URLs from sharing the same cache validator.
     const stat = fs.statSync(filePath);
-    const etag = `"${stat.size}-${stat.mtimeMs}"`;
+    const cacheKey = [
+        filePath,
+        stat.size,
+        stat.mtimeMs,
+        searchParams.toString(),
+    ].join('|');
+    const etag = `"${crypto.createHash('sha1').update(cacheKey).digest('hex')}"`;
     const lastModified = stat.mtime.toUTCString();
 
     // Conditional request support
@@ -149,7 +157,12 @@ export async function GET(request: NextRequest) {
         const outputBuffer = await pipeline.toBuffer();
         const contentType = MIME[format] ?? 'image/webp';
 
-        return new NextResponse(outputBuffer.buffer as ArrayBuffer, {
+        const responseBody = outputBuffer.buffer.slice(
+            outputBuffer.byteOffset,
+            outputBuffer.byteOffset + outputBuffer.byteLength,
+        ) as ArrayBuffer;
+
+        return new NextResponse(responseBody, {
             status: 200,
             headers: {
                 'Content-Type': contentType,
