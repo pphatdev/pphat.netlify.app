@@ -4,7 +4,6 @@ import React from "react";
 
 import { Dock, DockIcon } from "@components/ui/dock";
 import { IconBrandFigma, IconBrandGithub, IconBrandGoogle, IconBrandLinkedin } from "@tabler/icons-react";
-import Link from "next/link";
 import { cn } from "@lib/utils";
 import { bgGradientLine45deg } from "./background/gradient-line";
 

@@ -35,7 +35,7 @@ export const GetInTouchSections = () => {
             />
 
             {/* Vertical lines */}
-            {['left', 'right'].map((position, index) => (
+            {['left', 'right'].map((position) => (
                 <div
                     key={position}
                     style={{

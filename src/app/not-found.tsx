@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { appName, NEXT_PUBLIC_APP_URL } from '@lib/constants';
+import { NEXT_PUBLIC_APP_URL } from '@lib/constants';
 import Link from 'next/link';
 
 export const metadata: Metadata = {

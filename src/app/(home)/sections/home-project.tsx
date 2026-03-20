@@ -2,7 +2,7 @@
 import { GradientLines } from "@components/background/gradient-line";
 import { BentoGrid } from "@components/ui/bento-grid";
 import { Title } from "@components/ui/title";
-import { BookAIcon, CheckCircle, Globe, TrendingUp, Video } from "lucide-react";
+import { BookAIcon, CheckCircle } from "lucide-react";
 
 
 export const HomeProjects = () => {

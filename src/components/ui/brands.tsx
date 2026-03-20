@@ -18,9 +18,9 @@ interface BrandsGridProps extends React.HTMLAttributes<HTMLDivElement> {
 export const BrandsGrid = React.forwardRef<HTMLDivElement, BrandsGridProps>(
     ({
         className,
-        title = "Trusted and loved by fast-growing companies worldwide",
+        // title = "Trusted and loved by fast-growing companies worldwide",
         brands,
-        imageHeight = 56, // 14 * 4 = 56px (h-14)
+        // imageHeight = 56, // 14 * 4 = 56px (h-14)
         ...props
     }, ref) => {
         return (

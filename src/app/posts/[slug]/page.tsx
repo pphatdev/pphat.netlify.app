@@ -1,5 +1,5 @@
 import React from 'react';
-import { getPostBySlug, getPublishedPosts, type PostEntry } from '@lib/content';
+import { getPostBySlug, getPublishedPosts } from '@lib/content';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { appName, NEXT_PUBLIC_APP_URL } from '@lib/constants';
@@ -8,7 +8,7 @@ import { Badge } from '@components/ui/badge';
 import { Button } from '@components/ui/button';
 import { Separator } from '@components/ui/separator';
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
-import { ArrowLeftIcon, Calendar, Clock, ExternalLink, Pencil, User } from 'lucide-react';
+import { ArrowLeftIcon, Calendar, Clock, ExternalLink, User } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import "../../../styles/code-block-node.css"
 import { GridPattern } from '@components/ui/grid-pattern';

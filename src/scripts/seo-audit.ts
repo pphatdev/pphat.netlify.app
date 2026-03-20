@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import { NEXT_PUBLIC_APP_URL } from '../lib/constants';

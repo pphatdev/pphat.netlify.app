@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Button } from "../button";
 import { PopoverContent } from "../popover";
 import { cn } from "@lib/utils";
@@ -83,7 +84,8 @@ export const LinkSelector = ({ open, onOpenChange }: LinkSelectorProps) => {
                             onClick={() => {
                                 editor.chain().focus().unsetLink().run();
 
-                                // @ts-ignore
+                                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                // @ts-expect-error
                                 inputRef.current.value = "";
                                 onOpenChange(false);
                             }}

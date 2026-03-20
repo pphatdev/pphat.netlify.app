@@ -1,7 +1,6 @@
 /**
  * Application constants
  */
-
 // Contact information
 export const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'info.sophat@gmail.com';
 export const CONTACT_PHONE = process.env.CONTACT_PHONE || '+855 96918 3363';
@@ -20,6 +19,7 @@ export const PERSON_NAME_VARIANTS = [
 	"Sophat",
 	"លាត សុផាត"
 ];
+
 export const PERSON_GIVEN_NAME = process.env.PERSON_GIVEN_NAME || "Sophat";
 export const PERSON_FAMILY_NAME = process.env.PERSON_FAMILY_NAME || "LEAT";
 export const PERSON_JOB_TITLE = process.env.PERSON_JOB_TITLE || "Senior Front-end Developer";

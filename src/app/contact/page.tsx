@@ -15,7 +15,7 @@ import Footer from '../../components/layouts/footer';
 
 const BorderBeam = dynamic(() => import("@components/ui/border-beam").then(mod => ({ default: mod.BorderBeam })));
 const GridPattern = dynamic(() => import("@components/ui/grid-pattern").then(mod => ({ default: mod.GridPattern })));
-const Ripple = dynamic(() => import("@components/ui/ripple").then(mod => ({ default: mod.Ripple })));
+// const Ripple = dynamic(() => import("@components/ui/ripple").then(mod => ({ default: mod.Ripple })));
 const ContactHero = dynamic(() => import("@components/heros/contact-hero").then(mod => ({ default: mod.ContactHero })));
 
 export default function ContactPage() {
@@ -122,8 +122,8 @@ export default function ContactPage() {
                 subject: "",
                 message: ""
             });
-        } catch (err: any) {
-            setError(err.message || "Failed to send message. Please try again later.");
+        } catch (err: unknown) {
+            setError(err instanceof Error ? err.message : "Failed to send message. Please try again later.");
             // Scroll to the error message
             window.scrollTo({ top: 0, behavior: 'smooth' });
         } finally {

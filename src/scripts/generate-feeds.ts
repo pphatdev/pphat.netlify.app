@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { NEXT_PUBLIC_APP_URL, appDescriptions, appTitle } from '../lib/constants';
+import { appDescriptions, appTitle } from '../lib/constants';
+import { getBaseUrl } from '../lib/utils';
 
 interface PostData {
     slug: string;
@@ -41,15 +42,6 @@ function getImageMimeType(imageUrl: string): string {
     if (cleanUrl.endsWith('.webp')) return 'image/webp';
     if (cleanUrl.endsWith('.svg')) return 'image/svg+xml';
     return 'image/jpeg';
-}
-
-function getBaseUrl(): string {
-    const raw = NEXT_PUBLIC_APP_URL.trim();
-    const parsed = new URL(raw);
-    if (parsed.hostname.startsWith('www.')) {
-        parsed.hostname = parsed.hostname.slice(4);
-    }
-    return parsed.toString().replace(/\/$/, '');
 }
 
 function toOriginUrl(value: string, baseUrl: string): string {
@@ -303,7 +295,7 @@ export function generateFeeds(): void {
     writeFileSync(join(blogDir, 'atom.xml'), atom, 'utf-8');
     writeFileSync(join(blogDir, 'feed.json'), jsonFeed, 'utf-8');
 
-    console.log(`✅ Generated feeds for ${posts.length} published posts.`);
+    console.log(`📶 Generated feeds for ${posts.length} published posts.`);
     console.log(`🔗 RSS: ${baseUrl}/blogs/rss.xml`);
     console.log(`🔗 Atom: ${baseUrl}/blogs/atom.xml`);
     console.log(`🔗 JSON Feed: ${baseUrl}/blogs/feed.json`);
@@ -332,10 +324,14 @@ export function generateFeeds(): void {
     writeFileSync(join(projectsDir, 'atom.xml'), projectsAtom, 'utf-8');
     writeFileSync(join(projectsDir, 'feed.json'), projectsJsonFeed, 'utf-8');
 
-    console.log(`✅ Generated feeds for ${projects.length} published projects.`);
+    console.log(`\n📶 Generated feeds for ${projects.length} published projects.`);
     console.log(`🔗 RSS: ${baseUrl}/projects/rss.xml`);
     console.log(`🔗 Atom: ${baseUrl}/projects/atom.xml`);
     console.log(`🔗 JSON Feed: ${baseUrl}/projects/feed.json`);
 }
 
-generateFeeds();
+const isDirectRun = process.argv[1]?.replace(/\\/g, '/').endsWith('/generate-feeds.js');
+
+if (isDirectRun) {
+    generateFeeds();
+}

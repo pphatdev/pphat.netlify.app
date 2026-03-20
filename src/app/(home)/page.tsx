@@ -26,7 +26,7 @@ const HomeAboutMe = dynamic(() => import("./sections/home-aboutme").then(mod => 
 const HomeFAQSection = dynamic(() => import("./sections/home-faq").then(mod => ({ default: mod.HomeFAQSection })), {
     loading: () => <div className="min-h-25" />,
 });
-const GetInTouchSections = dynamic(() => import("./sections/home-getintouch"));
+// const GetInTouchSections = dynamic(() => import("./sections/home-getintouch"));
 const homeSearchImage = `${NEXT_PUBLIC_APP_URL}/assets/screenshots/home-dark.png`;
 const homeTitle = `${appName} | Senior Front-end Developer & UI/UX Designer`;
 const homeDescription = "Sophat LEAT (PPhat, Sophat L.) is a Senior Front-end Developer at TURBOTECH CO., LTD and Freelance UI/UX Designer in Phnom Penh, Cambodia. Explore projects, case studies, technical articles, blogs, and contact details.";

@@ -110,7 +110,7 @@ export default function Footer() {
                         <h3 className="font-semibold text-base sm:pl-1 text-primary">Social</h3>
                         <ul className="max-sm:gap-2 flex flex-col">
                             {socialLinks.map((link) => {
-                                const Icon = link.icon;
+                                // const Icon = link.icon;
 
                                 return (
                                     <li key={link.href}>

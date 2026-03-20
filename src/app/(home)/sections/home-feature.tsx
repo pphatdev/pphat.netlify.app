@@ -3,8 +3,8 @@ import { Title } from "@components/ui/title";
 import { cn } from "@lib/utils";
 import {
     IconCloud,
-    IconEaseInOut,
-    IconRouteAltLeft,
+    // IconEaseInOut,
+    // IconRouteAltLeft,
     IconTerminal2,
 } from "@tabler/icons-react";
 

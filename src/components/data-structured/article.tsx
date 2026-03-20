@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { NEXT_PUBLIC_APP_URL, appName } from '@lib/constants';
 

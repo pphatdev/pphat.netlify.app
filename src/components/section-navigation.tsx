@@ -3,7 +3,7 @@
 import { cn } from "@lib/utils";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import Link from "next/link";
-import React, { useEffect, useState, useCallback, useMemo } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { usePathname } from "next/navigation";
 
 export const SectionNavigation = (

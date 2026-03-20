@@ -1,6 +1,7 @@
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 import { appDescriptions, appName } from '../lib/constants';
+import { getBaseUrl } from '../lib/utils';
 
 interface ManifestIcon {
     src: string;
@@ -168,7 +169,12 @@ export function generateManifest(): void {
     const outputPath = join(__dirname, '../../public/site.webmanifest');
 
     writeFileSync(outputPath, JSON.stringify(manifest, null, 2));
-    console.log('✅ Web manifest generated successfully.');
+    console.log('\n☢️  Web manifest generated successfully.');
+    console.log(`🔗 Manifest path: ${getBaseUrl()}/site.webmanifest`);
 }
 
-generateManifest();
+const isDirectRun = process.argv[1]?.replace(/\\/g, '/').endsWith('/generate-manifest.js');
+
+if (isDirectRun) {
+    generateManifest();
+}

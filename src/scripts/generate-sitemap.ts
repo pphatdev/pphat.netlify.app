@@ -1,37 +1,13 @@
-import { writeFileSync, readFileSync, readdirSync, statSync, existsSync, mkdirSync } from 'fs';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { writeFileSync, readFileSync, readdirSync, existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { NEXT_PUBLIC_APP_URL } from '../lib/constants';
+import { getBaseUrl } from '../lib/utils';
 
 interface SitemapRoute {
     path: string;
     changefreq: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
     priority: number;
     lastmod?: string;
-}
-
-interface PostData {
-    id: string;
-    slug: string;
-    published: boolean;
-    createdAt: string;
-    updatedAt?: string;
-}
-
-interface ProjectData {
-    id: string;
-    title: string;
-    published: boolean;
-    createdAt: string;
-    updatedAt?: string;
-}
-
-function getBaseUrl(): string {
-    const raw = NEXT_PUBLIC_APP_URL.trim();
-    const parsed = new URL(raw);
-    if (parsed.hostname.startsWith('www.')) {
-        parsed.hostname = parsed.hostname.slice(4);
-    }
-    return parsed.toString().replace(/\/$/, '');
 }
 
 function xmlEscape(value: string): string {
@@ -89,12 +65,13 @@ const EXCLUDED_PATHS = [
     '/login',
     '/(auth)/',
     '/posts/[slug]', // This is a template, not an actual page
+    '/projects/[slug]', // This is a template, not an actual page
     '/data/', // JSON data files
     '/google', // Google verification files
 ];
 
-// Default is off: only include /projects listing page, not every /projects/:id detail URL.
-const INCLUDE_PROJECT_DETAIL_IN_SITEMAP = process.env.INCLUDE_PROJECT_DETAIL_IN_SITEMAP === 'true';
+// Default is on: include /projects/:slug detail URLs unless explicitly disabled.
+const INCLUDE_PROJECT_DETAIL_IN_SITEMAP = process.env.INCLUDE_PROJECT_DETAIL_IN_SITEMAP !== 'false';
 
 // Simple frontmatter parser for build scripts (avoids gray-matter dependency in compiled output)
 function parseFrontmatter(content: string): Record<string, unknown> {
@@ -148,7 +125,6 @@ function fetchPostRoutes(): SitemapRoute[] {
             });
         }
 
-        console.log(`${routes.length} posts are published and will be included in sitemap`);
         return routes;
     } catch (error) {
         console.error('Error reading post data:', error);
@@ -178,7 +154,6 @@ function fetchProjectRoutes(): SitemapRoute[] {
             });
         }
 
-        console.log(`${routes.length} projects are published and will be included in sitemap`);
         return routes;
     } catch (error) {
         console.error('Error reading project data:', error);
@@ -208,8 +183,8 @@ export async function createSitemap(): Promise<void> {
         console.log(`📝 Static routes: ${STATIC_ROUTES.length}`);
         console.log(`📄 Post routes: ${postRoutes.length}`);
         console.log(`🧩 Project routes: ${projectRoutes.length}`);
-        console.log(`🛠️ Project detail in sitemap: ${INCLUDE_PROJECT_DETAIL_IN_SITEMAP ? 'enabled' : 'disabled'}`);
-        console.log(`🚫 Excluded patterns: ${EXCLUDED_PATHS.join(', ')}`);
+        console.log(`🛠️  Project detail in sitemap: ${INCLUDE_PROJECT_DETAIL_IN_SITEMAP ? 'enabled' : 'disabled'}`);
+        console.log(`\n🚫 Excluded patterns: ${EXCLUDED_PATHS.join(', ')}`);
 
         // Validate URLs in production environment (optional)
         const validateUrls = process.env.VALIDATE_SITEMAP_URLS === 'true';
@@ -267,9 +242,8 @@ export async function createSitemap(): Promise<void> {
 
         const outputPath = join(process.cwd(), 'public/sitemap.xml');
         writeFileSync(outputPath, sitemap, 'utf-8');
-        console.log(`✅ Sitemap generated successfully at ${outputPath}`);
-        console.log(`🔗 Sitemap URL: ${getBaseUrl()}/sitemap.xml`);
-        console.log(`📋 Total indexable pages: ${validatedRoutes.length}`);
+        console.log(`✅ Sitemap generated for ${validatedRoutes.length} pages`);
+        console.log(`🔗 Sitemap: ${getBaseUrl()}/sitemap.xml`);
     } catch (error) {
         console.error('❌ Error generating sitemap:', error);
         process.exit(1);
@@ -312,7 +286,7 @@ export function createBlogsSitemap(): void {
     ].join('\n');
 
     writeFileSync(join(dir, 'sitemap.xml'), sitemap, 'utf-8');
-    console.log(`✅ Blogs sitemap: ${getBaseUrl()}/blogs/sitemap.xml (${postRoutes.length} posts)`);
+    console.log(`🔗 Blogs sitemap: ${getBaseUrl()}/blogs/sitemap.xml`);
 }
 
 export function createProjectsSitemap(): void {
@@ -335,7 +309,7 @@ export function createProjectsSitemap(): void {
     ].join('\n');
 
     writeFileSync(join(dir, 'sitemap.xml'), sitemap, 'utf-8');
-    console.log(`✅ Projects sitemap: ${getBaseUrl()}/projects/sitemap.xml (${projectRoutes.length} projects)`);
+    console.log(`🔗 Projects sitemap: ${getBaseUrl()}/projects/sitemap.xml`);
 }
 
 function updateSitemapIndex(): void {
@@ -364,17 +338,21 @@ function updateSitemapIndex(): void {
     ].join('\n');
 
     writeFileSync(join(process.cwd(), 'public/sitemap-index.xml'), xml, 'utf-8');
-    console.log(`✅ Sitemap index updated with ${sitemaps.length} sitemaps`);
+    console.log(`🚧 Sitemap index updated with ${sitemaps.length} sitemaps`);
 }
 
-// Run the generator
-createSitemap()
-    .then(() => {
-        createBlogsSitemap();
-        createProjectsSitemap();
-        updateSitemapIndex();
-    })
-    .catch(error => {
-    console.error('❌ Failed to create sitemap:', error);
-    process.exit(1);
-});
+export async function generateSitemaps(): Promise<void> {
+    await createSitemap();
+    createBlogsSitemap();
+    createProjectsSitemap();
+    updateSitemapIndex();
+}
+
+const isDirectRun = process.argv[1]?.replace(/\\/g, '/').endsWith('/generate-sitemap.js');
+
+if (isDirectRun) {
+    generateSitemaps().catch(error => {
+        console.error('❌ Failed to create sitemap:', error);
+        process.exit(1);
+    });
+}
