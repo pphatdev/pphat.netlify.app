@@ -1,4 +1,3 @@
-import React from "react";
 import dynamic from "next/dynamic";
 import HeroSection from "@components/heros/home-hero";
 import OrganizationStructuredData from "@components/organization-structured-data";
@@ -26,7 +25,7 @@ const HomeAboutMe = dynamic(() => import("./sections/home-aboutme").then(mod => 
 const HomeFAQSection = dynamic(() => import("./sections/home-faq").then(mod => ({ default: mod.HomeFAQSection })), {
     loading: () => <div className="min-h-25" />,
 });
-// const GetInTouchSections = dynamic(() => import("./sections/home-getintouch"));
+
 const homeSearchImage = `${NEXT_PUBLIC_APP_URL}/assets/screenshots/home-dark.png`;
 const homeTitle = `${appName} | Senior Front-end Developer & UI/UX Designer`;
 const homeDescription = "Sophat LEAT (PPhat, Sophat L.) is a Senior Front-end Developer at TURBOTECH CO., LTD and Freelance UI/UX Designer in Phnom Penh, Cambodia. Explore projects, case studies, technical articles, blogs, and contact details.";
@@ -40,7 +39,6 @@ export const metadata: Metadata = {
     }],
     generator: appName,
     keywords: [
-        "Sophat LEAT",
         "PPhat",
         "pphat",
         "pphatdev",
@@ -84,7 +82,7 @@ export const metadata: Metadata = {
                 url: homeSearchImage,
                 width: 1900,
                 height: 926,
-                alt: `${appName} - Senior Front-end Developer and UI/UX Designer`,
+                alt: `${appName} - ${homeDescription}`,
                 type: "image/png",
             },
         ],
@@ -150,10 +148,6 @@ export default function Home() {
                     <HomeFAQSection />
                 </BlurFade>
             </section>
-{/* 
-            <section id="contact" className="flex flex-col snap-end">
-                <GetInTouchSections />
-            </section> */}
 
             <Footer />
 
