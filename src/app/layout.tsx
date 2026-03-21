@@ -6,7 +6,9 @@ import { ThemeProvider } from 'next-themes'
 import { homeHome } from "../lib/meta/home";
 import { aladin, kantumruyPro, poppins, srisakdi, openSans } from "../lib/fonts";
 import { cn } from "../lib/utils";
+import { AuthSessionProvider } from "@components/auth/auth-session-provider";
 import GoogleIndexingVerification from "../components/google-indexing-verification";
+import { Toaster } from "@components/ui/sonner";
 import { GITHUB_URL, LINKEDIN_URL, NEXT_PUBLIC_APP_URL, PERSON_IMAGE, TWITTER_URL } from "@lib/constants";
 export { viewport } from "../lib/meta/viewport";
 export const metadata: Metadata = homeHome;
@@ -47,9 +49,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                     defaultTheme="system"
                     disableTransitionOnChange
                 >
-                    <Providers>
-                        {children}
-                    </Providers>
+                    <AuthSessionProvider>
+                        <Providers>
+                            {children}
+                        </Providers>
+                        <Toaster richColors position="top-right" />
+                    </AuthSessionProvider>
                 </ThemeProvider>
             </body>
         </html>

@@ -3,7 +3,7 @@ import { getPublishedPosts } from '@lib/content';
 
 // This file generates a dynamic sitemap using Next.js API
 // It only includes canonical URLs that return 200 status codes
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://pphat.me';
 
     // Get current date for lastModified
@@ -51,7 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // Add dynamic post routes
     try {
-        const publishedPosts = getPublishedPosts();
+        const publishedPosts = await getPublishedPosts();
 
         const postRoutes: MetadataRoute.Sitemap = publishedPosts.map(post => ({
             url: `${baseUrl}/posts/${post.slug}`,

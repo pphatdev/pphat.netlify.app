@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getPublishedPosts, paginatePosts } from '@lib/content';
+import { requireUserSession } from '@lib/auth';
+import { createPostRecord } from '@lib/db/admin-content';
 
 export async function GET(request: NextRequest) {
     try {
@@ -7,7 +9,7 @@ export async function GET(request: NextRequest) {
         const page = parseInt(searchParams.get('page') || '1');
         const limit = parseInt(searchParams.get('limit') || '9');
 
-        const published = getPublishedPosts();
+        const published = await getPublishedPosts();
         const tags = Array.from(
             new Set(published.flatMap((post) => post.tags || []))
         ).sort((a, b) => a.localeCompare(b));
@@ -37,6 +39,11 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
     try {
+        const session = await requireUserSession();
+        if (!session) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        }
+
         const body = await request.json();
 
         // Validate required fields
@@ -50,36 +57,24 @@ export async function POST(request: NextRequest) {
             }
         }
 
-        const fs = await import('fs');
-        const path = await import('path');
-        const matter = await import('gray-matter');
-
-        const slug = body.slug || generateSlug(body.title);
-        const dir = path.join(process.cwd(), 'content', 'posts', slug);
-        fs.mkdirSync(dir, { recursive: true });
-
-        const frontmatter = {
+        const createdPost = await createPostRecord({
             title: body.title,
-            slug,
+            slug: body.slug || generateSlug(body.title),
             description: body.description || '',
             tags: body.tags || [],
             authors: body.authors || [],
             thumbnail: body.thumbnail || '',
             published: body.published ?? false,
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-        };
+            content: body.content || '',
+        });
 
-        const fileContent = matter.default.stringify(body.content || '', frontmatter);
-        fs.writeFileSync(path.join(dir, 'index.md'), fileContent, 'utf8');
-
-        // Invalidate cache
-        const { invalidateCache } = await import('@lib/content');
-        invalidateCache();
+        if (!createdPost) {
+            return NextResponse.json({ error: 'Failed to create post' }, { status: 500 });
+        }
 
         return NextResponse.json({
             success: true,
-            data: { ...frontmatter, id: slug, content: body.content },
+            data: createdPost,
             message: 'Post created successfully'
         }, { status: 201 });
 

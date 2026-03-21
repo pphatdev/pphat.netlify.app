@@ -42,8 +42,9 @@ export async function GET(request: NextRequest) {
             return NextResponse.json({ error: 'Missing required slug query parameter' }, { status: 400 });
         }
 
-        const post = getPostBySlug(slug)
-            ?? getAllPosts().find((entry) => entry.id === slug || getPostFolderName(entry.filePath) === slug);
+        const allPosts = await getAllPosts();
+        const post = await getPostBySlug(slug)
+            ?? allPosts.find((entry) => entry.id === slug || getPostFolderName(entry.filePath) === slug);
 
         if (!post) {
             return NextResponse.json({ error: 'Post not found' }, { status: 404 });

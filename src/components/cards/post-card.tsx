@@ -2,7 +2,7 @@ import { Badge } from "@components/ui/badge";
 import { Post } from "@lib/types/interfaces";
 import Link from "next/link";
 import Image from 'next/image';
-import { Share2Icon } from "lucide-react";
+import { Eye, Share2Icon } from "lucide-react";
 import * as React from 'react';
 import { cn } from "@lib/utils";
 
@@ -69,6 +69,10 @@ export const PostCard = React.memo(({ post, actionChildren, className, isAdmin =
 
                 <div className="flex items-center gap-2 my-2">
                     <time dateTime={new Date(post.createdAt).toISOString()} className="text-xs text-foreground/50 font-sans">{new Date(post.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
+                    <span className='text-xs text-foreground/50 font-sans inline-flex items-center gap-1'>
+                        <Eye className='size-3.5' />
+                        {(post.visitorCount ?? 0).toLocaleString()}
+                    </span>
                 </div>
                 {isAdmin && post.published && (
                     <div className="size-2.5 absolute top-5 right-3 bg-primary rounded-full"></div>

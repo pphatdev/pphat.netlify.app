@@ -65,6 +65,35 @@
 			"command": "npm run generate:sitemap",
 			"isBackground": false,
 			"group": "build"
+		},
+		{
+			"label": "install-auth-deps-once",
+			"type": "shell",
+			"command": "npm install next-auth bcryptjs",
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "lint-admin-auth",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"lint"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "lint-admin-auth-2",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"lint"
+			],
+			"isBackground": false,
+			"group": "build"
 		}
 	]
 }

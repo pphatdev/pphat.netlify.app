@@ -43,6 +43,9 @@ next-env.d.ts
 
 /public/.cache
 .open-next
+/data/*.db
+/data/*.sqlite
+/data/*.sqlite-*
 
 public/image-sitemap.xml
 public/sitemap.xml

@@ -30,14 +30,37 @@ cp .env.example .env.local
 npm run dev
 ```
 
-5. **Build for production**
+5. **Initialize the local SQLite database**
+```sh
+npm run db:sync
+```
+
+This project keeps posts and projects in `content/` markdown files. The SQLite database is used for queryable application data and mirrors content metadata for future features. Contact form submissions are stored directly in SQLite.
+
+6. **Build for production**
 ```sh
 npm run build
 ```
 
-6. **Preview production build**
+7. **Preview production build**
 ```sh
 npm preview
+```
+
+## Database
+
+- ORM: Drizzle
+- Dialect: SQLite
+- Default database path: `file:./data/pphat.sqlite`
+- Schema file: `src/lib/db/schema.ts`
+- Drizzle config: `drizzle.config.ts`
+
+Useful commands:
+
+```sh
+npm run db:sync
+npm run db:push
+npm run db:studio
 ```
 
 ---

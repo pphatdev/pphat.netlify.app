@@ -1,11 +1,11 @@
 "use client"
 
+import { useMemo } from "react"
+import { signOut } from "next-auth/react"
 import {
-  IconCreditCard,
   IconDotsVertical,
   IconLogout,
-  IconNotification,
-  IconUserCircle,
+  IconShield,
 } from "@tabler/icons-react"
 
 import {
@@ -28,6 +28,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@components/ui/sidebar"
+import { Badge } from "@components/ui/badge"
 
 export function AdminNavUser({
   user,
@@ -36,9 +37,14 @@ export function AdminNavUser({
     name: string
     email: string
     avatar: string
+    role: string
   }
 }) {
   const { isMobile } = useSidebar()
+  const initials = useMemo(
+    () => user.name.split(" ").map((chunk) => chunk[0]).join("").slice(0, 2).toUpperCase(),
+    [user.name]
+  )
 
   return (
     <SidebarMenu>
@@ -47,11 +53,11 @@ export function AdminNavUser({
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+              className="bg-sidebar-accent/35 hover:bg-sidebar-accent/60 h-auto rounded-xl border border-sidebar-border/60 px-2.5 py-2.5 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <Avatar className="h-8 w-8 rounded-lg grayscale">
+              <Avatar className="h-9 w-9 rounded-xl grayscale">
                 <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                <AvatarFallback className="rounded-xl">{initials}</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">{user.name}</span>
@@ -59,6 +65,9 @@ export function AdminNavUser({
                   {user.email}
                 </span>
               </div>
+              <Badge variant="outline" className="mr-1 hidden rounded-full px-1.5 text-[10px] uppercase md:inline-flex">
+                {user.role}
+              </Badge>
               <IconDotsVertical className="ml-auto size-4" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
@@ -72,7 +81,7 @@ export function AdminNavUser({
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
                   <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                  <AvatarFallback className="rounded-lg">{initials}</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-medium">{user.name}</span>
@@ -85,20 +94,12 @@ export function AdminNavUser({
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <IconUserCircle />
-                Account
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <IconCreditCard />
-                Billing
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <IconNotification />
-                Notifications
+                <IconShield />
+                Role: {user.role}
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => signOut({ callbackUrl: "/login" })}>
               <IconLogout />
               Log out
             </DropdownMenuItem>

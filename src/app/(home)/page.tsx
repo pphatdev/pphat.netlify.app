@@ -109,8 +109,8 @@ export const metadata: Metadata = {
     },
 };
 
-export default function Home() {
-    const latestPost = getPublishedPosts()[0] ?? null;
+export default async function Home() {
+    const latestPost = (await getPublishedPosts())[0] ?? null;
 
     return (
         <div className="w-full flex flex-col">

@@ -16,6 +16,7 @@ import SoftwareApplicationStructuredData from '@components/data-structured/softw
 import { MarkdownRenderer } from '@components/ui/markdown-renderer';
 import { ScrollToTopButton } from '@components/ui/scroll-to-top-button';
 import { PostCoverImage } from '@components/ui/post-cover-image';
+import { ContentVisitorCounter } from '@components/content-visitor-counter';
 import { DividerVerticalIcon } from '@radix-ui/react-icons';
 import Footer from 'src/components/layouts/footer';
 
@@ -30,7 +31,7 @@ function isValidDateValue(value?: string) {
 
 export async function generateMetadata(props: Params): Promise<Metadata> {
     const params = await props.params;
-    const project = getProjectBySlug(params.slug);
+    const project = await getProjectBySlug(params.slug);
 
     if (!project) {
         return {
@@ -66,14 +67,14 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-    const projects = getPublishedProjects();
+    const projects = await getPublishedProjects();
     return projects.map((project) => ({ slug: project.slug }));
 }
 
 export default async function ProjectDetail(props: Params) {
     const params = await props.params;
-    const project = getProjectBySlug(params.slug);
-    const projects = getPublishedProjects();
+    const project = await getProjectBySlug(params.slug);
+    const projects = await getPublishedProjects();
 
     if (!project) {
         return (
@@ -213,6 +214,15 @@ export default async function ProjectDetail(props: Params) {
                                 <Clock className='w-4 h-4' />
                                 <span>{formatDistanceToNow(createdDate)} ago</span>
                             </div>
+
+                            <DividerVerticalIcon orientation='vertical' className='mx-1 text-foreground/50 h-4' />
+
+                            <ContentVisitorCounter
+                                type='project'
+                                slug={project.slug}
+                                initialCount={project.visitorCount}
+                                className='flex items-center space-x-1 max-sm:text-xs text-sm text-muted-foreground whitespace-nowrap'
+                            />
                         </div>
                     )}
                 </div>

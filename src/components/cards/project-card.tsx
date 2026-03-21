@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from 'next/image';
 import { ExternalLinkIcon } from "@radix-ui/react-icons";
 import { AvatarCircles } from '../ui/avatar-circles';
+import { Eye } from 'lucide-react';
 
 export const ProjectCard = React.memo(({ project }: { project: Project }) => {
     const avatars = project.authors.map((author) => ({
@@ -56,6 +57,10 @@ export const ProjectCard = React.memo(({ project }: { project: Project }) => {
                     {(project.languages ?? []).slice(0, 3).map((language, index) => (
                         <Badge key={index} variant="outline" className="text-[10px] px-1 leading-5 rounded-md border border-primary/50 font-open-sans">{language}</Badge>
                     ))}
+                    <span className='text-[10px] px-1 leading-5 rounded-md border border-primary/30 text-foreground/70 inline-flex items-center gap-1'>
+                        <Eye className='size-3' />
+                        {(project.visitorCount ?? 0).toLocaleString()}
+                    </span>
                 </div>
 
                 <h2 className="text-lg z-10 my-1 font-semibold font-sans tracking-wide line-clamp-1 pb-1">{project.title} </h2>

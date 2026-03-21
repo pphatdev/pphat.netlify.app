@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getAllPosts, getPostBySlug, invalidateCache, type PostEntry } from '@lib/content';
+import { getAllPosts, getPostBySlug } from '@lib/content';
+import { requireUserSession } from '@lib/auth';
+import { deletePostRecord, updatePostRecord } from '@lib/db/admin-content';
 import fs from 'fs';
 import path from 'path';
-import matter from 'gray-matter';
 
 interface Params {
     params: Promise<{ id: string; }>;
@@ -32,7 +33,8 @@ export async function GET(request: NextRequest, props: Params) {
     const params = await props.params;
     try {
         // Try by slug first, then by id
-        const post = getPostBySlug(params.id) ?? getAllPosts().find(p => p.id === params.id);
+        const allPosts = await getAllPosts();
+        const post = await getPostBySlug(params.id) ?? allPosts.find(p => p.id === params.id);
 
         if (!post) {
             return NextResponse.json({ error: 'Post not found' }, { status: 404 });
@@ -65,33 +67,18 @@ export async function GET(request: NextRequest, props: Params) {
     }
 }
 
-function writePostToFile(post: PostEntry, markdownContent: string) {
-    const dir = path.join(process.cwd(), 'content', 'posts', post.slug);
-    fs.mkdirSync(dir, { recursive: true });
-
-    const frontmatter: Record<string, unknown> = {
-        title: post.title,
-        slug: post.slug,
-        description: post.description,
-        tags: post.tags,
-        authors: post.authors,
-        thumbnail: post.thumbnail,
-        published: post.published,
-        createdAt: post.createdAt,
-        updatedAt: post.updatedAt,
-    };
-
-    const fileContent = matter.stringify(markdownContent, frontmatter);
-    fs.writeFileSync(path.join(dir, 'index.md'), fileContent, 'utf8');
-    invalidateCache();
-}
-
 export async function PUT(request: NextRequest, props: Params) {
     const params = await props.params;
     try {
+        const session = await requireUserSession();
+        if (!session) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        }
+
         const body = await request.json();
 
-        const existingPost = getPostBySlug(params.id) ?? getAllPosts().find(p => p.id === params.id);
+        const allPosts = await getAllPosts();
+        const existingPost = await getPostBySlug(params.id) ?? allPosts.find(p => p.id === params.id);
         if (!existingPost) {
             return NextResponse.json({ error: 'Post not found' }, { status: 404 });
         }
@@ -100,16 +87,15 @@ export async function PUT(request: NextRequest, props: Params) {
             return NextResponse.json({ error: 'Title must be a string' }, { status: 400 });
         }
 
-        const updatedPost: PostEntry = {
-            ...existingPost,
+        const updatedPost = await updatePostRecord(existingPost.id, {
             ...body,
-            id: existingPost.id,
-            createdAt: existingPost.createdAt,
-            updatedAt: new Date().toISOString(),
-            slug: existingPost.slug, // Keep original slug to avoid breaking URLs
-        };
+            slug: body.slug ?? existingPost.slug,
+            content: body.content || existingPost.content,
+        });
 
-        writePostToFile(updatedPost, body.content || existingPost.content);
+        if (!updatedPost) {
+            return NextResponse.json({ error: 'Post not found' }, { status: 404 });
+        }
 
         return NextResponse.json({
             message: 'Post updated successfully',
@@ -127,16 +113,18 @@ export async function PUT(request: NextRequest, props: Params) {
 export async function DELETE(request: NextRequest, props: Params) {
     const params = await props.params;
     try {
-        const existingPost = getPostBySlug(params.id) ?? getAllPosts().find(p => p.id === params.id);
+        const session = await requireUserSession();
+        if (!session) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        }
+
+        const allPosts = await getAllPosts();
+        const existingPost = await getPostBySlug(params.id) ?? allPosts.find(p => p.id === params.id);
         if (!existingPost) {
             return NextResponse.json({ error: 'Post not found' }, { status: 404 });
         }
 
-        const dir = path.join(process.cwd(), 'content', 'posts', existingPost.slug);
-        if (fs.existsSync(dir)) {
-            fs.rmSync(dir, { recursive: true });
-        }
-        invalidateCache();
+        await deletePostRecord(existingPost.id);
 
         return NextResponse.json({
             message: 'Post deleted successfully',
@@ -151,14 +139,20 @@ export async function DELETE(request: NextRequest, props: Params) {
 export async function PATCH(request: NextRequest, props: Params) {
     const params = await props.params;
     try {
+        const session = await requireUserSession();
+        if (!session) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        }
+
         const body = await request.json();
 
-        const existingPost = getPostBySlug(params.id) ?? getAllPosts().find(p => p.id === params.id);
+        const allPosts = await getAllPosts();
+        const existingPost = await getPostBySlug(params.id) ?? allPosts.find(p => p.id === params.id);
         if (!existingPost) {
             return NextResponse.json({ error: 'Post not found' }, { status: 404 });
         }
 
-        const updates: Partial<PostEntry> = {};
+        const updates: Record<string, unknown> = {};
 
         if (body.title !== undefined) {
             if (typeof body.title !== 'string' || body.title.trim().length === 0) {
@@ -173,13 +167,11 @@ export async function PATCH(request: NextRequest, props: Params) {
         if (body.authors !== undefined && Array.isArray(body.authors)) updates.authors = body.authors;
         if (body.thumbnail !== undefined) updates.thumbnail = String(body.thumbnail).trim();
 
-        const updatedPost: PostEntry = {
-            ...existingPost,
-            ...updates,
-            updatedAt: new Date().toISOString(),
-        };
+        const updatedPost = await updatePostRecord(existingPost.id, updates);
 
-        writePostToFile(updatedPost, updatedPost.content);
+        if (!updatedPost) {
+            return NextResponse.json({ error: 'Post not found' }, { status: 404 });
+        }
 
         return NextResponse.json({
             message: 'Post updated successfully',

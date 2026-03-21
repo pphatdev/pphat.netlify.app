@@ -10,7 +10,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 
 
 interface NavbarProps {
@@ -53,11 +53,7 @@ interface MobileNavMenuProps {
 }
 
 export const Navbar = ({ children, className }: NavbarProps) => {
-    const ref = useRef<HTMLDivElement>(null);
-    const { scrollY } = useScroll({
-        target: ref,
-        offset: ["start start", "end start"],
-    });
+    const { scrollY } = useScroll();
     const [visible, setVisible] = useState<boolean>(false);
 
     useMotionValueEvent(scrollY, "change", (latest) => {
@@ -70,9 +66,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
 
     return (
         <motion.div
-            ref={ref}
-            // IMPORTANT: Change this to class of `fixed` if you want the navbar to be fixed
-            className={cn("fixed inset-x-0 max-md:top-0 bg-transparent top-5 z-40 w-full", className)}
+            className={cn("fixed inset-x-0 top-3 z-40 w-full px-3 md:top-5 md:px-4", className)}
         >
             {React.Children.map(children, (child) =>
                 React.isValidElement(child)
@@ -89,24 +83,20 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
     return (
         <motion.div
             animate={{
-                backdropFilter: visible ? "blur(10px)" : "none",
-                // boxShadow: visible
-                //     ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-                //     : "none",
-                width: visible ? "40%" : "100%",
-                y: visible ? 20 : 0,
+                backdropFilter: visible ? "blur(14px)" : "blur(0px)",
+                y: visible ? 6 : 0,
+                scale: visible ? 0.985 : 1,
             }}
             transition={{
                 type: "spring",
-                stiffness: 200,
-                damping: 50,
-            }}
-            style={{
-                minWidth: "700px",
+                stiffness: 260,
+                damping: 28,
             }}
             className={cn(
-                "relative z-[60] mx-auto hidden w-full max-w-5xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex",
-                visible && "bg-background/30 shadow-card ring-1 ring-foreground/10",
+                "relative z-60 mx-auto hidden w-full max-w-5xl items-center justify-between rounded-[1.75rem] border border-transparent px-3 py-2 lg:flex",
+                visible
+                    ? "bg-background/75 shadow-[0_10px_30px_rgba(0,0,0,0.08)] ring-1 ring-foreground/8 border-border/50"
+                    : "bg-background/55 ring-1 ring-foreground/8 shadow-[0_6px_20px_rgba(0,0,0,0.04)]",
                 className,
             )}
         >
@@ -122,7 +112,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
         <motion.div
             onMouseLeave={() => setHovered(null)}
             className={cn(
-                "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-foreground/60 transition duration-200 hover:text-foreground/80 lg:flex lg:space-x-2",
+                "hidden flex-1 items-center justify-center gap-1.5 px-6 text-sm font-medium lg:flex",
                 className,
             )}
         >
@@ -131,8 +121,8 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
                     onMouseEnter={() => setHovered(idx)}
                     onClick={onItemClick}
                     className={cn(
-                        "relative px-4 py-1.5 rounded-full transition-colors duration-200",
-                        item.active ? "text-foreground" : "text-foreground/80"
+                        "relative rounded-full px-4 py-2 transition-colors duration-200",
+                        item.active ? "text-foreground" : "text-foreground/72 hover:text-foreground"
                     )}
                     key={`link-${idx}`}
                     href={item.link}
@@ -141,8 +131,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
                         <motion.div
                             layoutId={"hovered"}
                             className={cn(
-                                "absolute inset-0 h-full w-full rounded-full bg-foreground/10 ring-1 ring-foreground/20",
-                                // item.active && "bg-foreground/10"
+                                "absolute inset-0 h-full w-full rounded-full bg-foreground/7 ring-1 ring-foreground/10",
                             )}
                         />
                     )}
@@ -157,27 +146,16 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
     return (
         <motion.div
             animate={{
-                backdropFilter: visible ? "blur(10px)" : "none",
-                // boxShadow: visible
-                //     ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-                //     : "none",
-                width: visible ? "95%" : "100%",
-                // paddingRight: visible ? "12px" : "0px",
-                // paddingLeft: visible ? "12px" : "0px",
-                // borderRadius: visible ? "4px" : "2rem",
-                paddingLeft: "12px",
-                paddingRight: "12px",
-                borderRadius: "2rem",
-                y: visible ? 20 : 0,
+                backdropFilter: visible ? "blur(14px)" : "blur(0px)",
+                y: visible ? 6 : 0,
             }}
             transition={{
                 type: "spring",
-                stiffness: 200,
-                damping: 50,
+                stiffness: 260,
+                damping: 28,
             }}
             className={cn(
-                "relative z-50 mx-auto flex shadow-card shadow-primary w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-0 py-2 lg:hidden",
-                visible && "bg-background/20",
+                "relative z-50 mx-auto flex w-full max-w-[calc(100vw-1.5rem)] flex-col justify-between rounded-[1.75rem] border border-border/40 bg-background/75 px-3 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.08)] lg:hidden",
                 className,
             )}
         >
@@ -211,11 +189,11 @@ export const MobileNavMenu = ({
         <AnimatePresence>
             {isOpen && (
                 <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
+                    initial={{ opacity: 0, y: -8, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -8, scale: 0.98 }}
                     className={cn(
-                        "absolute inset-x-0 top-16 z-50 flex w-full max-w-sm mx-auto flex-col items-center justify-center rounded-lg bg-background/95 backdrop-blur-sm px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
+                        "absolute inset-x-0 top-[calc(100%+0.75rem)] z-50 mx-auto flex w-full max-w-sm flex-col rounded-[1.5rem] border border-border/60 bg-background/95 px-4 py-5 shadow-[0_18px_40px_rgba(0,0,0,0.12)] backdrop-blur-md",
                         className,
                     )}
                 >
@@ -234,17 +212,37 @@ export const MobileNavToggle = ({
     onClick: () => void;
 }) => {
     return isOpen ? (
-        <IconX className="text-foreground" onClick={onClick} />
+        <button
+            type="button"
+            onClick={onClick}
+            aria-label="Close navigation menu"
+            className="flex size-10 items-center justify-center rounded-full border border-border/60 bg-background/70 text-foreground transition-colors hover:bg-foreground/5"
+        >
+            <IconX className="size-5" />
+        </button>
     ) : (
-        <IconMenu2 className="text-foreground" onClick={onClick} />
+        <button
+            type="button"
+            onClick={onClick}
+            aria-label="Open navigation menu"
+            className="flex size-10 items-center justify-center rounded-full border border-border/60 bg-background/70 text-foreground transition-colors hover:bg-foreground/5"
+        >
+            <IconMenu2 className="size-5" />
+        </button>
     );
 };
 
 export const NavbarLogo = () => {
     return (
-        <Link href="/" className="shrink-0 items-center flex flex-col z-50" aria-label="Home">
-            <Image width={32} height={32} src={'/assets/logo/logo-transparent-dark-mode.png'} alt={"Logo"} className="hidden dark:block" />
-            <Image width={32} height={32} src={'/assets/logo/logo-transparent-light-mode.png'} alt={"Logo"} className="dark:hidden" />
+        <Link href="/" className="z-50 flex shrink-0 items-center gap-3" aria-label="Home">
+            <div className="bg-foreground/3 ring-foreground/8 flex size-10 items-center justify-center rounded-2xl ring-1">
+                <Image width={26} height={26} src={'/assets/logo/logo-transparent-dark-mode.png'} alt={"Logo"} className="hidden dark:block" />
+                <Image width={26} height={26} src={'/assets/logo/logo-transparent-light-mode.png'} alt={"Logo"} className="dark:hidden" />
+            </div>
+            <div className="hidden min-w-0 md:block">
+                <p className="truncate text-sm font-semibold tracking-wide text-foreground">PPhat</p>
+                <p className="truncate text-xs text-foreground/55">Frontend engineer</p>
+            </div>
             {/* {process.env?.NODE_ENV === "development" && <Badge className="py-0.5 pt-1 h-fit -translate-y-3 bg-background text-[8px] uppercase" variant={"outline"}>Dev Mode</Badge>} */}
         </Link>
     );
@@ -270,9 +268,9 @@ export const NavbarButton = ({
     const baseStyles = "px-4 py-2 rounded-full bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
 
     const variantStyles = {
-        primary: "shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
+        primary: "shadow-[0_0_24px_rgba(34,42,53,0.06),0_1px_1px_rgba(0,0,0,0.05),0_0_0_1px_rgba(34,42,53,0.04),0_0_4px_rgba(34,42,53,0.08),0_16px_68px_rgba(47,48,55,0.05),0_1px_0_rgba(255,255,255,0.1)_inset]",
         secondary: "bg-transparent shadow-none dark:text-white",
-        dark: "bg-black text-white shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
+        dark: "bg-black text-white shadow-[0_0_24px_rgba(34,42,53,0.06),0_1px_1px_rgba(0,0,0,0.05),0_0_0_1px_rgba(34,42,53,0.04),0_0_4px_rgba(34,42,53,0.08),0_16px_68px_rgba(47,48,55,0.05),0_1px_0_rgba(255,255,255,0.1)_inset]",
         gradient: "bg-linear-to-b from-blue-500 to-blue-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
     };
 

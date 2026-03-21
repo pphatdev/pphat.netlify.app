@@ -17,17 +17,16 @@ import BreadcrumbStructuredData from '@components/breadcrumb-structured-data';
 import { MarkdownRenderer } from '@components/ui/markdown-renderer';
 import { ScrollToTopButton } from '@components/ui/scroll-to-top-button';
 import { PostCoverImage } from '@components/ui/post-cover-image';
+import { ContentVisitorCounter } from '@components/content-visitor-counter';
 import Footer from 'src/components/layouts/footer';
 
 interface Params {
     params: Promise<{ slug: string; }>;
 }
 
-const GITHUB_REPO_URL = process.env.NEXT_PUBLIC_GITHUB_REPO_URL || 'https://github.com/pphatdev/pphat.me';
-
 export async function generateMetadata(props: Params): Promise<Metadata> {
     const params = await props.params;
-    const post = getPostBySlug(params.slug);
+    const post = await getPostBySlug(params.slug);
 
     if (!post) {
         return {
@@ -65,13 +64,13 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-    const posts = getPublishedPosts();
+    const posts = await getPublishedPosts();
     return posts.map(post => ({ slug: post.slug }));
 }
 
 export default async function PostDetail(props: Params) {
     const params = await props.params;
-    const post = getPostBySlug(params.slug);
+    const post = await getPostBySlug(params.slug);
 
     if (!post) {
         return (
@@ -101,9 +100,6 @@ export default async function PostDetail(props: Params) {
     }
 
     const createdDate = new Date(post.createdAt);
-    const postDirectory = post.filePath.split('/').slice(0, -1).join('/');
-    const editPostDirectoryUrl = `${GITHUB_REPO_URL}/tree/main/content/${postDirectory}/index.mdx`;
-
     return (
         <>
             <ArticleStructuredData
@@ -164,7 +160,7 @@ export default async function PostDetail(props: Params) {
                             </Button>
 
                             <Button asChild>
-                                <Link href={editPostDirectoryUrl} target="_blank" rel="noopener noreferrer">
+                                <Link href={`/admin/blogs/${post.id}`}>
                                     <ExternalLink className="w-4 h-4 ml-2" /> Edit Post
                                 </Link>
                             </Button>
@@ -218,6 +214,15 @@ export default async function PostDetail(props: Params) {
                                     <div className="flex items-center space-x-1 max-sm:text-xs text-sm text-muted-foreground whitespace-nowrap">
                                         <Clock className="w-4 h-4" />
                                         <span>{formatDistanceToNow(createdDate)} ago</span>
+                                    </div>
+
+                                    <div className="flex items-center space-x-1 max-sm:text-xs text-sm text-muted-foreground whitespace-nowrap">
+                                        <ContentVisitorCounter
+                                            type='post'
+                                            slug={post.slug}
+                                            initialCount={post.visitorCount}
+                                            className='flex items-center space-x-1'
+                                        />
                                     </div>
                                 </div>
                             </div>
