@@ -42,10 +42,12 @@ export function PostEditorForm({ post }: { post?: PostEntry | null; }) {
     const [authors, setAuthors] = useState(authorsToTextarea(post?.authors ?? []));
     const [published, setPublished] = useState(post?.published ?? false);
     const [isSaving, setIsSaving] = useState(false);
+    const [isDrafting, setIsDrafting] = useState(false);
+    const isSubmitting = isSaving || isDrafting;
 
-    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-        event.preventDefault();
-        setIsSaving(true);
+    async function savePost(publishedValue: boolean) {
+        const setLoading = publishedValue ? setIsSaving : setIsDrafting;
+        setLoading(true);
 
         try {
             const payload = {
@@ -56,7 +58,7 @@ export function PostEditorForm({ post }: { post?: PostEntry | null; }) {
                 content,
                 tags: tags.split(',').map((tag) => tag.trim()).filter(Boolean),
                 authors: parseAuthors(authors),
-                published,
+                published: publishedValue,
             };
 
             const endpoint = isEditing ? `/api/posts/${post?.id}` : '/api/posts';
@@ -75,121 +77,88 @@ export function PostEditorForm({ post }: { post?: PostEntry | null; }) {
                 return;
             }
 
-            toast.success(isEditing ? 'Blog updated' : 'Blog created');
+            toast.success(publishedValue
+                ? (isEditing ? 'Blog updated' : 'Blog published')
+                : 'Saved as draft');
             router.push('/admin/blogs');
             router.refresh();
         } catch (error) {
             console.error('Failed to save blog', error);
             toast.error('Failed to save blog');
         } finally {
-            setIsSaving(false);
+            setLoading(false);
         }
     }
 
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        await savePost(published);
+    }
+
     return (
-        <form className="space-y-6" onSubmit={handleSubmit} aria-busy={isSaving}>
-            <div className="sticky top-3 z-10 rounded-2xl border border-border/60 bg-background/95 p-3 shadow-lg shadow-background/20 backdrop-blur">
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                    <div className="flex flex-wrap items-center gap-3">
-                        <Button
-                            type="submit"
-                            className="mt-0 h-10 px-4"
-                            disabled={isSaving}
-                        >
-                            {isSaving ? <LoaderCircle className="size-4 animate-spin" /> : null}
-                            {isEditing ? 'Save Changes' : 'Create Blog'}
-                        </Button>
-                        <Button asChild type="button" className="mt-0 h-10 px-4" variant="outline" disabled={isSaving}>
-                            <Link href="/admin/blogs">Cancel</Link>
-                        </Button>
+        <form className="flex flex-col gap-5" onSubmit={handleSubmit} aria-busy={isSubmitting}>
+            <section className='flex flex-col gap-5'>
+                <div className="grid gap-4 md:grid-cols-2">
+                    <div className="flex flex-col gap-3">
+                        <Label htmlFor="title">Title</Label>
+                        <Input id="title" className='rounded-xl' value={title} onChange={(event) => setTitle(event.target.value)} autoComplete="off" required />
                     </div>
-                    {isEditing && post ? (
-                        <DeleteContentButton endpoint={`/api/posts/${post.id}`} label="blog" redirectTo="/admin/blogs" />
-                    ) : null}
+                    <div className="flex flex-col gap-3">
+                        <Label htmlFor="slug">Slug</Label>
+                        <Input id="slug" className='rounded-xl' value={slug} onChange={(event) => setSlug(event.target.value)} placeholder="leave blank to auto-generate" autoCapitalize="none" autoCorrect="off" spellCheck={false} />
+                    </div>
                 </div>
-            </div>
 
-            <Card className="overflow-hidden rounded-3xl border-border/70 bg-background/90 shadow-sm">
-                <CardHeader className="border-b border-border/60 bg-muted/25">
-                    <CardTitle>{isEditing ? 'Edit Blog' : 'New Blog'}</CardTitle>
-                    <CardDescription>Store the post directly in SQLite and publish it from the admin panel.</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                    <section className="rounded-2xl border border-border/60 bg-background/80 p-4 sm:p-5">
-                        <div className="mb-4 space-y-1">
-                            <h3 className="text-sm font-medium text-foreground">Core details</h3>
-                            <p className="text-xs text-muted-foreground">Set the article identity, cover asset, and discovery tags.</p>
-                        </div>
-                        <div className="grid gap-4 md:grid-cols-2">
-                            <div className="space-y-2">
-                                <Label htmlFor="title">Title</Label>
-                                <Input id="title" value={title} onChange={(event) => setTitle(event.target.value)} autoComplete="off" required />
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="slug">Slug</Label>
-                                <Input id="slug" value={slug} onChange={(event) => setSlug(event.target.value)} placeholder="leave blank to auto-generate" autoCapitalize="none" autoCorrect="off" spellCheck={false} />
-                            </div>
-                        </div>
+                <div className="flex flex-col gap-5">
+                    <Label htmlFor="description">Description</Label>
+                    <Textarea id="description" className='rounded-xl' value={description} onChange={(event) => setDescription(event.target.value)} rows={3} required />
+                </div>
 
-                        <div className="mt-4 space-y-2">
-                            <Label htmlFor="description">Description</Label>
-                            <Textarea id="description" value={description} onChange={(event) => setDescription(event.target.value)} rows={3} required />
-                        </div>
-
-                        <div className="mt-4 grid gap-4 md:grid-cols-2">
-                            <div className="space-y-2">
-                                <Label htmlFor="thumbnail">Thumbnail</Label>
-                                <Input id="thumbnail" value={thumbnail} onChange={(event) => setThumbnail(event.target.value)} placeholder="/assets/cover/example.webp" autoCapitalize="none" autoCorrect="off" spellCheck={false} />
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="tags">Tags</Label>
-                                <Input id="tags" value={tags} onChange={(event) => setTags(event.target.value)} placeholder="nextjs, sqlite, drizzle" autoCapitalize="none" autoCorrect="off" spellCheck={false} />
-                            </div>
-                        </div>
-                    </section>
-
-                    <section className="rounded-2xl border border-border/60 bg-background/80 p-4 sm:p-5">
-                        <div className="mb-4 space-y-1">
-                            <h3 className="text-sm font-medium text-foreground">Attribution</h3>
-                            <p className="text-xs text-muted-foreground">One author per line in the format: Name|Profile|URL</p>
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="authors">Authors</Label>
-                            <Textarea
-                                id="authors"
-                                value={authors}
-                                onChange={(event) => setAuthors(event.target.value)}
-                                rows={4}
-                                placeholder="Name|Profile|URL"
-                                autoCapitalize="none"
-                                autoCorrect="off"
-                                spellCheck={false}
-                            />
-                        </div>
-                    </section>
-
-                    <section className="rounded-2xl border border-border/60 bg-background/80 p-4 sm:p-5">
-                        <div className="mb-4 space-y-1">
-                            <h3 className="text-sm font-medium text-foreground">Markdown content</h3>
-                            <p className="text-xs text-muted-foreground">Write complete markdown for the post body.</p>
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="content">Markdown Content</Label>
-                            <Textarea id="content" value={content} onChange={(event) => setContent(event.target.value)} rows={18} className="min-h-105 font-mono text-sm" required />
-                        </div>
-                    </section>
-
-                    <div className="flex items-center justify-between gap-3 rounded-xl border border-border/60 bg-muted/20 px-4 py-3">
-                        <div className="space-y-0.5">
-                            <p className="text-sm font-medium text-foreground">Publishing status</p>
-                            <p className="text-xs text-muted-foreground">Enable once the article is ready to appear publicly.</p>
-                        </div>
-                        <Checkbox id="published" checked={published} onCheckedChange={(value) => setPublished(Boolean(value))} />
-                        <Label htmlFor="published" className="sr-only">Published</Label>
+                <div className="grid gap-4 md:grid-cols-2">
+                    <div className="flex flex-col gap-3">
+                        <Label htmlFor="thumbnail">Thumbnail</Label>
+                        <Input id="thumbnail" className='rounded-xl' value={thumbnail} onChange={(event) => setThumbnail(event.target.value)} placeholder="/assets/cover/example.webp" autoCapitalize="none" autoCorrect="off" spellCheck={false} />
                     </div>
-                </CardContent>
-            </Card>
+                    <div className="flex flex-col gap-3">
+                        <Label htmlFor="tags">Tags</Label>
+                        <Input id="tags" className='rounded-xl' value={tags} onChange={(event) => setTags(event.target.value)} placeholder="nextjs, sqlite, drizzle" autoCapitalize="none" autoCorrect="off" spellCheck={false} />
+                    </div>
+                </div>
 
+                <div className="flex flex-col gap-3">
+                    <Label htmlFor="authors">Authors</Label>
+                    <Textarea
+                        id="authors"
+                        value={authors}
+                        onChange={(event) => setAuthors(event.target.value)}
+                        rows={4}
+                        className='rounded-xl'
+                        placeholder="Name|Profile|URL"
+                        autoCapitalize="none"
+                        autoCorrect="off"
+                        spellCheck={false}
+                    />
+                </div>
+
+                <div className="flex flex-col gap-3">
+                    <Label htmlFor="content">Markdown Content</Label>
+                    <Textarea id="content" value={content} onChange={(event) => setContent(event.target.value)} rows={18} className="min-h-105 font-mono text-sm rounded-xl" required />
+                </div>
+
+                <div className="flex border p-1 bg-background/50 rounded-full absolute top-0 right-5 items-center justify-between gap-1">
+                    <Button type="button" className='mt-0' onClick={() => router.back()} disabled={isSubmitting}>
+                        Back
+                    </Button>
+                    <Button type="button" className='mt-0 rounded-none' disabled={isSubmitting} onClick={() => savePost(false)}>
+                        {isDrafting && <LoaderCircle className="mr-2 size-4 animate-spin" />}
+                        Save as Draft
+                    </Button>
+                    <Button type="submit" variant={'ghost'} className='mt-0 rounded-4xl rounded-l-none bg-primary/20' disabled={isSubmitting}>
+                        {isSaving && <LoaderCircle className="mr-2 size-4 animate-spin" />}
+                        {isEditing ? 'Update' : 'Publish'}
+                    </Button>
+                </div>
+            </section>
         </form>
     );
 }

@@ -32,15 +32,11 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             <SidebarInset>
                 <header className="sticky top-0 z-30 flex h-16 items-center gap-3 border-b border-border/60 bg-background/85 px-4 backdrop-blur">
                     <SidebarTrigger className="mt-0 size-8 rounded-md border border-border/70" />
-                    <Separator orientation="vertical" className="h-5" />
                     <div className="flex min-w-0 flex-1 items-center justify-between gap-4">
                         <div>
                             <p className="text-sm font-medium">Content Administration</p>
-                            <p className="text-xs text-muted-foreground">SQLite-backed dashboard for posts and projects</p>
+                            {/* <p className="text-xs text-muted-foreground">SQLite-backed dashboard for posts and projects</p> */}
                         </div>
-                        <Link href="/" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-                            Back to site
-                        </Link>
                     </div>
                 </header>
                 <div className="relative flex-1 overflow-hidden">

@@ -61,7 +61,7 @@ function MetricCard({
     tone: string;
 }) {
     return (
-        <Card className="overflow-hidden rounded-3xl border-border/60 bg-background/80 py-0 backdrop-blur-sm">
+        <Card className="overflow-hidden rounded-3xl ring-0 bg-background py-0 backdrop-blur-sm">
             <CardContent className="relative px-5 py-5">
                 <div className={`absolute inset-x-0 top-0 h-24 bg-linear-to-br ${tone} opacity-70`} />
                 <div className="relative space-y-4">
@@ -70,7 +70,7 @@ function MetricCard({
                             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">{title}</p>
                             <p className="mt-3 text-3xl font-semibold tracking-tight text-foreground">{value}</p>
                         </div>
-                        <div className="flex size-11 items-center justify-center rounded-2xl border border-border/60 bg-background/90 text-foreground shadow-sm">
+                        <div className="flex size-11 items-center justify-center rounded-2xl bg-background/90 text-foreground">
                             {icon}
                         </div>
                     </div>
@@ -178,142 +178,13 @@ export default async function AdminDashboardPage() {
     )[0];
 
     return (
-        <div className="space-y-8">
+        <div className="gap-6 grid grid-cols-1">
             <AdminPageHeader
                 title="Dashboard"
                 description="Monitor publishing momentum, traffic leaders, and admin workflow from one control room."
             />
 
-            <section className="grid gap-6 xl:grid-cols-[minmax(0,1.45fr)_minmax(320px,0.95fr)]">
-                <Card className="relative overflow-hidden rounded-4xl bg-background/80 py-0 backdrop-blur-sm">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.16),transparent_34%),radial-gradient(circle_at_78%_20%,rgba(15,118,110,0.15),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent_42%)]" />
-                    <CardContent className="relative px-6 py-6 pt-0 sm:px-7 sm:py-7">
-                        <div className="flex flex-col gap-6">
-                            <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-                                <div className="max-w-2xl w-full space-y-4">
-                                    <Badge variant="outline" className="rounded-full border-border/70 bg-background/80 px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
-                                        Live CMS Overview
-                                    </Badge>
-                                    <div className="space-y-3">
-                                        <h2 className="max-w-xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                                            Publishing looks sharper when the dashboard behaves like a control room.
-                                        </h2>
-                                        <p className="max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[15px]">
-                                            You have {publishedEntries} live entries out of {totalEntries}, {formatCompactNumber(totalVisitors)} tracked visitors,
-                                            and {pendingContacts} inbox items still waiting for follow-up.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div className="grid gap-3 sm:min-w-72 sm:grid-cols-2">
-                                    <Button asChild className="mt-0 h-11 w-full justify-center px-4">
-                                        <Link href="/admin/blogs/new">
-                                            <PenSquare className="size-4" />
-                                            New Blog
-                                        </Link>
-                                    </Button>
-                                    <Button asChild variant="outline" className="mt-0 h-11 w-full justify-center rounded-full border-border/70 bg-background/85 px-4">
-                                        <Link href="/admin/projects/new">
-                                            <FolderKanban className="size-4" />
-                                            New Project
-                                        </Link>
-                                    </Button>
-                                </div>
-                            </div>
-
-                            <div className="grid gap-3 sm:grid-cols-3">
-                                <div className="rounded-3xl border border-border/60 bg-background/85 p-4 shadow-sm">
-                                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Publish Rate</p>
-                                    <p className="mt-2 text-3xl font-semibold tracking-tight">{publicationRate}%</p>
-                                    <div className="mt-4 h-2 rounded-full bg-muted/70">
-                                        <div className="h-2 rounded-full bg-foreground" style={{ width: `${publicationRate}%` }} />
-                                    </div>
-                                </div>
-                                <div className="rounded-3xl border border-border/60 bg-background/85 p-4 shadow-sm">
-                                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Team Access</p>
-                                    <p className="mt-2 text-3xl font-semibold tracking-tight">{userRows.length}</p>
-                                    <p className="mt-3 text-sm text-muted-foreground">
-                                        {adminUsers.length} admins, {editorUsers.length} editors
-                                    </p>
-                                </div>
-                                <div className="rounded-3xl border border-border/60 bg-background/85 p-4 shadow-sm">
-                                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Inbox Pressure</p>
-                                    <p className="mt-2 text-3xl font-semibold tracking-tight">{pendingContacts}</p>
-                                    <p className="mt-3 text-sm text-muted-foreground">
-                                        {deliveredContacts} delivered, {spamContacts} filtered as spam
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </CardContent>
-                </Card>
-
-                <Card className="overflow-hidden rounded-4xl border-border/60 bg-background/80 py-0 backdrop-blur-sm">
-                    <CardHeader className="border-b border-border/60 px-6 pt-6">
-                        <CardDescription className="text-xs font-semibold uppercase tracking-[0.24em]">Workflow health</CardDescription>
-                        <CardTitle className="text-2xl tracking-tight">Publishing stack</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-5 px-6 py-6 pt-0">
-                        <div className="space-y-3 rounded-3xl border border-border/60 bg-muted/20 p-4">
-                            <div className="flex items-center justify-between gap-3">
-                                <div className="flex items-center gap-3">
-                                    <div className="flex size-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                                        <ShieldCheck className="size-5" />
-                                    </div>
-                                    <div>
-                                        <p className="font-medium text-foreground">Access model</p>
-                                        <p className="text-sm text-muted-foreground">{githubUsers.length} GitHub-linked users active</p>
-                                    </div>
-                                </div>
-                                <Badge variant="outline" className="rounded-full px-2.5 py-1">Stable</Badge>
-                            </div>
-                        </div>
-
-                        <div className="space-y-3">
-                            <div className="flex items-center justify-between text-sm">
-                                <span className="text-muted-foreground">Blogs live</span>
-                                <span className="font-medium text-foreground">{publishedPosts}/{posts.length}</span>
-                            </div>
-                            <div className="h-2 rounded-full bg-muted/70">
-                                <div className="h-2 rounded-full bg-blue-600" style={{ width: `${posts.length === 0 ? 0 : (publishedPosts / posts.length) * 100}%` }} />
-                            </div>
-                        </div>
-
-                        <div className="space-y-3">
-                            <div className="flex items-center justify-between text-sm">
-                                <span className="text-muted-foreground">Projects live</span>
-                                <span className="font-medium text-foreground">{publishedProjects}/{projects.length}</span>
-                            </div>
-                            <div className="h-2 rounded-full bg-muted/70">
-                                <div className="h-2 rounded-full bg-teal-700" style={{ width: `${projects.length === 0 ? 0 : (publishedProjects / projects.length) * 100}%` }} />
-                            </div>
-                        </div>
-
-                        <Separator className="bg-border/60" />
-
-                        <div className="space-y-3">
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <p className="font-medium text-foreground">Tag pressure</p>
-                                    <p className="text-sm text-muted-foreground">What shows up most across your content mix.</p>
-                                </div>
-                                <Sparkles className="size-4 text-muted-foreground" />
-                            </div>
-                            <div className="flex flex-wrap gap-2">
-                                {tagHighlights.length > 0 ? tagHighlights.map(([tag, count]) => (
-                                    <Badge key={tag} variant="outline" className="rounded-full border-border/70 bg-background/70 px-3 py-1 text-xs">
-                                        {tag} · {count}
-                                    </Badge>
-                                )) : (
-                                    <p className="text-sm text-muted-foreground">Add more tagged content to build topic clusters.</p>
-                                )}
-                            </div>
-                        </div>
-                    </CardContent>
-                </Card>
-            </section>
-
-            <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <section className="grid gap-7 md:grid-cols-2 xl:grid-cols-4">
                 <MetricCard
                     title="Blogs"
                     value={posts.length.toString()}
@@ -342,6 +213,133 @@ export default async function AdminDashboardPage() {
                     icon={<Inbox className="size-5" />}
                     tone="from-fuchsia-500/14 via-fuchsia-500/10 to-transparent"
                 />
+            </section>
+
+            <section className="grid gap-6 mt-1 xl:grid-cols-[minmax(0,1.45fr)_minmax(320px,0.95fr)]">
+                <Card className="relative overflow-hidden rounded-4xl bg-background/80 py-0 dark:ring-2 ring-primary/50 backdrop-blur-sm">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.16),transparent_34%),radial-gradient(circle_at_78%_20%,rgba(15,118,110,0.15),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent_42%)]" />
+
+                    <CardContent className="relative px-6 py-6 sm:pt-0 sm:px-7 sm:py-7">
+                        <div className="flex flex-col gap-6">
+                            <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                                <div className="max-w-2xl w-full grid gap-4">
+                                    <Badge variant="outline" className="rounded-full border-border/70 bg-background/80 px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
+                                        Live CMS Overview
+                                    </Badge>
+                                    <div className="space-y-3">
+                                        <h2 className="max-w-xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                                            Publishing looks sharper when the dashboard behaves like a control room.
+                                        </h2>
+                                        <p className="max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[15px]">
+                                            You have {publishedEntries} live entries out of {totalEntries}, {formatCompactNumber(totalVisitors)} tracked visitors,
+                                            and {pendingContacts} inbox items still waiting for follow-up.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="grid gap-3 sm:min-w-72 sm:grid-cols-2">
+                                    <Button asChild className="mt-0 h-11 w-full justify-center rounded-full border bg-foreground/5 border-primary px-4">
+                                        <Link href="/admin/projects/new">
+                                            <FolderKanban className="size-4" />
+                                            New Project
+                                        </Link>
+                                    </Button>
+                                    <Button asChild className="mt-0 h-11 w-full justify-center px-4">
+                                        <Link href="/admin/blogs/new">
+                                            <PenSquare className="size-4" />
+                                            New Blog
+                                        </Link>
+                                    </Button>
+                                </div>
+                            </div>
+
+                            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                                <div className="rounded-2xl rounded-t-3xl rounded-r-3xl from-primary/10 bg-linear-to-b to-primary/30 p-4">
+                                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Publish Rate</p>
+                                    <p className="mt-2 text-3xl font-semibold tracking-tight">{publicationRate}%</p>
+                                    <div className="mt-4 h-2 rounded-full bg-foreground/10">
+                                        <div className="h-2 rounded-full bg-primary" style={{ width: `${publicationRate}%` }} />
+                                    </div>
+                                </div>
+                                <div className="rounded-2xl rounded-t-3xl rounded-r-3xl from-primary/10 bg-linear-to-b to-primary/30 p-4">
+                                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Team Access</p>
+                                    <p className="mt-2 text-3xl font-semibold tracking-tight">{userRows.length}</p>
+                                    <p className="mt-3 text-sm text-muted-foreground">
+                                        {adminUsers.length} admins, {editorUsers.length} editors
+                                    </p>
+                                </div>
+                                <div className="rounded-2xl rounded-t-3xl rounded-l-3xl max-lg:col-span-full from-primary/10 bg-linear-to-b to-primary/30 p-4">
+                                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Inbox Pressure</p>
+                                    <p className="mt-2 text-3xl font-semibold tracking-tight">{pendingContacts}</p>
+                                    <p className="mt-3 text-sm text-muted-foreground">
+                                        {deliveredContacts} delivered, {spamContacts} filtered as spam
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                <Card className="relative overflow-hidden rounded-4xl bg-background/80 py-0 dark:ring-2 ring-primary/50 backdrop-blur-sm">
+                    <CardHeader className="border-b border-border/60 px-6 pt-6">
+                        <CardDescription className="text-xs font-semibold uppercase tracking-[0.24em]">Workflow health</CardDescription>
+                        <CardTitle className="text-2xl tracking-tight">Publishing stack</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-5 px-6 py-6 pt-0">
+                        <div className="space-y-3 rounded-3xl bg-primary/5 p-5">
+                            <div className="flex items-center justify-between gap-3">
+                                <div className="flex items-center gap-3">
+                                    <div className="flex size-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                                        <ShieldCheck className="size-5" />
+                                    </div>
+                                    <div>
+                                        <p className="font-medium text-foreground">Access model</p>
+                                        <p className="text-sm text-muted-foreground">{githubUsers.length} GitHub-linked users active</p>
+                                    </div>
+                                </div>
+                                <Badge className="rounded-full bg-primary/30 px-2.5 py-1">Stable</Badge>
+                            </div>
+                        </div>
+
+                        <div className="space-y-3">
+                            <div className="flex items-center justify-between text-sm">
+                                <span className="text-muted-foreground">Blogs live</span>
+                                <span className="font-medium text-foreground">{publishedPosts}/{posts.length}</span>
+                            </div>
+                            <div className="h-2 rounded-full bg-muted/70">
+                                <div className="h-2 rounded-full bg-blue-600" style={{ width: `${posts.length === 0 ? 0 : (publishedPosts / posts.length) * 100}%` }} />
+                            </div>
+                        </div>
+
+                        <div className="space-y-3">
+                            <div className="flex items-center justify-between text-sm">
+                                <span className="text-muted-foreground">Projects live</span>
+                                <span className="font-medium text-foreground">{publishedProjects}/{projects.length}</span>
+                            </div>
+                            <div className="h-2 rounded-full bg-muted/70">
+                                <div className="h-2 rounded-full bg-teal-700" style={{ width: `${projects.length === 0 ? 0 : (publishedProjects / projects.length) * 100}%` }} />
+                            </div>
+                        </div>
+
+                        <div className="space-y-3">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <p className="font-medium text-foreground">Tag pressure</p>
+                                    <p className="text-sm text-muted-foreground">What shows up most across your content mix.</p>
+                                </div>
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                                {tagHighlights.length > 0 ? tagHighlights.map(([tag, count]) => (
+                                    <Badge key={tag} variant="outline" className="rounded-full border-border/70 bg-background/70 px-3 py-1 text-xs">
+                                        {tag} · {count}
+                                    </Badge>
+                                )) : (
+                                    <p className="text-sm text-muted-foreground">Add more tagged content to build topic clusters.</p>
+                                )}
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
             </section>
 
             <section className="grid gap-6 xl:grid-cols-[minmax(0,1.3fr)_minmax(300px,0.9fr)]">
@@ -382,7 +380,7 @@ export default async function AdminDashboardPage() {
                             <Link
                                 key={`${item.type}-${item.id}`}
                                 href={item.href}
-                                className="flex items-start gap-4 rounded-2xl border border-border/60 bg-muted/20 px-4 py-3 transition-colors hover:border-border hover:bg-muted/35"
+                                className="flex items-start gap-4 rounded-2xl border border-border/60 bg-foreground/20 px-4 py-3 transition-colors hover:border-border hover:bg-muted/35"
                             >
                                 <div className="mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-2xl border border-border/60 bg-background/90 text-foreground">
                                     {item.type === 'Blog' ? <PenSquare className="size-4" /> : <FolderKanban className="size-4" />}
@@ -414,7 +412,7 @@ export default async function AdminDashboardPage() {
                             <Link
                                 key={`${item.kind}-${item.id}`}
                                 href={item.href}
-                                className="flex items-center gap-3 rounded-2xl border border-border/60 bg-muted/20 px-4 py-3 transition-colors hover:border-border hover:bg-muted/35"
+                                className="flex items-center gap-3 rounded-2xl border border-border/60 bg-foreground/20 px-4 py-3 transition-colors hover:border-border hover:bg-muted/35"
                             >
                                 <div className="flex size-10 shrink-0 items-center justify-center rounded-2xl bg-background/90 text-foreground shadow-sm">
                                     <FileClock className="size-4" />
@@ -450,7 +448,7 @@ export default async function AdminDashboardPage() {
                                 <Link href="/admin/blogs" className="text-sm text-muted-foreground transition-colors hover:text-foreground">View all</Link>
                             </div>
                             {recentPosts.map((post) => (
-                                <Link key={post.id} href={`/admin/blogs/${post.id}`} className="flex items-center justify-between gap-3 rounded-2xl border border-border/60 bg-muted/20 px-4 py-3 transition-colors hover:border-border hover:bg-muted/35">
+                                <Link key={post.id} href={`/admin/blogs/${post.id}`} className="flex items-center justify-between gap-3 rounded-2xl border border-border/60 bg-foreground/20 px-4 py-3 transition-colors hover:border-border hover:bg-muted/35">
                                     <div className="min-w-0">
                                         <p className="truncate font-medium text-foreground">{post.title}</p>
                                         <p className="mt-1 truncate text-sm text-muted-foreground">{post.slug}</p>
@@ -468,7 +466,7 @@ export default async function AdminDashboardPage() {
                                 <Link href="/admin/projects" className="text-sm text-muted-foreground transition-colors hover:text-foreground">View all</Link>
                             </div>
                             {recentProjects.map((project) => (
-                                <Link key={project.id} href={`/admin/projects/${project.id}`} className="flex items-center justify-between gap-3 rounded-2xl border border-border/60 bg-muted/20 px-4 py-3 transition-colors hover:border-border hover:bg-muted/35">
+                                <Link key={project.id} href={`/admin/projects/${project.id}`} className="flex items-center justify-between gap-3 rounded-2xl border border-border/60 bg-foreground/20 px-4 py-3 transition-colors hover:border-border hover:bg-muted/35">
                                     <div className="min-w-0">
                                         <p className="truncate font-medium text-foreground">{project.title}</p>
                                         <p className="mt-1 truncate text-sm text-muted-foreground">{project.slug}</p>
@@ -498,10 +496,10 @@ export default async function AdminDashboardPage() {
                             </div>
                             <div className="space-y-3">
                                 {userRows.slice(0, 4).map((user) => (
-                                    <div key={user.id} className="flex items-center gap-3 rounded-2xl border border-border/60 bg-muted/20 px-4 py-3">
-                                        <Avatar className="size-11 border border-border/60">
+                                    <div key={user.id} className="flex items-center gap-3 rounded-2xl bg-primary/5 px-4 py-3">
+                                        <Avatar className="size-11">
                                             {user.image ? <AvatarImage src={user.image} alt={user.name} /> : null}
-                                            <AvatarFallback className="bg-background text-sm font-semibold text-foreground">
+                                            <AvatarFallback className="bg-primary/20 text-sm font-semibold text-foreground">
                                                 {initialsFromName(user.name)}
                                             </AvatarFallback>
                                         </Avatar>
@@ -509,7 +507,7 @@ export default async function AdminDashboardPage() {
                                             <p className="truncate font-medium text-foreground">{user.name}</p>
                                             <p className="truncate text-sm text-muted-foreground">{user.email}</p>
                                         </div>
-                                        <Badge variant="outline" className="rounded-full px-2.5 py-1 text-[11px] uppercase tracking-[0.16em]">
+                                        <Badge className="rounded-full px-2.5 py-1 text-[11px] bg-primary/20 uppercase tracking-[0.16em]">
                                             {user.role}
                                         </Badge>
                                     </div>
@@ -517,9 +515,9 @@ export default async function AdminDashboardPage() {
                             </div>
                         </div>
 
-                        <Separator className="bg-border/60" />
+                        {/* <Separator className="bg-border/60" /> */}
 
-                        <div className="space-y-3 rounded-3xl border border-border/60 bg-muted/20 p-4">
+                        <div className="space-y-3 rounded-2xl bg-primary/10 p-5">
                             <div className="flex items-start justify-between gap-3">
                                 <div>
                                     <p className="font-medium text-foreground">Latest message</p>
@@ -544,7 +542,7 @@ export default async function AdminDashboardPage() {
                         </div>
 
                         <div className="grid gap-3 sm:grid-cols-2">
-                            <Link href="/admin/blogs" className="rounded-2xl border border-border/60 bg-background/85 p-4 transition-colors hover:border-border hover:bg-muted/30">
+                            <Link href="/admin/blogs" className="rounded-2xl border border-border/60 bg-foreground/5 p-4 transition-colors hover:border-border hover:bg-muted/30">
                                 <div className="flex items-center justify-between gap-3">
                                     <div className="flex size-10 items-center justify-center rounded-2xl bg-primary/10 text-primary">
                                         <Rocket className="size-4" />
@@ -554,7 +552,7 @@ export default async function AdminDashboardPage() {
                                 <p className="mt-4 font-medium text-foreground">Open blog desk</p>
                                 <p className="mt-1 text-sm text-muted-foreground">Jump into editorial work.</p>
                             </Link>
-                            <Link href="/admin/projects" className="rounded-2xl border border-border/60 bg-background/85 p-4 transition-colors hover:border-border hover:bg-muted/30">
+                            <Link href="/admin/projects" className="rounded-2xl border border-border/60 bg-foreground/5 p-4 transition-colors hover:border-border hover:bg-muted/30">
                                 <div className="flex items-center justify-between gap-3">
                                     <div className="flex size-10 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
                                         <UserRound className="size-4" />
