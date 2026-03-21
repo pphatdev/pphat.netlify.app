@@ -95,7 +95,7 @@ export function AdminSidebar({
                   <SidebarMenuButton
                     asChild
                     isActive={isActivePath(pathname, item.url)}
-                    className="h-10 rounded-xl px-3 data-[active=true]:shadow-sm"
+                    className="h-10 rounded-xl px-3"
                   >
                     <Link href={item.url}>
                       <item.icon className="size-4" />

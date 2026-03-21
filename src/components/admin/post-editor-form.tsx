@@ -87,78 +87,109 @@ export function PostEditorForm({ post }: { post?: PostEntry | null; }) {
     }
 
     return (
-        <form className="space-y-6" onSubmit={handleSubmit}>
-            <Card>
-                <CardHeader>
+        <form className="space-y-6" onSubmit={handleSubmit} aria-busy={isSaving}>
+            <div className="sticky top-3 z-10 rounded-2xl border border-border/60 bg-background/95 p-3 shadow-lg shadow-background/20 backdrop-blur">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex flex-wrap items-center gap-3">
+                        <Button
+                            type="submit"
+                            className="mt-0 h-10 px-4"
+                            disabled={isSaving}
+                        >
+                            {isSaving ? <LoaderCircle className="size-4 animate-spin" /> : null}
+                            {isEditing ? 'Save Changes' : 'Create Blog'}
+                        </Button>
+                        <Button asChild type="button" className="mt-0 h-10 px-4" variant="outline" disabled={isSaving}>
+                            <Link href="/admin/blogs">Cancel</Link>
+                        </Button>
+                    </div>
+                    {isEditing && post ? (
+                        <DeleteContentButton endpoint={`/api/posts/${post.id}`} label="blog" redirectTo="/admin/blogs" />
+                    ) : null}
+                </div>
+            </div>
+
+            <Card className="overflow-hidden rounded-3xl border-border/70 bg-background/90 shadow-sm">
+                <CardHeader className="border-b border-border/60 bg-muted/25">
                     <CardTitle>{isEditing ? 'Edit Blog' : 'New Blog'}</CardTitle>
                     <CardDescription>Store the post directly in SQLite and publish it from the admin panel.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                    <div className="grid gap-4 md:grid-cols-2">
-                        <div className="space-y-2">
-                            <Label htmlFor="title">Title</Label>
-                            <Input id="title" value={title} onChange={(event) => setTitle(event.target.value)} required />
+                    <section className="rounded-2xl border border-border/60 bg-background/80 p-4 sm:p-5">
+                        <div className="mb-4 space-y-1">
+                            <h3 className="text-sm font-medium text-foreground">Core details</h3>
+                            <p className="text-xs text-muted-foreground">Set the article identity, cover asset, and discovery tags.</p>
+                        </div>
+                        <div className="grid gap-4 md:grid-cols-2">
+                            <div className="space-y-2">
+                                <Label htmlFor="title">Title</Label>
+                                <Input id="title" value={title} onChange={(event) => setTitle(event.target.value)} autoComplete="off" required />
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="slug">Slug</Label>
+                                <Input id="slug" value={slug} onChange={(event) => setSlug(event.target.value)} placeholder="leave blank to auto-generate" autoCapitalize="none" autoCorrect="off" spellCheck={false} />
+                            </div>
+                        </div>
+
+                        <div className="mt-4 space-y-2">
+                            <Label htmlFor="description">Description</Label>
+                            <Textarea id="description" value={description} onChange={(event) => setDescription(event.target.value)} rows={3} required />
+                        </div>
+
+                        <div className="mt-4 grid gap-4 md:grid-cols-2">
+                            <div className="space-y-2">
+                                <Label htmlFor="thumbnail">Thumbnail</Label>
+                                <Input id="thumbnail" value={thumbnail} onChange={(event) => setThumbnail(event.target.value)} placeholder="/assets/cover/example.webp" autoCapitalize="none" autoCorrect="off" spellCheck={false} />
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="tags">Tags</Label>
+                                <Input id="tags" value={tags} onChange={(event) => setTags(event.target.value)} placeholder="nextjs, sqlite, drizzle" autoCapitalize="none" autoCorrect="off" spellCheck={false} />
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="rounded-2xl border border-border/60 bg-background/80 p-4 sm:p-5">
+                        <div className="mb-4 space-y-1">
+                            <h3 className="text-sm font-medium text-foreground">Attribution</h3>
+                            <p className="text-xs text-muted-foreground">One author per line in the format: Name|Profile|URL</p>
                         </div>
                         <div className="space-y-2">
-                            <Label htmlFor="slug">Slug</Label>
-                            <Input id="slug" value={slug} onChange={(event) => setSlug(event.target.value)} placeholder="leave blank to auto-generate" />
+                            <Label htmlFor="authors">Authors</Label>
+                            <Textarea
+                                id="authors"
+                                value={authors}
+                                onChange={(event) => setAuthors(event.target.value)}
+                                rows={4}
+                                placeholder="Name|Profile|URL"
+                                autoCapitalize="none"
+                                autoCorrect="off"
+                                spellCheck={false}
+                            />
                         </div>
-                    </div>
+                    </section>
 
-                    <div className="space-y-2">
-                        <Label htmlFor="description">Description</Label>
-                        <Textarea id="description" value={description} onChange={(event) => setDescription(event.target.value)} rows={3} required />
-                    </div>
+                    <section className="rounded-2xl border border-border/60 bg-background/80 p-4 sm:p-5">
+                        <div className="mb-4 space-y-1">
+                            <h3 className="text-sm font-medium text-foreground">Markdown content</h3>
+                            <p className="text-xs text-muted-foreground">Write complete markdown for the post body.</p>
+                        </div>
+                        <div className="space-y-2">
+                            <Label htmlFor="content">Markdown Content</Label>
+                            <Textarea id="content" value={content} onChange={(event) => setContent(event.target.value)} rows={18} className="min-h-105 font-mono text-sm" required />
+                        </div>
+                    </section>
 
-                    <div className="space-y-2">
-                        <Label htmlFor="thumbnail">Thumbnail</Label>
-                        <Input id="thumbnail" value={thumbnail} onChange={(event) => setThumbnail(event.target.value)} placeholder="/assets/cover/example.webp" />
-                    </div>
-
-                    <div className="space-y-2">
-                        <Label htmlFor="tags">Tags</Label>
-                        <Input id="tags" value={tags} onChange={(event) => setTags(event.target.value)} placeholder="nextjs, sqlite, drizzle" />
-                    </div>
-
-                    <div className="space-y-2">
-                        <Label htmlFor="authors">Authors</Label>
-                        <Textarea
-                            id="authors"
-                            value={authors}
-                            onChange={(event) => setAuthors(event.target.value)}
-                            rows={4}
-                            placeholder="Name|Profile|URL"
-                        />
-                    </div>
-
-                    <div className="space-y-2">
-                        <Label htmlFor="content">Markdown Content</Label>
-                        <Textarea id="content" value={content} onChange={(event) => setContent(event.target.value)} rows={18} required />
-                    </div>
-
-                    <div className="flex items-center gap-3 rounded-md border border-border/60 px-4 py-3">
+                    <div className="flex items-center justify-between gap-3 rounded-xl border border-border/60 bg-muted/20 px-4 py-3">
+                        <div className="space-y-0.5">
+                            <p className="text-sm font-medium text-foreground">Publishing status</p>
+                            <p className="text-xs text-muted-foreground">Enable once the article is ready to appear publicly.</p>
+                        </div>
                         <Checkbox id="published" checked={published} onCheckedChange={(value) => setPublished(Boolean(value))} />
-                        <Label htmlFor="published">Published</Label>
+                        <Label htmlFor="published" className="sr-only">Published</Label>
                     </div>
                 </CardContent>
             </Card>
 
-            <div className="flex flex-wrap items-center gap-3">
-                <Button
-                    type="submit"
-                    className="mt-0 h-10 px-4"
-                    disabled={isSaving}
-                >
-                    {isSaving ? <LoaderCircle className="size-4 animate-spin" /> : null}
-                    {isEditing ? 'Save Changes' : 'Create Blog'}
-                </Button>
-                <Button asChild type="button" className="mt-0 h-10 px-4">
-                    <Link href="/admin/blogs">Cancel</Link>
-                </Button>
-                {isEditing && post ? (
-                    <DeleteContentButton endpoint={`/api/posts/${post.id}`} label="blog" redirectTo="/admin/blogs" />
-                ) : null}
-            </div>
         </form>
     );
 }

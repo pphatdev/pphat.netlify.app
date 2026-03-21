@@ -10,7 +10,7 @@ import { toast } from "sonner"
 import { cn } from "@lib/utils"
 import { Button } from "@components/ui/button"
 import { Card, CardContent } from "@components/ui/card"
-import { Input } from "@components/ui/input"
+import { Input } from "@components/ui/input";
 import { Label } from "@components/ui/label"
 
 type LoginFormMode = "login" | "signup"
@@ -123,6 +123,7 @@ export function LoginForm({
                                     <Input
                                         id="name"
                                         value={name}
+                                        className="rounded-xl"
                                         onChange={(event) => setName(event.target.value)}
                                         placeholder="Sophat Leat"
                                         required
@@ -134,6 +135,7 @@ export function LoginForm({
                                 <Input
                                     id="email"
                                     type="email"
+                                    className="rounded-xl"
                                     value={email}
                                     onChange={(event) => setEmail(event.target.value)}
                                     placeholder="admin@example.com"
@@ -146,6 +148,7 @@ export function LoginForm({
                                     id="password"
                                     type="password"
                                     value={password}
+                                    className="rounded-xl"
                                     onChange={(event) => setPassword(event.target.value)}
                                     minLength={8}
                                     required
@@ -154,7 +157,7 @@ export function LoginForm({
                             <Button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="mt-0 h-10 w-full justify-center px-4"
+                                className="mt-0 h-10 w-full border border-primary/20 bg-primary/10 hover:bg-primary/20 justify-center px-4"
                             >
                                 {isSubmitting ? <LoaderCircle className="size-4 animate-spin" /> : null}
                                 {isSignup ? "Create Account" : "Sign In"}
@@ -168,7 +171,7 @@ export function LoginForm({
                                 type="button"
                                 disabled={!githubEnabled || isSubmitting}
                                 onClick={handleGitHubSignIn}
-                                className="mt-0 h-10 w-full justify-center px-4"
+                                className="mt-0 h-10 w-full border justify-center px-4"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-4">
                                     <path
