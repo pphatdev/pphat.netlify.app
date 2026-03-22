@@ -4,6 +4,7 @@ import { getAllPosts } from '@lib/content';
 import { AdminPageHeader } from '@components/admin/admin-page-header';
 import { Badge } from '@components/ui/badge';
 import { Button } from '@components/ui/button';
+import { PostAuthorsDisplay } from '@components/admin/post-authors-display';
 
 function formatCompact(value: number) {
     return new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: value >= 1000 ? 1 : 0 }).format(value);
@@ -95,7 +96,8 @@ export default async function AdminBlogsPage() {
                                     <p className="line-clamp-1 text-sm text-muted-foreground">{post.description}</p>
                                 )}
 
-                                <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+                                {/* Tags and Authors Row */}
+                                <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                                     <div className="flex items-center gap-2">
                                         {post.tags.slice(0, 3).map((tag) => (
                                             <span key={tag} className="rounded-full bg-foreground/6 px-2 py-0.5 text-[11px] font-medium text-muted-foreground">#{tag}</span>
@@ -115,6 +117,13 @@ export default async function AdminBlogsPage() {
                                         </span>
                                     </div>
                                 </div>
+
+                                {/* Authors Display */}
+                                {post.authors && post.authors.length > 0 && (
+                                    <div className="mt-2 pt-2 border-t border-border/40">
+                                        <PostAuthorsDisplay authors={post.authors} compact />
+                                    </div>
+                                )}
                             </div>
                         </Link>
                     ))}

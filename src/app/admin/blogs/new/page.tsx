@@ -16,9 +16,9 @@ export default function AdminNewBlogPage() {
                     </Link>
                 </Button>
                 <div className="space-y-3">
-                    <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">Compose a New Blog Story</h1>
+                    <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">Create a New Blog Post</h1>
                     <p className="max-w-2xl text-sm leading-6 text-muted-foreground sm:text-base">
-                        Draft, refine, and publish from one workspace. Every entry is saved to SQLite and immediately available in your admin workflow.
+                        Draft, refine, and publish a new blog post from one workspace. Every entry is saved to SQLite and immediately available in your admin workflow.
                     </p>
                 </div>
 
