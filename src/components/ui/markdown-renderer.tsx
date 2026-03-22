@@ -1,4 +1,5 @@
-import React from 'react';
+import { isValidElement } from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
 import type { Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -17,20 +18,87 @@ interface MarkdownRendererProps {
 const DEFAULT_HEADING_ID = 'heading';
 const CODE_FONT_FAMILY = '"Fira Code", "JetBrains Mono", "Source Code Pro", "Cascadia Code", monospace';
 
-function extractText(node: React.ReactNode): string {
+type MarkdownTreeNode = {
+    type?: string;
+    tagName?: string;
+    value?: string;
+    properties?: Record<string, unknown>;
+    children?: MarkdownTreeNode[];
+};
+
+function extractTextFromTree(node: MarkdownTreeNode | undefined): string {
+    if (!node) {
+        return '';
+    }
+
+    if (node.type === 'text' || node.type === 'raw') {
+        return typeof node.value === 'string' ? node.value : '';
+    }
+
+    if (!Array.isArray(node.children)) {
+        return '';
+    }
+
+    return node.children.map(extractTextFromTree).join('');
+}
+
+function extractTextFromReactNode(node: ReactNode): string {
     if (typeof node === 'string' || typeof node === 'number') {
         return String(node);
     }
 
     if (Array.isArray(node)) {
-        return node.map(extractText).join('');
+        return node.map(extractTextFromReactNode).join('');
     }
 
-    if (React.isValidElement<{ children?: React.ReactNode }>(node)) {
-        return extractText(node.props.children);
+    if (isValidElement<{ children?: ReactNode }>(node)) {
+        return extractTextFromReactNode(node.props.children);
     }
 
     return '';
+}
+
+function visitTree(node: MarkdownTreeNode | undefined, visitor: (currentNode: MarkdownTreeNode) => void) {
+    if (!node) {
+        return;
+    }
+
+    visitor(node);
+
+    if (!Array.isArray(node.children)) {
+        return;
+    }
+
+    for (const child of node.children) {
+        visitTree(child, visitor);
+    }
+}
+
+function rehypeHeadingIds() {
+    return (tree: MarkdownTreeNode) => {
+        const headingCounts = new Map<string, number>();
+
+        visitTree(tree, (node) => {
+            if (!node.tagName || !/^h[1-6]$/i.test(node.tagName)) {
+                return;
+            }
+
+            const existingId = node.properties?.id;
+            if (typeof existingId === 'string' && existingId.length > 0) {
+                return;
+            }
+
+            const baseId = createHeadingId(extractTextFromTree(node));
+            const count = headingCounts.get(baseId) ?? 0;
+            headingCounts.set(baseId, count + 1);
+
+            const uniqueId = count === 0 ? baseId : `${baseId}-${count + 1}`;
+            node.properties = {
+                ...node.properties,
+                id: uniqueId,
+            };
+        });
+    };
 }
 
 function createHeadingId(text: string): string {
@@ -48,30 +116,13 @@ function createHeadingId(text: string): string {
 }
 
 function createMarkdownComponents(): Components {
-    const headingCounts = new Map<string, number>();
-
-    type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-
-    const withHeadingId =
-        (Tag: HeadingTag) =>
-        function HeadingWithId({ id, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
-            const text = extractText(children).trim();
-            const baseId = typeof id === 'string' && id.length > 0 ? id : createHeadingId(text);
-            const count = headingCounts.get(baseId) ?? 0;
-            headingCounts.set(baseId, count + 1);
-
-            const uniqueId = count === 0 ? baseId : `${baseId}-${count + 1}`;
-
-            return React.createElement(Tag, { ...props, id: uniqueId }, children);
-        };
-
     return {
         pre({ children }) {
             return <>{children}</>;
         },
         code({ className, children, ...props }) {
             const languageMatch = /language-([a-z0-9-]+)/i.exec(className || '');
-            const codeText = extractText(children).replace(/\n$/, '');
+            const codeText = extractTextFromReactNode(children).replace(/\n$/, '');
             const isBlock = Boolean(languageMatch) || codeText.includes('\n');
 
             if (!isBlock) {
@@ -96,12 +147,6 @@ function createMarkdownComponents(): Components {
                 </MarkdownCodeBlock>
             );
         },
-        h1: withHeadingId('h1'),
-        h2: withHeadingId('h2'),
-        h3: withHeadingId('h3'),
-        h4: withHeadingId('h4'),
-        h5: withHeadingId('h5'),
-        h6: withHeadingId('h6'),
         img({ src, alt, ...props }) {
             const safeSrc = typeof src === 'string' ? src : undefined;
             return <MarkdownImage src={safeSrc} alt={alt} {...props} />;
@@ -111,7 +156,7 @@ function createMarkdownComponents(): Components {
             const isGallery = classValue.includes('blog-gallery') || classValue.includes('md-gallery');
 
             if (isGallery) {
-                const galleryProps = props as React.HTMLAttributes<HTMLDivElement> & {
+                const galleryProps = props as HTMLAttributes<HTMLDivElement> & {
                     'data-columns'?: string;
                     'data-captions'?: string;
                     'data-layout'?: string;
@@ -166,7 +211,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
         >
             <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
-                rehypePlugins={[rehypeRaw, rehypeHighlight]}
+                rehypePlugins={[rehypeRaw, rehypeHeadingIds, rehypeHighlight]}
                 components={markdownComponents}
             >
                 {content}
