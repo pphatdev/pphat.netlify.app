@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
         const body = await request.json();
 
         // Validate required fields
-        const requiredFields = ['title', 'description', 'content', 'tags', 'authors'];
+        const requiredFields = ['title', 'description', 'content', 'tags'];
         for (const field of requiredFields) {
             if (!body[field]) {
                 return NextResponse.json(
@@ -66,6 +66,9 @@ export async function POST(request: NextRequest) {
             thumbnail: body.thumbnail || '',
             published: body.published ?? false,
             content: body.content || '',
+            moderatorId: typeof body.moderatorId === 'string' && body.moderatorId.trim().length > 0
+                ? body.moderatorId.trim()
+                : undefined,
         });
 
         if (!createdPost) {
