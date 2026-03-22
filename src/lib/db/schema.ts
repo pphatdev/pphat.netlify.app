@@ -26,6 +26,7 @@ export const posts = sqliteTable('posts', {
     content: text('content').notNull().default(''),
     filePath: text('file_path').notNull().default(''),
     published: integer('published', { mode: 'boolean' }).notNull().default(false),
+    moderatorId: text('moderator_id').references(() => users.id),
     createdAt: text('created_at').notNull(),
     updatedAt: text('updated_at'),
     syncedAt: text('synced_at').notNull(),
@@ -33,6 +34,7 @@ export const posts = sqliteTable('posts', {
     uniqueIndex('posts_slug_unique').on(table.slug),
     index('posts_published_idx').on(table.published),
     index('posts_created_at_idx').on(table.createdAt),
+    index('posts_moderator_id_idx').on(table.moderatorId),
 ]);
 
 export const postTags = sqliteTable('post_tags', {

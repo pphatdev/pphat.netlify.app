@@ -25,6 +25,7 @@ export type PostMutationInput = {
     content: string;
     tags?: string[];
     authors?: AuthorInput[];
+    moderatorId?: string | null;
     published?: boolean;
 };
 
@@ -156,6 +157,7 @@ export async function createPostRecord(input: PostMutationInput) {
             content: input.content,
             filePath: `posts/${slug}/index.md`,
             published: Boolean(input.published),
+            moderatorId: input.moderatorId ?? null,
             createdAt: timestamp,
             updatedAt: timestamp,
             syncedAt: timestamp,
@@ -197,6 +199,8 @@ export async function updatePostRecord(identifier: string, updates: Partial<Post
     const nextSlug = updates.slug || updates.title
         ? await findUniquePostSlug(updates.slug || updates.title || existingPost.slug, existingRecord.id)
         : existingRecord.slug;
+    const hasModeratorUpdate = Object.prototype.hasOwnProperty.call(updates, 'moderatorId');
+    const nextModeratorId = hasModeratorUpdate ? (updates.moderatorId ?? null) : (existingRecord.moderatorId ?? null);
     const timestamp = new Date().toISOString();
     const nextTags = updates.tags !== undefined ? normalizeTags(updates.tags) : existingPost.tags;
     const nextAuthors = updates.authors !== undefined ? normalizeAuthors(updates.authors) : existingPost.authors;
@@ -212,6 +216,7 @@ export async function updatePostRecord(identifier: string, updates: Partial<Post
                 content: updates.content ?? existingRecord.content,
                 filePath: `posts/${nextSlug}/index.md`,
                 published: updates.published ?? existingRecord.published,
+                moderatorId: nextModeratorId,
                 updatedAt: timestamp,
                 syncedAt: timestamp,
             })
