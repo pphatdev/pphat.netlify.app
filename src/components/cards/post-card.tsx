@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Eye, Share2Icon } from "lucide-react";
 import * as React from 'react';
 import { cn } from "@lib/utils";
+import { Avatar, AvatarFallback, AvatarImage } from "@components/ui/avatar";
 
 export const PostCard = React.memo(({ post, actionChildren, className, isAdmin = false }: { post: Post, actionChildren?: React.ReactNode, className?: string, isAdmin?: boolean}) => {
     const sharePost = (e: React.MouseEvent) => {
@@ -80,6 +81,28 @@ export const PostCard = React.memo(({ post, actionChildren, className, isAdmin =
 
                 <h2 className="z-10 font-semibold font-sans tracking-wide line-clamp-1 pb-1">{post.title}</h2>
                 <p className='font-normal text-sm z-10 line-clamp-4 text-foreground/80'>{post.description || ""}</p>
+                
+                {/* Authors Display */}
+                {post.authors && post.authors.length > 0 && (
+                    <div className="mt-3 pt-3 border-t border-foreground/10 pointer-events-auto">
+                        <div className="flex flex-wrap items-center gap-2">
+                            {post.authors.slice(0, 2).map((author, index) => (
+                                <div key={index} className="flex items-center gap-1.5">
+                                    <Avatar className="size-5">
+                                        {author.profile && <AvatarImage src={author.profile} alt={author.name} />}
+                                        <AvatarFallback className="text-xs font-semibold">
+                                            {author.name.slice(0, 2).toUpperCase()}
+                                        </AvatarFallback>
+                                    </Avatar>
+                                    <span className="text-xs text-foreground/70 font-medium">{author.name}</span>
+                                </div>
+                            ))}
+                            {post.authors.length > 2 && (
+                                <span className="text-xs text-foreground/50">+{post.authors.length - 2}</span>
+                            )}
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
