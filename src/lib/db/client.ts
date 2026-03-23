@@ -68,6 +68,9 @@ function resolveDatabaseUrl(): string {
 }
 
 const databaseUrl = resolveDatabaseUrl();
+const databaseAuthToken = process.env.DATABASE_AUTH_TOKEN?.trim()
+    || process.env.TURSO_AUTH_TOKEN?.trim()
+    || process.env.LIBSQL_AUTH_TOKEN?.trim();
 
 function ensureDatabaseDirectory(url: string): void {
     if (!url.startsWith('file:')) {
@@ -97,6 +100,7 @@ ensureDatabaseDirectory(databaseUrl);
 
 const client = createClient({
     url: databaseUrl,
+    authToken: databaseAuthToken,
 });
 
 export const db = drizzle(client, { schema });
@@ -105,6 +109,10 @@ let initializationPromise: Promise<void> | null = null;
 
 export function getDatabaseUrl(): string {
     return databaseUrl;
+}
+
+export function isEphemeralFileDatabaseRuntime(): boolean {
+    return isServerlessRuntime() && databaseUrl.startsWith('file:');
 }
 
 export async function initializeDatabase(): Promise<void> {
