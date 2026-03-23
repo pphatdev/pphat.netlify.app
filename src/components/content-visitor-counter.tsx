@@ -3,7 +3,7 @@
 import { Eye } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-type ContentVisitorType = 'post' | 'project';
+type ContentVisitorType = 'blog' | 'post' | 'project';
 
 interface ContentVisitorCounterProps {
     type: ContentVisitorType;
@@ -11,8 +11,6 @@ interface ContentVisitorCounterProps {
     initialCount?: number;
     className?: string;
 }
-
-const SESSION_PREFIX = 'visitor-counted';
 
 export function ContentVisitorCounter({
     type,
@@ -24,23 +22,16 @@ export function ContentVisitorCounter({
 
     useEffect(() => {
         let active = true;
-        const storageKey = `${SESSION_PREFIX}:${type}:${slug}`;
 
         async function updateVisitorCount() {
             try {
-                const alreadyCounted = sessionStorage.getItem(storageKey) === '1';
-
                 const response = await fetch(
-                    alreadyCounted
-                        ? `/api/visitors?type=${encodeURIComponent(type)}&slug=${encodeURIComponent(slug)}`
-                        : '/api/visitors',
-                    alreadyCounted
-                        ? { method: 'GET', cache: 'no-store' }
-                        : {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ type, slug }),
-                        }
+                    '/api/visitors',
+                    {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ type, slug }),
+                    }
                 );
 
                 if (!response.ok) {
@@ -48,10 +39,6 @@ export function ContentVisitorCounter({
                 }
 
                 const payload = await response.json();
-
-                if (!alreadyCounted) {
-                    sessionStorage.setItem(storageKey, '1');
-                }
 
                 if (active && typeof payload.visitorCount === 'number') {
                     setVisitorCount(payload.visitorCount);

@@ -111,6 +111,10 @@ export function getDatabaseUrl(): string {
     return databaseUrl;
 }
 
+export function getDatabaseAuthToken(): string | undefined {
+    return databaseAuthToken;
+}
+
 export function isEphemeralFileDatabaseRuntime(): boolean {
     return isServerlessRuntime() && databaseUrl.startsWith('file:');
 }

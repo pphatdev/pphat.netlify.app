@@ -1,5 +1,6 @@
+import 'dotenv/config';
 import { createClient, type Client } from '@libsql/client';
-import { getDatabaseUrl, initializeDatabase } from '../lib/db/client';
+import { getDatabaseAuthToken, getDatabaseUrl, initializeDatabase } from '../lib/db/client';
 
 function getRowValue(row: unknown, key: string): unknown {
     if (!row || typeof row !== 'object') {
@@ -197,6 +198,7 @@ async function main(): Promise<void> {
 
     const client = createClient({
         url: getDatabaseUrl(),
+        authToken: getDatabaseAuthToken(),
     });
 
     await normalizeDatabaseForDrizzlePush(client);

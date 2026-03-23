@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { getDatabaseUrl } from '../lib/db/client';
 import { syncContentToDatabase } from '../lib/db/content-sync';
 
@@ -5,6 +6,7 @@ export async function runContentDatabaseSync(): Promise<void> {
     const result = await syncContentToDatabase();
 
     console.log(`SQLite database synced at ${getDatabaseUrl()}`);
+    console.log(`Content source: ${result.source}`);
     console.log(`Posts: ${result.posts}`);
     console.log(`Post tags: ${result.postTags}`);
     console.log(`Post authors: ${result.postAuthors}`);

@@ -5,14 +5,39 @@ import {
     type ContentVisitorType,
 } from '@lib/db/visitor-counts';
 
+const VISITOR_COOKIE_MAX_AGE = 60 * 60 * 24;
+
+function normalizeVisitorType(value: unknown): ContentVisitorType | null {
+    if (typeof value !== 'string') {
+        return null;
+    }
+
+    const normalizedValue = value.trim().toLowerCase();
+
+    if (normalizedValue === 'post' || normalizedValue === 'posts' || normalizedValue === 'blog' || normalizedValue === 'blogs') {
+        return 'post';
+    }
+
+    if (normalizedValue === 'project' || normalizedValue === 'projects') {
+        return 'project';
+    }
+
+    return null;
+}
+
+function buildVisitorCookieName(contentType: ContentVisitorType, slug: string): string {
+    const normalizedSlug = slug.replace(/[^a-zA-Z0-9_-]/g, '_');
+    return `visitor_counted_${contentType}_${normalizedSlug}`;
+}
+
 function parseVisitorParams(request: NextRequest): {
     contentType: ContentVisitorType | null;
     slug: string;
 } {
-    const contentType = request.nextUrl.searchParams.get('type');
+    const contentType = normalizeVisitorType(request.nextUrl.searchParams.get('type'));
     const slug = request.nextUrl.searchParams.get('slug')?.trim() ?? '';
 
-    if ((contentType !== 'post' && contentType !== 'project') || !slug) {
+    if (!contentType || !slug) {
         return { contentType: null, slug };
     }
 
@@ -41,15 +66,34 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
     try {
         const body = await request.json();
-        const contentType = body?.type;
+        const contentType = normalizeVisitorType(body?.type);
         const slug = typeof body?.slug === 'string' ? body.slug.trim() : '';
 
-        if ((contentType !== 'post' && contentType !== 'project') || !slug) {
+        if (!contentType || !slug) {
             return NextResponse.json({ error: 'Missing or invalid type/slug' }, { status: 400 });
         }
 
-        const visitorCount = await incrementVisitorCount(contentType, slug);
-        return NextResponse.json({ visitorCount });
+        const cookieName = buildVisitorCookieName(contentType, slug);
+        const alreadyCounted = request.cookies.get(cookieName)?.value === '1';
+        const visitorCount = alreadyCounted
+            ? await getVisitorCount(contentType, slug)
+            : await incrementVisitorCount(contentType, slug);
+
+        const response = NextResponse.json({ visitorCount, counted: !alreadyCounted });
+
+        if (!alreadyCounted) {
+            response.cookies.set({
+                name: cookieName,
+                value: '1',
+                httpOnly: true,
+                sameSite: 'lax',
+                secure: process.env.NODE_ENV === 'production',
+                maxAge: VISITOR_COOKIE_MAX_AGE,
+                path: '/',
+            });
+        }
+
+        return response;
     } catch (error) {
         console.error('Error incrementing visitor count:', error);
         return NextResponse.json({ error: 'Failed to increment visitor count' }, { status: 500 });
