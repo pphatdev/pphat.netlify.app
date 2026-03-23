@@ -12,7 +12,7 @@ import { Label } from '@components/ui/label';
 import { Textarea } from '@components/ui/textarea';
 import { MarkdownEditor } from '@components/admin/markdown-editor';
 import { ModeratorSelector } from '@components/admin/moderator-selector';
-import type { PostEntry } from '@lib/content';
+import type { ProjectEntry } from '@lib/content';
 
 type SelectedModerator = {
     id: string;
@@ -21,23 +21,23 @@ type SelectedModerator = {
     url: string;
 };
 
-export function ProjectEditorForm({ post }: { post?: PostEntry | null; }) {
+export function ProjectEditorForm({ project }: { project?: ProjectEntry | null; }) {
     const router = useRouter();
     const { data: session } = useSession();
-    const isEditing = Boolean(post);
-    const [title, setTitle] = useState(post?.title ?? '');
-    const [slug, setSlug] = useState(post?.slug ?? '');
-    const [description, setDescription] = useState(post?.description ?? '');
-    const [thumbnail, setThumbnail] = useState(post?.thumbnail ?? '');
-    const [content, setContent] = useState(post?.content ?? '');
-    const [tags, setTags] = useState((post?.tags ?? []).join(', '));
+    const isEditing = Boolean(project);
+    const [title, setTitle] = useState(project?.title ?? '');
+    const [slug, setSlug] = useState(project?.slug ?? '');
+    const [description, setDescription] = useState(project?.description ?? '');
+    const [image, setImage] = useState(project?.image ?? '');
+    const [content, setContent] = useState(project?.content ?? '');
+    const [tags, setTags] = useState((project?.tags ?? []).join(', '));
     const [moderatorIds, setModeratorIds] = useState<string[]>([]);
     const [selectedModerators, setSelectedModerators] = useState<SelectedModerator[]>([]);
     const [isSaving, setIsSaving] = useState(false);
     const [isDrafting, setIsDrafting] = useState(false);
     const isSubmitting = isSaving || isDrafting;
 
-    async function savePost(publishedValue: boolean) {
+    async function saveProject(publishedValue: boolean) {
         const setLoading = publishedValue ? setIsSaving : setIsDrafting;
         setLoading(true);
 
@@ -49,7 +49,7 @@ export function ProjectEditorForm({ post }: { post?: PostEntry | null; }) {
                     url: moderator.url,
                 }))
                 : (isEditing
-                    ? (post?.authors ?? [])
+                    ? (project?.authors ?? [])
                     : (session?.user.name
                         ? [{
                             name: session.user.name,
@@ -62,15 +62,17 @@ export function ProjectEditorForm({ post }: { post?: PostEntry | null; }) {
                 title,
                 slug,
                 description,
-                thumbnail,
+                image,
                 content,
                 tags: tags.split(',').map((tag) => tag.trim()).filter(Boolean),
+                languages: project?.languages ?? [],
+                source: project?.source ?? [],
                 authors: currentAuthor,
                 moderatorId: moderatorIds[0] ?? null,
                 published: publishedValue,
             };
 
-            const endpoint = isEditing ? `/api/posts/${post?.id}` : '/api/posts';
+            const endpoint = isEditing ? `/api/projects/${project?.id}` : '/api/projects';
             const method = isEditing ? 'PUT' : 'POST';
             const response = await fetch(endpoint, {
                 method,
@@ -82,18 +84,18 @@ export function ProjectEditorForm({ post }: { post?: PostEntry | null; }) {
             const responsePayload = await response.json().catch(() => ({}));
 
             if (!response.ok) {
-                toast.error(responsePayload.error || 'Failed to save blog post');
+                toast.error(responsePayload.error || 'Failed to save project');
                 return;
             }
 
             toast.success(publishedValue
-                ? (isEditing ? 'Blog post updated' : 'Blog post published')
+                ? (isEditing ? 'Project updated' : 'Project published')
                 : 'Saved as draft');
-            router.push('/admin/blogs');
+            router.push('/admin/projects');
             router.refresh();
         } catch (error) {
-            console.error('Failed to save blog post', error);
-            toast.error('Failed to save blog post');
+            console.error('Failed to save project', error);
+            toast.error('Failed to save project');
         } finally {
             setLoading(false);
         }
@@ -101,14 +103,14 @@ export function ProjectEditorForm({ post }: { post?: PostEntry | null; }) {
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        await savePost(true);
+        await saveProject(true);
     }
 
     return (
         <form className="grid gap-5" onSubmit={handleSubmit} aria-busy={isSubmitting}>
             <div className="flex items-center absolute top-0 right-0 gap-2">
                 <Button type="button" variant="outline" className="mt-0 rounded-xl" onClick={() => router.back()} disabled={isSubmitting}>Back</Button>
-                <Button type="button" variant="outline" className="mt-0 rounded-xl" disabled={isSubmitting} onClick={() => savePost(false)}>
+                <Button type="button" variant="outline" className="mt-0 rounded-xl" disabled={isSubmitting} onClick={() => saveProject(false)}>
                     {isDrafting && <LoaderCircle className="size-4 animate-spin" />}
                     Save Draft
                 </Button>
@@ -139,8 +141,8 @@ export function ProjectEditorForm({ post }: { post?: PostEntry | null; }) {
 
                         <div className="grid gap-4 md:grid-cols-2">
                             <div className="flex flex-col gap-2.5">
-                                <Label htmlFor="thumbnail">Thumbnail</Label>
-                                <Input id="thumbnail" className="rounded-xl" value={thumbnail} onChange={(event) => setThumbnail(event.target.value)} placeholder="/assets/cover/example.webp" autoCapitalize="none" autoCorrect="off" spellCheck={false} />
+                                <Label htmlFor="image">Image</Label>
+                                <Input id="image" className="rounded-xl" value={image} onChange={(event) => setImage(event.target.value)} placeholder="/assets/cover/example.webp" autoCapitalize="none" autoCorrect="off" spellCheck={false} />
                             </div>
                             <div className="flex flex-col gap-2.5">
                                 <Label htmlFor="tags">Tags</Label>
