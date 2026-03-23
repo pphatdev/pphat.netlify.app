@@ -1,37 +1,35 @@
-import { index, integer, primaryKey, sqliteTable, text, uniqueIndex } from 'drizzle-orm/sqlite-core';
+import { sql } from 'drizzle-orm';
+import { index, integer, primaryKey, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
 export const users = sqliteTable('users', {
     id: text('id').primaryKey(),
-    email: text('email').notNull(),
+    email: text('email').notNull().unique(),
     name: text('name').notNull(),
     passwordHash: text('password_hash'),
     image: text('image').notNull().default(''),
     role: text('role').notNull().default('editor'),
     provider: text('provider').notNull().default('credentials'),
-    githubId: text('github_id'),
+    githubId: text('github_id').unique(),
     createdAt: text('created_at').notNull(),
     updatedAt: text('updated_at').notNull(),
 }, (table) => [
-    uniqueIndex('users_email_unique').on(table.email),
-    uniqueIndex('users_github_id_unique').on(table.githubId),
     index('users_role_idx').on(table.role),
 ]);
 
 export const posts = sqliteTable('posts', {
     id: text('id').primaryKey(),
-    slug: text('slug').notNull(),
+    slug: text('slug').notNull().unique(),
     title: text('title').notNull(),
     description: text('description').notNull().default(''),
     thumbnail: text('thumbnail').notNull().default(''),
     content: text('content').notNull().default(''),
     filePath: text('file_path').notNull().default(''),
-    published: integer('published', { mode: 'boolean' }).notNull().default(false),
+    published: integer('published', { mode: 'boolean' }).notNull().default(sql`0`),
     moderatorId: text('moderator_id').references(() => users.id),
     createdAt: text('created_at').notNull(),
     updatedAt: text('updated_at'),
     syncedAt: text('synced_at').notNull(),
 }, (table) => [
-    uniqueIndex('posts_slug_unique').on(table.slug),
     index('posts_published_idx').on(table.published),
     index('posts_created_at_idx').on(table.createdAt),
     index('posts_moderator_id_idx').on(table.moderatorId),
@@ -57,17 +55,16 @@ export const postAuthors = sqliteTable('post_authors', {
 
 export const projects = sqliteTable('projects', {
     id: text('id').primaryKey(),
-    slug: text('slug').notNull(),
+    slug: text('slug').notNull().unique(),
     title: text('title').notNull(),
     description: text('description').notNull().default(''),
     image: text('image').notNull().default(''),
     content: text('content').notNull().default(''),
     filePath: text('file_path').notNull().default(''),
-    published: integer('published', { mode: 'boolean' }).notNull().default(false),
+    published: integer('published', { mode: 'boolean' }).notNull().default(sql`0`),
     createdAt: text('created_at').notNull(),
     syncedAt: text('synced_at').notNull(),
 }, (table) => [
-    uniqueIndex('projects_slug_unique').on(table.slug),
     index('projects_published_idx').on(table.published),
     index('projects_created_at_idx').on(table.createdAt),
 ]);
@@ -117,7 +114,7 @@ export const contactSubmissions = sqliteTable('contact_submissions', {
     ipAddress: text('ip_address'),
     userAgent: text('user_agent'),
     deliveryStatus: text('delivery_status').notNull().default('pending'),
-    isSpam: integer('is_spam', { mode: 'boolean' }).notNull().default(false),
+    isSpam: integer('is_spam', { mode: 'boolean' }).notNull().default(sql`0`),
     deliveredAt: text('delivered_at'),
     createdAt: text('created_at').notNull(),
 }, (table) => [

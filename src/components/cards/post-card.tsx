@@ -5,9 +5,10 @@ import Image from 'next/image';
 import { Eye, Share2Icon } from "lucide-react";
 import * as React from 'react';
 import { cn } from "@lib/utils";
-import { Avatar, AvatarFallback, AvatarImage } from "@components/ui/avatar";
 
 export const PostCard = React.memo(({ post, actionChildren, className, isAdmin = false }: { post: Post, actionChildren?: React.ReactNode, className?: string, isAdmin?: boolean}) => {
+    const thumbnailSrc = post.thumbnail?.trim() || null;
+
     const sharePost = (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
@@ -23,16 +24,23 @@ export const PostCard = React.memo(({ post, actionChildren, className, isAdmin =
     return (
         <div className={cn("relative duration-300 group flex flex-col gap-0 hover:translate-y-1 overflow-hidden bg-foreground/5 group font-sans rounded-3xl mb-4 ring-foreground/10 hover:ring-primary hover:ring-2 transition-all ease-in-out h-full", className)} role="article" tabIndex={-1}>
 
-            <Image
-                src={post.thumbnail}
-                width={512}
-                height={512}
-                alt={post.title}
-                className="w-full h-40 aspect-video object-cover rounded-b-xl"
-                loading="lazy"
-                sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
-                unoptimized={post.thumbnail?.startsWith('http')}
-            />
+            {thumbnailSrc ? (
+                <Image
+                    src={thumbnailSrc}
+                    width={512}
+                    height={512}
+                    alt={post.title}
+                    className="w-full h-40 aspect-video object-cover rounded-b-xl"
+                    loading="lazy"
+                    sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+                    unoptimized={thumbnailSrc.startsWith('http')}
+                />
+            ) : (
+                <div
+                    aria-hidden="true"
+                    className="w-full h-40 aspect-video rounded-b-xl bg-foreground/5"
+                />
+            )}
 
             <div className="absolute transition-opacity lg:opacity-0 bg-background/50 group-hover:opacity-100 pointer-events-auto rounded-full right-3 top-3 flex z-50">
                 <div className='bg-foreground/5 z-50 ring-1 w-fit ml-auto ring-foreground/10 justify-end flex rounded-full p-1'>
@@ -83,7 +91,7 @@ export const PostCard = React.memo(({ post, actionChildren, className, isAdmin =
                 <p className='font-normal text-sm z-10 line-clamp-4 text-foreground/80'>{post.description || ""}</p>
                 
                 {/* Authors Display */}
-                {post.authors && post.authors.length > 0 && (
+                {/* {post.authors && post.authors.length > 0 && (
                     <div className="mt-3 pt-3 border-t border-foreground/10 pointer-events-auto">
                         <div className="flex flex-wrap items-center gap-2">
                             {post.authors.slice(0, 2).map((author, index) => (
@@ -102,7 +110,7 @@ export const PostCard = React.memo(({ post, actionChildren, className, isAdmin =
                             )}
                         </div>
                     </div>
-                )}
+                )} */}
             </div>
         </div>
     );

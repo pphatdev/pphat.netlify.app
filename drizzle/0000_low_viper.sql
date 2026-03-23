@@ -1,4 +1,4 @@
-CREATE TABLE `contact_submissions` (
+CREATE TABLE IF NOT EXISTS `contact_submissions` (
 	`id` text PRIMARY KEY NOT NULL,
 	`name` text NOT NULL,
 	`email` text NOT NULL,
@@ -12,10 +12,10 @@ CREATE TABLE `contact_submissions` (
 	`created_at` text NOT NULL
 );
 --> statement-breakpoint
-CREATE INDEX `contact_submissions_created_at_idx` ON `contact_submissions` (`created_at`);--> statement-breakpoint
-CREATE INDEX `contact_submissions_email_idx` ON `contact_submissions` (`email`);--> statement-breakpoint
-CREATE INDEX `contact_submissions_status_idx` ON `contact_submissions` (`delivery_status`);--> statement-breakpoint
-CREATE TABLE `content_visitors` (
+CREATE INDEX IF NOT EXISTS `contact_submissions_created_at_idx` ON `contact_submissions` (`created_at`);--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS `contact_submissions_email_idx` ON `contact_submissions` (`email`);--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS `contact_submissions_status_idx` ON `contact_submissions` (`delivery_status`);--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS `content_visitors` (
 	`content_type` text NOT NULL,
 	`content_slug` text NOT NULL,
 	`visitor_count` integer DEFAULT 0 NOT NULL,
@@ -23,9 +23,9 @@ CREATE TABLE `content_visitors` (
 	PRIMARY KEY(`content_type`, `content_slug`)
 );
 --> statement-breakpoint
-CREATE INDEX `content_visitors_type_idx` ON `content_visitors` (`content_type`);--> statement-breakpoint
-CREATE INDEX `content_visitors_slug_idx` ON `content_visitors` (`content_slug`);--> statement-breakpoint
-CREATE TABLE `post_authors` (
+CREATE INDEX IF NOT EXISTS `content_visitors_type_idx` ON `content_visitors` (`content_type`);--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS `content_visitors_slug_idx` ON `content_visitors` (`content_slug`);--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS `post_authors` (
 	`post_id` text NOT NULL,
 	`position` integer NOT NULL,
 	`name` text NOT NULL,
@@ -35,15 +35,15 @@ CREATE TABLE `post_authors` (
 	FOREIGN KEY (`post_id`) REFERENCES `posts`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
-CREATE TABLE `post_tags` (
+CREATE TABLE IF NOT EXISTS `post_tags` (
 	`post_id` text NOT NULL,
 	`tag` text NOT NULL,
 	PRIMARY KEY(`post_id`, `tag`),
 	FOREIGN KEY (`post_id`) REFERENCES `posts`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
-CREATE INDEX `post_tags_tag_idx` ON `post_tags` (`tag`);--> statement-breakpoint
-CREATE TABLE `posts` (
+CREATE INDEX IF NOT EXISTS `post_tags_tag_idx` ON `post_tags` (`tag`);--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS `posts` (
 	`id` text PRIMARY KEY NOT NULL,
 	`slug` text NOT NULL,
 	`title` text NOT NULL,
@@ -59,11 +59,11 @@ CREATE TABLE `posts` (
 	FOREIGN KEY (`moderator_id`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
-CREATE UNIQUE INDEX `posts_slug_unique` ON `posts` (`slug`);--> statement-breakpoint
-CREATE INDEX `posts_published_idx` ON `posts` (`published`);--> statement-breakpoint
-CREATE INDEX `posts_created_at_idx` ON `posts` (`created_at`);--> statement-breakpoint
-CREATE INDEX `posts_moderator_id_idx` ON `posts` (`moderator_id`);--> statement-breakpoint
-CREATE TABLE `project_authors` (
+CREATE UNIQUE INDEX IF NOT EXISTS `posts_slug_unique` ON `posts` (`slug`);--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS `posts_published_idx` ON `posts` (`published`);--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS `posts_created_at_idx` ON `posts` (`created_at`);--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS `posts_moderator_id_idx` ON `posts` (`moderator_id`);--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS `project_authors` (
 	`project_id` text NOT NULL,
 	`position` integer NOT NULL,
 	`name` text NOT NULL,
@@ -73,15 +73,15 @@ CREATE TABLE `project_authors` (
 	FOREIGN KEY (`project_id`) REFERENCES `projects`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
-CREATE TABLE `project_languages` (
+CREATE TABLE IF NOT EXISTS `project_languages` (
 	`project_id` text NOT NULL,
 	`language` text NOT NULL,
 	PRIMARY KEY(`project_id`, `language`),
 	FOREIGN KEY (`project_id`) REFERENCES `projects`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
-CREATE INDEX `project_languages_language_idx` ON `project_languages` (`language`);--> statement-breakpoint
-CREATE TABLE `project_sources` (
+CREATE INDEX IF NOT EXISTS `project_languages_language_idx` ON `project_languages` (`language`);--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS `project_sources` (
 	`project_id` text NOT NULL,
 	`position` integer NOT NULL,
 	`name` text NOT NULL,
@@ -91,15 +91,15 @@ CREATE TABLE `project_sources` (
 	FOREIGN KEY (`project_id`) REFERENCES `projects`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
-CREATE TABLE `project_tags` (
+CREATE TABLE IF NOT EXISTS `project_tags` (
 	`project_id` text NOT NULL,
 	`tag` text NOT NULL,
 	PRIMARY KEY(`project_id`, `tag`),
 	FOREIGN KEY (`project_id`) REFERENCES `projects`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
-CREATE INDEX `project_tags_tag_idx` ON `project_tags` (`tag`);--> statement-breakpoint
-CREATE TABLE `projects` (
+CREATE INDEX IF NOT EXISTS `project_tags_tag_idx` ON `project_tags` (`tag`);--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS `projects` (
 	`id` text PRIMARY KEY NOT NULL,
 	`slug` text NOT NULL,
 	`title` text NOT NULL,
@@ -112,10 +112,10 @@ CREATE TABLE `projects` (
 	`synced_at` text NOT NULL
 );
 --> statement-breakpoint
-CREATE UNIQUE INDEX `projects_slug_unique` ON `projects` (`slug`);--> statement-breakpoint
-CREATE INDEX `projects_published_idx` ON `projects` (`published`);--> statement-breakpoint
-CREATE INDEX `projects_created_at_idx` ON `projects` (`created_at`);--> statement-breakpoint
-CREATE TABLE `users` (
+CREATE UNIQUE INDEX IF NOT EXISTS `projects_slug_unique` ON `projects` (`slug`);--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS `projects_published_idx` ON `projects` (`published`);--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS `projects_created_at_idx` ON `projects` (`created_at`);--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS `users` (
 	`id` text PRIMARY KEY NOT NULL,
 	`email` text NOT NULL,
 	`name` text NOT NULL,
@@ -128,6 +128,6 @@ CREATE TABLE `users` (
 	`updated_at` text NOT NULL
 );
 --> statement-breakpoint
-CREATE UNIQUE INDEX `users_email_unique` ON `users` (`email`);--> statement-breakpoint
-CREATE UNIQUE INDEX `users_github_id_unique` ON `users` (`github_id`);--> statement-breakpoint
-CREATE INDEX `users_role_idx` ON `users` (`role`);
+CREATE UNIQUE INDEX IF NOT EXISTS `users_email_unique` ON `users` (`email`);--> statement-breakpoint
+CREATE UNIQUE INDEX IF NOT EXISTS `users_github_id_unique` ON `users` (`github_id`);--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS `users_role_idx` ON `users` (`role`);

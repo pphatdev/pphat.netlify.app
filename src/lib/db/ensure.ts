@@ -24,9 +24,11 @@ const schemaStatements = [
         content TEXT NOT NULL DEFAULT '',
         file_path TEXT NOT NULL DEFAULT '',
         published INTEGER NOT NULL DEFAULT 0,
+        moderator_id TEXT,
         created_at TEXT NOT NULL,
         updated_at TEXT,
-        synced_at TEXT NOT NULL
+        synced_at TEXT NOT NULL,
+        FOREIGN KEY (moderator_id) REFERENCES users(id) ON DELETE NO ACTION ON UPDATE NO ACTION
     )`,
     'CREATE INDEX IF NOT EXISTS posts_published_idx ON posts (published)',
     'CREATE INDEX IF NOT EXISTS posts_created_at_idx ON posts (created_at)',
@@ -119,8 +121,28 @@ const schemaStatements = [
     'CREATE INDEX IF NOT EXISTS content_visitors_slug_idx ON content_visitors (content_slug)',
 ];
 
+async function ensurePostsModeratorColumn(client: Client): Promise<void> {
+    const result = await client.execute('PRAGMA table_info(posts)');
+    const hasModeratorId = result.rows.some((row) => {
+        if (!row || typeof row !== 'object') {
+            return false;
+        }
+
+        const value = (row as Record<string, unknown>).name;
+        return typeof value === 'string' && value === 'moderator_id';
+    });
+
+    if (!hasModeratorId) {
+        await client.execute('ALTER TABLE posts ADD COLUMN moderator_id TEXT');
+    }
+
+    await client.execute('CREATE INDEX IF NOT EXISTS posts_moderator_id_idx ON posts (moderator_id)');
+}
+
 export async function ensureDatabaseSchema(client: Client): Promise<void> {
     for (const statement of schemaStatements) {
         await client.execute(statement);
     }
+
+    await ensurePostsModeratorColumn(client);
 }
