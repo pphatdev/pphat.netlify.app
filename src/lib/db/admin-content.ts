@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import { eq } from 'drizzle-orm';
+import { and, eq, isNotNull } from 'drizzle-orm';
 import { getAllPosts, getAllProjects, getPostBySlug, getProjectBySlug, invalidateCache, type PostEntry, type ProjectEntry } from '@lib/content';
 import { db, initializeDatabase } from '@lib/db/client';
 import {
@@ -41,6 +41,48 @@ export type ProjectMutationInput = {
     authors?: AuthorInput[];
     published?: boolean;
 };
+
+export async function getAllModeratedPosts(): Promise<PostEntry[]> {
+    await initializeDatabase();
+
+    const moderatedRows = await db
+        .select({ id: posts.id })
+        .from(posts)
+        .where(isNotNull(posts.moderatorId));
+
+    if (moderatedRows.length === 0) {
+        return [];
+    }
+
+    const moderatedIds = new Set(moderatedRows.map((row) => row.id));
+    const allPosts = await getAllPosts();
+    return allPosts.filter((post) => moderatedIds.has(post.id));
+}
+
+export async function getModeratedPostsByUser(userId: string): Promise<PostEntry[]> {
+    await initializeDatabase();
+
+    const normalizedUserId = userId.trim();
+    if (!normalizedUserId) {
+        return [];
+    }
+
+    const moderatedRows = await db
+        .select({ id: posts.id })
+        .from(posts)
+        .where(and(
+            isNotNull(posts.moderatorId),
+            eq(posts.moderatorId, normalizedUserId)
+        ));
+
+    if (moderatedRows.length === 0) {
+        return [];
+    }
+
+    const moderatedIds = new Set(moderatedRows.map((row) => row.id));
+    const allPosts = await getAllPosts();
+    return allPosts.filter((post) => moderatedIds.has(post.id));
+}
 
 function slugify(value: string): string {
     return value
