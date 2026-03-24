@@ -3,28 +3,17 @@ import type { DefaultSession, NextAuthOptions } from 'next-auth';
 import { getServerSession } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GitHubProvider from 'next-auth/providers/github';
-import { compare } from 'bcryptjs';
 import { z } from 'zod';
-import { getUserByEmail, upsertGitHubUser } from '@lib/db/auth-users';
+import { apiLogin, apiGetMe } from '@lib/api-client';
 
 type SessionUser = DefaultSession['user'] & {
     id: string;
     role: 'admin' | 'editor';
+    apiToken?: string;
 };
 
 function isSessionUserRole(value: string): value is SessionUser['role'] {
     return value === 'admin' || value === 'editor';
-}
-
-function getProfileId(profile: unknown): string | null {
-    if (!profile || typeof profile !== 'object' || !('id' in profile)) {
-        return null;
-    }
-
-    const profileId = (profile as { id?: unknown; }).id;
-    return typeof profileId === 'string' || typeof profileId === 'number'
-        ? String(profileId)
-        : null;
 }
 
 const DEVELOPMENT_FALLBACK_SECRET = createHash('sha256')
@@ -113,23 +102,32 @@ const providers: NextAuthOptions['providers'] = [
                 return null;
             }
 
-            const user = await getUserByEmail(parsedCredentials.data.email);
-            if (!user?.passwordHash) {
+            try {
+                const loginResponse = await apiLogin({
+                    email: parsedCredentials.data.email,
+                    password: parsedCredentials.data.password,
+                });
+
+                const token = loginResponse.data?.token;
+                if (!token) return null;
+
+                const meResponse = await apiGetMe(token);
+                const user = meResponse.data;
+                if (!user) return null;
+
+                const role = user.role === 'admin' ? 'admin' : 'editor';
+
+                return {
+                    id: String(user.id),
+                    email: user.email,
+                    name: user.name,
+                    image: '',
+                    role: role as SessionUser['role'],
+                    apiToken: token,
+                };
+            } catch {
                 return null;
             }
-
-            const isPasswordValid = await compare(parsedCredentials.data.password, user.passwordHash);
-            if (!isPasswordValid) {
-                return null;
-            }
-
-            return {
-                id: user.id,
-                email: user.email,
-                name: user.name,
-                image: user.image,
-                role: user.role as SessionUser['role'],
-            };
         },
     }),
 ];
@@ -153,43 +151,17 @@ export const authOptions: NextAuthOptions = {
     },
     providers,
     callbacks: {
-        async signIn({ user, account, profile }) {
-            if (account?.provider !== 'github') {
-                return true;
-            }
-
-            if (!user.email) {
+        async signIn({ user, account }) {
+            if (account?.provider === 'github' && !user.email) {
                 return false;
             }
-
-            const githubUser = await upsertGitHubUser({
-                email: user.email,
-                name: user.name || user.email.split('@')[0],
-                image: user.image ?? undefined,
-                githubId: getProfileId(profile),
-            });
-
-            user.id = githubUser.id;
-            user.name = githubUser.name;
-            user.image = githubUser.image || user.image;
-            (user as SessionUser).role = githubUser.role as SessionUser['role'];
-
             return true;
         },
         async jwt({ token, user }) {
             if (user) {
                 token.uid = user.id;
                 token.role = (user as SessionUser).role;
-            }
-
-            if ((!token.uid || !token.role) && token.email) {
-                const existingUser = await getUserByEmail(token.email);
-                if (existingUser) {
-                    token.uid = existingUser.id;
-                    token.role = isSessionUserRole(existingUser.role) ? existingUser.role : 'editor';
-                    token.picture = existingUser.image || token.picture;
-                    token.name = existingUser.name || token.name;
-                }
+                token.apiToken = (user as SessionUser & { apiToken?: string }).apiToken;
             }
 
             return token;
@@ -199,6 +171,7 @@ export const authOptions: NextAuthOptions = {
                 session.user.id = String(token.uid || '');
                 session.user.role = (token.role as SessionUser['role']) || 'editor';
                 session.user.image = typeof token.picture === 'string' ? token.picture : session.user.image;
+                session.user.apiToken = typeof token.apiToken === 'string' ? token.apiToken : '';
             }
             return session;
         },
@@ -225,4 +198,9 @@ export async function requireAdminSession() {
     }
 
     return session;
+}
+
+export async function getApiToken(): Promise<string | null> {
+    const session = await getServerAuthSession();
+    return (session?.user as SessionUser | undefined)?.apiToken || null;
 }

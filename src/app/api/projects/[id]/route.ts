@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAllProjects, getProjectBySlug } from '@lib/content';
-import { requireUserSession } from '@lib/auth';
-import { deleteProjectRecord, updateProjectRecord } from '@lib/db/admin-content';
+import { requireUserSession, getApiToken } from '@lib/auth';
+import { apiUpdateProject, apiDeleteProject } from '@lib/api-client';
 
 interface Params {
     params: Promise<{ id: string; }>;
@@ -32,14 +32,24 @@ export async function PUT(request: NextRequest, props: Params) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
 
-        const body = await request.json();
-        const updatedProject = await updateProjectRecord(params.id, body);
-
-        if (!updatedProject) {
-            return NextResponse.json({ error: 'Project not found' }, { status: 404 });
+        const token = await getApiToken();
+        if (!token) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
 
-        return NextResponse.json({ message: 'Project updated successfully', data: updatedProject });
+        const body = await request.json();
+        const result = await apiUpdateProject(token, params.id, {
+            name: body.title,
+            description: body.description,
+            image: body.image,
+            tags: body.tags,
+            languages: body.languages,
+            source: body.source,
+            authors: body.authors,
+            published: body.published,
+        });
+
+        return NextResponse.json({ message: 'Project updated successfully', data: result.data });
     } catch (error) {
         console.error('Error updating project:', error);
         return NextResponse.json({ error: 'Failed to update project' }, { status: 500 });
@@ -58,10 +68,12 @@ export async function DELETE(request: NextRequest, props: Params) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
 
-        const deleted = await deleteProjectRecord(params.id);
-        if (!deleted) {
-            return NextResponse.json({ error: 'Project not found' }, { status: 404 });
+        const token = await getApiToken();
+        if (!token) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
+
+        await apiDeleteProject(token, params.id);
 
         return NextResponse.json({ message: 'Project deleted successfully', success: true });
     } catch (error) {

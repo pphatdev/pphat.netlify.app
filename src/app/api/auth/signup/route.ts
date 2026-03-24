@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { hash } from 'bcryptjs';
 import { z } from 'zod';
-import { createUser, getUserByEmail } from '@lib/db/auth-users';
+import { apiRegister } from '@lib/api-client';
 
 const signupSchema = z.object({
     name: z.string().trim().min(2).max(120),
@@ -21,18 +20,13 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const existingUser = await getUserByEmail(parsedPayload.data.email);
-        if (existingUser) {
-            return NextResponse.json({ error: 'Email is already registered' }, { status: 409 });
-        }
-
-        const passwordHash = await hash(parsedPayload.data.password, 12);
-        const user = await createUser({
-            email: parsedPayload.data.email,
+        const result = await apiRegister({
             name: parsedPayload.data.name,
-            passwordHash,
-            provider: 'credentials',
+            email: parsedPayload.data.email,
+            password: parsedPayload.data.password,
         });
+
+        const user = result.data;
 
         return NextResponse.json({
             success: true,
@@ -45,6 +39,8 @@ export async function POST(request: NextRequest) {
         }, { status: 201 });
     } catch (error) {
         console.error('Error creating user:', error);
-        return NextResponse.json({ error: 'Failed to create account' }, { status: 500 });
+        const status = (error as { status?: number }).status || 500;
+        const message = status === 409 ? 'Email is already registered' : 'Failed to create account';
+        return NextResponse.json({ error: message }, { status });
     }
 }

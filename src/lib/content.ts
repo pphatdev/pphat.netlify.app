@@ -1,19 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { desc, inArray } from 'drizzle-orm';
-import { db, initializeDatabase } from './db/client';
-import {
-    contentVisitors as contentVisitorsTable,
-    postAuthors as postAuthorsTable,
-    postTags as postTagsTable,
-    posts as postsTable,
-    projectAuthors as projectAuthorsTable,
-    projectLanguages as projectLanguagesTable,
-    projectSources as projectSourcesTable,
-    projectTags as projectTagsTable,
-    projects as projectsTable,
-} from './db/schema';
 
 // ── Types ───────────────────────────────────────────────────────────────────
 
@@ -211,167 +198,7 @@ export function getAllProjectsFromMarkdown(): ProjectEntry[] {
     return readAllProjectsFromMarkdown();
 }
 
-async function loadPostsFromDatabase(): Promise<PostEntry[]> {
-    await initializeDatabase();
-
-    const postRows = await db.select().from(postsTable).orderBy(desc(postsTable.createdAt));
-    if (postRows.length === 0) {
-        return [];
-    }
-
-    const postIds = postRows.map((post) => post.id);
-    const postSlugs = postRows.map((post) => post.slug);
-
-    const [tagRows, authorRows, visitorRows] = await Promise.all([
-        db.select().from(postTagsTable).where(inArray(postTagsTable.postId, postIds)),
-        db.select().from(postAuthorsTable).where(inArray(postAuthorsTable.postId, postIds)),
-        db.select().from(contentVisitorsTable).where(inArray(contentVisitorsTable.contentSlug, postSlugs)),
-    ]);
-
-    const tagsByPostId = new Map<string, string[]>();
-    for (const tagRow of tagRows) {
-        const tags = tagsByPostId.get(tagRow.postId) ?? [];
-        tags.push(tagRow.tag);
-        tagsByPostId.set(tagRow.postId, tags);
-    }
-
-    const authorsByPostId = new Map<string, { position: number; name: string; profile: string; url: string }[]>();
-    for (const authorRow of authorRows) {
-        const authors = authorsByPostId.get(authorRow.postId) ?? [];
-        authors.push({
-            position: authorRow.position,
-            name: authorRow.name,
-            profile: authorRow.profile,
-            url: authorRow.url,
-        });
-        authorsByPostId.set(authorRow.postId, authors);
-    }
-
-    const visitorsBySlug = new Map<string, number>();
-    for (const visitorRow of visitorRows) {
-        if (visitorRow.contentType !== 'post') continue;
-        visitorsBySlug.set(visitorRow.contentSlug, visitorRow.visitorCount);
-    }
-
-    return postRows.map((post) => ({
-        id: post.id,
-        title: post.title,
-        slug: post.slug,
-        description: post.description,
-        tags: (tagsByPostId.get(post.id) ?? []).sort((left, right) => left.localeCompare(right)),
-        authors: (authorsByPostId.get(post.id) ?? [])
-            .sort((left, right) => left.position - right.position)
-            .map(({ name, profile, url }) => ({ name, profile, url })),
-        thumbnail: post.thumbnail,
-        published: post.published,
-        createdAt: post.createdAt,
-        updatedAt: post.updatedAt ?? undefined,
-        content: post.content,
-        filePath: post.filePath,
-        visitorCount: visitorsBySlug.get(post.slug) ?? 0,
-    }));
-}
-
-async function loadProjectsFromDatabase(): Promise<ProjectEntry[]> {
-    await initializeDatabase();
-
-    const projectRows = await db.select().from(projectsTable).orderBy(desc(projectsTable.createdAt));
-    if (projectRows.length === 0) {
-        return [];
-    }
-
-    const projectIds = projectRows.map((project) => project.id);
-    const projectSlugs = projectRows.map((project) => project.slug);
-
-    const [tagRows, languageRows, authorRows, sourceRows, visitorRows] = await Promise.all([
-        db.select().from(projectTagsTable).where(inArray(projectTagsTable.projectId, projectIds)),
-        db.select().from(projectLanguagesTable).where(inArray(projectLanguagesTable.projectId, projectIds)),
-        db.select().from(projectAuthorsTable).where(inArray(projectAuthorsTable.projectId, projectIds)),
-        db.select().from(projectSourcesTable).where(inArray(projectSourcesTable.projectId, projectIds)),
-        db.select().from(contentVisitorsTable).where(inArray(contentVisitorsTable.contentSlug, projectSlugs)),
-    ]);
-
-    const tagsByProjectId = new Map<string, string[]>();
-    for (const tagRow of tagRows) {
-        const tags = tagsByProjectId.get(tagRow.projectId) ?? [];
-        tags.push(tagRow.tag);
-        tagsByProjectId.set(tagRow.projectId, tags);
-    }
-
-    const languagesByProjectId = new Map<string, string[]>();
-    for (const languageRow of languageRows) {
-        const languages = languagesByProjectId.get(languageRow.projectId) ?? [];
-        languages.push(languageRow.language);
-        languagesByProjectId.set(languageRow.projectId, languages);
-    }
-
-    const authorsByProjectId = new Map<string, { position: number; name: string; profile: string; url: string }[]>();
-    for (const authorRow of authorRows) {
-        const authors = authorsByProjectId.get(authorRow.projectId) ?? [];
-        authors.push({
-            position: authorRow.position,
-            name: authorRow.name,
-            profile: authorRow.profile,
-            url: authorRow.url,
-        });
-        authorsByProjectId.set(authorRow.projectId, authors);
-    }
-
-    const sourcesByProjectId = new Map<string, { position: number; name: string; type: string; url: string }[]>();
-    for (const sourceRow of sourceRows) {
-        const sources = sourcesByProjectId.get(sourceRow.projectId) ?? [];
-        sources.push({
-            position: sourceRow.position,
-            name: sourceRow.name,
-            type: sourceRow.type,
-            url: sourceRow.url,
-        });
-        sourcesByProjectId.set(sourceRow.projectId, sources);
-    }
-
-    const visitorsBySlug = new Map<string, number>();
-    for (const visitorRow of visitorRows) {
-        if (visitorRow.contentType !== 'project') continue;
-        visitorsBySlug.set(visitorRow.contentSlug, visitorRow.visitorCount);
-    }
-
-    return projectRows.map((project) => ({
-        id: project.id,
-        title: project.title,
-        slug: project.slug,
-        description: project.description,
-        image: project.image,
-        tags: (tagsByProjectId.get(project.id) ?? []).sort((left, right) => left.localeCompare(right)),
-        languages: (languagesByProjectId.get(project.id) ?? []).sort((left, right) => left.localeCompare(right)),
-        source: (sourcesByProjectId.get(project.id) ?? [])
-            .sort((left, right) => left.position - right.position)
-            .map(({ name, type, url }) => ({ name, type, url })),
-        authors: (authorsByProjectId.get(project.id) ?? [])
-            .sort((left, right) => left.position - right.position)
-            .map(({ name, profile, url }) => ({ name, profile, url })),
-        published: project.published,
-        createdAt: project.createdAt,
-        content: project.content,
-        filePath: project.filePath,
-        visitorCount: visitorsBySlug.get(project.slug) ?? 0,
-    }));
-}
-
 export async function getAllPosts(): Promise<PostEntry[]> {
-    const now = Date.now();
-    if (postsCache && now - postsCacheTime < CACHE_TTL) return postsCache;
-
-    try {
-        const posts = await loadPostsFromDatabase();
-        if (posts.length > 0) {
-            postsCache = posts;
-            postsCacheTime = now;
-            return posts;
-        }
-    } catch (error) {
-        console.error('Failed to load posts from database, falling back to markdown:', error);
-    }
-
     return readAllPostsFromMarkdown();
 }
 
@@ -411,20 +238,6 @@ export function paginatePosts(
 }
 
 export async function getAllProjects(): Promise<ProjectEntry[]> {
-    const now = Date.now();
-    if (projectsCache && now - projectsCacheTime < CACHE_TTL) return projectsCache;
-
-    try {
-        const projects = await loadProjectsFromDatabase();
-        if (projects.length > 0) {
-            projectsCache = projects;
-            projectsCacheTime = now;
-            return projects;
-        }
-    } catch (error) {
-        console.error('Failed to load projects from database, falling back to markdown:', error);
-    }
-
     return readAllProjectsFromMarkdown();
 }
 

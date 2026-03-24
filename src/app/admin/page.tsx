@@ -14,8 +14,6 @@ import {
     UserRound,
 } from 'lucide-react';
 import { getAllPosts, getAllProjects } from '@lib/content';
-import { db, initializeDatabase } from '@lib/db/client';
-import { contactSubmissions, users } from '@lib/db/schema';
 import { AdminPageHeader } from '@components/admin/admin-page-header';
 import { AdminTrafficSpotlight } from '@components/admin/admin-dashboard-chart';
 import { Badge } from '@components/ui/badge';
@@ -82,13 +80,9 @@ function MetricCard({
 }
 
 export default async function AdminDashboardPage() {
-    await initializeDatabase();
-
-    const [posts, projects, userRows, contactRows] = await Promise.all([
+    const [posts, projects] = await Promise.all([
         getAllPosts(),
         getAllProjects(),
-        db.select().from(users),
-        db.select().from(contactSubmissions),
     ]);
 
     const totalVisitors = [...posts, ...projects].reduce((sum, entry) => sum + (entry.visitorCount ?? 0), 0);
@@ -97,6 +91,8 @@ export default async function AdminDashboardPage() {
     const totalEntries = posts.length + projects.length;
     const publishedEntries = publishedPosts + publishedProjects;
     const publicationRate = totalEntries === 0 ? 0 : Math.round((publishedEntries / totalEntries) * 100);
+    const userRows: { id: string; name: string; email: string; image: string; role: string; provider: string }[] = [];
+    const contactRows: { id: string; subject: string; name: string; email: string; deliveryStatus: string; isSpam: boolean; createdAt: string }[] = [];
     const adminUsers = userRows.filter((user) => user.role === 'admin');
     const editorUsers = userRows.filter((user) => user.role !== 'admin');
     const githubUsers = userRows.filter((user) => user.provider === 'github');

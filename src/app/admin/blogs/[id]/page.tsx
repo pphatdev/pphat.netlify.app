@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { AdminPageHeader } from '@components/admin/admin-page-header';
 import { PostEditorForm } from '@components/admin/post-editor-form';
-import { getEditablePost } from '@lib/db/admin-content';
+import { getAllPosts } from '@lib/content';
 
 interface AdminBlogEditPageProps {
     params: Promise<{ id: string; }>;
@@ -9,7 +9,8 @@ interface AdminBlogEditPageProps {
 
 export default async function AdminBlogEditPage({ params }: AdminBlogEditPageProps) {
     const { id } = await params;
-    const post = await getEditablePost(id);
+    const allPosts = await getAllPosts();
+    const post = allPosts.find((p) => p.id === id || p.slug === id) ?? null;
 
     if (!post) {
         notFound();

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAllPosts, getPostBySlug } from '@lib/content';
-import { requireUserSession } from '@lib/auth';
-import { deletePostRecord, updatePostRecord } from '@lib/db/admin-content';
+import { requireUserSession, getApiToken } from '@lib/auth';
+import { apiUpdateArticle, apiDeleteArticle } from '@lib/api-client';
 import fs from 'fs';
 import path from 'path';
 
@@ -87,19 +87,24 @@ export async function PUT(request: NextRequest, props: Params) {
             return NextResponse.json({ error: 'Title must be a string' }, { status: 400 });
         }
 
-        const updatedPost = await updatePostRecord(existingPost.id, {
-            ...body,
+        const token = await getApiToken();
+        if (!token) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        }
+
+        const result = await apiUpdateArticle(token, existingPost.id, {
+            title: body.title,
             slug: body.slug ?? existingPost.slug,
             content: body.content || existingPost.content,
+            excerpt: body.description,
+            published: body.published,
+            featured_image: body.thumbnail,
+            tags: Array.isArray(body.tags) ? body.tags.join(', ') : body.tags,
         });
-
-        if (!updatedPost) {
-            return NextResponse.json({ error: 'Post not found' }, { status: 404 });
-        }
 
         return NextResponse.json({
             message: 'Post updated successfully',
-            data: updatedPost
+            data: result.data
         });
     } catch (error) {
         console.error('Error updating post:', error);
@@ -124,7 +129,12 @@ export async function DELETE(request: NextRequest, props: Params) {
             return NextResponse.json({ error: 'Post not found' }, { status: 404 });
         }
 
-        await deletePostRecord(existingPost.id);
+        const token = await getApiToken();
+        if (!token) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        }
+
+        await apiDeleteArticle(token, existingPost.id);
 
         return NextResponse.json({
             message: 'Post deleted successfully',
@@ -163,19 +173,19 @@ export async function PATCH(request: NextRequest, props: Params) {
         if (body.content !== undefined) updates.content = body.content;
         if (body.published !== undefined) updates.published = Boolean(body.published);
         if (body.description !== undefined) updates.description = String(body.description).trim();
-        if (body.tags !== undefined && Array.isArray(body.tags)) updates.tags = body.tags;
-        if (body.authors !== undefined && Array.isArray(body.authors)) updates.authors = body.authors;
-        if (body.thumbnail !== undefined) updates.thumbnail = String(body.thumbnail).trim();
+        if (body.tags !== undefined && Array.isArray(body.tags)) updates.tags = body.tags.join(', ');
+        if (body.thumbnail !== undefined) updates.featured_image = String(body.thumbnail).trim();
 
-        const updatedPost = await updatePostRecord(existingPost.id, updates);
-
-        if (!updatedPost) {
-            return NextResponse.json({ error: 'Post not found' }, { status: 404 });
+        const token = await getApiToken();
+        if (!token) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
+
+        const result = await apiUpdateArticle(token, existingPost.id, updates as Record<string, string | boolean>);
 
         return NextResponse.json({
             message: 'Post updated successfully',
-            data: updatedPost
+            data: result.data
         });
     } catch (error) {
         console.error('Error updating post:', error);

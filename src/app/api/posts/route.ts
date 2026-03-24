@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getPublishedPosts, paginatePosts } from '@lib/content';
-import { requireUserSession } from '@lib/auth';
-import { createPostRecord } from '@lib/db/admin-content';
+import { requireUserSession, getApiToken } from '@lib/auth';
+import { apiCreateArticle } from '@lib/api-client';
 
 export async function GET(request: NextRequest) {
     try {
@@ -57,27 +57,24 @@ export async function POST(request: NextRequest) {
             }
         }
 
-        const createdPost = await createPostRecord({
+        const token = await getApiToken();
+        if (!token) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        }
+
+        const result = await apiCreateArticle(token, {
             title: body.title,
             slug: body.slug || generateSlug(body.title),
-            description: body.description || '',
-            tags: body.tags || [],
-            authors: body.authors || [],
-            thumbnail: body.thumbnail || '',
-            published: body.published ?? false,
+            excerpt: body.description || '',
             content: body.content || '',
-            moderatorId: typeof body.moderatorId === 'string' && body.moderatorId.trim().length > 0
-                ? body.moderatorId.trim()
-                : undefined,
+            tags: (body.tags || []).join(', '),
+            published: body.published ?? false,
+            featured_image: body.thumbnail || '',
         });
-
-        if (!createdPost) {
-            return NextResponse.json({ error: 'Failed to create post' }, { status: 500 });
-        }
 
         return NextResponse.json({
             success: true,
-            data: createdPost,
+            data: result.data,
             message: 'Post created successfully'
         }, { status: 201 });
 

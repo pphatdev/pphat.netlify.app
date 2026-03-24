@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { CalendarDays, Eye, FileText, Plus } from 'lucide-react';
-import { getModeratedPostsByUser } from '@lib/db/admin-content';
+import { getAllPosts } from '@lib/content';
 import { requireUserSession } from '@lib/auth';
 import { AdminPageHeader } from '@components/admin/admin-page-header';
 import { Badge } from '@components/ui/badge';
@@ -16,7 +16,7 @@ function formatDate(value: string) {
 
 export default async function AdminBlogsPage() {
     const session = await requireUserSession();
-    const posts = await getModeratedPostsByUser(session?.user?.id ?? '');
+    const posts = await getAllPosts();
     const publishedCount = posts.filter((p) => p.published).length;
     const draftCount = posts.length - publishedCount;
     const totalVisitors = posts.reduce((sum, p) => sum + (p.visitorCount ?? 0), 0);

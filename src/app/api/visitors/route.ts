@@ -1,11 +1,27 @@
 import { NextRequest, NextResponse } from 'next/server';
-import {
-    getVisitorCount,
-    incrementVisitorCount,
-    type ContentVisitorType,
-} from '@lib/db/visitor-counts';
+
+type ContentVisitorType = 'post' | 'project';
 
 const VISITOR_COOKIE_MAX_AGE = 60 * 60 * 24;
+
+// In-memory visitor counts (resets on server restart)
+const visitorCounts = new Map<string, number>();
+
+function getVisitorKey(contentType: ContentVisitorType, slug: string): string {
+    return `${contentType}:${slug}`;
+}
+
+function getVisitorCount(contentType: ContentVisitorType, slug: string): number {
+    return visitorCounts.get(getVisitorKey(contentType, slug)) ?? 0;
+}
+
+function incrementVisitorCount(contentType: ContentVisitorType, slug: string): number {
+    const key = getVisitorKey(contentType, slug);
+    const current = visitorCounts.get(key) ?? 0;
+    const newCount = current + 1;
+    visitorCounts.set(key, newCount);
+    return newCount;
+}
 
 function normalizeVisitorType(value: unknown): ContentVisitorType | null {
     if (typeof value !== 'string') {
@@ -55,7 +71,7 @@ export async function GET(request: NextRequest) {
             return NextResponse.json({ error: 'Missing or invalid type/slug' }, { status: 400 });
         }
 
-        const visitorCount = await getVisitorCount(contentType, slug);
+        const visitorCount = getVisitorCount(contentType, slug);
         return NextResponse.json({ visitorCount });
     } catch (error) {
         console.error('Error fetching visitor count:', error);
@@ -76,8 +92,8 @@ export async function POST(request: NextRequest) {
         const cookieName = buildVisitorCookieName(contentType, slug);
         const alreadyCounted = request.cookies.get(cookieName)?.value === '1';
         const visitorCount = alreadyCounted
-            ? await getVisitorCount(contentType, slug)
-            : await incrementVisitorCount(contentType, slug);
+            ? getVisitorCount(contentType, slug)
+            : incrementVisitorCount(contentType, slug);
 
         const response = NextResponse.json({ visitorCount, counted: !alreadyCounted });
 

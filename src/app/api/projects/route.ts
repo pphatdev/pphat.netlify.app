@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getPublishedProjects, paginateProjects } from '@lib/content';
-import { requireUserSession } from '@lib/auth';
-import { createProjectRecord } from '@lib/db/admin-content';
+import { requireUserSession, getApiToken } from '@lib/auth';
+import { apiCreateProject } from '@lib/api-client';
 
 export async function GET(request: NextRequest) {
     try {
@@ -51,12 +51,15 @@ export async function POST(request: NextRequest) {
             }
         }
 
-        const createdProject = await createProjectRecord({
-            title: body.title,
-            slug: body.slug,
+        const token = await getApiToken();
+        if (!token) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        }
+
+        const result = await apiCreateProject(token, {
+            name: body.title,
             description: body.description || '',
             image: body.image || '',
-            content: body.content || '',
             tags: body.tags || [],
             languages: body.languages || [],
             source: body.source || [],
@@ -64,13 +67,9 @@ export async function POST(request: NextRequest) {
             published: body.published ?? false,
         });
 
-        if (!createdProject) {
-            return NextResponse.json({ error: 'Failed to create project' }, { status: 500 });
-        }
-
         return NextResponse.json({
             success: true,
-            data: createdProject,
+            data: result.data,
             message: 'Project created successfully',
         }, { status: 201 });
     } catch (error) {

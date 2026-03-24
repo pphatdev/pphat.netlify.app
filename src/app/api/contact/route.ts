@@ -1,8 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import {
-    createContactSubmission,
-    updateContactSubmissionStatus,
-} from '@lib/db/contact-submissions';
 import { sendContactEmail } from '@lib/utils/email-service';
 import { CONTACT_EMAIL } from '../../../lib/constants';
 
@@ -61,39 +57,15 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const userAgent = request.headers.get('user-agent');
-
         // Basic spam detection
         const spamTriggers = /viagra|casino|lottery|crypto|bitcoin|earn money|make money fast|\$\d+,\d+ a day/i;
         if (spamTriggers.test(message)) {
-            await createContactSubmission({
-                name,
-                email,
-                subject,
-                message,
-                ipAddress: ip,
-                userAgent,
-                deliveryStatus: 'spam',
-                isSpam: true,
-            });
-
             // Silent fail for likely spam
             return NextResponse.json({
                 success: true,
                 message: `Your message has been sent to ${CONTACT_EMAIL}!`
             });
         }
-
-        const submission = await createContactSubmission({
-            name,
-            email,
-            subject,
-            message,
-            ipAddress: ip,
-            userAgent,
-            deliveryStatus: 'pending',
-            isSpam: false,
-        });
 
         // Send the email using Gmail
         const success = await sendContactEmail({
@@ -105,11 +77,8 @@ export async function POST(request: NextRequest) {
         });
 
         if (!success) {
-            await updateContactSubmissionStatus(submission.id, 'failed');
             throw new Error('Failed to send email');
         }
-
-        await updateContactSubmissionStatus(submission.id, 'delivered');
 
         // Return a success response
         return NextResponse.json({

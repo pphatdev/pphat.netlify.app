@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { AdminPageHeader } from '@components/admin/admin-page-header';
 import { ProjectEditorForm } from '@components/admin/project-editor-form';
-import { getEditableProject } from '@lib/db/admin-content';
+import { getAllProjects } from '@lib/content';
 
 interface AdminProjectEditPageProps {
     params: Promise<{ id: string; }>;
@@ -9,7 +9,8 @@ interface AdminProjectEditPageProps {
 
 export default async function AdminProjectEditPage({ params }: AdminProjectEditPageProps) {
     const { id } = await params;
-    const project = await getEditableProject(id);
+    const allProjects = await getAllProjects();
+    const project = allProjects.find((p) => p.id === id || p.slug === id) ?? null;
 
     if (!project) {
         notFound();

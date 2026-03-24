@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { requireUserSession } from '@lib/auth';
-import { db, initializeDatabase } from '@lib/db/client';
-import { users } from '@lib/db/schema';
+import { requireUserSession, getApiToken } from '@lib/auth';
+import { apiListUsers } from '@lib/api-client';
 
 export async function GET(request: NextRequest) {
     try {
@@ -10,16 +9,18 @@ export async function GET(request: NextRequest) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
 
-        await initializeDatabase();
-        
-        // Fetch all users (editors and admins can be moderators)
-        const allUsers = await db.select().from(users);
-        
-        const userList = allUsers.map(user => ({
+        const token = await getApiToken();
+        if (!token) {
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        }
+
+        const result = await apiListUsers(token);
+
+        const userList = (result.data || []).map(user => ({
             id: user.id,
             name: user.name,
             email: user.email,
-            image: user.image,
+            image: '',
             role: user.role,
         }));
 
