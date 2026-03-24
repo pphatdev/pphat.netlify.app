@@ -29,10 +29,11 @@ const HomeFAQSection = dynamic(() => import("./sections/home-faq").then(mod => (
 const homeSearchImage = `${NEXT_PUBLIC_APP_URL}/assets/screenshots/home-dark.png`;
 const homeTitle = `${appName} | Senior Front-end Developer & UI/UX Designer`;
 const homeDescription = "Sophat LEAT (PPhat, Sophat L.) is a Senior Front-end Developer at TURBOTECH CO., LTD and Freelance UI/UX Designer in Phnom Penh, Cambodia. Explore projects, case studies, technical articles, blogs, and contact details.";
+const metaDescription = "Sophat LEAT (PPhat) — Senior Front-end Developer & Freelance UI/UX Designer in Phnom Penh, Cambodia. Projects, blogs & more."
 
 export const metadata: Metadata = {
     title: homeTitle,
-    description: homeDescription,
+    description: metaDescription,
     authors: [{
         url: NEXT_PUBLIC_APP_URL,
         name: "Sophat LEAT",
