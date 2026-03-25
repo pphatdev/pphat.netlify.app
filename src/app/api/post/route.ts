@@ -1,95 +1,82 @@
-import fs from 'fs';
-import path from 'path';
-import crypto from 'crypto';
 import { NextRequest, NextResponse } from 'next/server';
-import { getAllPosts, getPostBySlug } from '@lib/content';
+import { NEXT_PUBLIC_API, NEXT_PUBLIC_APP_URL, PERSON_NAME } from '@lib/constants';
 
-// Force dynamic rendering to prevent caching issues on Netlify
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-function getMimeType(filePath: string): string {
-    const extension = path.extname(filePath).toLowerCase();
-
-    switch (extension) {
-        case '.jpg':
-        case '.jpeg':
-            return 'image/jpeg';
-        case '.png':
-            return 'image/png';
-        case '.webp':
-            return 'image/webp';
-        case '.gif':
-            return 'image/gif';
-        case '.svg':
-            return 'image/svg+xml';
-        case '.avif':
-            return 'image/avif';
-        default:
-            return 'application/octet-stream';
-    }
-}
-
-function getPostFolderName(filePath: string): string {
-    return path.basename(path.dirname(filePath));
+function normalizeThumbnail(imagePath?: string): string {
+    if (!imagePath) return '';
+    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) return imagePath;
+    if (imagePath.startsWith('/')) return `https://phat.website${imagePath}`;
+    return imagePath;
 }
 
 export async function GET(request: NextRequest) {
     try {
         const slug = request.nextUrl.searchParams.get('slug');
-
         if (!slug) {
             return NextResponse.json({ error: 'Missing required slug query parameter' }, { status: 400 });
         }
 
-        const post = getPostBySlug(slug)
-            ?? getAllPosts().find((entry) => entry.id === slug || getPostFolderName(entry.filePath) === slug);
-
-        if (!post) {
-            return NextResponse.json({ error: 'Post not found' }, { status: 404 });
-        }
-
-        const assetName = request.nextUrl.searchParams.get('asset')
-            ?? request.nextUrl.searchParams.get('assets');
-
+        const assetName = request.nextUrl.searchParams.get('asset') ?? request.nextUrl.searchParams.get('assets');
         if (assetName) {
-            const safeAssetName = path.basename(assetName);
-            const postDir = path.join(process.cwd(), 'content', path.dirname(post.filePath));
-            const assetPath = path.join(postDir, safeAssetName);
-
-            console.log('[API/Post] Asset request:', {
-                slug,
-                assetName,
-                safeAssetName,
-                postDir,
-                assetPath,
-                exists: fs.existsSync(assetPath),
-            });
-
-            if (safeAssetName !== assetName || !fs.existsSync(assetPath) || !fs.statSync(assetPath).isFile()) {
+            const safeAsset = assetName.split('/').pop();
+            if (!safeAsset) {
                 return NextResponse.json({ error: 'Asset not found' }, { status: 404 });
             }
 
-            const fileBuffer = fs.readFileSync(assetPath);
-            const etag = crypto.createHash('md5').update(fileBuffer).digest('hex');
-            const ifNoneMatch = request.headers.get('if-none-match');
-
-            // Return 304 if ETag matches
-            if (ifNoneMatch === etag) {
-                return new NextResponse(null, { status: 304 });
+            const assetUrl = `https://phat.website/blogs/${encodeURIComponent(slug)}/${encodeURIComponent(safeAsset)}`;
+            const assetResponse = await fetch(assetUrl, { cache: 'no-store' });
+            if (!assetResponse.ok) {
+                return NextResponse.json({ error: 'Asset not found' }, { status: 404 });
             }
 
-            return new NextResponse(new Uint8Array(fileBuffer), {
+            const contentType = assetResponse.headers.get('content-type') || 'application/octet-stream';
+            const data = await assetResponse.arrayBuffer();
+            return new NextResponse(data, {
                 headers: {
-                    'Content-Type': getMimeType(assetPath),
-                    // Browser caching enabled, but CDN will query each time due to force-dynamic
+                    'Content-Type': contentType,
                     'Cache-Control': 'public, max-age=31536000, immutable',
-                    'ETag': etag,
                 },
             });
         }
 
-        return NextResponse.json(post, {
+        const response = await fetch(`${NEXT_PUBLIC_API}/v1/api/articles/${encodeURIComponent(slug)}`, {
+            headers: { Accept: 'application/json' },
+            next: { revalidate: 60 },
+        });
+
+        if (response.status === 404) {
+            return NextResponse.json({ error: 'Post not found' }, { status: 404 });
+        }
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch post: ${response.status}`);
+        }
+
+        const payload = (await response.json()) as Record<string, unknown>;
+        const post = payload?.data && typeof payload.data === 'object'
+            ? payload.data as Record<string, unknown>
+            : payload;
+
+        return NextResponse.json({
+            ...post,
+            id: String(post.id ?? post.slug ?? slug),
+            slug: String(post.slug ?? post.id ?? slug),
+            title: String(post.title ?? ''),
+            content: String(post.content ?? ''),
+            description: String(post.excerpt ?? post.description ?? ''),
+            tags: Array.isArray(post.tags)
+                ? post.tags
+                : typeof post.tags === 'string'
+                    ? post.tags.split(',').map((tag) => tag.trim()).filter(Boolean)
+                    : [],
+            authors: [{ name: PERSON_NAME, profile: '', url: NEXT_PUBLIC_APP_URL }],
+            createdAt: String(post.published_date ?? post.created_date ?? post.updated_date ?? new Date().toISOString()),
+            updatedAt: post.updated_date,
+            thumbnail: normalizeThumbnail((post.featured_image ?? post.thumbnail) as string | undefined),
+            visitorCount: Number(post.view_count ?? 0),
+        }, {
             headers: {
                 'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
             },

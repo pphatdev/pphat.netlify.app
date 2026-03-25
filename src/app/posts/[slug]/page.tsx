@@ -1,8 +1,7 @@
 import React from 'react';
-import { getPostBySlug, getPublishedPosts } from '@lib/content';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { appName, NEXT_PUBLIC_APP_URL } from '@lib/constants';
+import { appName, NEXT_PUBLIC_API, NEXT_PUBLIC_APP_URL, PERSON_NAME } from '@lib/constants';
 import { NavigationBar } from '@components/navbar/navbar';
 import { Badge } from '@components/ui/badge';
 import { Button } from '@components/ui/button';
@@ -23,11 +22,116 @@ interface Params {
     params: Promise<{ slug: string; }>;
 }
 
-const GITHUB_REPO_URL = process.env.NEXT_PUBLIC_GITHUB_REPO_URL || 'https://github.com/pphatdev/pphat.me';
+interface RemotePost {
+    id?: string | number;
+    slug?: string;
+    title?: string;
+    content?: string;
+    excerpt?: string;
+    tags?: string[] | string;
+    featured_image?: string;
+    published?: boolean;
+    published_date?: string;
+    meta_title?: string;
+    meta_description?: string;
+    meta_keywords?: string;
+    is_featured?: boolean;
+    view_count?: number;
+    status?: boolean;
+    is_deleted?: boolean;
+    created_date?: string;
+    updated_date?: string;
+}
+
+interface NormalizedPost {
+    id: string;
+    slug: string;
+    title: string;
+    content: string;
+    description: string;
+    tags: string[];
+    authors: { name: string; profile: string; url: string }[];
+    thumbnail: string;
+    published: boolean;
+    createdAt: string;
+    updatedAt?: string;
+    visitorCount: number;
+    metaTitle: string;
+    metaDescription: string;
+    metaKeywords: string;
+    isFeatured: boolean;
+}
+
+function normalizeTags(tags: RemotePost['tags']): string[] {
+    if (Array.isArray(tags)) return tags.filter(Boolean);
+    if (typeof tags === 'string') {
+        return tags.split(',').map((tag) => tag.trim()).filter(Boolean);
+    }
+    return [];
+}
+
+function normalizeThumbnail(imagePath?: string): string {
+    if (!imagePath) return '';
+    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) return imagePath;
+    if (imagePath.startsWith('/')) return `https://phat.website${imagePath}`;
+    return imagePath;
+}
+
+async function getPostBySlugFromApi(slug: string): Promise<NormalizedPost | null> {
+    const response = await fetch(`${NEXT_PUBLIC_API}/v1/api/articles/${encodeURIComponent(slug)}`, {
+        headers: { Accept: 'application/json' },
+        next: { revalidate: 60 },
+    });
+
+    if (response.status === 404) return null;
+    if (!response.ok) return null;
+
+    const payload = (await response.json()) as unknown;
+    const post = payload && typeof payload === 'object' && 'data' in payload
+        ? ((payload as { data?: RemotePost }).data ?? null)
+        : (payload as RemotePost);
+
+    if (!post) return null;
+
+    return {
+        id: String(post.id ?? post.slug ?? slug),
+        slug: post.slug ?? slug,
+        title: post.title ?? '',
+        content: post.content ?? '',
+        description: post.excerpt ?? '',
+        tags: normalizeTags(post.tags),
+        authors: [{ name: PERSON_NAME, profile: '', url: NEXT_PUBLIC_APP_URL }],
+        published: post.published ?? true,
+        createdAt: post.published_date ?? post.created_date ?? post.updated_date ?? new Date().toISOString(),
+        updatedAt: post.updated_date,
+        thumbnail: normalizeThumbnail(post.featured_image),
+        visitorCount: post.view_count ?? 0,
+        metaTitle: post.meta_title ?? post.title ?? '',
+        metaDescription: post.meta_description ?? post.excerpt ?? '',
+        metaKeywords: post.meta_keywords ?? '',
+        isFeatured: post.is_featured ?? false,
+    };
+}
+
+async function getPublishedPostSlugsFromApi(): Promise<string[]> {
+    const response = await fetch(`${NEXT_PUBLIC_API}/v1/api/articles?page=1&limit=99999`, {
+        headers: { Accept: 'application/json' },
+        next: { revalidate: 60 },
+    });
+
+    if (!response.ok) return [];
+
+    const payload = (await response.json()) as { data?: RemotePost[] };
+    const posts = Array.isArray(payload.data) ? payload.data : [];
+
+    return posts
+        .filter((post) => (post.status ?? true) && !(post.is_deleted ?? false) && (post.published ?? true) && !!post.slug)
+        .map((post) => String(post.slug));
+}
 
 export async function generateMetadata(props: Params): Promise<Metadata> {
     const params = await props.params;
-    const post = getPostBySlug(params.slug);
+    const post = await getPostBySlugFromApi(params.slug);
 
     if (!post) {
         return {
@@ -65,13 +169,13 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-    const posts = getPublishedPosts();
-    return posts.map(post => ({ slug: post.slug }));
+    const slugs = await getPublishedPostSlugsFromApi();
+    return slugs.map((slug) => ({ slug }));
 }
 
 export default async function PostDetail(props: Params) {
     const params = await props.params;
-    const post = getPostBySlug(params.slug);
+    const post = await getPostBySlugFromApi(params.slug);
 
     if (!post) {
         return (
@@ -101,9 +205,6 @@ export default async function PostDetail(props: Params) {
     }
 
     const createdDate = new Date(post.createdAt);
-    const postDirectory = post.filePath.split('/').slice(0, -1).join('/');
-    const editPostDirectoryUrl = `${GITHUB_REPO_URL}/tree/main/content/${postDirectory}/index.mdx`;
-
     return (
         <>
             <ArticleStructuredData
@@ -164,7 +265,7 @@ export default async function PostDetail(props: Params) {
                             </Button>
 
                             <Button asChild>
-                                <Link href={editPostDirectoryUrl} target="_blank" rel="noopener noreferrer">
+                                <Link href={`/admin/blogs/${post.id}`}>
                                     <ExternalLink className="w-4 h-4 ml-2" /> Edit Post
                                 </Link>
                             </Button>

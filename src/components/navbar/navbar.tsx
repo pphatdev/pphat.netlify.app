@@ -8,7 +8,6 @@ import Link from "next/link"
 import { useState } from "react"
 import { usePathname } from "next/navigation"
 import { Button } from "../ui";
-import { ContactIcon, GitCompareArrowsIcon, Newspaper, UserIcon } from "lucide-react";
 
 export const NavigationBar = (
     { className }: { className?: string },
@@ -17,24 +16,20 @@ export const NavigationBar = (
         {
             name: "Projects",
             link: "/projects",
-            icon: GitCompareArrowsIcon,
             active: pathname === "/projects",
         },
         {
             name: "Blogs",
             link: "/posts",
-            icon: Newspaper,
             active: pathname.startsWith("/posts"),
         },
         {
             name: "About me",
             link: "/about",
-            icon: UserIcon,
             active: pathname === "/about",
         }, {
             name: "Contact",
             link: "/contact",
-            icon: ContactIcon,
             active: pathname === "/contact",
         },
     ]
@@ -74,7 +69,7 @@ export const NavigationBar = (
                             <li key={idx} className="w-full px-5">
                                 <Button asChild className={cn("w-full text-foreground mt-0", item.active && "text-primary")}>
                                     <Link href={item.link} onClick={() => setIsMobileMenuOpen(false)}>
-                                        <item.icon className="w-4 h-4 mr-1" /> {item.name}
+                                        {item.name}
                                     </Link>
                                 </Button>
                             </li>

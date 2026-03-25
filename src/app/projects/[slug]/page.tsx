@@ -2,8 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { formatDistanceToNow } from 'date-fns';
-import { appName, NEXT_PUBLIC_APP_URL } from '@lib/constants';
-import { getProjectBySlug, getPublishedProjects } from '@lib/content';
+import { appName, NEXT_PUBLIC_API, NEXT_PUBLIC_APP_URL } from '@lib/constants';
 import { NavigationBar } from '@components/navbar/navbar';
 import { GridPattern } from '@components/ui/grid-pattern';
 import { Badge } from '@components/ui/badge';
@@ -23,6 +22,111 @@ interface Params {
     params: Promise<{ slug: string }>;
 }
 
+interface RemoteProject {
+    id: string | number;
+    name?: string;
+    description?: string;
+    image?: string;
+    published?: boolean;
+    tags?: string[];
+    source?: string[];
+    authors?: string[];
+    languages?: string[];
+    created_date?: string;
+    updated_date?: string;
+    status?: boolean;
+    is_deleted?: boolean;
+}
+
+interface NormalizedProject {
+    id: string;
+    slug: string;
+    title: string;
+    description: string;
+    image: string;
+    content: string;
+    published: boolean;
+    tags: string[];
+    source: { name: string; type: string; url: string }[];
+    authors: { name: string; profile: string; url: string }[];
+    languages: string[];
+    createdAt: string;
+    updatedAt?: string;
+}
+
+function normalizeImage(imagePath?: string): string {
+    if (!imagePath) return '';
+    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) return imagePath;
+    if (imagePath.startsWith('/')) return `https://phat.website${imagePath}`;
+    return imagePath;
+}
+
+function normalizeProject(project: RemoteProject): NormalizedProject {
+    return {
+        id: String(project.id),
+        slug: project.name || String(project.id),
+        title: project.name || '',
+        description: project.description || '',
+        image: normalizeImage(project.image),
+        content: project.description || '',
+        published: project.published ?? false,
+        tags: Array.isArray(project.tags) ? project.tags : [],
+        source: Array.isArray(project.source)
+            ? project.source.map((url) => ({
+                url,
+                name: url.includes('github.com') ? 'Source Code' : 'Live Demo',
+                type: url.includes('github.com') ? 'source' : 'demo',
+            }))
+            : [],
+        authors: Array.isArray(project.authors)
+            ? project.authors.map((name) => ({
+                name,
+                profile: '',
+                url: NEXT_PUBLIC_APP_URL,
+            }))
+            : [],
+        languages: Array.isArray(project.languages) ? project.languages : [],
+        createdAt: project.created_date || new Date().toISOString(),
+        updatedAt: project.updated_date,
+    };
+}
+
+async function getPublishedProjectsFromApi(): Promise<NormalizedProject[]> {
+    const response = await fetch(`${NEXT_PUBLIC_API}/v1/api/projects?page=1&limit=500`, {
+        headers: { Accept: 'application/json' },
+        next: { revalidate: 60 },
+    });
+
+    if (!response.ok) return [];
+
+    const payload = (await response.json()) as { data?: RemoteProject[] };
+    const projects = Array.isArray(payload.data) ? payload.data : [];
+
+    return projects
+        .filter((project) => (project.status ?? true) && !(project.is_deleted ?? false) && (project.published ?? false))
+        .map(normalizeProject);
+}
+
+async function getProjectBySlugFromApi(slug: string): Promise<NormalizedProject | null> {
+    const projects = await getPublishedProjectsFromApi();
+    const matched = projects.find((project) => project.slug === slug || project.id === slug);
+    if (!matched) return null;
+
+    const response = await fetch(`${NEXT_PUBLIC_API}/v1/api/projects/${encodeURIComponent(matched.id)}`, {
+        headers: { Accept: 'application/json' },
+        next: { revalidate: 60 },
+    });
+
+    if (!response.ok) return matched;
+
+    const payload = (await response.json()) as unknown;
+    const project = payload && typeof payload === 'object' && 'data' in payload
+        ? ((payload as { data?: RemoteProject }).data ?? null)
+        : (payload as RemoteProject);
+
+    return project ? normalizeProject(project) : matched;
+}
+
 function isValidDateValue(value?: string) {
     if (!value) return false;
     return !Number.isNaN(new Date(value).getTime());
@@ -30,7 +134,7 @@ function isValidDateValue(value?: string) {
 
 export async function generateMetadata(props: Params): Promise<Metadata> {
     const params = await props.params;
-    const project = getProjectBySlug(params.slug);
+    const project = await getProjectBySlugFromApi(params.slug);
 
     if (!project) {
         return {
@@ -66,14 +170,14 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-    const projects = getPublishedProjects();
+    const projects = await getPublishedProjectsFromApi();
     return projects.map((project) => ({ slug: project.slug }));
 }
 
 export default async function ProjectDetail(props: Params) {
     const params = await props.params;
-    const project = getProjectBySlug(params.slug);
-    const projects = getPublishedProjects();
+    const project = await getProjectBySlugFromApi(params.slug);
+    const projects = await getPublishedProjectsFromApi();
 
     if (!project) {
         return (

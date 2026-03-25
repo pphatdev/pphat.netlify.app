@@ -2,9 +2,29 @@ import { Badge } from "@components/ui/badge";
 import { Post } from "@lib/types/interfaces";
 import Link from "next/link";
 import Image from 'next/image';
-import { Share2Icon } from "lucide-react";
 import * as React from 'react';
 import { cn } from "@lib/utils";
+
+function ShareIcon(props: React.SVGProps<SVGSVGElement>) {
+    return (
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+            {...props}
+        >
+            <circle cx="18" cy="5" r="3" />
+            <circle cx="6" cy="12" r="3" />
+            <circle cx="18" cy="19" r="3" />
+            <path d="M8.59 13.51 15.42 17.49" />
+            <path d="M15.41 6.51 8.59 10.49" />
+        </svg>
+    );
+}
 
 export const PostCard = React.memo(({ post, actionChildren, className, isAdmin = false }: { post: Post, actionChildren?: React.ReactNode, className?: string, isAdmin?: boolean}) => {
     const sharePost = (e: React.MouseEvent) => {
@@ -47,7 +67,7 @@ export const PostCard = React.memo(({ post, actionChildren, className, isAdmin =
                                 onClick={sharePost}
                                 className="flex cursor-pointer rounded-full p-2 hover:ring hover:text-background ring-foreground/20 outline-none hover:bg-foreground/10 transition-all items-center justify-center"
                             >
-                                <Share2Icon className="size-4" aria-hidden="true" />
+                                <ShareIcon className="size-4" aria-hidden="true" />
                                 <span className="sr-only">Share this post</span>
                             </button>
                         </>

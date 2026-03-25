@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useCallback, useMemo, Suspense } from "react";
-import { Spinner } from "@components/ui/loading";
+import { Spinner } from "@components/ui/loading-safe";
 import { ProjectCard } from "@components/cards/project-card";
 import { Project } from "../../lib/types/interfaces";
 import { BlurFade } from '@components/ui/blur-fade';
@@ -36,7 +36,7 @@ const ProjectsContent = () => {
         const fetchAll = async () => {
             setLoading(true);
             try {
-                const response = await fetch(`/api/projects?page=1&limit=999`);
+                const response = await fetch(`/api/projects?page=1&limit=-1`);
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const { data, tags } = await response.json();
                 setAllProjects(data as Project[]);

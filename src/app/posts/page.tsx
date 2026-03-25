@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useCallback, useMemo, Suspense } from "react";
-import { Spinner } from "@components/ui/loading";
+import { Spinner } from "@components/ui/loading-safe";
 import { PostCard } from "@components/cards/post-card";
 import { Post } from "../../lib/types/interfaces";
 import { BlurFade } from '@components/ui/blur-fade';
@@ -30,7 +30,7 @@ const PostsContent = () => {
         const fetchAll = async () => {
             setLoading(true);
             try {
-                const response = await fetch(`/api/posts?page=1&limit=999`);
+                const response = await fetch(`/api/posts?page=1&limit=-1`);
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const { data, tags } = await response.json();
                 setAllPosts(data as Post[]);

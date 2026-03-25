@@ -7,7 +7,24 @@ import { BackgroundBeamsWithCollision } from "@components/ui/background-beams-wi
 import { RainbowGlow } from "@components/ui/rainbow-glow"
 import { Button } from "../ui"
 import { Input } from "@components/ui/input"
-import { Search, X } from "lucide-react"
+
+function SearchIcon(props: React.SVGProps<SVGSVGElement>) {
+    return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.3-4.3" />
+        </svg>
+    );
+}
+
+function CloseIcon(props: React.SVGProps<SVGSVGElement>) {
+    return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+        </svg>
+    );
+}
 
 interface PostsHeroProps {
     searchQuery: string;
@@ -60,11 +77,11 @@ export const PostsHero = React.memo(({ searchQuery, onSearchChange, onClearSearc
                                     onClick={onClearSearch}
                                     className="h-8 w-8 rounded-full"
                                 >
-                                    <X className="w-4 h-4" />
+                                    <CloseIcon className="w-4 h-4" />
                                 </Button>
                             )}
                             <div className="h-8 w-8 rounded-full flex items-center justify-center">
-                                <Search className="text-muted-foreground w-4 h-4" />
+                                <SearchIcon className="text-muted-foreground w-4 h-4" />
                             </div>
                         </div>
                     </div>

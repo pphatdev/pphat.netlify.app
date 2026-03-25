@@ -1,24 +1,53 @@
 import { cn } from '@lib/utils';
 import React from 'react';
-import {
-    LoaderCircleIcon,
-    LoaderIcon,
-    LoaderPinwheelIcon,
-    type LucideProps,
-} from 'lucide-react';
+
+type IconLikeProps = React.SVGProps<SVGSVGElement> & {
+    size?: number | string;
+};
+
+function SpinnerBase({ className, size = 24, children, ...props }: IconLikeProps & { children: React.ReactNode }) {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={size}
+            height={size}
+            viewBox="0 0 24 24"
+            className={className}
+            fill="none"
+            stroke="currentColor"
+            {...props}
+        >
+            {children}
+        </svg>
+    );
+}
 
 type SpinnerVariantProps = Omit<SpinnerProps, 'variant'>;
 
 const Default = ({ className, ...props }: SpinnerVariantProps) => (
-    <LoaderIcon className={cn('animate-spin', className)} {...props} />
+    <SpinnerBase className={cn('animate-spin', className)} {...props}>
+        <path d="M21 12a9 9 0 1 1-6.219-8.56" strokeWidth="2" strokeLinecap="round" />
+    </SpinnerBase>
 );
 
 const Circle = ({ className, ...props }: SpinnerVariantProps) => (
-    <LoaderCircleIcon className={cn('animate-spin', className)} {...props} />
+    <SpinnerBase className={cn('animate-spin', className)} {...props}>
+        <circle cx="12" cy="12" r="9" strokeWidth="2" opacity="0.25" />
+        <path d="M21 12a9 9 0 0 0-9-9" strokeWidth="2" strokeLinecap="round" />
+    </SpinnerBase>
 );
 
 const Pinwheel = ({ className, ...props }: SpinnerVariantProps) => (
-    <LoaderPinwheelIcon className={cn('animate-spin', className)} {...props} />
+    <SpinnerBase className={cn('animate-spin', className)} {...props}>
+        <path d="M12 3v7" strokeWidth="2" strokeLinecap="round" />
+        <path d="m16.5 5.5-4.5 4.5" strokeWidth="2" strokeLinecap="round" />
+        <path d="M21 12h-7" strokeWidth="2" strokeLinecap="round" />
+        <path d="m18.5 16.5-4.5-4.5" strokeWidth="2" strokeLinecap="round" />
+        <path d="M12 21v-7" strokeWidth="2" strokeLinecap="round" />
+        <path d="m7.5 18.5 4.5-4.5" strokeWidth="2" strokeLinecap="round" />
+        <path d="M3 12h7" strokeWidth="2" strokeLinecap="round" />
+        <path d="m5.5 7.5 4.5 4.5" strokeWidth="2" strokeLinecap="round" />
+    </SpinnerBase>
 );
 
 const CircleFilled = ({
@@ -28,17 +57,14 @@ const CircleFilled = ({
 }: SpinnerVariantProps) => (
     <div className="relative" style={{ width: size, height: size }}>
         <div className="absolute inset-0 rotate-180">
-            <LoaderCircleIcon
-                className={cn('animate-spin', className, 'text-foreground opacity-20')}
-                size={size}
-                {...props}
-            />
+            <SpinnerBase className={cn('animate-spin', className, 'text-foreground opacity-20')} size={size} {...props}>
+                <circle cx="12" cy="12" r="9" strokeWidth="2" />
+            </SpinnerBase>
         </div>
-        <LoaderCircleIcon
-            className={cn('relative animate-spin', className)}
-            size={size}
-            {...props}
-        />
+        <SpinnerBase className={cn('relative animate-spin', className)} size={size} {...props}>
+            <circle cx="12" cy="12" r="9" strokeWidth="2" opacity="0.25" />
+            <path d="M21 12a9 9 0 0 0-9-9" strokeWidth="2" strokeLinecap="round" />
+        </SpinnerBase>
     </div>
 );
 
@@ -104,7 +130,7 @@ const Infinite = ({ size = 24, ...props }: SpinnerVariantProps) => (
     </svg>
 );
 
-export type SpinnerProps = LucideProps & {
+export type SpinnerProps = IconLikeProps & {
     variant?:
     | 'default'
     | 'circle'

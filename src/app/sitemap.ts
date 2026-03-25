@@ -1,9 +1,9 @@
 import { MetadataRoute } from 'next';
-import { getPublishedPosts } from '@lib/content';
+import { NEXT_PUBLIC_API } from '@lib/constants';
 
 // This file generates a dynamic sitemap using Next.js API
 // It only includes canonical URLs that return 200 status codes
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://pphat.me';
 
     // Get current date for lastModified
@@ -51,11 +51,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // Add dynamic post routes
     try {
-        const publishedPosts = getPublishedPosts();
+        const response = await fetch(`${NEXT_PUBLIC_API}/v1/api/articles?page=1&limit=500`, {
+            headers: { Accept: 'application/json' },
+            next: { revalidate: 300 },
+        });
+
+        if (!response.ok) {
+            return routes;
+        }
+
+        const payload = (await response.json()) as {
+            data?: Array<{ slug?: string; published_date?: string; created_date?: string; updated_date?: string; published?: boolean; status?: boolean; is_deleted?: boolean }>;
+        };
+        const publishedPosts = Array.isArray(payload.data)
+            ? payload.data.filter((post) => (post.status ?? true) && !(post.is_deleted ?? false) && (post.published ?? true) && !!post.slug)
+            : [];
 
         const postRoutes: MetadataRoute.Sitemap = publishedPosts.map(post => ({
-            url: `${baseUrl}/posts/${post.slug}`,
-            lastModified: new Date(post.updatedAt || post.createdAt),
+            url: `${baseUrl}/posts/${String(post.slug)}`,
+            lastModified: new Date(post.updated_date || post.published_date || post.created_date || currentDate),
             changeFrequency: 'monthly',
             priority: 0.7,
         }));

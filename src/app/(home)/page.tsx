@@ -4,12 +4,11 @@ import OrganizationStructuredData from "@components/organization-structured-data
 import HomePersonStructuredData from "@components/home-person-structured-data";
 import WebsiteStructuredData from "@components/website-structured-data";
 import { Metadata } from "next";
-import { appName, NEXT_PUBLIC_APP_URL } from "@lib/constants";
+import { appName, NEXT_PUBLIC_API, NEXT_PUBLIC_APP_URL } from "@lib/constants";
 import { BlurFade } from "@components/ui/blur-fade";
 import { NavigationBar } from "@components/navbar/navbar";
 import { RainbowGlow } from "@components/ui/rainbow-glow";
 import { SectionNavigation } from "@components/section-navigation";
-import { getPublishedPosts } from "@lib/content";
 import Footer from "@components/layouts/footer";
 
 // Lazy-load below-the-fold sections to reduce initial bundle size
@@ -109,8 +108,23 @@ export const metadata: Metadata = {
     },
 };
 
-export default function Home() {
-    const latestPost = getPublishedPosts()[0] ?? null;
+async function getLatestPostFromApi(): Promise<{ slug?: string; title?: string } | null> {
+    try {
+        const response = await fetch(`${NEXT_PUBLIC_API}/v1/api/articles?page=1&limit=1`, {
+            headers: { Accept: 'application/json' },
+            next: { revalidate: 60 },
+        });
+
+        if (!response.ok) return null;
+        const payload = (await response.json()) as { data?: Array<{ slug?: string; title?: string }> };
+        return payload.data?.[0] ?? null;
+    } catch {
+        return null;
+    }
+}
+
+export default async function Home() {
+    const latestPost = await getLatestPostFromApi();
 
     return (
         <div className="w-full flex flex-col">
