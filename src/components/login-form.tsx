@@ -16,15 +16,9 @@ function SubmitButton() {
     return (
         <Button type="submit" disabled={pending} className="w-full">
             {pending ? (
-                <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Signing in…
-                </>
+                <> <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Signing in… </>
             ) : (
-                <>
-                    <LogIn className="mr-2 h-4 w-4" />
-                    Login
-                </>
+                <> <LogIn className="mr-2 h-4 w-4" /> Login </>
             )}
         </Button>
     );
@@ -44,9 +38,7 @@ export function LoginForm({
                         <div className="flex flex-col gap-6">
                             <div className="flex flex-col items-center text-center">
                                 <h1 className="text-2xl font-bold">Welcome back</h1>
-                                <p className="text-balance text-muted-foreground">
-                                    Sign in to your PPhat account
-                                </p>
+                                <p className="text-balance text-muted-foreground"> Sign in to your PPhat account </p>
                             </div>
 
                             {state?.error && (
@@ -58,33 +50,15 @@ export function LoginForm({
 
                             <div className="grid gap-2">
                                 <Label htmlFor="email">Email</Label>
-                                <Input
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    placeholder="john@example.com"
-                                    autoComplete="email"
-                                    required
-                                />
+                                <Input id="email" name="email" type="email" placeholder="john@example.com" autoComplete="email" required />
                             </div>
 
                             <div className="grid gap-2">
                                 <div className="flex items-center">
                                     <Label htmlFor="password">Password</Label>
-                                    <a
-                                        href="#"
-                                        className="ml-auto text-sm underline-offset-2 hover:underline"
-                                    >
-                                        Forgot your password?
-                                    </a>
+                                    <a href="#" className="ml-auto text-sm underline-offset-2 hover:underline" > Forgot your password? </a>
                                 </div>
-                                <Input
-                                    id="password"
-                                    name="password"
-                                    type="password"
-                                    autoComplete="current-password"
-                                    required
-                                />
+                                <Input id="password" name="password" type="password" autoComplete="current-password" required />
                             </div>
 
                             <SubmitButton />
@@ -92,13 +66,7 @@ export function LoginForm({
                     </form>
 
                     <div className="relative hidden bg-muted md:block">
-                        <Image
-                            src="/assets/placeholder/placeholder.svg"
-                            alt="Image"
-                            width={200}
-                            height={200}
-                            className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
-                        />
+                        <Image src="/assets/placeholder/placeholder.svg" alt="Image" width={200} height={200} className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale" />
                     </div>
                 </CardContent>
             </Card>

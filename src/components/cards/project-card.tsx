@@ -13,6 +13,7 @@ export const ProjectCard = React.memo(({ project }: { project: Project }) => {
         title: author.name,
     }));
     const projectSlug = project.slug || project.id;
+    const thumbnailSrc = project.image?.replace(/^https?:\/\/[^\/]+/, '');
 
     return (
         <div
@@ -22,7 +23,7 @@ export const ProjectCard = React.memo(({ project }: { project: Project }) => {
 
             {project.image && (
                 <Image
-                    src={project.image}
+                    src={thumbnailSrc}
                     alt={project.title}
                     width={800}
                     height={450}

@@ -39,7 +39,7 @@ export const ProjectHero = React.memo(({ searchQuery, onSearchChange, onClearSea
             <div className="w-full p-4 pb-0 sm:px-5 flex flex-col max-w-5xl mx-auto">
                 <BlurFade delay={0.6} inView className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 w-full">
                     <div className="space-y-2 max-w-2xl">
-                        <h1 className="text-3xl -translate-x-0.5 font-bold sm:text-5xl xl:text-6xl/none"> Pro<span className="text-left bg-background  bg-clip-text bg-no-repeat text-transparent bg-linear-to-r  from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">jects</span> </h1>
+                        <h1 className="text-3xl font-bold sm:text-5xl xl:text-6xl/none"> Pro<span className="text-left bg-background bg-clip-text bg-no-repeat text-transparent bg-linear-to-r  from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">jects</span> </h1>
                         <p className="text-sm sm:text-base text-foreground/70 leading-relaxed">
                             {pageDescription}
                         </p>

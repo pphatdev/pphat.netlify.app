@@ -39,11 +39,14 @@ export const PostCard = React.memo(({ post, actionChildren, className, isAdmin =
         }
     };
 
+    // Thumbnail URL: replace origin-relative URLs with absolute ones for Next.js Image optimization
+    const thumbnailSrc = post.thumbnail?.replace(/^https?:\/\/[^\/]+/, '');
+
     return (
         <div className={cn("relative duration-300 group flex flex-col gap-0 hover:translate-y-1 overflow-hidden bg-foreground/5 group font-sans rounded-3xl mb-4 ring-foreground/10 hover:ring-primary hover:ring-2 transition-all ease-in-out h-full", className)} role="article" tabIndex={-1}>
 
             <Image
-                src={post.thumbnail}
+                src={thumbnailSrc}
                 width={512}
                 height={512}
                 alt={post.title}

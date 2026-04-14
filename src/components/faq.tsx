@@ -1,5 +1,5 @@
 import React from "react";
-import { FaqSection } from "@components/ui/faq";
+import { FaqSection } from "src/components/sections/faq";
 
 const DEMO_FAQS = [
     {

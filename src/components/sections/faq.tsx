@@ -4,10 +4,10 @@ import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@lib/utils";
-import { Button } from "./button";
-import { Title } from './title';
-import { BlurFade } from "./blur-fade";
-import { Badge } from "./badge";
+import { Button } from "../ui/button";
+import { Title } from '../ui/title';
+import { BlurFade } from "../ui/blur-fade";
+import { Badge } from "../ui/badge";
 
 interface FaqSectionProps extends React.HTMLAttributes<HTMLElement> {
     title: string;
@@ -16,12 +16,6 @@ interface FaqSectionProps extends React.HTMLAttributes<HTMLElement> {
         question: string;
         answer: React.ReactNode;
     }[];
-    // contactInfo?: {
-    //     title: string;
-    //     description: string;
-    //     buttonText: string;
-    //     onContact?: () => void;
-    // };
 }
 
 const FaqSection = React.forwardRef<HTMLElement, FaqSectionProps>(
@@ -86,7 +80,7 @@ const FaqItem = React.forwardRef<
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.2, delay: index * 0.1 }}
             className={cn(
-                "group rounded-lg",
+                "group rounded-4xl",
                 "transition-all duration-200 ease-in-out",
                 "border border-border/50",
                 isOpen

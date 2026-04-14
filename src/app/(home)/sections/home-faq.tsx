@@ -1,4 +1,4 @@
-import { FaqSection } from "@components/ui/faq";
+import { FaqSection } from "@components/sections/faq";
 import FAQPageStructuredData from "@components/data-structured/faq-page";
 import {
     PERSON_NAME,FAQS,

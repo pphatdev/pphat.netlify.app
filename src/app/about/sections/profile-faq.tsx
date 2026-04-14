@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { FaqSection } from "@components/ui/faq";
+import { FaqSection } from "@components/sections/faq";
 import FAQPageStructuredData from "@components/data-structured/faq-page";
 import { FAQS, PERSON_ALTERNATE_NAME, PERSON_NAME, } from "@lib/constants";
 

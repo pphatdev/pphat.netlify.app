@@ -2,11 +2,21 @@ import React from 'react';
 
 interface FAQItem {
     question: string;
-    answer: string;
+    answer: React.ReactNode;
 }
 
 interface FAQPageStructuredDataProps {
     items: FAQItem[];
+}
+
+function reactNodeToString(node: React.ReactNode): string {
+    if (node === null || node === undefined || typeof node === 'boolean') return '';
+    if (typeof node === 'string' || typeof node === 'number') return String(node);
+    if (Array.isArray(node)) return node.map(reactNodeToString).join('');
+    if (typeof node === 'object' && React.isValidElement(node)) {
+        return reactNodeToString((node.props as { children?: React.ReactNode }).children);
+    }
+    return '';
 }
 
 export default function FAQPageStructuredData({ items }: FAQPageStructuredDataProps) {
@@ -18,7 +28,7 @@ export default function FAQPageStructuredData({ items }: FAQPageStructuredDataPr
             "name": item.question,
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": item.answer
+                "text": reactNodeToString(item.answer)
             }
         }))
     };
