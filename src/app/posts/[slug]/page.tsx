@@ -104,7 +104,7 @@ async function getPostBySlugFromApi(slug: string): Promise<NormalizedPost | null
         published: post.published ?? true,
         createdAt: post.published_date ?? post.created_date ?? post.updated_date ?? new Date().toISOString(),
         updatedAt: post.updated_date,
-        thumbnail: normalizeThumbnail(post.featured_image),
+        thumbnail: post.featured_image?.replace(/^https?:\/\/[^\/]+/, '') || '',
         visitorCount: post.view_count ?? 0,
         metaTitle: post.meta_title ?? post.title ?? '',
         metaDescription: post.meta_description ?? post.excerpt ?? '',
@@ -132,6 +132,8 @@ async function getPublishedPostSlugsFromApi(): Promise<string[]> {
 export async function generateMetadata(props: Params): Promise<Metadata> {
     const params = await props.params;
     const post = await getPostBySlugFromApi(params.slug);
+    console.log(post);
+    
 
     if (!post) {
         return {
@@ -155,7 +157,7 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
             description: post.description,
             type: 'article',
             url: `${NEXT_PUBLIC_APP_URL}/posts/${post.slug}`,
-            images: post.thumbnail ? [{ url: post.thumbnail.toString() }] : undefined,
+            images: post.thumbnail ? [{ url: post.thumbnail.replace(/^https?:\/\/[^\/]+/, '') }] : undefined,
             publishedTime: post.createdAt,
             authors: post.authors?.map(author => author.name),
         },
@@ -163,7 +165,7 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
             card: 'summary_large_image',
             title: `${post.title}`,
             description: post.description,
-            images: post.thumbnail ? [{ url: post.thumbnail.toString() }] : undefined,
+            images: post.thumbnail ? [{ url: post.thumbnail.replace(/^https?:\/\/[^\/]+/, '') }] : undefined,
         }
     };
 }
@@ -211,7 +213,7 @@ export default async function PostDetail(props: Params) {
                 title={post.title}
                 description={post.description || ''}
                 slug={post.slug}
-                thumbnail={post.thumbnail}
+                thumbnail={post.thumbnail ? post.thumbnail.replace(/^https?:\/\/[^\/]+/, '') : undefined}
                 authors={post.authors || []}
                 tags={post.tags || []}
                 createdAt={post.createdAt}

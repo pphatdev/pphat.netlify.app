@@ -44,7 +44,7 @@ export const FIGMA_URL = process.env.FIGMA_URL || "https://figma.com/@PPhat";
 
 // Education
 export const UNIVERSITY_NAME = process.env.UNIVERSITY_NAME || "Royal University of Phnom Penh";
-const RAW_NEXT_PUBLIC_API = process.env.NEXT_PUBLIC_API || "https://api.pphatdev.workers.dev";
+const RAW_NEXT_PUBLIC_API = process.env.NEXT_PUBLIC_API || "https://api.pphat.top";
 
 export const appName = "LEAT Sophat"
 export const appTitle = "PPhat Dev"
