@@ -120,7 +120,7 @@
     "eslint-plugin-react": "^7.37.5",
     "globals": "^16.0.0",
     "open-next": "^0.0.1",
-    "postcss": "^8.5.3",
+    "postcss": "^8.5.10",
     "sharp": "^0.34.5",
     "turbo": "^2.8.17",
     "typescript": "^5",
