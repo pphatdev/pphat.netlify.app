@@ -1,4 +1,3 @@
-import React from 'react';
 import { NEXT_PUBLIC_APP_URL, PERSON_ALTERNATE_NAME, PERSON_JOB_TITLE, PERSON_NAME } from '@lib/constants';
 
 export default function WebsiteStructuredData() {
@@ -58,7 +57,8 @@ export default function WebsiteStructuredData() {
     return (
         <script
             type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+            suppressHydrationWarning
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData, null, 2) }}
         />
     );
 }

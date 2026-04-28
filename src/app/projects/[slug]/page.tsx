@@ -1,8 +1,6 @@
-import React from 'react';
 import Link from 'next/link';
-import { Metadata } from 'next';
 import { formatDistanceToNow } from 'date-fns';
-import { appName, NEXT_PUBLIC_API, NEXT_PUBLIC_APP_URL } from '@lib/constants';
+import { appName, NEXT_PUBLIC_APP_URL } from '@lib/constants';
 import { NavigationBar } from '@components/navbar/navbar';
 import { GridPattern } from '@components/ui/grid-pattern';
 import { Badge } from '@components/ui/badge';
@@ -17,124 +15,20 @@ import { ScrollToTopButton } from '@components/ui/scroll-to-top-button';
 import { PostCoverImage } from '@components/ui/post-cover-image';
 import { DividerVerticalIcon } from '@radix-ui/react-icons';
 import Footer from 'src/components/layouts/footer';
+import { ProjectDetailResponse } from '../../../types/projects';
+import { Metadata } from 'next';
 
 interface Params {
-    params: Promise<{ slug: string }>;
-}
-
-interface RemoteProject {
-    id: string | number;
-    name?: string;
-    description?: string;
-    image?: string;
-    published?: boolean;
-    tags?: string[];
-    source?: string[];
-    authors?: string[];
-    languages?: string[];
-    created_date?: string;
-    updated_date?: string;
-    status?: boolean;
-    is_deleted?: boolean;
-}
-
-interface NormalizedProject {
-    id: string;
-    slug: string;
-    title: string;
-    description: string;
-    image: string;
-    content: string;
-    published: boolean;
-    tags: string[];
-    source: { name: string; type: string; url: string }[];
-    authors: { name: string; profile: string; url: string }[];
-    languages: string[];
-    createdAt: string;
-    updatedAt?: string;
-}
-
-function normalizeImage(imagePath?: string): string {
-    if (!imagePath) return '';
-    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) return imagePath;
-    if (imagePath.startsWith('/')) return `https://phat.website${imagePath}`;
-    return imagePath;
-}
-
-function normalizeProject(project: RemoteProject): NormalizedProject {
-    return {
-        id: String(project.id),
-        slug: project.name || String(project.id),
-        title: project.name || '',
-        description: project.description || '',
-        image: normalizeImage(project.image),
-        content: project.description || '',
-        published: project.published ?? false,
-        tags: Array.isArray(project.tags) ? project.tags : [],
-        source: Array.isArray(project.source)
-            ? project.source.map((url) => ({
-                url,
-                name: url.includes('github.com') ? 'Source Code' : 'Live Demo',
-                type: url.includes('github.com') ? 'source' : 'demo',
-            }))
-            : [],
-        authors: Array.isArray(project.authors)
-            ? project.authors.map((name) => ({
-                name,
-                profile: '',
-                url: NEXT_PUBLIC_APP_URL,
-            }))
-            : [],
-        languages: Array.isArray(project.languages) ? project.languages : [],
-        createdAt: project.created_date || new Date().toISOString(),
-        updatedAt: project.updated_date,
+    params: {
+        slug: string;
     };
 }
 
-async function getPublishedProjectsFromApi(): Promise<NormalizedProject[]> {
-    const response = await fetch(`${NEXT_PUBLIC_API}/v1/api/projects?page=1&limit=500`, {
-        headers: { Accept: 'application/json' },
-        next: { revalidate: 60 },
-    });
-
-    if (!response.ok) return [];
-
-    const payload = (await response.json()) as { data?: RemoteProject[] };
-    const projects = Array.isArray(payload.data) ? payload.data : [];
-
-    return projects
-        .filter((project) => (project.status ?? true) && !(project.is_deleted ?? false) && (project.published ?? false))
-        .map(normalizeProject);
-}
-
-async function getProjectBySlugFromApi(slug: string): Promise<NormalizedProject | null> {
-    const projects = await getPublishedProjectsFromApi();
-    const matched = projects.find((project) => project.slug === slug || project.id === slug);
-    if (!matched) return null;
-
-    const response = await fetch(`${NEXT_PUBLIC_API}/v1/api/projects/${encodeURIComponent(matched.id)}`, {
-        headers: { Accept: 'application/json' },
-        next: { revalidate: 60 },
-    });
-
-    if (!response.ok) return matched;
-
-    const payload = (await response.json()) as unknown;
-    const project = payload && typeof payload === 'object' && 'data' in payload
-        ? ((payload as { data?: RemoteProject }).data ?? null)
-        : (payload as RemoteProject);
-
-    return project ? normalizeProject(project) : matched;
-}
-
-function isValidDateValue(value?: string) {
-    if (!value) return false;
-    return !Number.isNaN(new Date(value).getTime());
-}
 
 export async function generateMetadata(props: Params): Promise<Metadata> {
     const params = await props.params;
-    const project = await getProjectBySlugFromApi(params.slug);
+    const project = await getProjectDetail(params.slug);
+    const data = project?.data;
 
     if (!project) {
         return {
@@ -144,9 +38,9 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
     }
 
     return {
-        title: `${project.title}`,
-        description: project.description,
-        authors: project.authors?.map((author) => ({
+        title: `${data.title}`,
+        description: data.description,
+        authors: data.contributors?.map((author) => ({
             name: author.name,
             url: author.url,
         })) || [{
@@ -154,49 +48,60 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
             url: NEXT_PUBLIC_APP_URL,
         }],
         openGraph: {
-            title: `${project.title}`,
-            description: project.description,
+            title: `${data.title}`,
+            description: data.description,
             type: 'website',
-            url: `${NEXT_PUBLIC_APP_URL}/projects/${project.slug}`,
-            images: project.image ? [{ url: project.image.toString() }] : undefined,
+            url: `${NEXT_PUBLIC_APP_URL}/projects/${data.slug}`,
+            images: data.thumbnail ? [{ url: data.thumbnail.toString() }] : undefined,
         },
         twitter: {
             card: 'summary_large_image',
-            title: `${project.title}`,
-            description: project.description,
-            images: project.image ? [{ url: project.image.toString() }] : undefined,
+            title: `${data.title}`,
+            description: data.description,
+            images: data.thumbnail ? [{ url: data.thumbnail.toString() }] : undefined,
         },
     };
 }
 
-export async function generateStaticParams() {
-    const projects = await getPublishedProjectsFromApi();
-    return projects.map((project) => ({ slug: project.slug }));
-}
+
+const getProjectDetail = async (slug: string): Promise<ProjectDetailResponse> => {
+    try {
+        const endpoint = new URL(`/api/projects/${slug}`, NEXT_PUBLIC_APP_URL).toString();
+        const response = await fetch(endpoint, {
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        if (!response.ok) {
+            console.error(`Failed to fetch project with slug ${slug}:`, response.statusText);
+            throw new Error(`Failed to fetch project with slug ${slug}`);
+        }
+
+        const data = await response.json();
+        return data as ProjectDetailResponse;
+    }
+    catch (error) {
+        console.error(`Error fetching project with slug ${slug}:`, error);
+        throw error;
+    }
+};
+
+
 
 export default async function ProjectDetail(props: Params) {
     const params = await props.params;
-    const project = await getProjectBySlugFromApi(params.slug);
-    const projects = await getPublishedProjectsFromApi();
+    const project = await getProjectDetail(params.slug);
+    const data = project.data;
+
 
     if (!project) {
         return (
             <>
-                <GridPattern
-                    width={30}
-                    height={30}
-                    x={-1}
-                    y={-1}
-                    className={'mask-[linear-gradient(to_bottom_right,white,transparent,transparent)] '}
-                />
-
+                <GridPattern width={30} height={30} x={-1} y={-1} className={'mask-[linear-gradient(to_bottom_right,white,transparent,transparent)] '} />
                 <NavigationBar className='sticky' />
 
                 <div className='container flex min-h-svh flex-col justify-center items-center mx-auto py-16 text-center'>
                     <h1 className='text-4xl font-bold mb-4'>Project Not Found</h1>
-                    <p className='text-muted-foreground mb-8'>
-                        The project you are looking for does not exist.
-                    </p>
+                    <p className='text-muted-foreground mb-8'> The project you are looking for does not exist. </p>
 
                     <Button asChild className='ring'>
                         <Link href='/projects'>
@@ -208,30 +113,25 @@ export default async function ProjectDetail(props: Params) {
         );
     }
 
-    const createdAtValid = isValidDateValue(project.createdAt);
-    const createdDate = createdAtValid ? new Date(project.createdAt) : null;
-    const screenshot = project.image ? [project.image] : [];
-    const currentIndex = projects.findIndex((item) => item.slug === project.slug);
-    const previousProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
-    const nextProject = currentIndex >= 0 && currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
+
 
     return (
         <>
             <SoftwareApplicationStructuredData
-                name={project.title}
-                description={project.description}
-                url={`${NEXT_PUBLIC_APP_URL}/projects/${project.slug}`}
-                repositoryUrl={project.source?.find((item) => item.type === 'source')?.url}
-                screenshots={screenshot}
-                datePublished={project.createdAt}
-                keywords={[...(project.tags || []), ...(project.languages || [])]}
+                name={data.title}
+                description={data.description}
+                url={`/projects/${data.slug}`}
+                // repositoryUrl={data.source?.find((item) => item.type === 'source')?.url}
+                screenshots={[data.thumbnail ? data.thumbnail.toString() : '']}
+                datePublished={data.createdAt}
+                keywords={[...(data.tags || []), ...(data.languages || [])]}
             />
 
             <BreadcrumbStructuredData
                 items={[
                     { name: 'Home', url: NEXT_PUBLIC_APP_URL, position: 1 },
                     { name: 'Projects', url: `${NEXT_PUBLIC_APP_URL}/projects`, position: 2 },
-                    { name: project.title, url: `${NEXT_PUBLIC_APP_URL}/projects/${project.slug}`, position: 3 },
+                    { name: data.title, url: `${NEXT_PUBLIC_APP_URL}/projects/${data.slug}`, position: 3 },
                 ]}
             />
 
@@ -248,9 +148,9 @@ export default async function ProjectDetail(props: Params) {
             </div>
 
             <article className='max-w-5xl sm:px-4 relative mx-auto max-xs:pt-0 sm:mt-16 py-8'>
-                {project.image && (
+                {data.thumbnail && (
                     <div className='relative w-full sm:p-2 ring-1 rounded-3xl ring-foreground/10 h-full max-xs:max-h-96 md:h-116 max-xs:rounded-none max-xs:rounded-b-4xl overflow-hidden'>
-                        <PostCoverImage src={project.image} alt={project.title} />
+                        <PostCoverImage src={data.thumbnail} alt={data.title} />
                     </div>
                 )}
 
@@ -261,8 +161,8 @@ export default async function ProjectDetail(props: Params) {
                         </Link>
                     </Button>
 
-                    <div className='flex justify-end items-center py-4 gap-2 flex-wrap'>
-                        {(project.source ?? []).map((source) => (
+                    {/* <div className='flex justify-end items-center py-4 gap-2 flex-wrap'>
+                        {(data.languages ?? []).map((source) => (
                             <Button asChild key={`${source.type}-${source.url}`} className='mt-0 border'>
                                 <Link href={source.url} target='_blank' rel='noopener noreferrer'>
                                     {source.type === 'demo' ? (
@@ -274,21 +174,21 @@ export default async function ProjectDetail(props: Params) {
                                 </Link>
                             </Button>
                         ))}
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className='flex px-3 xs:px-0 gap-2 flex-wrap items-center mb-4 justify-between'>
-                    {(project.languages?.length || 0) > 0 && (
+                    {(data.languages?.length || 0) > 0 && (
                         <div className='flex w-fit justify-center rounded-full p-0.5 sm:p-1 ring-1 ring-foreground/10 gap-1 bg-background'>
-                            {(project.languages ?? []).map((language) => (
+                            {(data.languages ?? []).map((language) => (
                                 <Badge key={language} variant='outline' className="py-1"> {language} </Badge>
                             ))}
                         </div>
                     )}
 
-                    {(project.tags?.length || 0) > 0 && (
+                    {(data.tags?.length || 0) > 0 && (
                         <div className='flex w-fit justify-center border p-0.5 sm:p-1 rounded-full gap-1 bg-background'>
-                            {(project.tags ?? []).map((tag) => (
+                            {(data.tags ?? []).map((tag) => (
                                 <Badge key={tag} variant='default' className='py-1 leading-tight font-open-sans'> @{tag} </Badge>
                             ))}
                         </div>
@@ -298,12 +198,12 @@ export default async function ProjectDetail(props: Params) {
 
                 <div className="max-sm:p-3 py-2 border-y border-foreground/10">
                     {/* <div className="2xl:before:hidden py-2 max-xs:px-3 2xl:after:hidden relative before:absolute before:top-0 before:h-px before:w-[200vw] before:bg-gray-950/5 dark:before:bg-white/10 before:-left-[100vw] after:absolute after:bottom-0 after:h-px after:w-[200vw] after:bg-gray-950/5 dark:after:bg-white/10 after:-left-[100vw]"> */}
-                    {createdDate && (
+                    {data.createdAt && (
                         <div className='flex items-center justify-start'>
                             <div className='flex items-center space-x-1 max-sm:text-xs text-sm text-muted-foreground'>
                                 <Calendar className='size-4' />
-                                <time dateTime={project.createdAt} className='whitespace-nowrap'>
-                                    {createdDate.toLocaleDateString('en-US', {
+                                <time dateTime={data.createdAt} className='whitespace-nowrap'>
+                                    {new Date(data.createdAt).toLocaleDateString('en-US', {
                                         year: 'numeric',
                                         month: 'long',
                                         day: 'numeric',
@@ -315,22 +215,21 @@ export default async function ProjectDetail(props: Params) {
 
                             <div className='flex items-center space-x-1 max-sm:text-xs text-sm text-muted-foreground whitespace-nowrap'>
                                 <Clock className='w-4 h-4' />
-                                <span>{formatDistanceToNow(createdDate)} ago</span>
+                                <span>{formatDistanceToNow(new Date(data.createdAt))} ago</span>
                             </div>
                         </div>
                     )}
                 </div>
 
-
                 <div className='max-sm:px-3 flex flex-col relative order-1 mb-4'>
                     <h1 className='text-4xl md:text-5xl font-bold leading-tight'>
-                        <span className="text-left bg-background  bg-clip-text bg-no-repeat text-transparent bg-linear-to-r  from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]"> {project.title} </span>
+                        <span className="text-left bg-background  bg-clip-text bg-no-repeat text-transparent bg-linear-to-r  from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]"> {data.title} </span>
                     </h1>
-                    <p className='text-base text-foreground/80 mt-3 leading-relaxed font-sans'>{project.description}</p>
+                    <p className='text-base text-foreground/80 mt-3 leading-relaxed font-sans'>{data.description}</p>
                 </div>
 
                 <ul className="p-2 border-y flex items-start">
-                    {(project.authors ?? []).map((author, index) => (
+                    {(data.contributors ?? []).map((author, index) => (
                         <li key={index} className='flex items-center'>
                             <Link
                                 rel='noopener noreferrer'
@@ -349,7 +248,7 @@ export default async function ProjectDetail(props: Params) {
                                     <p className='font-medium'>{author.name}</p>
                                 </div>
                             </Link>
-                            {index < (project.authors?.length ?? 0) - 1 && (
+                            {index < (data.contributors?.length ?? 0) - 1 && (
                                 <DividerVerticalIcon orientation='vertical' className='mx-1 text-foreground/50 h-4' />
                             )}
                         </li>
@@ -358,25 +257,23 @@ export default async function ProjectDetail(props: Params) {
 
                 <div className='py-5'>
                     <div className='mx-auto max-xs:px-3'>
-                        <MarkdownRenderer content={project.content} />
+                        <MarkdownRenderer content={data.details.content} />
                     </div>
 
                     <div className='flex flex-col gap-3 max-xs:px-3 mt-10'>
                         <div className='flex items-center mx-auto justify-between w-full gap-3'>
-                            {previousProject ? (
+                            {project.navigation.prev ? (
                                 <Button asChild>
-                                    <Link href={`/projects/${previousProject.slug}`}>
+                                    <Link href={`/projects/${project.navigation.prev}`}>
                                         <ArrowLeftIcon className='w-4 h-4 mr-2 shrink-0' />
-                                        <span className='line-clamp-1 max-xs:hidden'>{previousProject.title}</span>
                                         <span className='sm:hidden'>Prev</span>
                                     </Link>
                                 </Button>
                             ) : ( <div /> )}
 
-                            {nextProject ? (
+                            {project.navigation.next ? (
                                 <Button asChild>
-                                    <Link href={`/projects/${nextProject.slug}`}>
-                                        <span className='line-clamp-1 max-xs:hidden'>{nextProject.title}</span>
+                                    <Link href={`/projects/${project.navigation.next}`}>
                                         <span className='sm:hidden'>Next</span>
                                         <ArrowRightIcon className='w-4 h-4 ml-2 shrink-0' />
                                     </Link>

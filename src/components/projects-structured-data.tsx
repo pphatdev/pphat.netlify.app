@@ -1,4 +1,3 @@
-import React from 'react';
 import { appName, NEXT_PUBLIC_APP_URL } from '@lib/constants';
 
 export default function ProjectsStructuredData() {
@@ -25,6 +24,7 @@ export default function ProjectsStructuredData() {
     return (
         <script
             type="application/ld+json"
+            suppressHydrationWarning
             dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
     );

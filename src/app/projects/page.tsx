@@ -1,22 +1,19 @@
 "use client";
 
-import React, { useEffect, useState, useCallback, useMemo, Suspense } from "react";
+import { useEffect, useState, useCallback, useMemo, Suspense } from "react";
 import { Spinner } from "@components/ui/loading-safe";
 import { ProjectCard } from "@components/cards/project-card";
-import { Project } from "../../lib/types/interfaces";
 import { BlurFade } from '@components/ui/blur-fade';
 import { NavigationBar } from "@components/navbar/navbar";
 import ProjectsStructuredData from "@components/projects-structured-data";
 import { useSearchParams, useRouter } from "next/navigation";
-import dynamic from "next/dynamic";
 import { Button } from "src/components/ui";
 import { cn } from "@lib/utils";
 import Footer from '../../components/layouts/footer';
+import { ProjectHero } from "@components/heros/project-hero"
+import { ProjectResponse } from '../../types/projects';
 
-const ProjectHero = dynamic(
-    () => import("@components/heros/project-hero").then((mod) => mod.ProjectHero),
-    { ssr: false }
-);
+type TProject = ProjectResponse['data'][number];
 
 const ITEMS_PER_PAGE = 12;
 
@@ -25,7 +22,7 @@ const ProjectsContent = () => {
     const searchParams = useSearchParams();
     const [loading, setLoading] = useState(false);
     const [loadingMore, setLoadingMore] = useState(false);
-    const [allProjects, setAllProjects] = useState<Project[]>([]);
+    const [allProjects, setAllProjects] = useState<TProject[]>([]);
     const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
     const [availableTags, setAvailableTags] = useState<string[]>([]);
     const [searchQuery, setSearchQuery] = useState("");
@@ -36,10 +33,10 @@ const ProjectsContent = () => {
         const fetchAll = async () => {
             setLoading(true);
             try {
-                const response = await fetch(`/api/projects?page=1&limit=-1`);
+                const response = await fetch(`/api/projects`);
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const { data, tags } = await response.json();
-                setAllProjects(data as Project[]);
+                setAllProjects(data as TProject[]);
                 if (Array.isArray(tags)) setAvailableTags(tags);
             } catch (error) {
                 console.error('Error fetching projects:', error);
@@ -66,11 +63,11 @@ const ProjectsContent = () => {
             const matchesSearch = !query || (
                 project.title?.toLowerCase().includes(query) ||
                 project.description?.toLowerCase().includes(query) ||
-                project.tags?.some(tag => tag.toLowerCase().includes(query)) ||
-                project.languages?.some(language => language.toLowerCase().includes(query))
+                project.tags?.some(tag => tag?.tag.toLowerCase().includes(query)) ||
+                project.languages?.some(language => language?.name.toLowerCase().includes(query))
             );
             const matchesTag = !normalizedTag ||
-                project.tags?.some(tag => tag.toLowerCase() === normalizedTag);
+                project.tags?.some(tag => tag?.tag.toLowerCase() === normalizedTag);
             return matchesSearch && matchesTag;
         });
     }, [allProjects, searchQuery, selectedTag]);
@@ -157,7 +154,7 @@ const ProjectsContent = () => {
                         </div>
                     )}
                     {!loading && visibleProjects.map((project) => (
-                        <ProjectCard key={project.id || project.title} project={project} />
+                        <ProjectCard key={project.id} data={project} />
                     ))}
                     {!loading && filteredProjects.length === 0 && (searchQuery || selectedTag) && (
                         <div className="col-span-full text-center py-12">

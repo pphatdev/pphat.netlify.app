@@ -123,8 +123,9 @@ export default function HomePersonStructuredData() {
     return (
         <script
             type="application/ld+json"
+            suppressHydrationWarning
             dangerouslySetInnerHTML={{
-                __html: JSON.stringify(structuredData, null, 2)
+                __html: JSON.stringify(structuredData)
             }}
         />
     );
