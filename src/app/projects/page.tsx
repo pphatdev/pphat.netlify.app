@@ -15,7 +15,7 @@ import { ProjectResponse } from '../../types/projects';
 
 type TProject = ProjectResponse['data'][number];
 
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 9;
 
 const ProjectsContent = () => {
     const router = useRouter();
