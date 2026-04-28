@@ -7,7 +7,7 @@ import { Badge } from '@components/ui/badge';
 import { Button } from '@components/ui/button';
 import "../../../styles/code-block-node.css"
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
-import { ArrowLeftIcon, ArrowRightIcon, Calendar, Clock, ExternalLink, Globe, User } from 'lucide-react';
+import { ArrowLeftIcon, ArrowRightIcon, Calendar, Clock, User } from 'lucide-react';
 import BreadcrumbStructuredData from '@components/breadcrumb-structured-data';
 import SoftwareApplicationStructuredData from '@components/data-structured/software-application';
 import { MarkdownRenderer } from '@components/ui/markdown-renderer';
@@ -17,6 +17,7 @@ import { DividerVerticalIcon } from '@radix-ui/react-icons';
 import Footer from 'src/components/layouts/footer';
 import { ProjectDetailResponse } from '../../../types/projects';
 import { Metadata } from 'next';
+import { headers } from 'next/headers';
 
 interface Params {
     params: {
@@ -64,9 +65,22 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
 }
 
 
+const getBaseUrl = async () => {
+    const headerStore = await headers();
+    const host = headerStore.get("x-forwarded-host") ?? headerStore.get("host");
+    const protocol = headerStore.get("x-forwarded-proto") ?? "http";
+
+    if (!host) {
+        return NEXT_PUBLIC_APP_URL;
+    }
+
+    return `${protocol}://${host}`;
+};
+
 const getProjectDetail = async (slug: string): Promise<ProjectDetailResponse> => {
     try {
-        const endpoint = new URL(`/api/projects/${slug}`, NEXT_PUBLIC_APP_URL).toString();
+        const baseUrl = await getBaseUrl();
+        const endpoint = new URL(`/api/projects/${slug}`, baseUrl).toString();
         const response = await fetch(endpoint, {
             headers: { 'Content-Type': 'application/json' },
         });
@@ -124,7 +138,10 @@ export default async function ProjectDetail(props: Params) {
                 // repositoryUrl={data.source?.find((item) => item.type === 'source')?.url}
                 screenshots={[data.thumbnail ? data.thumbnail.toString() : '']}
                 datePublished={data.createdAt}
-                keywords={[...(data.tags || []), ...(data.languages || [])]}
+                keywords={[
+                    ...(data.tags ?? []).map((tag) => tag.tag),
+                    ...(data.languages ?? []).map((language) => language.name),
+                ]}
             />
 
             <BreadcrumbStructuredData
@@ -181,7 +198,7 @@ export default async function ProjectDetail(props: Params) {
                     {(data.languages?.length || 0) > 0 && (
                         <div className='flex w-fit justify-center rounded-full p-0.5 sm:p-1 ring-1 ring-foreground/10 gap-1 bg-background'>
                             {(data.languages ?? []).map((language) => (
-                                <Badge key={language} variant='outline' className="py-1"> {language} </Badge>
+                                <Badge key={language.id} variant='outline' className="py-1"> {language.name} </Badge>
                             ))}
                         </div>
                     )}
@@ -189,7 +206,7 @@ export default async function ProjectDetail(props: Params) {
                     {(data.tags?.length || 0) > 0 && (
                         <div className='flex w-fit justify-center border p-0.5 sm:p-1 rounded-full gap-1 bg-background'>
                             {(data.tags ?? []).map((tag) => (
-                                <Badge key={tag} variant='default' className='py-1 leading-tight font-open-sans'> @{tag} </Badge>
+                                <Badge key={tag.id} variant='default' className='py-1 leading-tight font-open-sans'> @{tag.tag} </Badge>
                             ))}
                         </div>
                     )}

@@ -15,7 +15,7 @@ import { ProjectResponse } from '../../types/projects';
 
 type TProject = ProjectResponse['data'][number];
 
-const ITEMS_PER_PAGE = 12;
+const ITEMS_PER_PAGE = 10;
 
 const ProjectsContent = () => {
     const router = useRouter();
@@ -33,7 +33,10 @@ const ProjectsContent = () => {
         const fetchAll = async () => {
             setLoading(true);
             try {
-                const response = await fetch(`/api/projects`);
+                const response = await fetch(`/api/projects?page=1&limit=99999`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' },
+                });
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const { data, tags } = await response.json();
                 setAllProjects(data as TProject[]);
@@ -53,7 +56,6 @@ const ProjectsContent = () => {
         const tagParam = searchParams.get('tag') || "";
         setSearchQuery(queryParam);
         setSelectedTag(tagParam);
-        setVisibleCount(ITEMS_PER_PAGE);
     }, [searchParams]);
 
     const filteredProjects = useMemo(() => {
@@ -72,6 +74,10 @@ const ProjectsContent = () => {
         });
     }, [allProjects, searchQuery, selectedTag]);
 
+    useEffect(() => {
+        setVisibleCount(ITEMS_PER_PAGE);
+    }, [filteredProjects]);
+
     const visibleProjects = filteredProjects.slice(0, visibleCount);
     const hasMore = visibleCount < filteredProjects.length;
 
@@ -79,7 +85,6 @@ const ProjectsContent = () => {
         const params = new URLSearchParams(searchParams.toString());
         if (query.trim()) { params.set('q', query); } else { params.delete('q'); }
         if (tag.trim()) { params.set('tag', tag); } else { params.delete('tag'); }
-        params.delete('page');
         const queryString = params.toString();
         router.push(`/projects${queryString ? `?${queryString}` : ''}`, { scroll: false });
     }, [router, searchParams]);
@@ -175,6 +180,11 @@ const ProjectsContent = () => {
                         >
                             {loadingMore ? <Spinner variant="bars" /> : "Load more"}
                         </button>
+                    </div>
+                )}
+                {!loading && !hasMore && filteredProjects.length > 0 && (
+                    <div className="text-center text-muted-foreground py-4">
+                        You've reached the end of the list.
                     </div>
                 )}
             </BlurFade>
