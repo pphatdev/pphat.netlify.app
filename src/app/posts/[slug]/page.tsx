@@ -16,7 +16,6 @@ import { MarkdownRenderer } from '@components/ui/markdown-renderer';
 import { ScrollToTopButton } from '@components/ui/scroll-to-top-button';
 import { PostCoverImage } from '@components/ui/post-cover-image';
 import Footer from 'src/components/layouts/footer';
-import { headers } from 'next/headers';
 
 interface Params {
     params: Promise<{ slug: string; }>;
@@ -27,16 +26,22 @@ interface RemotePost {
     slug?: string;
     title?: string;
     content?: string;
+    description?: string;
     excerpt?: string;
-    tags?: string[] | string;
+    tags?: { id: number, tag: string, description: string }[] | string;
+    authors?: { name: string, profile: string, url: string }[];
+    thumbnail?: string;
     featured_image?: string;
     published?: boolean;
+    createdAt?: string;
+    updatedAt?: string;
     published_date?: string;
     meta_title?: string;
     meta_description?: string;
     meta_keywords?: string;
     is_featured?: boolean;
     view_count?: number;
+    stats?: { views: number, readingMins: number };
     status?: boolean;
     is_deleted?: boolean;
     created_date?: string;
@@ -63,7 +68,9 @@ interface NormalizedPost {
 }
 
 function normalizeTags(tags: RemotePost['tags']): string[] {
-    if (Array.isArray(tags)) return tags.filter(Boolean);
+    if (Array.isArray(tags)) {
+        return tags.map(t => typeof t === 'string' ? t : t.tag).filter(Boolean);
+    }
     if (typeof tags === 'string') {
         return tags.split(',').map((tag) => tag.trim()).filter(Boolean);
     }
@@ -71,8 +78,7 @@ function normalizeTags(tags: RemotePost['tags']): string[] {
 }
 
 async function getPostBySlugFromApi(slug: string): Promise<NormalizedPost | null> {
-    const baseUrl = await getBaseUrl();
-    const endpoint = new URL(`/api/articles/${encodeURIComponent(slug)}`, baseUrl).toString();
+    const endpoint = new URL(`/v1/api/articles/${encodeURIComponent(slug)}`, process.env.NEXT_PUBLIC_API).toString();
     const response = await fetch(endpoint, {
         headers: { Accept: 'application/json' },
         next: { revalidate: 60 },
@@ -93,24 +99,23 @@ async function getPostBySlugFromApi(slug: string): Promise<NormalizedPost | null
         slug: post.slug ?? slug,
         title: post.title ?? '',
         content: post.content ?? '',
-        description: post.excerpt ?? '',
+        description: post.description ?? post.excerpt ?? '',
         tags: normalizeTags(post.tags),
-        authors: [{ name: PERSON_NAME, profile: '', url: NEXT_PUBLIC_APP_URL }],
+        authors: post.authors && post.authors.length > 0 ? post.authors : [{ name: PERSON_NAME, profile: '', url: NEXT_PUBLIC_APP_URL }],
         published: post.published ?? true,
-        createdAt: post.published_date ?? post.created_date ?? post.updated_date ?? new Date().toISOString(),
-        updatedAt: post.updated_date,
-        thumbnail: post.featured_image?.replace(/^https?:\/\/[^\/]+/, '') || '',
-        visitorCount: post.view_count ?? 0,
+        createdAt: post.createdAt ?? post.published_date ?? post.created_date ?? post.updated_date ?? new Date().toISOString(),
+        updatedAt: post.updatedAt ?? post.updated_date,
+        thumbnail: (post.thumbnail ?? post.featured_image)?.replace(/^https?:\/\/[^\/]+/, '') || '',
+        visitorCount: post.stats?.views ?? post.view_count ?? 0,
         metaTitle: post.meta_title ?? post.title ?? '',
-        metaDescription: post.meta_description ?? post.excerpt ?? '',
+        metaDescription: post.meta_description ?? post.description ?? post.excerpt ?? '',
         metaKeywords: post.meta_keywords ?? '',
         isFeatured: post.is_featured ?? false,
     };
 }
 
 async function getPublishedPostSlugsFromApi(): Promise<string[]> {
-    const baseUrl = await getBaseUrl();
-    const endpoint = new URL('/api/articles?page=1&limit=99999', baseUrl).toString();
+    const endpoint = new URL('/v1/api/articles?page=1&limit=99999', process.env.NEXT_PUBLIC_API).toString();
     const response = await fetch(endpoint, {
         headers: { Accept: 'application/json' },
         next: { revalidate: 60 },
@@ -124,18 +129,6 @@ async function getPublishedPostSlugsFromApi(): Promise<string[]> {
     return posts
         .filter((post) => (post.status ?? true) && !(post.is_deleted ?? false) && (post.published ?? true) && !!post.slug)
         .map((post) => String(post.slug));
-}
-
-async function getBaseUrl() {
-    try {
-        const headerStore = await headers();
-        const host = headerStore.get('x-forwarded-host') ?? headerStore.get('host');
-        const protocol = headerStore.get('x-forwarded-proto') ?? 'http';
-        if (host) return `${protocol}://${host}`;
-    } catch (error) {
-        console.error('Error reading request headers for base URL:', error);
-    }
-    return NEXT_PUBLIC_APP_URL;
 }
 
 export async function generateMetadata(props: Params): Promise<Metadata> {
@@ -299,7 +292,7 @@ export default async function PostDetail(props: Params) {
                                     {post.authors?.map((author, index) => (
                                         <Link rel="noopener noreferrer" target='_blank' href={author.url === "" ? String(author.profile).replace('.png', '') : author.url} key={index} className="flex items-center space-x-2">
                                             <Avatar className="w-8 h-8">
-                                                <AvatarImage src={author.profile} alt={author.name} />
+                                                <AvatarImage src={author.profile} alt={author.name} referrerPolicy="no-referrer" />
                                                 <AvatarFallback>
                                                     <User className="w-4 h-4" />
                                                 </AvatarFallback>
