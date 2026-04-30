@@ -1,41 +1,40 @@
-export function PostAuthorsDisplay({
-    authors,
-    compact,
-}: {
-    authors: { name: string; profile: string; url: string }[];
-    compact?: boolean;
-}) {
+"use client";
+
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+
+export function PostAuthorsDisplay({ authors }: { authors: { name: string; profile: string; url: string }[] }) {
+    const router = useRouter();
+
     if (!authors || authors.length === 0) {
         return null;
     }
 
+    const handleAuthorClick = (e: React.MouseEvent, url: string) => {
+        e.preventDefault();
+        e.stopPropagation();
+        window.open(url, '_blank', 'noopener,noreferrer');
+    };
+
     return (
         <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-muted-foreground">
-                By:
-            </span>
-            {authors.map((author) =>
-                compact ? (
-                    <span
-                        key={author.profile}
-                        className="inline-flex items-center gap-1.5 rounded-full bg-foreground/5 px-2.5 py-1 text-[11px] font-medium text-muted-foreground"
-                        title={author.profile}
-                    >
-                        <span className="truncate">{author.name}</span>
-                    </span>
-                ) : (
-                    <a
-                        key={author.profile}
-                        href={author.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 rounded-full bg-foreground/5 px-2.5 py-1 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-foreground/10"
-                        title={author.profile}
-                    >
-                        <span className="truncate">{author.name}</span>
-                    </a>
-                )
-            )}
+            {authors.map((author) => (
+                <span
+                    key={author.profile}
+                    onClick={(e) => handleAuthorClick(e, author.url)}
+                    className="inline-flex cursor-pointer items-center gap-1.5 rounded-full bg-foreground/5 p-0.5 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-foreground/10"
+                    role="link"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            router.push(author.url);
+                        }
+                    }}
+                >
+                    <Image width={100} height={100} src={author.profile} alt={author.name} className="size-6 rounded-full" />
+                </span>
+            ))}
         </div>
     );
 }

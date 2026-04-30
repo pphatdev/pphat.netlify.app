@@ -27,20 +27,29 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     console.log('Backend response status:', res.status)
 
                     const data = await res.json()
+                    console.log('Backend response data:', data)
                     const token = data?.token || data?.data?.token
 
                     if (!res.ok || !token) {
+                        console.error('Authentication failed:', data?.message || data?.error || 'No token returned')
                         throw new Error(data?.message || data?.error || 'Authentication failed')
                     }
 
                     // 2. Fetch user profile from the backend using the token
+                    console.log('Fetching user profile...')
                     const userRes = await fetch(`${NEXT_PUBLIC_API}/v1/api/auth/me`, {
                         headers: { Authorization: `Bearer ${token}` }
                     })
+                    console.log('User profile response status:', userRes.status)
 
-                    if (!userRes.ok) return null
+                    if (!userRes.ok) {
+                        const errorData = await userRes.json()
+                        console.error('Failed to fetch user profile:', errorData)
+                        return null
+                    }
 
                     const userData = await userRes.json()
+                    console.log('User data received:', userData)
                     const user = userData?.data || (userData?.id ? userData : null)
 
                     if (user) {
