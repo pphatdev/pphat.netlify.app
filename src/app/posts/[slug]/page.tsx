@@ -1,7 +1,6 @@
-import React from 'react';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { appName, NEXT_PUBLIC_API, NEXT_PUBLIC_APP_URL, PERSON_NAME } from '@lib/constants';
+import { appName, NEXT_PUBLIC_APP_URL, PERSON_NAME } from '@lib/constants';
 import { NavigationBar } from '@components/navbar/navbar';
 import { Badge } from '@components/ui/badge';
 import { Button } from '@components/ui/button';
@@ -17,6 +16,7 @@ import { MarkdownRenderer } from '@components/ui/markdown-renderer';
 import { ScrollToTopButton } from '@components/ui/scroll-to-top-button';
 import { PostCoverImage } from '@components/ui/post-cover-image';
 import Footer from 'src/components/layouts/footer';
+import { headers } from 'next/headers';
 
 interface Params {
     params: Promise<{ slug: string; }>;
@@ -70,15 +70,10 @@ function normalizeTags(tags: RemotePost['tags']): string[] {
     return [];
 }
 
-function normalizeThumbnail(imagePath?: string): string {
-    if (!imagePath) return '';
-    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) return imagePath;
-    if (imagePath.startsWith('/')) return `https://phat.website${imagePath}`;
-    return imagePath;
-}
-
 async function getPostBySlugFromApi(slug: string): Promise<NormalizedPost | null> {
-    const response = await fetch(`${NEXT_PUBLIC_API}/v1/api/articles/${encodeURIComponent(slug)}`, {
+    const baseUrl = await getBaseUrl();
+    const endpoint = new URL(`/api/articles/${encodeURIComponent(slug)}`, baseUrl).toString();
+    const response = await fetch(endpoint, {
         headers: { Accept: 'application/json' },
         next: { revalidate: 60 },
     });
@@ -114,7 +109,9 @@ async function getPostBySlugFromApi(slug: string): Promise<NormalizedPost | null
 }
 
 async function getPublishedPostSlugsFromApi(): Promise<string[]> {
-    const response = await fetch(`${NEXT_PUBLIC_API}/v1/api/articles?page=1&limit=99999`, {
+    const baseUrl = await getBaseUrl();
+    const endpoint = new URL('/api/articles?page=1&limit=99999', baseUrl).toString();
+    const response = await fetch(endpoint, {
         headers: { Accept: 'application/json' },
         next: { revalidate: 60 },
     });
@@ -129,11 +126,21 @@ async function getPublishedPostSlugsFromApi(): Promise<string[]> {
         .map((post) => String(post.slug));
 }
 
+async function getBaseUrl() {
+    try {
+        const headerStore = await headers();
+        const host = headerStore.get('x-forwarded-host') ?? headerStore.get('host');
+        const protocol = headerStore.get('x-forwarded-proto') ?? 'http';
+        if (host) return `${protocol}://${host}`;
+    } catch (error) {
+        console.error('Error reading request headers for base URL:', error);
+    }
+    return NEXT_PUBLIC_APP_URL;
+}
+
 export async function generateMetadata(props: Params): Promise<Metadata> {
     const params = await props.params;
     const post = await getPostBySlugFromApi(params.slug);
-    console.log(post);
-    
 
     if (!post) {
         return {

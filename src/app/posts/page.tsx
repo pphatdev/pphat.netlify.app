@@ -13,6 +13,49 @@ import { Button } from "src/components/ui";
 import Footer from '../../components/layouts/footer';
 
 const ITEMS_PER_PAGE = 12;
+const THUMBNAIL_FALLBACK = "/assets/placeholder/rectangle.png";
+
+type RemoteArticle = {
+    id?: string | number;
+    slug?: string;
+    title?: string;
+    description?: string;
+    excerpt?: string;
+    tags?: Array<string | { tag?: string }> | string;
+    thumbnail?: string;
+    featured_image?: string;
+    published?: boolean;
+    createdAt?: string;
+    created_date?: string;
+    published_date?: string;
+    content?: string;
+    authors?: { name: string; profile: string; url: string }[];
+};
+
+const normalizeTags = (tags: RemoteArticle["tags"]): string[] => {
+    if (Array.isArray(tags)) {
+        return tags
+            .map((tag) => (typeof tag === "string" ? tag : tag?.tag || ""))
+            .filter(Boolean);
+    }
+    if (typeof tags === "string") {
+        return tags.split(",").map((tag) => tag.trim()).filter(Boolean);
+    }
+    return [];
+};
+
+const normalizePost = (article: RemoteArticle): Post => ({
+    id: String(article.id ?? article.slug ?? crypto.randomUUID()),
+    slug: String(article.slug ?? ""),
+    title: article.title ?? "",
+    description: article.description ?? article.excerpt ?? "",
+    content: article.content ?? "",
+    tags: normalizeTags(article.tags),
+    thumbnail: article.thumbnail ?? article.featured_image ?? THUMBNAIL_FALLBACK,
+    published: article.published ?? true,
+    createdAt: article.createdAt ?? article.published_date ?? article.created_date ?? new Date().toISOString(),
+    authors: Array.isArray(article.authors) ? article.authors : [],
+});
 
 const PostsContent = () => {
     const router = useRouter();
@@ -30,11 +73,15 @@ const PostsContent = () => {
         const fetchAll = async () => {
             setLoading(true);
             try {
-                const response = await fetch(`/api/posts?page=1&limit=-1`);
+                const response = await fetch(`/api/articles?page=1&limit=99999`);
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                const { data, tags } = await response.json();
-                setAllPosts(data as Post[]);
-                if (Array.isArray(tags)) setAvailableTags(tags);
+                const { data } = await response.json();
+                const normalizedPosts = (Array.isArray(data) ? data : []).map((article) =>
+                    normalizePost(article as RemoteArticle)
+                );
+                const uniqueTags = Array.from(new Set(normalizedPosts.flatMap((post) => post.tags)));
+                setAllPosts(normalizedPosts);
+                setAvailableTags(uniqueTags);
             } catch (error) {
                 console.error('Error fetching posts:', error);
             } finally {
