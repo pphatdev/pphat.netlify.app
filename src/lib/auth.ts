@@ -1,37 +1,27 @@
-import { cookies } from 'next/headers';
-import { NEXT_PUBLIC_API } from '@lib/constants';
+import { auth as nextAuth } from "src/auth";
 
 export type CurrentUser = {
   id: string;
   name: string;
   email: string;
   avatar?: string;
+  image?: string;
   role: string;
+  token?: string;
 };
 
 export async function getCurrentUser(): Promise<CurrentUser | null> {
   try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get('auth_token')?.value;
-
-    if (!token) {
+    const session = await nextAuth();
+    if (!session?.user) {
       return null;
     }
-
-    const res = await fetch(`${NEXT_PUBLIC_API}/v1/api/auth/me`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      // Prevent caching for auth requests
-      next: { revalidate: 0 },
-    });
-
-    if (!res.ok) {
-      return null;
-    }
-
-    const data = await res.json();
-    return data.data || null;
+    
+    // Auth.js maps 'image' to 'avatar' if we defined it, but just in case:
+    return {
+      ...session.user,
+      avatar: session.user.image || (session.user as any).avatar
+    } as CurrentUser;
   } catch {
     return null;
   }

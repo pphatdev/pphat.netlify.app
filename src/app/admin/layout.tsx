@@ -1,5 +1,5 @@
 // import { cookies } from 'next/headers';
-// import { redirect } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import { getCurrentUser } from '@lib/auth';
 import { SidebarInset, SidebarProvider, SidebarTrigger } from '@components/ui/sidebar';
 import { AdminSidebar } from '@components/sidebar/admin-sidebar';
@@ -8,12 +8,15 @@ import { GridPattern } from '@components/ui/grid-pattern';
 export default async function AdminLayout({ children }: { children: React.ReactNode; }) {
     const user = await getCurrentUser();
 
-    // Fallback user if fetch fails
-    const displayUser = user || {
-        name: 'Administrator',
-        email: 'admin@pphat.me',
-        avatar: '',
-        role: 'Admin',
+    if (!user) {
+        redirect('/login');
+    }
+
+    const displayUser = {
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar || '',
+        role: user.role || 'Admin',
     };
 
     return (
