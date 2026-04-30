@@ -1,11 +1,8 @@
 import Link from 'next/link';
-import {
-    IconCalendar,
-    IconEye,
-    IconFolder,
-    IconPlus,
-} from '@tabler/icons-react';
-import { getAllProjects } from '@lib/content';
+import Image from 'next/image';
+import { IconCalendar, IconEye, IconFolder, IconPlus } from '@tabler/icons-react';
+import { getCurrentUser } from '@lib/auth';
+import { fetchFromApi } from '@lib/api';
 import { AdminPageHeader } from '../components/page-header';
 import { Badge } from '@components/ui/badge';
 import { Button } from '@components/ui/button';
@@ -18,15 +15,20 @@ function formatCompact(value: number) {
 }
 
 function formatDate(value: string) {
-    return new Intl.DateTimeFormat('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-    }).format(new Date(value));
+    if (!value) return 'N/A';
+    try {
+        return new Intl.DateTimeFormat('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+        }).format(new Date(value));
+    } catch {
+        return value;
+    }
 }
 
-function getVisitorCount(item: unknown) {
-    const value = (item as { visitorCount?: unknown }).visitorCount;
+function getVisitorCount(item: any) {
+    const value = item.visitorCount;
     return typeof value === 'number' ? value : 0;
 }
 
@@ -46,7 +48,21 @@ function langClass(lang: string) {
 }
 
 export default async function AdminProjectsPage() {
-    const projects = await getAllProjects();
+    const user = await getCurrentUser();
+    if (!user) return null;
+
+    let projects: any[] = [];
+    let error: string | null = null;
+
+    try {
+        // Fetch all projects (role-based logic can be added here if API supports it)
+        const response = await fetchFromApi('/v1/api/projects?page=1&limit=100', {}, user.backendToken);
+        projects = response.data || [];
+    } catch (e: any) {
+        console.error('Error fetching admin projects:', e);
+        error = e.message;
+    }
+
     const publishedCount = projects.filter((p) => p.published).length;
     const draftCount = projects.length - publishedCount;
     const totalVisitors = projects.reduce((sum, p) => sum + getVisitorCount(p), 0);
@@ -59,6 +75,12 @@ export default async function AdminProjectsPage() {
                 action="New Project"
                 actionHref="/admin/projects/new"
             />
+
+            {error && (
+                <div className="rounded-2xl border border-destructive/50 bg-destructive/10 p-4 text-sm text-destructive">
+                    Failed to load projects: {error}
+                </div>
+            )}
 
             <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
                 {([
@@ -83,10 +105,7 @@ export default async function AdminProjectsPage() {
                         color: 'text-fuchsia-600 dark:text-fuchsia-400',
                     },
                 ] as const).map((stat) => (
-                    <div
-                        key={stat.label}
-                        className="rounded-2xl border border-border/60 bg-background/80 px-4 py-3.5 backdrop-blur-sm"
-                    >
+                    <div key={stat.label} className="rounded-2xl border border-border/60 bg-background/80 px-4 py-3.5 backdrop-blur-sm">
                         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                             {stat.label}
                         </p>
@@ -97,13 +116,11 @@ export default async function AdminProjectsPage() {
                 ))}
             </div>
 
-            {projects.length === 0 ? (
+            {projects.length === 0 && !error ? (
                 <div className="flex flex-col items-center rounded-3xl border border-dashed border-border/70 bg-background/50 px-6 py-16 text-center">
                     <IconFolder className="size-10 text-muted-foreground/40" />
                     <p className="mt-4 font-medium text-foreground">No projects yet</p>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                        Create your first project to get started.
-                    </p>
+                    <p className="mt-1 text-sm text-muted-foreground"> Create your first project to get started. </p>
                     <Button asChild className="mt-6">
                         <Link href="/admin/projects/new">
                             <IconPlus className="size-4" />
@@ -114,96 +131,84 @@ export default async function AdminProjectsPage() {
             ) : (
                 <div className="space-y-2.5">
                     {projects.map((project) => (
-                        <Link
-                            key={project.id}
-                            href={`/admin/projects/${project.id}`}
-                            className="group flex gap-4 rounded-2xl border border-border/60 bg-background/80 p-4 backdrop-blur-sm transition-all hover:border-border hover:bg-muted/30 hover:shadow-sm"
-                        >
-                            <div className="relative size-16 shrink-0 overflow-hidden rounded-xl border border-border/60 bg-muted">
-                                {project.image ? (
-                                    // eslint-disable-next-line @next/next/no-img-element
-                                    <img src={project.image} alt="" className="size-full object-cover" />
+                        <div key={project.id} className="group relative flex gap-4 rounded-2xl border border-border/60 bg-background/80 p-4 backdrop-blur-sm transition-all hover:border-border hover:bg-muted/30 hover:shadow-sm" >
+                            <Link href={`/admin/projects/${project.id}`} className="absolute inset-0 z-0 rounded-2xl" aria-label={`View ${project.title}`} />
+
+                            {/* Thumbnail */}
+                            <div className="relative z-10 h-24 aspect-video shrink-0 overflow-hidden rounded-xl border border-border/60 bg-muted">
+                                {project.thumbnail || project.image ? (
+                                    <Image src={project.thumbnail || project.image} alt={project.title} width={160} height={90} className="size-full object-cover" />
                                 ) : (
                                     <div className="flex size-full items-center justify-center bg-teal-500/10">
                                         <IconFolder className="size-5 text-teal-500/60" />
                                     </div>
                                 )}
 
-                                <span
-                                    className={`absolute right-1 top-1 size-2.5 rounded-full border border-background ${project.published ? 'bg-emerald-500' : 'bg-amber-400'
-                                        }`}
-                                />
+                                {/* Status dot */}
+                                <span className={`absolute right-1 top-1 size-2.5 rounded-full border border-background ${project.published ? 'bg-emerald-500' : 'bg-amber-400'}`} />
                             </div>
 
-                            <div className="min-w-0 flex-1 space-y-2">
+                            {/* Content */}
+                            <div className="relative z-10 min-w-0 flex-1 space-y-2">
                                 <div className="flex min-w-0 items-start justify-between gap-3">
                                     <div className="min-w-0">
                                         <p className="truncate font-semibold text-foreground">{project.title}</p>
-                                        <p className="mt-0.5 truncate text-xs text-muted-foreground">{project.slug}</p>
                                     </div>
-                                    <Badge
-                                        variant={project.published ? 'default' : 'outline'}
-                                        className="shrink-0 rounded-full px-2.5 py-1 text-[10px] uppercase tracking-[0.18em]"
-                                    >
-                                        {project.published ? 'Live' : 'Draft'}
-                                    </Badge>
-                                </div>
-
-                                {project.description && (
-                                    <p className="line-clamp-1 text-sm text-muted-foreground">{project.description}</p>
-                                )}
-
-                                <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
-                                    {project.languages.length > 0 && (
-                                        <div className="flex items-center gap-1.5">
-                                            {project.languages.slice(0, 4).map((lang) => (
-                                                <span
-                                                    key={lang}
-                                                    className={`rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] ${langClass(lang)}`}
-                                                >
-                                                    {lang}
-                                                </span>
-                                            ))}
-                                            {project.languages.length > 4 && (
-                                                <span className="text-[11px] text-muted-foreground/60">
-                                                    +{project.languages.length - 4}
-                                                </span>
-                                            )}
-                                        </div>
-                                    )}
-
-                                    <div className="flex items-center gap-2">
-                                        {project.tags.slice(0, 2).map((tag) => (
-                                            <span
-                                                key={tag}
-                                                className="rounded-full bg-foreground/6 px-2 py-0.5 text-[11px] font-medium text-muted-foreground"
-                                            >
-                                                #{tag}
-                                            </span>
-                                        ))}
-                                        {project.tags.length > 2 && (
-                                            <span className="text-[11px] text-muted-foreground/60">
-                                                +{project.tags.length - 2}
-                                            </span>
-                                        )}
-                                    </div>
-
                                     <div className="ml-auto flex items-center gap-4">
+                                        <Badge variant={project.published ? 'default' : 'outline'} className="shrink-0 rounded-full px-2.5 py-1 text-[10px] uppercase tracking-[0.18em]" >
+                                            {project.published ? 'Live' : 'Draft'}
+                                        </Badge>
                                         <span className="flex items-center gap-1 text-xs text-muted-foreground">
                                             <IconEye className="size-3" />
                                             {formatCompact(getVisitorCount(project))}
                                         </span>
                                         <span className="flex items-center gap-1 text-xs text-muted-foreground">
                                             <IconCalendar className="size-3" />
-                                            {formatDate(project.createdAt)}
+                                            {formatDate(project.createdAt || project.created_at)}
                                         </span>
                                     </div>
                                 </div>
+
+
+                                <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                                    {(project.languages ?? []).length > 0 && (
+                                        <div className="flex items-center gap-1.5">
+                                            {(project.languages ?? []).slice(0, 4).map((lang: any) => {
+                                                const name = typeof lang === 'string' ? lang : lang.name;
+                                                return (
+                                                    <span key={name} className={`rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] ${langClass(name)}`}> {name} </span>
+                                                );
+                                            })}
+                                        </div>
+                                    )}
+
+                                    {(project.tags ?? []).length > 0 && (
+                                        <div className="flex items-center gap-2">
+                                            {(project.tags ?? []).slice(0, 4).map((tag: any) => {
+                                                const name = typeof tag === 'string' ? tag : tag.tag;
+                                                return (
+                                                    <span key={name} className="rounded-full bg-foreground/6 px-2 py-0.5 text-[11px] font-medium text-muted-foreground" > #{name} </span>
+                                                );
+                                            })}
+                                            {(project.tags ?? []).length > 4 && (
+                                                <span className="text-[11px] text-muted-foreground/60">
+                                                    +{(project.tags ?? []).length - 4}
+                                                </span>
+                                            )}
+                                        </div>
+                                    )}
+
+                                </div>
+
+                                {project.description && (
+                                    <p className="line-clamp-1 text-sm text-muted-foreground">{project.description}</p>
+                                )}
                             </div>
-                        </Link>
+                        </div>
                     ))}
                 </div>
             )}
         </div>
     );
 }
+

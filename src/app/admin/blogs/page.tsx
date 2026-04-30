@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { IconCalendar, IconFileText, IconPlus } from '@tabler/icons-react';
+import { IconCalendar, IconEye, IconFileText, IconPlus } from '@tabler/icons-react';
 import { getCurrentUser } from '@lib/auth';
 import { fetchFromApi } from '@lib/api';
 import { AdminPageHeader } from '../components/page-header';
@@ -104,9 +104,9 @@ export default async function AdminBlogsPage() {
                             className="group relative flex gap-4 rounded-2xl border border-border/60 bg-background/80 p-4 backdrop-blur-sm transition-all hover:border-border hover:bg-muted/30 hover:shadow-sm"
                         >
                             {/* Stretched Link for the entire card */}
-                            <Link 
-                                href={`/admin/blogs/${post.id}`} 
-                                className="absolute inset-0 z-0 rounded-2xl" 
+                            <Link
+                                href={`/admin/blogs/${post.id}`}
+                                className="absolute inset-0 z-0 rounded-2xl"
                                 aria-label={`View ${post.title}`}
                             />
 
@@ -129,9 +129,19 @@ export default async function AdminBlogsPage() {
                                     <div className="min-w-0">
                                         <p className="truncate font-semibold text-foreground">{post.title} </p>
                                     </div>
-                                    <Badge variant={post.published ? 'default' : 'outline'} className="shrink-0 rounded-full px-2.5 py-1 text-[10px] uppercase tracking-[0.18em]" >
-                                        {post.published ? 'Live' : 'Draft'}
-                                    </Badge>
+                                    <div className="ml-auto flex items-center gap-4">
+                                        <Badge variant={post.published ? 'default' : 'outline'} className="shrink-0 rounded-full px-2.5 py-1 text-[10px] uppercase tracking-[0.18em]" >
+                                            {post.published ? 'Live' : 'Draft'}
+                                        </Badge>
+                                        <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                                            <IconEye className="size-3" />
+                                            {post.views || 0}
+                                        </span>
+                                        <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                                            <IconCalendar className="size-3" />
+                                            {formatDate(post.createdAt || post.created_at)}
+                                        </span>
+                                    </div>
                                 </div>
 
                                 {/* Tags and Date Row */}
@@ -146,13 +156,6 @@ export default async function AdminBlogsPage() {
                                             {post.tags.length > 4 && (<span className="text-[11px] text-muted-foreground/60"> +{post.tags.length - 4} </span>)}
                                         </div>
                                     )}
-
-                                    <div className="ml-auto flex items-center gap-4">
-                                        <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                                            <IconCalendar className="size-3" />
-                                            {formatDate(post.createdAt || post.created_at)}
-                                        </span>
-                                    </div>
                                 </div>
 
                                 {/* Authors Display */}
