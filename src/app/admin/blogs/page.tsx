@@ -27,9 +27,10 @@ export default async function AdminBlogsPage() {
 
     let posts: any[] = [];
     let error: string | null = null;
+    const apiEndpoint = user.role === 'admin' ? '/v1/api/articles?page=1' : `/v1/api/articles/author/${user.id}?page=1`;
 
     try {
-        const response = await fetchFromApi('/v1/api/articles?page=1', {}, user.backendToken);
+        const response = await fetchFromApi(apiEndpoint, {}, user.backendToken);
         posts = response.data || [];
     } catch (e: any) {
         console.error('Error fetching admin blogs:', e);

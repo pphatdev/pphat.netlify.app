@@ -35,7 +35,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                         throw new Error(data?.message || data?.error || 'Authentication failed')
                     }
 
-                    // 2. Fetch user profile from the backend using the token
+                    // Fetch user profile from the backend using the token
                     console.log('Fetching user profile...')
                     const userRes = await fetch(`${NEXT_PUBLIC_API}/v1/api/auth/me`, {
                         headers: { Authorization: `Bearer ${token}` }
@@ -75,6 +75,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             if (user) {
                 token.backendToken = (user as any).token;
                 token.role = (user as any).role;
+                token.id = user.id; // Explicitly persist the ID
             }
             return token;
         },
@@ -82,6 +83,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             if (token && session.user) {
                 (session as any).backendToken = token.backendToken;
                 (session.user as any).role = token.role;
+                (session.user as any).id = token.id; // Ensure ID is in the session user object
             }
             return session;
         }
