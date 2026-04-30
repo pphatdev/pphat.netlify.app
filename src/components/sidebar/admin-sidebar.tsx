@@ -76,7 +76,7 @@ export function AdminSidebar({
                 CMS
               </Badge>
             </div>
-            <p className="text-sidebar-foreground/70 line-clamp-2 text-xs leading-5">
+            <p className="text-sidebar-foreground/70 line-clamp-1 text-xs leading-5">
               Manage blogs, projects, and publishing workflows.
             </p>
           </div>
