@@ -50,7 +50,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
                         />
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.06),transparent_24%),linear-gradient(180deg,rgba(15,23,42,0.03),transparent_38%)]" />
                     </div>
-                    <div className="relative p-4 md:p-8">{children}</div>
+                    <div className="relative p-4 md:p-8 max-w-7xl mx-auto">{children}</div>
                 </div>
             </SidebarInset>
         </SidebarProvider>

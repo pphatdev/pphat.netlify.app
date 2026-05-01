@@ -14,8 +14,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 if (!credentials?.email || !credentials?.password) return null
 
                 try {
-                    console.log('Attempting login with:', credentials.email)
-                    // Authenticate with the backend
                     const res = await fetch(`${NEXT_PUBLIC_API}/v1/api/auth/email/login`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -24,23 +22,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                             password: credentials.password,
                         }),
                     })
-                    console.log('Backend response status:', res.status)
 
                     const data = await res.json()
-                    console.log('Backend response data:', data)
-                    const token = data?.token || data?.data?.token
+                    const token = data?.accessToken || data?.token || data?.data?.token
 
                     if (!res.ok || !token) {
                         console.error('Authentication failed:', data?.message || data?.error || 'No token returned')
                         throw new Error(data?.message || data?.error || 'Authentication failed')
                     }
 
-                    // Fetch user profile from the backend using the token
-                    console.log('Fetching user profile...')
                     const userRes = await fetch(`${NEXT_PUBLIC_API}/v1/api/auth/me`, {
                         headers: { Authorization: `Bearer ${token}` }
                     })
-                    console.log('User profile response status:', userRes.status)
 
                     if (!userRes.ok) {
                         const errorData = await userRes.json()
@@ -49,7 +42,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     }
 
                     const userData = await userRes.json()
-                    console.log('User data received:', userData)
                     const user = userData?.data || (userData?.id ? userData : null)
 
                     if (user) {

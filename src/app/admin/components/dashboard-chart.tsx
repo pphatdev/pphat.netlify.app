@@ -5,6 +5,7 @@ import Link from 'next/link';
 export type TrafficItem = {
     label: string;
     visitors: number;
+    thumbnail?: string;
     type: 'Blog' | 'Project';
     status: 'Published' | 'Draft';
     href: string;
@@ -40,9 +41,15 @@ export function AdminTrafficSpotlight({ items }: { items: TrafficItem[] }) {
                         href={item.href}
                         className="group flex items-center gap-4 rounded-2xl border border-border/60 bg-muted/20 px-4 py-3.5 transition-all hover:border-border hover:bg-muted/40 hover:shadow-sm"
                     >
-                        {/* Rank */}
-                        <div className="flex size-8 shrink-0 items-center justify-center rounded-xl border border-border/60 bg-background/80 text-xs font-semibold tabular-nums text-muted-foreground transition-colors group-hover:border-border group-hover:text-foreground">
-                            {index + 1}
+                        {/* Thumbnail or Rank */}
+                        <div className="relative size-12 shrink-0 overflow-hidden rounded-xl border border-border/60 bg-background/80 flex items-center justify-center">
+                            {item.thumbnail ? (
+                                <img src={item.thumbnail} alt="" className="h-full w-full object-cover transition-transform group-hover:scale-110" />
+                            ) : (
+                                <span className="text-xs font-semibold tabular-nums text-muted-foreground transition-colors group-hover:text-foreground">
+                                    {index + 1}
+                                </span>
+                            )}
                         </div>
 
                         {/* Title + progress bar */}
