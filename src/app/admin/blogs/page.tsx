@@ -33,6 +33,7 @@ export default async function AdminBlogsPage() {
         const response = await fetchFromApi(apiEndpoint, {}, user.backendToken);
         posts = response.data || [];
     } catch (e: any) {
+        if (e.digest?.includes('NEXT_REDIRECT')) throw e;
         console.error('Error fetching admin blogs:', e);
         error = e.message;
     }

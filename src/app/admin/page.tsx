@@ -10,9 +10,9 @@ import {
     PenSquare,
     Rocket,
     ShieldCheck,
-    UserRound,
 } from 'lucide-react';
 import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
 import { getCurrentUser } from '@lib/auth';
 import { fetchFromApi } from '@lib/api';
 import { AdminPageHeader } from './components/page-header';
@@ -83,35 +83,59 @@ function MetricCard({
 
 export default async function AdminDashboardPage() {
     const user = await getCurrentUser();
-    if (!user) return null;
+    if (!user) {
+        const headersList = await headers();
+        const referer = headersList.get('referer');
+        let callbackUrl = '/admin';
+        try {
+            if (referer) callbackUrl = new URL(referer).pathname;
+        } catch { /* fallback */ }
+        redirect(`/login?callbackUrl=${encodeURIComponent(callbackUrl)}`);
+    }
 
-    const [dashboard, contactResponse] = await Promise.all([
-        // Use the local proxy route as requested
+    // Server-side parallel fetching
+    const [dashboardRes, contactResponse] = await Promise.all([
         fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/dashboard/init`, {
             headers: await headers(),
             cache: 'no-store'
-        }).then(res => res.json()).catch(() => ({
-            blogs: { total: 0, published: 0, draft: 0 },
-            projects: { total: 0, published: 0, draft: 0 },
-            liveTraffic: 0,
-            topPosts: [],
-            topProjects: [],
-            newestPosts: [],
-            newestProjects: [],
-            newestContributors: []
-        })),
-        fetchFromApi('/v1/api/contact?limit=5', {}, user.backendToken).catch(() => ({ data: [], pagination: { total: 0 } }))
+        }),
+        fetchFromApi('/v1/api/contact?limit=5', {}, user.backendToken).catch((err) => {
+            if (err.message === 'NEXT_REDIRECT' || err.digest?.includes('NEXT_REDIRECT')) throw err;
+            return { data: [], pagination: { total: 0 } };
+        })
     ]);
 
-    const totalVisitors = dashboard.liveTraffic;
-    const publishedPosts = dashboard.blogs.published;
-    const publishedProjects = dashboard.projects.published;
-    const totalEntries = dashboard.blogs.total + dashboard.projects.total;
+    // Handle 401 globally on the server
+    if (dashboardRes.status === 401) {
+        const headersList = await headers();
+        const referer = headersList.get('referer');
+        let callbackUrl = '/admin';
+        try {
+            if (referer) callbackUrl = new URL(referer).pathname;
+        } catch { /* fallback */ }
+        redirect(`/login?error=SessionExpired&callbackUrl=${encodeURIComponent(callbackUrl)}`);
+    }
+
+    const dashboard = await dashboardRes.json().catch(() => ({
+        blogs: { total: 0, published: 0, draft: 0 },
+        projects: { total: 0, published: 0, draft: 0 },
+        liveTraffic: 0,
+        topPosts: [],
+        topProjects: [],
+        newestPosts: [],
+        newestProjects: [],
+        newestContributors: []
+    }));
+
+    const totalVisitors = dashboard?.liveTraffic || 0;
+    const publishedPosts = dashboard?.blogs?.published || 0;
+    const publishedProjects = dashboard?.projects?.published || 0;
+    const totalEntries = (dashboard?.blogs?.total || 0) + (dashboard?.projects?.total || 0);
     const publishedEntries = publishedPosts + publishedProjects;
     const publicationRate = totalEntries === 0 ? 0 : Math.round((publishedEntries / totalEntries) * 100);
 
-    const totalViews = dashboard.topPosts.reduce((sum: number, post: any) => sum + (post.stats?.views || 0), 0);
-    const totalReadingMins = dashboard.topPosts.reduce((sum: number, post: any) => sum + (post.stats?.readingMins || 0), 0);
+    const totalViews = (dashboard?.topPosts || []).reduce((sum: number, post: any) => sum + (post.stats?.views || 0), 0);
+    const totalReadingMins = (dashboard?.topPosts || []).reduce((sum: number, post: any) => sum + (post.stats?.readingMins || 0), 0);
 
     const contactRows = (contactResponse.data || []).map((c: any) => ({
         id: c.id,
@@ -123,7 +147,7 @@ export default async function AdminDashboardPage() {
         createdAt: c.created_at || c.createdAt
     }));
 
-    const userRows = (dashboard.newestContributors || []).map((u: any) => ({
+    const userRows = (dashboard?.newestContributors || []).map((u: any) => ({
         id: u.id,
         name: u.name,
         email: u.email || '',
@@ -138,7 +162,7 @@ export default async function AdminDashboardPage() {
     const pendingContacts = contactRows.filter((contact: any) => contact.deliveryStatus !== 'delivered' && !contact.isSpam).length;
 
     const recentActivity = [
-        ...dashboard.newestPosts.map((post: any) => ({
+        ...(dashboard?.newestPosts || []).map((post: any) => ({
             id: post.id,
             type: 'Blog' as const,
             title: post.title,
@@ -148,7 +172,7 @@ export default async function AdminDashboardPage() {
             published: post.published,
             date: post.updatedAt || post.createdAt,
         })),
-        ...dashboard.newestProjects.map((project: any) => ({
+        ...(dashboard?.newestProjects || []).map((project: any) => ({
             id: project.id,
             type: 'Project' as const,
             title: project.title,
@@ -163,7 +187,7 @@ export default async function AdminDashboardPage() {
         .slice(0, 6);
 
     const draftQueue = [
-        ...dashboard.newestPosts.filter((post: any) => !post.published).map((post: any) => ({
+        ...(dashboard?.newestPosts || []).filter((post: any) => !post.published).map((post: any) => ({
             id: post.id,
             title: post.title,
             href: `/admin/blogs/${post.id}`,
@@ -171,7 +195,7 @@ export default async function AdminDashboardPage() {
             detail: post.slug,
             createdAt: post.createdAt,
         })),
-        ...dashboard.newestProjects.filter((project: any) => !project.published).map((project: any) => ({
+        ...(dashboard?.newestProjects || []).filter((project: any) => !project.published).map((project: any) => ({
             id: project.id,
             title: project.title,
             href: `/admin/projects/${project.id}`,
@@ -184,7 +208,7 @@ export default async function AdminDashboardPage() {
         .slice(0, 5);
 
     const topPerformers = [
-        ...dashboard.topPosts.map((post: any) => ({
+        ...(dashboard?.topPosts || []).map((post: any) => ({
             label: post.title,
             visitors: post.stats?.views ?? post.visitorCount ?? 0,
             thumbnail: post.thumbnail,
@@ -192,7 +216,7 @@ export default async function AdminDashboardPage() {
             status: post.published ? 'Published' as const : 'Draft' as const,
             href: `/admin/blogs/${post.id}`,
         })),
-        ...dashboard.topProjects.map((project: any) => ({
+        ...(dashboard?.topProjects || []).map((project: any) => ({
             label: project.title,
             visitors: project.visitorCount ?? 0,
             thumbnail: project.thumbnail,
@@ -205,13 +229,10 @@ export default async function AdminDashboardPage() {
         .slice(0, 6);
 
     const latestContact = contactRows[0];
-    const adminUsers = userRows.filter((user: any) => user.role.toLowerCase() === 'admin');
-    const editorUsers = userRows.filter((user: any) => user.role.toLowerCase() !== 'admin');
-    const githubUsers = userRows.filter((user: any) => user.provider === 'github');
 
     const tagHighlights: [string, number][] = [];
     const tagMap = new Map<string, number>();
-    [...dashboard.topPosts, ...dashboard.topProjects].forEach((item: any) => {
+    [...(dashboard?.topPosts || []), ...(dashboard?.topProjects || [])].forEach((item: any) => {
         (item.tags || []).forEach((tag: any) => {
             const tagName = typeof tag === 'string' ? tag : (tag.tag || tag.name);
             tagMap.set(tagName, (tagMap.get(tagName) || 0) + 1);
@@ -221,9 +242,6 @@ export default async function AdminDashboardPage() {
         .sort((a, b) => b[1] - a[1])
         .slice(0, 5)
         .forEach(entry => tagHighlights.push(entry));
-
-    const recentPosts = dashboard.newestPosts.slice(0, 4);
-    const recentProjects = dashboard.newestProjects.slice(0, 4);
 
 
     return (
@@ -236,15 +254,15 @@ export default async function AdminDashboardPage() {
             <section className="grid gap-7 md:grid-cols-2 xl:grid-cols-4">
                 <MetricCard
                     title="Blogs"
-                    value={dashboard.blogs.total.toString()}
-                    detail={`${publishedPosts} published · ${dashboard.blogs.draft} draft`}
+                    value={(dashboard?.blogs?.total || 0).toString()}
+                    detail={`${publishedPosts} published · ${dashboard?.blogs?.draft || 0} draft`}
                     icon={<PenSquare className="size-5" />}
                     tone="from-blue-500/16 via-blue-500/10 to-transparent"
                 />
                 <MetricCard
                     title="Projects"
-                    value={dashboard.projects.total.toString()}
-                    detail={`${publishedProjects} live · ${dashboard.projects.draft} private`}
+                    value={(dashboard?.projects?.total || 0).toString()}
+                    detail={`${publishedProjects} live · ${dashboard?.projects?.draft || 0} private`}
                     icon={<FolderKanban className="size-5" />}
                     tone="from-teal-500/16 via-teal-500/10 to-transparent"
                 />
@@ -286,14 +304,14 @@ export default async function AdminDashboardPage() {
                                     </div>
                                 </div>
 
-                                <div className="grid gap-3 sm:min-w-72 sm:grid-cols-2">
+                                <div className="grid gap-3 items-center sm:min-w-72 sm:grid-cols-2">
                                     <Button asChild variant="outline" className="h-11 rounded-full border-border/60 bg-background/50 backdrop-blur-sm">
                                         <Link href="/admin/projects/new">
                                             <FolderKanban className="size-4 mr-2" />
                                             New Project
                                         </Link>
                                     </Button>
-                                    <Button asChild className="h-11 rounded-full shadow-lg shadow-primary/20">
+                                    <Button asChild className="h-11 rounded-full mt-0 shadow-lg shadow-primary/20">
                                         <Link href="/admin/blogs/new">
                                             <PenSquare className="size-4 mr-2" />
                                             New Blog
@@ -361,26 +379,26 @@ export default async function AdminDashboardPage() {
                         </div>
                     </CardHeader>
                     <CardContent className="space-y-6 px-6 py-6">
-                        <AdminDashboardLiveTraffic initialValue={dashboard.liveTraffic} />
+                        <AdminDashboardLiveTraffic initialValue={dashboard?.liveTraffic || 0} />
 
                         <div className="space-y-4">
                             <div className="space-y-2">
                                 <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                     <span>Blogs Live</span>
-                                    <span>{publishedPosts}/{dashboard.blogs.total}</span>
+                                    <span>{publishedPosts}/{(dashboard?.blogs?.total || 0)}</span>
                                 </div>
                                 <div className="h-2 rounded-full bg-muted/70 overflow-hidden">
-                                    <div className="h-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)] transition-all duration-1000" style={{ width: `${dashboard.blogs.total === 0 ? 0 : (publishedPosts / dashboard.blogs.total) * 100}%` }} />
+                                    <div className="h-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)] transition-all duration-1000" style={{ width: `${(dashboard?.blogs?.total || 0) === 0 ? 0 : (publishedPosts / (dashboard?.blogs?.total || 1)) * 100}%` }} />
                                 </div>
                             </div>
 
                             <div className="space-y-2">
                                 <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                     <span>Projects Live</span>
-                                    <span>{publishedProjects}/{dashboard.projects.total}</span>
+                                    <span>{publishedProjects}/{(dashboard?.projects?.total || 0)}</span>
                                 </div>
                                 <div className="h-2 rounded-full bg-muted/70 overflow-hidden">
-                                    <div className="h-full bg-teal-500 shadow-[0_0_8px_rgba(20,184,166,0.5)] transition-all duration-1000" style={{ width: `${dashboard.projects.total === 0 ? 0 : (publishedProjects / dashboard.projects.total) * 100}%` }} />
+                                    <div className="h-full bg-teal-500 shadow-[0_0_8px_rgba(20,184,166,0.5)] transition-all duration-1000" style={{ width: `${(dashboard?.projects?.total || 0) === 0 ? 0 : (publishedProjects / (dashboard?.projects?.total || 1)) * 100}%` }} />
                                 </div>
                             </div>
                         </div>

@@ -7,6 +7,7 @@ import {
 import { GitHubIcon } from "../icons/github";
 import { Button } from "../ui";
 import { Ripple } from "../ui/ripple";
+import { LockIcon } from "lucide-react";
 
 function ArrowRightIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
@@ -49,6 +50,11 @@ const socialLinks = [
         label: "Email",
         href: "/contact",
         icon: GitHubIcon
+    },
+    {
+        label: "Login",
+        href: "/admin",
+        icon: LockIcon
     },
 ];
 

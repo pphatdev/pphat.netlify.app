@@ -11,15 +11,18 @@ export async function GET(request: NextRequest) {
 
     const backendUrl = `${process.env.NEXT_PUBLIC_API}/v1/api/dashboard/live-traffic`;
 
+    console.log(`Connecting to backend SSE: ${backendUrl}`);
     const response = await fetch(backendUrl, {
         headers: {
             'Authorization': `Bearer ${user.backendToken}`,
             'Accept': 'text/event-stream',
         },
+        cache: 'no-store',
     });
 
     if (!response.ok) {
-        return new Response('Failed to connect to traffic stream', { status: response.status });
+        console.error(`Backend SSE connection failed: ${response.status} ${response.statusText}`);
+        return new Response(`Failed to connect to traffic stream: ${response.status}`, { status: response.status });
     }
 
     const stream = new ReadableStream({

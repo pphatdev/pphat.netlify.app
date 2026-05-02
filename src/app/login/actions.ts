@@ -6,6 +6,7 @@ import { AuthError } from "next-auth"
 export async function loginAction(prevState: any, formData: FormData) {
     const email = formData.get('email') as string
     const password = formData.get('password') as string
+    const callbackUrl = formData.get('callbackUrl') as string
 
     if (!email || !password) {
         return { error: "Email and password are required" }
@@ -15,7 +16,7 @@ export async function loginAction(prevState: any, formData: FormData) {
         await signIn("credentials", {
             email,
             password,
-            redirectTo: "/admin",
+            redirectTo: callbackUrl || "/admin",
         })
     } catch (error) {
         if (error instanceof AuthError) {

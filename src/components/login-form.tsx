@@ -23,7 +23,7 @@ function SubmitButton({ pending }: { pending: boolean }) {
     );
 }
 
-export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) {
+export function LoginForm({ className, callbackUrl, ...props }: React.ComponentProps<'div'> & { callbackUrl?: string }) {
     const [state, formAction, isPending] = useActionState(loginAction, null);
 
     return (
@@ -31,6 +31,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
             <Card className="p-0 rounded-3xl bg-background overflow-hidden">
                 <CardContent className="grid p-0 md:grid-cols-2">
                     <form action={formAction} className="p-6 md:p-12">
+                        <input type="hidden" name="callbackUrl" value={callbackUrl || ''} />
                         <div className="flex flex-col gap-5 text-foreground/90">
                             <div className="flex flex-col items-center mb-5 text-center">
                                 <h1 className="text-2xl font-bold">Welcome back</h1>

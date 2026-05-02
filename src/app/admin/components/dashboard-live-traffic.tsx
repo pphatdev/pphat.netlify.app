@@ -9,31 +9,46 @@ export function AdminDashboardLiveTraffic({ initialValue = 0 }: { initialValue?:
     const [status, setStatus] = useState<'connecting' | 'connected' | 'error'>('connecting');
 
     useEffect(() => {
-        const eventSource = new EventSource('/api/dashboard/live-traffic');
+        let eventSource: EventSource;
+        
+        const connect = () => {
+            eventSource = new EventSource('/api/dashboard/live-traffic');
 
-        eventSource.onopen = () => {
-            setStatus('connected');
-        };
+            eventSource.onopen = () => {
+                console.log('SSE Connected');
+                setStatus('connected');
+            };
 
-        eventSource.onmessage = (event) => {
-            try {
-                const data = JSON.parse(event.data);
-                if (typeof data.count === 'number') {
-                    setCount(data.count);
+            eventSource.onmessage = (event) => {
+                try {
+                    const data = JSON.parse(event.data);
+                    if (typeof data.count === 'number') {
+                        setCount(data.count);
+                    }
+                } catch (error) {
+                    console.error('Error parsing traffic data:', error);
                 }
-            } catch (error) {
-                console.error('Error parsing traffic data:', error);
-            }
+            };
+
+            eventSource.onerror = (error) => {
+                console.error('SSE Error:', error);
+                
+                // If it's closed, we try to reconnect manually after a delay
+                // though EventSource usually does this automatically.
+                if (eventSource.readyState === EventSource.CLOSED) {
+                    setStatus('error');
+                    // Optional: reconnect manually after 5s if it really closed
+                    setTimeout(connect, 5000);
+                } else if (eventSource.readyState === EventSource.CONNECTING) {
+                    setStatus('connecting');
+                }
+            };
         };
 
-        eventSource.onerror = (error) => {
-            console.error('SSE Error:', error);
-            setStatus('error');
-            eventSource.close();
-        };
+        connect();
 
         return () => {
-            eventSource.close();
+            if (eventSource) eventSource.close();
         };
     }, []);
 

@@ -37,6 +37,7 @@ export default async function AdminContactsPage() {
         contacts = response.data || [];
         total = response.pagination?.total || 0;
     } catch (e: any) {
+        if (e.digest?.includes('NEXT_REDIRECT')) throw e;
         console.error('Error fetching admin contacts:', e);
         error = e.message;
     }
@@ -117,7 +118,7 @@ export default async function AdminContactsPage() {
                             <div className="text-sm leading-relaxed text-foreground/80 whitespace-pre-wrap">
                                 {contact.message}
                             </div>
-                            
+
                             <div className="mt-1 text-[10px] text-muted-foreground/60 italic">
                                 UA: {contact.user_agent}
                             </div>

@@ -1,4 +1,5 @@
 // import { cookies } from 'next/headers';
+import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { getCurrentUser } from '@lib/auth';
 import { SidebarInset, SidebarProvider, SidebarTrigger } from '@components/ui/sidebar';
@@ -9,7 +10,15 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     const user = await getCurrentUser();
 
     if (!user) {
-        redirect('/login');
+        const headersList = await headers();
+        const referer = headersList.get('referer');
+        let callbackUrl = '/admin';
+        try {
+            if (referer) callbackUrl = new URL(referer).pathname;
+        } catch {
+            // Fallback to default
+        }
+        redirect(`/login?callbackUrl=${encodeURIComponent(callbackUrl)}`);
     }
 
     const displayUser = {
