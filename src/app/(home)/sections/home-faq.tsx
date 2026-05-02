@@ -1,9 +1,10 @@
 import { FaqSection } from "@components/sections/faq";
 import FAQPageStructuredData from "@components/data-structured/faq-page";
 import {
-    PERSON_NAME,FAQS,
+    PERSON_NAME,
     PERSON_ALTERNATE_NAME,
 } from "@lib/constants";
+import { FAQS } from "@lib/faqs";
 
 
 export const HomeFAQSection = () => {

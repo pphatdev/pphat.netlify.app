@@ -3,6 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials"
 import { NEXT_PUBLIC_API } from "@lib/constants"
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+    secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET,
     providers: [
         CredentialsProvider({
             name: "Credentials",
